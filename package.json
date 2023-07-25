@@ -1,0 +1,20 @@
+{
+  "name": "polofield",
+  "version": "0.0.0",
+  "devDependencies": {
+    "@cloudflare/workers-types": "^4.20230717.1",
+    "@tsndr/cloudflare-worker-jwt": "^2.2.1",
+    "prettier": "^3.0.0",
+    "serverless-cloudflare-workers": "^1.2.0",
+    "typescript": "^5.1.6",
+    "wrangler": "^3.3.0"
+  },
+  "private": true,
+  "scripts": {
+    "start": "wrangler dev",
+    "deploy": "wrangler publish",
+    "wrangler": "wrangler",
+    "format": "prettier --write 'src/**/*.{js,ts,css,json,md}'",
+    "backup-db": "export NO_D1_WARNING=true && wrangler d1 backup download --output=./db/polofield.sqlite3 polofield $(mkdir -p ./db && wrangler d1 backup list polofield | grep -Eo '[0-9a-f-]{36}' | head -n1)"
+  }
+}

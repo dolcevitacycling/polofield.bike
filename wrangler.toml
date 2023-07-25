@@ -1,0 +1,21 @@
+name = "polofield"
+main = "src/index.ts"
+compatibility_date = "2023-08-01"
+
+[vars]
+# SLACK_BOT_TOKEN
+# SLACK_CLIENT_ID
+# SLACK_CLIENT_SECRET
+# SLACK_SIGNING_SECRET
+# GOOGLE_API_KEY
+# GOOGLE_DRIVE_ID
+# GOOGLE_UPLOAD_FOLDER_ID
+# [[queues.producers]]
+#  queue = "slack-files"
+#  binding = "SLACK_FILES_QUEUE"
+# [[queues.consumers]]
+#  queue = "slack-files"
+# [[ d1_databases ]]
+#   binding = "DB" # i.e. available in your Worker on env.DB
+#   database_name = "slack_posts"
+#   database_id = "ae567aeb-9c2b-4ffd-8dfb-adba302147cd"
