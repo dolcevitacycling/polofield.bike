@@ -15,5 +15,4 @@ export interface Env {
   // BENEFITS_FILE_ID: string;
 }
 
-export interface PoloFieldMessage {
-}
+export interface PoloFieldMessage {}
