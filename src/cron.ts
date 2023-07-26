@@ -41,12 +41,23 @@ export class DocCleaner implements HTMLRewriterDocumentContentHandlers {
   }
 }
 
+function levelsEq(a: Levels, b: Levels): boolean {
+  return (
+    a.span === b.span &&
+    a.underline === b.underline &&
+    a.strong === b.strong &&
+    a.ul === b.ul &&
+    a.li === b.li &&
+    a.p === b.p
+  );
+}
+
 function joinBuffer(buffer: readonly BufferEntry[]): readonly BufferEntry[] {
   const result: BufferEntry[] = [];
   for (let i = 0; i < buffer.length; i++) {
     const entry = buffer[i];
     const prev = result[result.length - 1];
-    if (prev?.levels === entry.levels) {
+    if (prev && levelsEq(prev.levels, entry.levels)) {
       result[result.length - 1] = { ...prev, text: prev.text + entry.text };
     } else {
       result.push(entry);
@@ -55,15 +66,23 @@ function joinBuffer(buffer: readonly BufferEntry[]): readonly BufferEntry[] {
   return result.filter((entry) => !/^\s*(&nbsp;\s*)*$/.test(entry.text));
 }
 
-const MONTHS = /\b(Jan(?:uary)?|Feb(?:ruary)?|Mar(?:ch)?|Apr(?:il)?|May|Jun(?:e)?|Jul(?:y)?|Aug(?:ust)?|Sep(?:tember)?|Nov(?:ember)?|Dec(?:ember)?)\b/i;
+const MONTHS =
+  /\b(Jan(?:uary)?|Feb(?:ruary)?|Mar(?:ch)?|Apr(?:il)?|May|Jun(?:e)?|Jul(?:y)?|Aug(?:ust)?|Sep(?:tember)?|Nov(?:ember)?|Dec(?:ember)?)\b/i;
 const DAY_NUMBER_RE = /\b(\d{1,2})\b(?:\s*-\s*(\d{1,2}))?/;
 // const DAYS = /\b(Mon(?:day)?|Tue(sday)?|Wed(nesday)?|Thu(?:rs(?:day)?)?|Fri(?:day)?|Sat(?:urday)?|Sun(?:day)?)\b/i;
-const DATE_RULES_RE = new RegExp(`${MONTHS.source}\\s+${DAY_NUMBER_RE.source}`, "ig");
+const DATE_RULES_RE = new RegExp(
+  `${MONTHS.source}\\s+${DAY_NUMBER_RE.source}`,
+  "ig",
+);
 
-function parseDateRules(text: string): { start_date: string; end_date: string } | undefined {
+function parseDateRules(
+  text: string,
+): { start_date: string; end_date: string } | undefined {
   DATE_RULES_RE.lastIndex = 0;
   let m = DATE_RULES_RE.exec(text);
-  if (!m) { return; }
+  if (!m) {
+    return;
+  }
   const start_date = m[1].substring(0, 3) + " " + m[2];
   let end_date;
   if (m[3]) {
@@ -80,7 +99,12 @@ function reduceYearRules(acc: DateRules[], rule: Rule): DateRules[] {
   for (const entry of rule.buffer) {
     const { levels, text } = entry;
     let parsed;
-    if (levels.strong === 1 && levels.p === 1 && levels.span > 0 && (parsed = parseDateRules(text))) {
+    if (
+      levels.strong === 1 &&
+      levels.p === 1 &&
+      levels.span > 0 &&
+      (parsed = parseDateRules(text))
+    ) {
       acc.push({
         type: "date_rules",
         text,
@@ -88,7 +112,15 @@ function reduceYearRules(acc: DateRules[], rule: Rule): DateRules[] {
         rules: [],
       });
     } else if (last) {
-      last.rules.push(...rule.buffer.map((e) => e.text));
+      last.rules.push(
+        ...rule.buffer.map((e) =>
+          e.text
+            .replace(/&nbsp;/g, " ")
+            .replace(/&bull;/g, "-")
+            .replace(/[ ]+/g, " ")
+            .trim(),
+        ),
+      );
     }
   }
   return acc;
