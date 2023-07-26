@@ -1,9 +1,9 @@
 import { Env } from "./types";
 
-interface Year {
+interface Year<T> {
   readonly type: "year";
   readonly year: number;
-  readonly rules: Rule[];
+  readonly rules: T[];
 }
 
 type Levels = Readonly<
@@ -16,6 +16,13 @@ interface Rule {
 interface BufferEntry {
   readonly text: string;
   readonly levels: Levels;
+}
+interface DateRules {
+  readonly type: "date_rules";
+  readonly text: string;
+  readonly start_date: string;
+  readonly end_date: string;
+  readonly rules: string[];
 }
 
 export class DocCleaner implements HTMLRewriterDocumentContentHandlers {
@@ -48,6 +55,45 @@ function joinBuffer(buffer: readonly BufferEntry[]): readonly BufferEntry[] {
   return result.filter((entry) => !/^\s*(&nbsp;\s*)*$/.test(entry.text));
 }
 
+const MONTHS = /\b(Jan(?:uary)?|Feb(?:ruary)?|Mar(?:ch)?|Apr(?:il)?|May|Jun(?:e)?|Jul(?:y)?|Aug(?:ust)?|Sep(?:tember)?|Nov(?:ember)?|Dec(?:ember)?)\b/i;
+const DAY_NUMBER_RE = /\b(\d{1,2})\b(?:\s*-\s*(\d{1,2}))?/;
+// const DAYS = /\b(Mon(?:day)?|Tue(sday)?|Wed(nesday)?|Thu(?:rs(?:day)?)?|Fri(?:day)?|Sat(?:urday)?|Sun(?:day)?)\b/i;
+const DATE_RULES_RE = new RegExp(`${MONTHS.source}\\s+${DAY_NUMBER_RE.source}`, "ig");
+
+function parseDateRules(text: string): { start_date: string; end_date: string } | undefined {
+  DATE_RULES_RE.lastIndex = 0;
+  let m = DATE_RULES_RE.exec(text);
+  if (!m) { return; }
+  const start_date = m[1].substring(0, 3) + " " + m[2];
+  let end_date;
+  if (m[3]) {
+    end_date = m[1].substring(0, 3) + " " + m[3];
+  } else {
+    m = DATE_RULES_RE.exec(text);
+    end_date = m ? m[1].substring(0, 3) + " " + m[2] : start_date;
+  }
+  return { start_date, end_date };
+}
+
+function reduceYearRules(acc: DateRules[], rule: Rule): DateRules[] {
+  const last: DateRules | undefined = acc[acc.length - 1];
+  for (const entry of rule.buffer) {
+    const { levels, text } = entry;
+    let parsed;
+    if (levels.strong === 1 && levels.p === 1 && levels.span > 0 && (parsed = parseDateRules(text))) {
+      acc.push({
+        type: "date_rules",
+        text,
+        ...parsed,
+        rules: [],
+      });
+    } else if (last) {
+      last.rules.push(...rule.buffer.map((e) => e.text));
+    }
+  }
+  return acc;
+}
+
 export class ScheduleScraper implements HTMLRewriterElementContentHandlers {
   state: "initial" | "start" | "copy" | "done" = "initial";
   levels: Levels = {
@@ -58,9 +104,15 @@ export class ScheduleScraper implements HTMLRewriterElementContentHandlers {
     li: 0,
     p: 0,
   };
-  years: Year[] = [];
+  years: Year<Rule>[] = [];
   inSpan: boolean = false;
   buffer: BufferEntry[] = [];
+  getResult(): Year<DateRules>[] {
+    return this.years.map((y) => ({
+      ...y,
+      rules: y.rules.reduce(reduceYearRules, []),
+    }));
+  }
   element(element: Element) {
     switch (this.state) {
       case "initial": {

@@ -35,7 +35,7 @@ const mod: ExportedHandler<Env, PoloFieldMessage> = {
         .on("*", scraper)
         .transform(await fetch(POLO_URL));
       await res.text();
-      return new Response(JSON.stringify(scraper.years, null, 2), {
+      return new Response(JSON.stringify(scraper.getResult(), null, 2), {
         headers: { "Content-Type": "application/json" },
       });
     }
