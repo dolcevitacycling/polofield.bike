@@ -1,4 +1,4 @@
-import { DocCleaner, ScheduleScraper, handleCron } from "./cron";
+import { ScheduleScraper, handleCron } from "./cron";
 import { Env, PoloFieldMessage } from "./types";
 
 // UX idea https://newatlas.com/better-parking-signs-nikki-sylianteng/32970/
