@@ -1,4 +1,6 @@
-import { Env } from "./types";
+import { Bindings } from "./types";
+
+export const POLO_URL = "https://www.sfrecpark.org/526/Polo-Field-Usage";
 
 interface Year<T> {
   readonly type: "year";
@@ -1133,6 +1135,8 @@ function reduceYearRules(year: number) {
   };
 }
 
+type ScrapeResult = Year<UnknownRules | KnownRules>[];
+
 export class ScheduleScraper implements HTMLRewriterElementContentHandlers {
   state: "initial" | "start" | "copy" | "done" = "initial";
   levels: Levels = {
@@ -1146,7 +1150,7 @@ export class ScheduleScraper implements HTMLRewriterElementContentHandlers {
   years: Year<Rule>[] = [];
   inSpan: boolean = false;
   buffer: BufferEntry[] = [];
-  getResult(): Year<UnknownRules | KnownRules>[] {
+  getResult(): ScrapeResult {
     return this.years.map((y) => ({
       ...y,
       rules: y.rules.reduce(reduceYearRules(y.year), []).map(nlpRule),
@@ -1274,7 +1278,45 @@ export class ScheduleScraper implements HTMLRewriterElementContentHandlers {
   }
 }
 
+export function intervalsForDate(
+  result: ScrapeResult,
+  date: string,
+):
+  | { readonly intervals: RuleInterval[]; readonly rule: KnownRules }
+  | { readonly rule: UnknownRules }
+  | undefined {
+  const year = parseInt(date.split("-")[0], 10);
+  for (const sched of result) {
+    if (sched.year !== year) {
+      continue;
+    }
+    for (const rule of sched.rules) {
+      if (rule.start_date <= date && rule.end_date >= date) {
+        if (rule.type === "unknown_rules") {
+          return { rule };
+        }
+        const intervals = rule.intervals.filter(
+          (interval) =>
+            interval.start_timestamp.split(" ")[0] <= date &&
+            interval.end_timestamp.split(" ")[0] >= date,
+        );
+        return { intervals, rule };
+      }
+    }
+  }
+  return undefined;
+}
+
+export async function scrapePoloURL(): Promise<ScrapeResult> {
+  const scraper = new ScheduleScraper();
+  const res = new HTMLRewriter()
+    .on("*", scraper)
+    .transform(await fetch(POLO_URL));
+  await res.text();
+  return scraper.getResult();
+}
+
 export async function handleCron(
   event: ScheduledController,
-  env: Env,
+  env: Bindings,
 ): Promise<void> {}

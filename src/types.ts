@@ -1,4 +1,4 @@
-export interface Env {
+export interface Bindings {
   // DB: D1Database;
   // SLACK_FILES_QUEUE: Queue<SlackFileMessage>;
   // SLACK_BOT_TOKEN: string;
@@ -13,6 +13,8 @@ export interface Env {
   // ROSTER_SPREADSHEET_ID: string;
   // RIDERS_AGREEMENT_FILE_ID: string;
   // BENEFITS_FILE_ID: string;
+  __STATIC_CONTENT: string;
+  [key: string]: unknown;
 }
 
 export interface PoloFieldMessage {}

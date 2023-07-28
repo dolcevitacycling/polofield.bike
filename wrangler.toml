@@ -21,3 +21,5 @@ compatibility_date = "2023-07-17"
 #   database_id = "ae567aeb-9c2b-4ffd-8dfb-adba302147cd"
 [triggers]
 crons = ["*/5 * * * *"]
+[site]
+bucket = "./static" # Add the directory with your static assets!
