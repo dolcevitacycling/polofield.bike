@@ -666,7 +666,13 @@ function parseWeekdayTimes(
         }
         return exceptions(
           date,
-          minuteIntervals(date, start_minute, end_minute, open, open ? undefined : comment),
+          minuteIntervals(
+            date,
+            start_minute,
+            end_minute,
+            open,
+            open ? undefined : comment,
+          ),
         );
       };
     },
@@ -1284,8 +1290,12 @@ export function intervalsForDate(
   result: ScrapeResult,
   date: string,
 ):
-  | { readonly type: "known", readonly intervals: RuleInterval[]; readonly rule: KnownRules }
-  | { readonly type: "unknown", readonly rule: UnknownRules }
+  | {
+      readonly type: "known";
+      readonly intervals: RuleInterval[];
+      readonly rule: KnownRules;
+    }
+  | { readonly type: "unknown"; readonly rule: UnknownRules }
   | undefined {
   const year = parseInt(date.split("-")[0], 10);
   for (const sched of result) {

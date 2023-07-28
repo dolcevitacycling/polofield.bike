@@ -1,16 +1,12 @@
-import {
-  POLO_URL,
-  ScheduleScraper,
-  handleCron,
-  intervalsForDate,
-  scrapePoloURL,
-} from "./cron";
+import { POLO_URL, handleCron, scrapePoloURL } from "./cron";
 import { Bindings, PoloFieldMessage } from "./types";
 import { Hono } from "hono";
 import { serveStatic } from "hono/cloudflare-workers";
 import view, { viewWeek } from "./view";
 
 // UX idea https://newatlas.com/better-parking-signs-nikki-sylianteng/32970/
+// Add solar calculator https://gml.noaa.gov/grad/solcalc/
+// Add weather? https://developer.apple.com/weatherkit/get-started/
 
 const app = new Hono<{ Bindings: Bindings }>();
 

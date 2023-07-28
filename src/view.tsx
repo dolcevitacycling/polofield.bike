@@ -10,7 +10,6 @@ import {
   parseDate,
   scrapePoloURL,
   shortDateStyle,
-  toMinute,
 } from "./cron";
 import { html } from "hono/html";
 
@@ -69,8 +68,10 @@ function Layout(props: Props) {
       </style>
       <body>
         <h1>
-          <a href="${POLO_URL}">Ethan Boyes Cycle Track @ GGP Polo Field Schedule</a> for
-          ${friendlyDate(props.date)}
+          <a href="${POLO_URL}"
+            >Ethan Boyes Cycle Track @ GGP Polo Field Schedule</a
+          >
+          for ${friendlyDate(props.date)}
         </h1>
         ${props.children}
       </body>
