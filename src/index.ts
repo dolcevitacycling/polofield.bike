@@ -38,6 +38,55 @@ const mod: ExportedHandler<Env, PoloFieldMessage> = {
       return new Response(JSON.stringify(scraper.getResult(), null, 2), {
         headers: { "Content-Type": "application/json" },
       });
+    } else if (url.pathname === "/view") {
+      const scraper = new ScheduleScraper();
+      const res = new HTMLRewriter()
+        .on("*", scraper)
+        .transform(await fetch(POLO_URL));
+      await res.text();
+      const now = new Date();
+      const today = Intl.DateTimeFormat("fr-CA", {
+        timeZone: "America/Los_Angeles",
+      }).format(now);
+      for (const sched of scraper.getResult()) {
+        if (sched.year !== now.getFullYear()) {
+          continue;
+        }
+        const past = [];
+        const current = [];
+        const future = [];
+        const todayIntervals = [];
+        for (const rule of sched.rules) {
+          if (rule.end_date < today) {
+            past.push(rule);
+          } else if (rule.start_date <= today) {
+            current.push(rule);
+            if (rule.type === "known_rules") {
+              for (const interval of rule.intervals) {
+                if (
+                  interval.start_timestamp.split(" ")[0] <= today &&
+                  interval.end_timestamp.split(" ")[0] >= today
+                ) {
+                  todayIntervals.push(interval);
+                }
+              }
+            }
+          } else {
+            future.push(rule);
+          }
+        }
+        return new Response(
+          JSON.stringify(
+            { today, todayIntervals, current, future, past },
+            null,
+            2,
+          ),
+          {
+            headers: { "Content-Type": "application/json" },
+          },
+        );
+      }
+      return new Response("", { status: 404 });
     }
     return new Response("Not found", { status: 404 });
   },

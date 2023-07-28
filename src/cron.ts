@@ -294,7 +294,7 @@ const monthDayStyle = new Intl.DateTimeFormat("fr-CA", {
 export const shortDateStyle = new Intl.DateTimeFormat("sv-SE", {
   dateStyle: "short",
 });
-const shortTimeStyle = new Intl.DateTimeFormat("sv-SE", {
+export const shortTimeStyle = new Intl.DateTimeFormat("sv-SE", {
   year: "numeric",
   month: "2-digit",
   day: "2-digit",
