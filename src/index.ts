@@ -8,7 +8,7 @@ import {
 import { Bindings, PoloFieldMessage } from "./types";
 import { Hono } from "hono";
 import { serveStatic } from "hono/cloudflare-workers";
-import view from "./view";
+import view, { viewWeek } from "./view";
 
 // UX idea https://newatlas.com/better-parking-signs-nikki-sylianteng/32970/
 
@@ -22,7 +22,7 @@ app.get("/scrape", async (c) => {
   });
 });
 app.get("/today", async (c) =>
-  view(
+  viewWeek(
     c,
     Intl.DateTimeFormat("fr-CA", {
       timeZone: "America/Los_Angeles",

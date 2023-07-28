@@ -11,7 +11,7 @@ interface Year<T> {
 type Levels = Readonly<
   Record<"span" | "underline" | "strong" | "ul" | "li" | "p", number>
 >;
-interface Rule {
+export interface Rule {
   readonly type: "rule";
   readonly buffer: readonly BufferEntry[];
 }
@@ -19,7 +19,7 @@ interface BufferEntry {
   readonly text: string;
   readonly levels: Levels;
 }
-interface UnknownRules {
+export interface UnknownRules {
   readonly type: "unknown_rules";
   readonly text: string;
   readonly start_date: string;
@@ -27,12 +27,12 @@ interface UnknownRules {
   readonly rules: string[];
 }
 
-interface KnownRules extends Omit<UnknownRules, "type"> {
+export interface KnownRules extends Omit<UnknownRules, "type"> {
   readonly type: "known_rules";
   readonly intervals: RuleInterval[];
 }
 
-interface RuleInterval {
+export interface RuleInterval {
   readonly open: boolean;
   readonly start_timestamp: string;
   readonly end_timestamp: string;
@@ -78,7 +78,7 @@ const WEEKDAYS: Record<
   Sat: 6,
 };
 
-function parseDate(date: string): Date {
+export function parseDate(date: string): Date {
   const [y, m, d] = date.split("-").map((s) => parseInt(s, 10));
   return new Date(y, m - 1, d);
 }
@@ -304,13 +304,13 @@ export const shortTimeStyle = new Intl.DateTimeFormat("sv-SE", {
   minute: "2-digit",
 });
 
-function addDays(date: Date, days: number): Date {
+export function addDays(date: Date, days: number): Date {
   const result = new Date(date);
   result.setDate(result.getDate() + days);
   return result;
 }
 
-function addMinutes(date: Date, minutes: number): Date {
+export function addMinutes(date: Date, minutes: number): Date {
   const result = new Date(date);
   result.setMinutes(result.getMinutes() + minutes);
   return result;
@@ -654,6 +654,8 @@ function parseWeekdayTimes(
     ([days, { start_minute, end_minute }, exceptions]) => {
       const interval_start = parseDate(interval.start_date);
       const interval_end = addDays(parseDate(interval.end_date), 1);
+      // All day means open by default
+      const open = start_minute === 0 && end_minute === toMinute(24, 0);
       return (date: Date): RuleInterval[] | undefined => {
         if (
           date < interval_start ||
@@ -664,7 +666,7 @@ function parseWeekdayTimes(
         }
         return exceptions(
           date,
-          closedMinuteIntervals(date, start_minute, end_minute, comment),
+          minuteIntervals(date, start_minute, end_minute, open, open ? undefined : comment),
         );
       };
     },
@@ -694,7 +696,7 @@ function parseWeekendExcept(comment?: string): Parser<DateRuleStep> {
     ),
     ({ start_minute, end_minute }) =>
       (date: Date): RuleInterval[] | undefined => {
-        if (date.getDay() !== WEEKDAYS.Sat || date.getDay() !== WEEKDAYS.Sun) {
+        if (date.getDay() !== WEEKDAYS.Sat && date.getDay() !== WEEKDAYS.Sun) {
           return undefined;
         }
         return closedMinuteIntervals(date, start_minute, end_minute, comment);
@@ -1135,7 +1137,7 @@ function reduceYearRules(year: number) {
   };
 }
 
-type ScrapeResult = Year<UnknownRules | KnownRules>[];
+export type ScrapeResult = Year<UnknownRules | KnownRules>[];
 
 export class ScheduleScraper implements HTMLRewriterElementContentHandlers {
   state: "initial" | "start" | "copy" | "done" = "initial";
@@ -1282,8 +1284,8 @@ export function intervalsForDate(
   result: ScrapeResult,
   date: string,
 ):
-  | { readonly intervals: RuleInterval[]; readonly rule: KnownRules }
-  | { readonly rule: UnknownRules }
+  | { readonly type: "known", readonly intervals: RuleInterval[]; readonly rule: KnownRules }
+  | { readonly type: "unknown", readonly rule: UnknownRules }
   | undefined {
   const year = parseInt(date.split("-")[0], 10);
   for (const sched of result) {
@@ -1293,14 +1295,14 @@ export function intervalsForDate(
     for (const rule of sched.rules) {
       if (rule.start_date <= date && rule.end_date >= date) {
         if (rule.type === "unknown_rules") {
-          return { rule };
+          return { type: "unknown", rule };
         }
         const intervals = rule.intervals.filter(
           (interval) =>
             interval.start_timestamp.split(" ")[0] <= date &&
             interval.end_timestamp.split(" ")[0] >= date,
         );
-        return { intervals, rule };
+        return { type: "known", intervals, rule };
       }
     }
   }
