@@ -38,9 +38,9 @@ interface RuleInterval {
 }
 
 const MONTHS =
-  /\b(Jan(?:uary)?|Feb(?:ruary)?|Mar(?:ch)?|Apr(?:il)?|May|Jun(?:e)?|Jul(?:y)?|Aug(?:ust)?|Sep(?:tember)?|Oct(?:ober)|Nov(?:ember)?|Dec(?:ember)?)\b/i;
-const DAY_NUMBER_RE = /\b([1-3][0-9]|[1-9])\b/i;
-const DAY_RANGE_RE = /\b(\d{1,2})\b(?:\s*-\s*(\d{1,2}))?/;
+  /(Jan(?:uary)?|Feb(?:ruary)?|Mar(?:ch)?|Apr(?:il)?|May|Jun(?:e)?|Jul(?:y)?|Aug(?:ust)?|Sep(?:tember)?|Oct(?:ober)|Nov(?:ember)?|Dec(?:ember)?)/gi;
+const DAY_NUMBER_RE = /([1-3][0-9]|[1-9])/gi;
+const DAY_RANGE_RE = /\b(\d{1,2})\b(?:\s*-\s*(\d{1,2}))?/gi;
 const DATE_RULES_RE = new RegExp(
   `${MONTHS.source}\\s+${DAY_RANGE_RE.source}`,
   "ig",
@@ -49,18 +49,15 @@ const DATE_RANGE_RE = new RegExp(
   `${MONTHS.source}\\s+${DAY_NUMBER_RE.source}(?:\\s*-\\s*(?:${MONTHS.source}\\s+)?${DAY_NUMBER_RE.source})?`,
   "ig",
 );
-const TIME_RE = /\b(\d{1,2}):(\d{2})\s*([AP]M)\b/gi;
-const TIME_SPAN_RE = new RegExp(
-  `\\s*${TIME_RE.source}\\s+to\\s+${TIME_RE.source}\\s*`,
-  "gi",
-);
+const TIME_RE = /(\d{1,2})(?::(\d{2}))?\s*([ap](?:\.m\.|m))/gi;
+const WHITESPACE_RE = /\s+/g;
 const MONTHS_TABLE = MONTHS.source
   .replace(/^[^(]*\((.*)\)[^)]*$/g, "$1")
   .replace(/[^a-zA-Z|]/g, "")
   .split("|")
   .map((s) => s.substring(0, 3));
 const WEEKDAY_RE =
-  /\b(Sun(?:day)?|Mon(?:day)?|Tue(sday)?|Wed(nesday)?|Thu(?:rs(?:day)?)?|Fri(?:day)?|Sat(?:urday)?)\b/gi;
+  /\b(Sun(?:day)?|Mon(?:day)?|Tue(sday)?|Wed(nesday)?|Thu(?:rs(?:day)?)?|Fri(?:day)?|Sat(?:urday)?)s?\b/gi;
 // const DAYS_TABLE = DAYS.source
 //   .replace(/^[^(]*\((.*)\)[^)]*$/g, "$1")
 //   .replace(/[^a-zA-Z|]/g, "")
@@ -90,7 +87,7 @@ function formatTime(date: string, hour: number, minute: number): string {
     .padStart(2, "0")}`;
 }
 
-function toMinute(hour: number, minute: number): number {
+export function toMinute(hour: number, minute: number): number {
   return hour * 60 + minute;
 }
 
@@ -125,34 +122,117 @@ function dayInterval(
   };
 }
 
-function closedMinuteIntervals(
+function minuteIntervals(
   date: Date,
   start_minute: number,
   end_minute: number,
+  open: boolean,
   comment?: string,
 ): RuleInterval[] {
   const r = [];
   if (start_minute > 0) {
     r.push({
-      open: true,
+      open: !open,
       start_timestamp: shortTimeStyle.format(date),
       end_timestamp: shortTimeStyle.format(addMinutes(date, start_minute - 1)),
     });
   }
   r.push({
-    open: false,
+    open,
     start_timestamp: shortTimeStyle.format(addMinutes(date, start_minute)),
     end_timestamp: shortTimeStyle.format(addMinutes(date, end_minute - 1)),
     comment,
   });
   if (end_minute < toMinute(24, 0)) {
     r.push({
-      open: true,
+      open: !open,
       start_timestamp: shortTimeStyle.format(addMinutes(date, end_minute)),
       end_timestamp: shortTimeStyle.format(addMinutes(date, toMinute(24, -1))),
     });
   }
   return r;
+}
+function closedMinuteIntervals(
+  date: Date,
+  start_minute: number,
+  end_minute: number,
+  comment?: string,
+): RuleInterval[] {
+  return minuteIntervals(date, start_minute, end_minute, false, comment);
+}
+
+type Arr<T> = readonly T[];
+type ResultOfParser<T> = T extends Parser<infer R> ? R : never;
+type AllResults<T> = {
+  [P in keyof T]: ResultOfParser<T[P]>;
+};
+
+function parseAll<T extends Arr<Parser<unknown>>>(
+  ...args: T
+): Parser<AllResults<T>> {
+  return (s: Stream) => {
+    const result: unknown[] = [];
+    for (const p of args) {
+      const r = p(s);
+      if (!r) {
+        return undefined;
+      }
+      result.push(r.result);
+      s = r.s;
+    }
+    return { s, result: result as AllResults<T> };
+  };
+}
+
+function parseFirst<T extends Arr<Parser<unknown>>>(
+  ...args: T
+): Parser<ResultOfParser<T[number]>> {
+  return (s: Stream) => {
+    for (const p of args) {
+      const r = p(s);
+      if (r) {
+        return r as ParseResult<ResultOfParser<T[number]>>;
+      }
+    }
+    return undefined;
+  };
+}
+
+function ap<T, U>(a: Parser<T>, b: Parser<(t: T) => U>): Parser<U> {
+  return (s: Stream) => {
+    const r = a(s);
+    if (!r) {
+      return undefined;
+    }
+    const r2 = b(r.s);
+    if (!r2) {
+      return undefined;
+    }
+    return { s: r2.s, result: r2.result(r.result) };
+  };
+}
+
+function apFirst<T, U>(a: Parser<T>, b: Parser<U>): Parser<T> {
+  return ap(
+    a,
+    mapParser(b, (_vb) => (va) => va),
+  );
+}
+function apSecond<T, U>(a: Parser<T>, b: Parser<U>): Parser<U> {
+  return ap(
+    a,
+    mapParser(b, (vb) => (_va) => vb),
+  );
+}
+
+function chain<T, U>(a: Parser<T>, f: (t: T) => Parser<U>): Parser<U> {
+  return (s: Stream) => {
+    const r = a(s);
+    if (!r) {
+      return undefined;
+    }
+    return f(r.result)(r.s);
+  };
 }
 
 function closedIntervals(
@@ -207,7 +287,11 @@ function toKnown(rule: UnknownRules, intervals: RuleInterval[]): KnownRules {
   };
 }
 
-const shortDateStyle = new Intl.DateTimeFormat("sv-SE", {
+const monthDayStyle = new Intl.DateTimeFormat("fr-CA", {
+  month: "2-digit",
+  day: "2-digit",
+});
+export const shortDateStyle = new Intl.DateTimeFormat("sv-SE", {
   dateStyle: "short",
 });
 const shortTimeStyle = new Intl.DateTimeFormat("sv-SE", {
@@ -278,32 +362,22 @@ function parseDateInterval(year: number) {
   };
 }
 
-interface Stream {
+export interface Stream {
   readonly input: string;
   readonly cursor: number;
 }
 
-function stream(input: string): Stream {
+export function stream(input: string): Stream {
   return { input, cursor: 0 };
 }
 
-function streamAtEnd(s: Stream): boolean {
+export function streamAtEnd(s: Stream): boolean {
   return s.cursor >= s.input.length;
 }
 
-interface ParseResult<T> {
+export interface ParseResult<T> {
   readonly s: Stream;
   readonly result: T;
-}
-
-function resultPredicate<T>(
-  pred: (r: ParseResult<T>) => ParseResult<T> | undefined,
-): ResultChain<T> {
-  return (r) => (r ? pred(r) : undefined);
-}
-
-function resultMap<T>(f: (r: ParseResult<T>) => ParseResult<T>): ResultMap<T> {
-  return (r) => f(r);
 }
 
 function mapParser<T, U>(p: Parser<T>, f: (v: T) => U): Parser<U> {
@@ -314,21 +388,74 @@ function mapParser<T, U>(p: Parser<T>, f: (v: T) => U): Parser<U> {
 }
 
 type Parser<T> = (s: Stream) => ParseResult<T> | undefined;
-type ResultChain<T> = (
-  r: ParseResult<T> | undefined,
-) => ParseResult<T> | undefined;
-type ResultMap<T> = (r: ParseResult<T>) => ParseResult<T>;
+
+function ensureEndParsed<T>(p: Parser<T>): Parser<T> {
+  return (s: Stream) => {
+    const r = p(s);
+    if (!r || !streamAtEnd(r.s)) {
+      return undefined;
+    }
+    return r;
+  };
+}
+
+function parseMany1<T>(p: Parser<T>): Parser<readonly [T, ...T[]]> {
+  return (s: Stream) => {
+    let r = p(s);
+    if (!r) {
+      return undefined;
+    }
+    s = r.s;
+    const result: [T, ...T[]] = [r.result];
+    while ((r = p(s))) {
+      result.push(r.result);
+      s = r.s;
+    }
+    return { s, result };
+  };
+}
+
+function parseSepBy1<T>(
+  p: Parser<T>,
+  sepBy: Parser<unknown>,
+): Parser<readonly [T, ...T[]]> {
+  const sepP = apSecond(sepBy, p);
+  return (s: Stream) => {
+    let r = p(s);
+    if (!r) {
+      return undefined;
+    }
+    s = r.s;
+    const result: [T, ...T[]] = [r.result];
+    while ((r = sepP(s))) {
+      result.push(r.result);
+      s = r.s;
+    }
+    return { s, result };
+  };
+}
+
+function succeed<T>(result: T): Parser<T> {
+  return (s: Stream) => ({ s, result });
+}
+
+function optional<T>(p: Parser<T>): Parser<T | undefined> {
+  return parseFirst(p, succeed(undefined));
+}
 
 function setCursor(s: Stream, cursor: number): Stream {
   return { ...s, cursor };
 }
 
-const SEPARATOR_RE = /\s*,?(and)?:?\s*/gi;
-function skipSeparator(s: Stream): Stream {
-  SEPARATOR_RE.lastIndex = s.cursor;
-  const m = SEPARATOR_RE.exec(s.input);
-  return m && m.index === s.cursor ? setCursor(s, SEPARATOR_RE.lastIndex) : s;
-}
+// January -> "01"
+const parseMonth = mapParser(reParser(MONTHS), (m) => parseMonthToISO(m[1]));
+// 1 -> "01"
+const parseDayNumber = mapParser(reParser(DAY_NUMBER_RE), (m) =>
+  m[1].padStart(2, "0"),
+);
+
+const parseSeparator = reParser(/\s*(?:,\s*(?:and)?|and)\s*/gi);
+const parseOptionalColon = reParser(/\s*[,:]?\s*/gi);
 
 type DateRuleStep = (date: Date) => RuleInterval[] | undefined;
 type ExceptionRuleStep = (
@@ -340,25 +467,19 @@ const EXCEPTION_RE = new RegExp(
   `\\(except on ${MONTHS.source}\\s+${DAY_NUMBER_RE.source}(?:\\s*-\\s*(?:${MONTHS.source}\\s+)?${DAY_NUMBER_RE.source})? when it will be open after ${TIME_RE.source}\\)`,
   "gi",
 );
-const parseExceptions: Parser<ExceptionRuleStep> = (s: Stream) => {
-  EXCEPTION_RE.lastIndex = s.cursor;
-  const m = EXCEPTION_RE.exec(s.input);
-  if (!m || m.index !== s.cursor) {
-    return undefined;
-  }
-  s = setCursor(s, EXCEPTION_RE.lastIndex);
-  const start_month = parseMonthToISO(m[1]);
-  const start_day = m[2];
-  const end_month = m[3] ? parseMonthToISO(m[3]) : start_month;
-  const end_day = m[4] || start_day;
-  if (!start_month || !start_day || !end_month || !end_day) {
-    throw new Error("Could not parse month or day");
-  }
-  const open_hour = parseInt(m[5], 10) + (/p/i.test(m[7]) ? 12 : 0);
-  const open_minute = parseInt(m[6], 10);
-  return {
-    s,
-    result: (date: Date, intervals: RuleInterval[] | undefined) => {
+const parseExceptions: Parser<ExceptionRuleStep> = mapParser(
+  reParser(EXCEPTION_RE),
+  (m) => {
+    const start_month = parseMonthToISO(m[1]);
+    const start_day = m[2];
+    const end_month = m[3] ? parseMonthToISO(m[3]) : start_month;
+    const end_day = m[4] || start_day;
+    if (!start_day || !end_day) {
+      throw new Error("Could not parse day");
+    }
+    const open_hour = parseInt(m[5], 10) + (/p/i.test(m[7]) ? 12 : 0);
+    const open_minute = parseInt(m[6], 10);
+    return (date: Date, intervals: RuleInterval[] | undefined) => {
       if (!intervals) {
         return intervals;
       }
@@ -377,9 +498,9 @@ const parseExceptions: Parser<ExceptionRuleStep> = (s: Stream) => {
         );
       }
       return intervals;
-    },
-  };
-};
+    };
+  },
+);
 
 function reParser(regexp: RegExp): Parser<RegExpExecArray> {
   return (s: Stream) => {
@@ -394,9 +515,6 @@ function reParser(regexp: RegExp): Parser<RegExpExecArray> {
 const dateRangeParser = mapParser(reParser(DATE_RANGE_RE), (m) => {
   const start_month = parseMonthToISO(m[1]);
   const end_month = m[3] ? parseMonthToISO(m[3]) : start_month;
-  if (!start_month || !end_month) {
-    throw new Error("Could not parse months");
-  }
   return {
     start_month,
     end_month,
@@ -409,58 +527,132 @@ const weekdayReParser = mapParser(
   reParser(WEEKDAY_RE),
   (result) => result[1].substring(0, 3) as keyof typeof WEEKDAYS,
 );
-const timeSpanReParser = mapParser(reParser(TIME_SPAN_RE), (result) => {
-  const start_minute = toMinute(
-    parseInt(result[1], 10) + (/p/i.test(result[3]) ? 12 : 0),
-    parseInt(result[2], 10),
-  );
-  const end_minute = toMinute(
-    parseInt(result[4], 10) + (/p/i.test(result[6]) ? 12 : 0),
-    parseInt(result[5], 10),
-  );
-  return { start_minute, end_minute } as const;
-});
+
+const wsParser = reParser(WHITESPACE_RE);
+
+export const timeToMinuteParser = parseFirst(
+  mapParser(reParser(TIME_RE), (result) =>
+    toMinute(
+      (parseInt(result[1], 10) % 12) + (/p/i.test(result[3]) ? 12 : 0),
+      parseInt(result[2] ?? "0", 10),
+    ),
+  ),
+  mapParser(reParser(/noon/gi), () => toMinute(12, 0)),
+);
+
+export const timeSpanReParser = parseFirst(
+  // "8:00 AM to 8:45 PM"
+  mapParser(
+    parseAll(
+      apSecond(reParser(/\s*(?:from\s+)?/gi), timeToMinuteParser),
+      apSecond(
+        reParser(/\s+to\s+/gi),
+        apFirst(timeToMinuteParser, optional(wsParser)),
+      ),
+    ),
+    ([start_minute, end_minute]) => ({ start_minute, end_minute }) as const,
+  ),
+  // "before 2 p.m. and after 6:45 p.m."
+  mapParser(
+    parseAll(
+      apSecond(reParser(/\s*before\s+/gi), timeToMinuteParser),
+      apSecond(
+        reParser(/\s+and after\s+/gi),
+        apFirst(timeToMinuteParser, optional(wsParser)),
+      ),
+    ),
+    ([start_minute, end_minute]) => ({ start_minute, end_minute }) as const,
+  ),
+  // "all day"
+  mapParser(reParser(/\s*all day\s*/gi), () => {
+    return { start_minute: 0, end_minute: toMinute(24, 0) } as const;
+  }),
+);
+
+function tap<T>(
+  p: Parser<T>,
+  f: (s: Stream, r: undefined | ParseResult<T>) => void,
+): Parser<T> {
+  return (s: Stream) => {
+    const r = p(s);
+    f(s, r);
+    return r;
+  };
+}
+
+function logFailure<T>(p: Parser<T>, message: string): Parser<T> {
+  return tap(p, (s, r) => {
+    if (!r) {
+      console.log(message, s.input.substring(s.cursor));
+    }
+    return r;
+  });
+}
+
+// "Friday, September 15 when track is closed from 7:30 a.m. to 12:30 p.m. for Sacred Heart Walkathon"
+export const parseFallException = mapParser(
+  ensureEndParsed(
+    parseAll(
+      parseSepBy1(
+        mapParser(
+          parseAll(
+            // "Friday, "
+            apFirst(weekdayReParser, parseSeparator),
+            // "September "
+            apFirst(parseMonth, optional(wsParser)),
+            // "15 "
+            parseDayNumber,
+          ),
+          ([_weekday, month, day]) => `${month}-${day}`,
+        ),
+        parseSeparator,
+      ),
+      apSecond(
+        // "when track is closed "
+        reParser(/\s*when track is closed\s*/gi),
+        // "from 7:30 a.m. to 12:30 p.m."
+        timeSpanReParser,
+      ),
+      // " for Sacred Heart Walkathon"
+      mapParser(reParser(/\s*for\s+(.*)/gi), (m) => m[1]),
+    ),
+  ),
+  ([monthDays, { start_minute, end_minute }, comment]) =>
+    (date: Date): RuleInterval[] | undefined =>
+      monthDays.includes(monthDayStyle.format(date))
+        ? closedMinuteIntervals(date, start_minute, end_minute, comment)
+        : undefined,
+);
 
 function parseWeekdayTimes(
   interval: DateInterval,
   comment?: string,
 ): Parser<DateRuleStep> {
-  return (s: Stream) => {
-    let cursor = s.cursor;
-    WEEKDAY_RE.lastIndex = cursor;
-    let days: number[] = [];
-    let res;
-    // "Tuesday and Wednesday: " -> [2, 3]
-    while ((res = weekdayReParser(s))) {
-      days.push(WEEKDAYS[res.result]);
-      s = skipSeparator(res.s);
-    }
-    if (days.length === 0) {
-      return;
-    }
-    // "8:00 AM to 8:45 PM"
-    let m = timeSpanReParser(s);
-    if (!m) {
-      return;
-    }
-    s = m.s;
-    const { start_minute, end_minute } = m.result;
-    let exceptions: ExceptionRuleStep = (_, intervals) => intervals;
-    if (!streamAtEnd(s)) {
-      const res = parseExceptions(s);
-      if (!res) {
-        throw new Error(
-          `Failed to parse exceptions: ${s.input.substring(s.cursor)}`,
-        );
-      }
-      exceptions = res.result;
-      s = res.s;
-    }
-    const interval_start = parseDate(interval.start_date);
-    const interval_end = addDays(parseDate(interval.end_date), 1);
-    return {
-      s,
-      result: (date: Date): RuleInterval[] | undefined => {
+  return mapParser(
+    ensureEndParsed(
+      parseAll(
+        apFirst(
+          parseSepBy1(
+            mapParser(weekdayReParser, (d) => WEEKDAYS[d]),
+            parseSeparator,
+          ),
+          parseOptionalColon,
+        ),
+        // "8:00 AM to 8:45 PM"
+        // "before 2 p.m. and after 6:45 p.m."
+        timeSpanReParser,
+        // Exceptions
+        parseFirst(
+          parseExceptions,
+          succeed<ExceptionRuleStep>((_, intervals) => intervals),
+        ),
+      ),
+    ),
+
+    ([days, { start_minute, end_minute }, exceptions]) => {
+      const interval_start = parseDate(interval.start_date);
+      const interval_end = addDays(parseDate(interval.end_date), 1);
+      return (date: Date): RuleInterval[] | undefined => {
         if (
           date < interval_start ||
           date >= interval_end ||
@@ -472,9 +664,9 @@ function parseWeekdayTimes(
           date,
           closedMinuteIntervals(date, start_minute, end_minute, comment),
         );
-      },
-    };
-  };
+      };
+    },
+  );
 }
 
 const weekendPreludeRe = reParser(
@@ -483,51 +675,43 @@ const weekendPreludeRe = reParser(
 const closedPreParser = reParser(/\s*\(closed\s*/gi);
 const closedPostParser = reParser(/\s*\)\s*(?:and\s)?/gi);
 
+const dateRangeTimeSpanParser = ap(
+  apFirst(dateRangeParser, closedPreParser),
+  mapParser(
+    apFirst(timeSpanReParser, closedPostParser),
+    (timeSpan) => (dateRange) => ({ ...timeSpan, ...dateRange }) as const,
+  ),
+);
+
+function parseWeekendExcept(comment?: string): Parser<DateRuleStep> {
+  // - Saturdays and Sundays before 7 a.m. and after 6:15 p.m. EXCEPT:
+  return mapParser(
+    apSecond(
+      reParser(/- Saturdays and Sundays\s+/gi),
+      apFirst(timeSpanReParser, ensureEndParsed(reParser(/\s*EXCEPT:/gi))),
+    ),
+    ({ start_minute, end_minute }) =>
+      (date: Date): RuleInterval[] | undefined => {
+        if (date.getDay() !== WEEKDAYS.Sat || date.getDay() !== WEEKDAYS.Sun) {
+          return undefined;
+        }
+        return closedMinuteIntervals(date, start_minute, end_minute, comment);
+      },
+  );
+}
+
 function parseWeekendTimes(
   interval: DateInterval,
   comment?: string,
 ): Parser<DateRuleStep> {
   // "- Saturdays and Sundays all day EXCEPT on July 8 (closed 7:30 AM to 5:30 PM) and July 9 (closed 7:30 AM to 4:30 PM)"
-  return (s: Stream) => {
-    const prelude = weekendPreludeRe(s);
-    if (!prelude) {
-      return;
-    }
-    s = prelude.s;
-    const exceptions: {
-      readonly start_minute: number;
-      readonly end_minute: number;
-      readonly start_month: string;
-      readonly end_month: string;
-      readonly start_day: string;
-      readonly end_day: string;
-    }[] = [];
-    while (!streamAtEnd(s)) {
-      const r = dateRangeParser(s);
-      if (!r) {
-        return undefined;
-      }
-      s = r.s;
-      let n = closedPreParser(s);
-      if (!n) {
-        return undefined;
-      }
-      s = n.s;
-      const t = timeSpanReParser(s);
-      if (!t) {
-        return undefined;
-      }
-      s = t.s;
-      n = closedPostParser(s);
-      if (!n) {
-        return undefined;
-      }
-      s = n.s;
-      exceptions.push({ ...r.result, ...t.result } as const);
-    }
-    return {
-      s,
-      result: (date: Date): RuleInterval[] | undefined => {
+  return mapParser(
+    apSecond(
+      weekendPreludeRe,
+      ensureEndParsed(parseMany1(dateRangeTimeSpanParser)),
+    ),
+    (exceptions) =>
+      (date: Date): RuleInterval[] | undefined => {
         if (date.getDay() !== WEEKDAYS.Sat || date.getDay() !== WEEKDAYS.Sun) {
           return undefined;
         }
@@ -559,11 +743,10 @@ function parseWeekendTimes(
         }
         return [dateInterval(date, true)];
       },
-    };
-  };
+  );
 }
 
-function arrayRecognizer(rule: UnknownRules): KnownRules | undefined {
+function summerRecognizer(rule: UnknownRules): KnownRules | undefined {
   const { rules } = rule;
   // "Summer Camps, Youth and Adult Sports Programs will take place on the field. The Cycle Track Will be Open EXCEPT:",
   // "- During Weekday Summer Camps and Adults Sports Programming:",
@@ -600,7 +783,6 @@ function arrayRecognizer(rule: UnknownRules): KnownRules | undefined {
           r,
         );
       if (!m) {
-        console.log("Failed to match array prelude", r);
         return undefined;
       }
       comment = m[1].trim();
@@ -623,17 +805,96 @@ function arrayRecognizer(rule: UnknownRules): KnownRules | undefined {
       return undefined;
     }
     const s = stream(r);
-    const m =
-      parseWeekdayTimes(currentInterval, comment)(s) ||
-      parseWeekendTimes(currentInterval, comment)(s);
+    const m = parseFirst(
+      parseWeekdayTimes(currentInterval, comment),
+      parseWeekendTimes(currentInterval, comment),
+    )(s);
     if (m) {
       predicates.push(m.result);
       continue;
     }
     if (!m) {
-      console.log("Failed to parse times:", r);
       return undefined;
     }
+  }
+  return toKnown(
+    rule,
+    daily(rule.start_date, rule.end_date, (date) => {
+      for (const p of predicates) {
+        const r = p(date);
+        if (r) {
+          return r;
+        }
+      }
+      return [dateInterval(date, true)];
+    }),
+  );
+}
+
+const fallPreludeRe = mapParser(
+  reParser(/Fall (.+?)\s*begin\. The Cycle Track Will be Open:/gi),
+  (m) => m[1].trim(),
+);
+
+function fallRecognizer(rule: UnknownRules): KnownRules | undefined {
+  const { rules } = rule;
+  // "Fall Youth and Adult Sports Programs Begin. The Cycle Track Will be Open:",
+  // "Mondays all day",
+  // "Tuesdays, Wednesdays, Thursdays and Fridays before 2 p.m. and after 6:45 p.m.",
+  // "EXCEPT:",
+  // "Friday, September 15 when track is closed from 7:30 a.m. to 12:30 p.m. for Sacred Heart Walkathon",
+  // "Friday, September 29 when track is closed all day for Hardly Strictly Bluegrass",
+  // "Wednesday, November 15 when track is closed from noon to 6 p.m. for SFUSD Cross Country",
+  // "- Saturdays and Sundays before 7 a.m. and after 6:15 p.m. EXCEPT:",
+  // "Saturday, September 30 and Sunday, October 1 when track is closed all day for Hardly Strictly Bluegrass"
+  if (rules.length === 0) {
+    return undefined;
+  }
+  let comment: string | undefined;
+  let state: "prelude" | "rules" | "exception" = "prelude";
+  const predicates: DateRuleStep[] = [];
+  for (let i = 0; i < rules.length; i++) {
+    const r = rules[i];
+    let s = stream(r);
+    switch (state) {
+      case "prelude": {
+        const m = fallPreludeRe(s);
+        if (!m) {
+          console.log("Failed to match Fall array prelude", r);
+          return undefined;
+        }
+        comment = m.result;
+        state = "rules";
+        continue;
+      }
+      case "rules": {
+        const m = parseFirst(
+          parseWeekdayTimes(rule, comment),
+          parseWeekendTimes(rule, comment),
+        )(s);
+        if (m) {
+          predicates.push(m.result);
+          continue;
+        } else if (reParser(/EXCEPT:/gi)(s)) {
+          state = "exception";
+          continue;
+        }
+      }
+      case "exception": {
+        const m = parseFallException(s);
+        if (m) {
+          predicates.unshift(m.result);
+          continue;
+        }
+        const m2 = parseWeekendExcept(comment)(s);
+        if (m2) {
+          predicates.push(m2.result);
+          continue;
+        }
+      }
+    }
+    console.log(`Failed to parse fall times in state ${state}:`, r);
+    return undefined;
   }
   return toKnown(
     rule,
@@ -766,7 +1027,8 @@ const RECOGNIZERS = [
         return [dateInterval(date, true)];
       }),
   ),
-  arrayRecognizer,
+  summerRecognizer,
+  fallRecognizer,
 ];
 
 function nlpRule(rule: UnknownRules): UnknownRules | KnownRules {
@@ -804,22 +1066,10 @@ function joinBuffer(buffer: readonly BufferEntry[]): readonly BufferEntry[] {
   return result.filter((entry) => !/^\s*(&nbsp;\s*)*$/.test(entry.text));
 }
 
-function arrayEq<T>(eq: (a: T, b: T) => boolean, a: T[], b: T[]): boolean {
-  if (a.length !== b.length) {
-    return false;
-  }
-  for (let i = 0; i < a.length && i < b.length; i++) {
-    if (!eq(a[i], b[i])) {
-      return false;
-    }
-  }
-  return true;
-}
-
-function parseMonthToISO(month: string): string | undefined {
+function parseMonthToISO(month: string): string {
   const monthIndex = MONTHS_TABLE.indexOf(month.substring(0, 3));
   if (monthIndex < 0) {
-    return;
+    throw new Error(`Failed to parse month: ${month}`);
   }
   return `${monthIndex + 1}`.padStart(2, "0");
 }
@@ -836,18 +1086,12 @@ function parseDateRules(year: number) {
       return;
     }
     const start_month = parseMonthToISO(m[1]);
-    if (!start_month) {
-      return;
-    }
     const start_date = fmt(year, start_month, m[2]);
     let end_date = start_date;
     if (m[3]) {
       end_date = fmt(year, start_month, m[3]);
     } else if ((m = DATE_RULES_RE.exec(text))) {
       const end_month = parseMonthToISO(m[1]);
-      if (!end_month) {
-        throw new Error("Failed to parse month");
-      }
       end_date = fmt(year, end_month, m[2]);
     }
     return { start_date, end_date };
