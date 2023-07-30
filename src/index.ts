@@ -18,9 +18,12 @@ app.use(async (c, next) => {
     !["localhost", "127.0.0.1"].includes(url.hostname)
   ) {
     url.protocol = "https:";
-    return c.redirect(url.toString(), 302);
+    c.redirect(url.toString(), 302);
   } else {
-    return await next();
+    await next();
+    if (url.protocol === "https:") {
+      c.res.headers.set("Strict-Transport-Security", "max-age=63072000; includeSubDomains; preload");
+    }
   }
 });
 app.get("/", async (c) =>
