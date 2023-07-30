@@ -6,10 +6,12 @@
     "@cloudflare/workers-types": "^4.20230717.1",
     "@tsndr/cloudflare-worker-jwt": "^2.2.1",
     "@types/jest": "^29.5.3",
+    "@types/suncalc": "^1.9.0",
     "hono": "^3.3.4",
     "jest": "^29.6.2",
     "prettier": "^3.0.0",
     "serverless-cloudflare-workers": "^1.2.0",
+    "suncalc": "^1.9.0",
     "ts-jest": "^29.1.1",
     "typescript": "^5.1.6",
     "wrangler": "^3.3.0"

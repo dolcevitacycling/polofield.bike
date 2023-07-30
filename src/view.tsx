@@ -10,8 +10,13 @@ import {
   parseDate,
   scrapePoloURL,
   shortDateStyle,
+  toMinute,
 } from "./cron";
 import { html } from "hono/html";
+import SunCalc from "suncalc";
+
+export const POLO_LAT = 37.76815;
+export const POLO_LON = -122.4927;
 
 interface Props {
   date: string;
@@ -30,7 +35,11 @@ function Layout(props: Props) {
           padding-left: 0;
           display: flex;
         }
+        h1 {
+          text-align: center;
+        }
         li {
+          box-sizing: border-box;
           margin-top: 1em;
           position: relative;
           font-weight: bold;
@@ -65,13 +74,19 @@ function Layout(props: Props) {
           background-color: rgba(255, 255, 255, 0.8);
           padding: 5px;
         }
+        .background {
+          position: absolute;
+          top: -10px;
+          bottom: -10px;
+          left: -10px;
+          right: -10px;
+        }
       </style>
       <body>
         <h1>
           <a href="${POLO_URL}"
             >Ethan Boyes Cycle Track @ GGP Polo Field Schedule</a
           >
-          for ${friendlyDate(props.date)}
         </h1>
         ${props.children}
       </body>
@@ -192,31 +207,65 @@ function intervalMinutes(hStart: string, hEnd: string) {
   return timeToMinutes(hEnd) - timeToMinutes(hStart);
 }
 
+function sunGradient(tStart: number, tEnd: number, sunProps: SunProps): string {
+  const duration = tEnd - tStart;
+  const rel = (k: keyof SunProps) => 100 * Math.min(1, (Math.max(0, timeToMinutes(sunProps[k]) - tStart) / duration));
+  const intervals = [
+    'to right',
+    `rgba(0, 0, 0, 0.1) 0% ${rel("sunrise")}%`,
+    `rgba(0, 0, 0, 0) ${rel("sunriseEnd")}% ${rel("sunsetStart")}%`,
+    `rgba(0, 0, 0, 0.1) ${rel("sunset")}% 100%`,
+  ];
+  return `linear-gradient(${intervals.join(", ")})`;
+}
+
 function Interval(props: {
   date: string;
   rule: KnownRules;
   interval: RuleInterval;
+  sunrise: string;
+  sunriseEnd: string;
+  sunsetStart: string;
+  sunset: string;
 }) {
-  const { date, rule, interval } = props;
+  const { date, rule, interval, sunrise, sunriseEnd, sunsetStart, sunset } = props;
   const hStart = clampStart(date, interval.start_timestamp);
   const hEnd = clampEnd(date, interval.end_timestamp);
+  const tStart = timeToMinutes(hStart);
+  const tEnd = timeToMinutes(hEnd);
 
   const { open } = interval;
-  const title = `${open ? "Open" : "Closed"} ${friendlyTimeSpan(
-    hStart,
-    hEnd,
-  )} ${interval.comment ? `for ${interval.comment}` : ""}`;
+  const title = `${open ? "Open" : "Closed"} ${friendlyTimeSpan(hStart, hEnd)}${
+    interval.comment ? ` for ${interval.comment}` : ""
+  }`;
   return (
     <li
       class={open ? "open" : "closed"}
       style={`flex: ${intervalMinutes(hStart, hEnd)}`}
       title={title}
+      data-sunrise={sunrise}
+      data-sunrise-end={sunriseEnd}
+      data-sunset-start={sunsetStart}
+      data-sunset={sunset}
     >
+      {open ? (
+        <div class="background" style={`background: ${sunGradient(tStart, tEnd, props)};`}></div>
+      ) : null}
       <div class="time">{friendlyTimeStart(date, hStart)}</div>
       <span class="copy">{open ? `${randomCyclist()}` : "🚳"}</span>
     </li>
   );
 }
+
+const tzTimeFormat = new Intl.DateTimeFormat("en-US", {
+  hourCycle: "h24",
+  hour: "2-digit",
+  minute: "2-digit",
+  timeZone: "America/Los_Angeles",
+});
+
+const SUN_KEYS = ["sunrise", "sunriseEnd", "sunset", "sunsetStart"] as const;
+type SunProps = Record<typeof SUN_KEYS[number], string>;
 
 function Intervals(props: {
   date: string;
@@ -224,10 +273,12 @@ function Intervals(props: {
   intervals: RuleInterval[];
 }) {
   const { date, rule, intervals } = props;
+  const calc = SunCalc.getTimes(parseDate(date), POLO_LAT, POLO_LON);
+  const sunProps = SUN_KEYS.reduce((acc, k) => { acc[k] = tzTimeFormat.format(calc[k]); return acc; }, {} as SunProps);
   return (
     <ul>
       {intervals.map((interval) => (
-        <Interval date={date} rule={rule} interval={interval} />
+        <Interval {...sunProps} {...{  date, rule, interval }} />
       ))}
     </ul>
   );
