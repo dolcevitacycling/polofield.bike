@@ -22,7 +22,10 @@ app.use(async (c, next) => {
   } else {
     await next();
     if (url.protocol === "https:") {
-      c.res.headers.set("Strict-Transport-Security", "max-age=63072000; includeSubDomains; preload");
+      c.res.headers.set(
+        "Strict-Transport-Security",
+        "max-age=63072000; includeSubDomains; preload",
+      );
     }
   }
 });
