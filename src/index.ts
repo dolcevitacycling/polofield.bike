@@ -18,7 +18,7 @@ app.use(async (c, next) => {
     !["localhost", "127.0.0.1"].includes(url.hostname)
   ) {
     url.protocol = "https:";
-    c.redirect(url.toString(), 302);
+    return c.redirect(url.toString(), 302);
   } else {
     await next();
     if (url.protocol === "https:") {
