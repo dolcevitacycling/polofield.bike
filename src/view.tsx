@@ -81,12 +81,16 @@ function Layout(props: Props) {
           left: -10px;
           right: -10px;
         }
+        .no-underline {
+          text-decoration: none;
+        }
       </style>
       <body>
         <h1>
           <a href="${POLO_URL}"
             >Ethan Boyes Cycle Track @ GGP Polo Field Schedule</a
           >
+          <a href="/calendar" class="no-underline">🗓️</a>
         </h1>
         ${props.children}
       </body>
@@ -209,9 +213,11 @@ function intervalMinutes(hStart: string, hEnd: string) {
 
 function sunGradient(tStart: number, tEnd: number, sunProps: SunProps): string {
   const duration = tEnd - tStart;
-  const rel = (k: keyof SunProps) => 100 * Math.min(1, (Math.max(0, timeToMinutes(sunProps[k]) - tStart) / duration));
+  const rel = (k: keyof SunProps) =>
+    100 *
+    Math.min(1, Math.max(0, timeToMinutes(sunProps[k]) - tStart) / duration);
   const intervals = [
-    'to right',
+    "to right",
     `rgba(0, 0, 0, 0.1) 0% ${rel("sunrise")}%`,
     `rgba(0, 0, 0, 0) ${rel("sunriseEnd")}% ${rel("sunsetStart")}%`,
     `rgba(0, 0, 0, 0.1) ${rel("sunset")}% 100%`,
@@ -228,7 +234,8 @@ function Interval(props: {
   sunsetStart: string;
   sunset: string;
 }) {
-  const { date, rule, interval, sunrise, sunriseEnd, sunsetStart, sunset } = props;
+  const { date, rule, interval, sunrise, sunriseEnd, sunsetStart, sunset } =
+    props;
   const hStart = clampStart(date, interval.start_timestamp);
   const hEnd = clampEnd(date, interval.end_timestamp);
   const tStart = timeToMinutes(hStart);
@@ -249,7 +256,10 @@ function Interval(props: {
       data-sunset={sunset}
     >
       {open ? (
-        <div class="background" style={`background: ${sunGradient(tStart, tEnd, props)};`}></div>
+        <div
+          class="background"
+          style={`background: ${sunGradient(tStart, tEnd, props)};`}
+        ></div>
       ) : null}
       <div class="time">{friendlyTimeStart(date, hStart)}</div>
       <span class="copy">{open ? `${randomCyclist()}` : "🚳"}</span>
@@ -265,7 +275,7 @@ const tzTimeFormat = new Intl.DateTimeFormat("en-US", {
 });
 
 const SUN_KEYS = ["sunrise", "sunriseEnd", "sunset", "sunsetStart"] as const;
-type SunProps = Record<typeof SUN_KEYS[number], string>;
+type SunProps = Record<(typeof SUN_KEYS)[number], string>;
 
 function Intervals(props: {
   date: string;
@@ -274,11 +284,14 @@ function Intervals(props: {
 }) {
   const { date, rule, intervals } = props;
   const calc = SunCalc.getTimes(parseDate(date), POLO_LAT, POLO_LON);
-  const sunProps = SUN_KEYS.reduce((acc, k) => { acc[k] = tzTimeFormat.format(calc[k]); return acc; }, {} as SunProps);
+  const sunProps = SUN_KEYS.reduce((acc, k) => {
+    acc[k] = tzTimeFormat.format(calc[k]);
+    return acc;
+  }, {} as SunProps);
   return (
     <ul>
       {intervals.map((interval) => (
-        <Interval {...sunProps} {...{  date, rule, interval }} />
+        <Interval {...sunProps} {...{ date, rule, interval }} />
       ))}
     </ul>
   );
