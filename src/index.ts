@@ -3,6 +3,7 @@ import { Bindings, PoloFieldMessage } from "./types";
 import { Hono } from "hono";
 import { serveStatic } from "hono/cloudflare-workers";
 import view, { viewWeek } from "./view";
+import icalFeed from "./icalFeed";
 
 // Add calendar feeds?
 // Title hover
@@ -37,6 +38,7 @@ app.get("/", async (c) =>
     }).format(new Date()),
   ),
 );
+app.get("/calendar.ics", icalFeed);
 app.get("/today", async (c) =>
   viewWeek(
     c,

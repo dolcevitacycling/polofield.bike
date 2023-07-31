@@ -227,16 +227,6 @@ function apSecond<T, U>(a: Parser<T>, b: Parser<U>): Parser<U> {
   );
 }
 
-function chain<T, U>(a: Parser<T>, f: (t: T) => Parser<U>): Parser<U> {
-  return (s: Stream) => {
-    const r = a(s);
-    if (!r) {
-      return undefined;
-    }
-    return f(r.result)(r.s);
-  };
-}
-
 function closedIntervals(
   date: Date,
   start_hour: number,

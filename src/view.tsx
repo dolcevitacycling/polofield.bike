@@ -199,7 +199,7 @@ function clampEnd(date: string, timestamp: string) {
   const [tsDate, tsTime] = timestamp.split(" ");
   return date === tsDate ? tsTime : "23:59";
 }
-function timeToMinutes(time: string): number {
+export function timeToMinutes(time: string): number {
   const [h, m] = time.split(":");
   return parseInt(h, 10) * 60 + parseInt(m, 10);
 }
