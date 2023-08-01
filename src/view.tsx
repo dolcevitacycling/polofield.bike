@@ -29,6 +29,7 @@ function Layout(props: Props) {
       <head>
         <title>Polo Field Schedule for ${friendlyDate(props.date)}</title>
       </head>
+      <link rel="stylesheet" href="/css/balloon.min.css" />
       <style>
         ul {
           list-style-type: none;
@@ -48,6 +49,19 @@ function Layout(props: Props) {
           display: flex;
           align-items: center;
           justify-content: center;
+        }
+        li > button {
+          box-sizing: border-box;
+          position: relative;
+          border: none;
+          background: none;
+          font-size: inherit;
+          font-weight: inherit;
+          cursor: pointer;
+          width: 100%;
+          --balloon-font-size: 20px;
+          -moz-appearance: none;
+          -webkit-appearance: none;
         }
         .time {
           position: absolute;
@@ -249,20 +263,21 @@ function Interval(props: {
     <li
       class={open ? "open" : "closed"}
       style={`flex: ${intervalMinutes(hStart, hEnd)}`}
-      title={title}
       data-sunrise={sunrise}
       data-sunrise-end={sunriseEnd}
       data-sunset-start={sunsetStart}
       data-sunset={sunset}
     >
+      <div class="time">{friendlyTimeStart(date, hStart)}</div>
       {open ? (
         <div
           class="background"
           style={`background: ${sunGradient(tStart, tEnd, props)};`}
         ></div>
       ) : null}
-      <div class="time">{friendlyTimeStart(date, hStart)}</div>
-      <span class="copy">{open ? `${randomCyclist()}` : "🚳"}</span>
+      <button aria-label={title} data-balloon-pos="up" data-balloon-length={title.length > 30 ? "large" : undefined}>
+        <span class="copy">{open ? `${randomCyclist()}` : "🚳"}</span>
+      </button>
     </li>
   );
 }
