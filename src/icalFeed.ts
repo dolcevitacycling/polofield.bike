@@ -156,12 +156,10 @@ function shouldJoin(a: Event, b: Event): boolean {
     a.unknown === b.unknown &&
     a.comment === b.comment &&
     a.end.getTime() === b.start.getTime() &&
-    // Join entire days (12am-12am, 12am-12am)
-    ((dayMinutes(a.start) === 0 &&
-      dayMinutes(b.start) === 0 &&
-      dayMinutes(b.end) === 0) ||
-      // or two partials that are adjacent, e.g. (6pm-12am, 12am-9am)
-      (dayMinutes(a.start) !== 0 && dayMinutes(b.end) !== 0))
+    // Only join entire days (12am-12am, 12am-12am)
+    dayMinutes(a.start) === 0 &&
+    dayMinutes(b.start) === 0 &&
+    dayMinutes(b.end) === 0
   );
 }
 
