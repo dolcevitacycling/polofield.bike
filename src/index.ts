@@ -38,8 +38,12 @@ app.get("/", async (c) =>
     }).format(new Date()),
   ),
 );
-app.get("/calendar", calendarView);
-app.get("/calendar.ics", icalFeed);
+app.get("/calendar", calendarView({ open: false }));
+app.get("/calendar.ics", icalFeed({ open: false }));
+app.get("/calendar/open", calendarView({ open: true }));
+app.get("/calendar/open.ics", icalFeed({ open: true }));
+app.get("/calendar/all", calendarView({}));
+app.get("/calendar/all.ics", icalFeed({}));
 app.get("/today", async (c) =>
   viewWeek(
     c,
