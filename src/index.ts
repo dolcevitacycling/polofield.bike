@@ -40,6 +40,8 @@ app.get("/", async (c) =>
 );
 app.get("/calendar", calendarView({ open: false }));
 app.get("/calendar.ics", icalFeed({ open: false }));
+app.get("/calendar/closed", calendarView({ open: false }));
+app.get("/calendar/closed.ics", icalFeed({ open: false }));
 app.get("/calendar/open", calendarView({ open: true }));
 app.get("/calendar/open.ics", icalFeed({ open: true }));
 app.get("/calendar/all", calendarView({}));
