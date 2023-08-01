@@ -136,6 +136,26 @@ function Layout(props: Props) {
           height: 8px;
           transform: rotate(45deg);
         }
+        nav {
+          text-align: center;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          gap: 0.5em;
+        }
+        nav a {
+          position: relative;
+        }
+        nav a .base {
+          font-size: 2em;
+        }
+        nav a .overlap {
+          position: absolute;
+          font-size: 1em;
+          left: 50%;
+          top: 60%;
+          transform: translate(-50%, -50%);
+        }
         @media only screen and (max-width: 480px) {
           body {
             margin: 12px;
@@ -153,8 +173,24 @@ function Layout(props: Props) {
           <a href="${POLO_URL}"
             >Ethan Boyes Cycle Track @ GGP Polo Field Schedule</a
           >
-          <a href="/calendar" class="no-underline">🗓️</a>
         </h1>
+        <nav>
+          <a
+            href="/calendar/open"
+            class="no-underline"
+            title="Google Calendar of Cycle Track openings"
+            ><span class="base">🗓️</span
+            ><span class="overlap">${randomCyclist()}</span></a
+          >
+          |
+          <a
+            href="/calendar/closed"
+            class="no-underline"
+            title="Google Calendar of Cycle Track closures"
+            ><span class="base">🗓️</span
+            ><span class="overlap">${NO_BIKES}</span></a
+          >
+        </nav>
         ${props.children}
         <script type="module" src="/js/tooltip.mjs"></script>
       </body>
