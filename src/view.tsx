@@ -24,15 +24,22 @@ interface Props {
   titlePrefix?: string;
 }
 
+function linkRelIcon(icon?: string) {
+  return icon
+    ? html`<link
+        rel="icon"
+        href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>${icon.trim()}</text></svg>"
+      /> `
+    : "";
+}
+
 function Layout(props: Props) {
   return html`<!doctype html>
     <html>
       <head>
-        <title>
-          ${props.titlePrefix ?? ""}Polo Field Schedule for
-          ${friendlyDate(props.date)}
-        </title>
+        <title>Polo Field Schedule for ${friendlyDate(props.date)}</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        ${linkRelIcon(props.titlePrefix)}
       </head>
       <style>
         * {
@@ -211,11 +218,23 @@ const genders = [
   "\u{200d}\u{2640}\u{FE0F}", // woman
 ];
 
+function randomPersonType() {
+  return `${selectRandom(skinTypes)}${selectRandom(genders)}`;
+}
+
 function selectRandom(arr: string[]) {
   return arr[Math.floor(Math.random() * arr.length)];
 }
+
+function randomShrug() {
+  return `🤷🏼${randomPersonType()}`;
+}
+
+const NO_BIKES = "🚳";
+const WARNING = "⚠️";
+
 function randomCyclist() {
-  return `${cyclist}${selectRandom(skinTypes)}${selectRandom(genders)}`;
+  return `${cyclist}${randomPersonType()}`;
 }
 
 function DayPage(props: {
@@ -223,10 +242,22 @@ function DayPage(props: {
   ruleIntervals: ReturnType<typeof intervalsForDate>;
 }) {
   return (
-    <Layout date={props.date}>
+    <Layout date={props.date} titlePrefix={titlePrefix(props.ruleIntervals)}>
       <Rules {...props} />
     </Layout>
   );
+}
+
+function titlePrefix(ruleIntervals: ReturnType<typeof intervalsForDate>) {
+  if (ruleIntervals?.type === "unknown") {
+    return `${randomShrug()} `;
+  } else if (ruleIntervals?.type === "known") {
+    const s = new Set(ruleIntervals.intervals.map((i) => i.open));
+    return `${
+      s.size > 1 ? WARNING : s.has(true) ? randomCyclist() : NO_BIKES
+    } `;
+  }
+  return undefined;
 }
 
 function WeekPage(props: { date: string; result: ScrapeResult }) {
@@ -234,12 +265,9 @@ function WeekPage(props: { date: string; result: ScrapeResult }) {
   const d = parseDate(date);
 
   const ruleIntervals = intervalsForDate(result, date);
-  if (!ruleIntervals) {
-    return null;
-  }
 
   return (
-    <Layout date={date}>
+    <Layout date={date} titlePrefix={titlePrefix(ruleIntervals)}>
       {Array.from({ length: 90 }, (_, i) => {
         const date = shortDateStyle.format(addDays(d, i));
         const ruleIntervals = intervalsForDate(result, date);
@@ -319,7 +347,7 @@ function Interval(props: {
         ></div>
       ) : null}
       <button aria-label={title}>
-        <span class="copy">{open ? `${randomCyclist()}` : "🚳"}</span>
+        <span class="copy">{open ? randomCyclist() : NO_BIKES}</span>
       </button>
     </li>
   );
