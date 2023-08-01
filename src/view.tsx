@@ -21,16 +21,27 @@ export const POLO_LON = -122.4927;
 interface Props {
   date: string;
   children?: unknown;
+  titlePrefix?: string;
 }
 
 function Layout(props: Props) {
   return html`<!doctype html>
     <html>
       <head>
-        <title>Polo Field Schedule for ${friendlyDate(props.date)}</title>
+        <title>
+          ${props.titlePrefix ?? ""}Polo Field Schedule for
+          ${friendlyDate(props.date)}
+        </title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
       </head>
-      <link rel="stylesheet" href="/css/balloon.min.css" />
       <style>
+        * {
+          font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+            Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+        }
+        body {
+          margin: 24px;
+        }
         ul {
           list-style-type: none;
           padding-left: 0;
@@ -59,6 +70,7 @@ function Layout(props: Props) {
           font-weight: inherit;
           cursor: pointer;
           width: 100%;
+          height: 100%;
           --balloon-font-size: 20px;
           -moz-appearance: none;
           -webkit-appearance: none;
@@ -98,6 +110,36 @@ function Layout(props: Props) {
         .no-underline {
           text-decoration: none;
         }
+        .tooltip {
+          position: absolute;
+          top: 0;
+          left: 0;
+          width: max-content;
+          background: #222;
+          color: white;
+          font-weight: bold;
+          padding: 5px;
+          border-radius: 4px;
+          font-size: 90%;
+        }
+        .tooltip-arrow {
+          position: absolute;
+          background: #222;
+          width: 8px;
+          height: 8px;
+          transform: rotate(45deg);
+        }
+        @media only screen and (max-width: 480px) {
+          body {
+            margin: 12px;
+            font-size: 10px;
+          }
+          .time {
+            font-size: 12px;
+            top: -1em;
+            left: -0.75em;
+          }
+        }
       </style>
       <body>
         <h1>
@@ -107,6 +149,7 @@ function Layout(props: Props) {
           <a href="/calendar" class="no-underline">🗓️</a>
         </h1>
         ${props.children}
+        <script type="module" src="/js/tooltip.mjs"></script>
       </body>
     </html>`;
 }
@@ -275,7 +318,7 @@ function Interval(props: {
           style={`background: ${sunGradient(tStart, tEnd, props)};`}
         ></div>
       ) : null}
-      <button aria-label={title} data-balloon-pos="up" data-balloon-length={title.length > 30 ? "large" : undefined}>
+      <button aria-label={title}>
         <span class="copy">{open ? `${randomCyclist()}` : "🚳"}</span>
       </button>
     </li>
@@ -304,7 +347,7 @@ function Intervals(props: {
     return acc;
   }, {} as SunProps);
   return (
-    <ul>
+    <ul class="intervals">
       {intervals.map((interval) => (
         <Interval {...sunProps} {...{ date, rule, interval }} />
       ))}
