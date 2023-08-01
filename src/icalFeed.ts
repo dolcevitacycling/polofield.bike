@@ -1,3 +1,4 @@
+// https://script.google.com/home/projects/168v2tynyO2O27zurN6acpGyRaNj6t3FlTHPTmlGeICYa5GdEptstrcd8/edit
 import { Context } from "hono";
 import { Bindings } from "./types";
 import {
@@ -145,17 +146,32 @@ function parseTimestamp(timestamp: string): Date {
   return addMinutes(parseDate(d), toMinute(parseInt(hh, 10), parseInt(mm, 10)));
 }
 
+function dayMinutes(d: Date): number {
+  return d.getHours() * 60 + d.getMinutes();
+}
+
+function shouldJoin(a: Event, b: Event): boolean {
+  return (
+    a.open === b.open &&
+    a.unknown === b.unknown &&
+    a.comment === b.comment &&
+    a.end.getTime() === b.start.getTime() &&
+    // Join entire days (12am-12am, 12am-12am)
+    ((dayMinutes(a.start) === 0 &&
+      dayMinutes(b.start) === 0 &&
+      dayMinutes(b.end) === 0) ||
+      // or two partials that are adjacent, e.g. (6pm-12am, 12am-9am)
+      (dayMinutes(a.start) !== 0 && dayMinutes(b.end) !== 0))
+  );
+}
+
 function parseEvents(feed: ScrapeResult): Event[] {
   const events: Event[] = [];
   const created = new Date();
   const modified = created;
   function pushEvent(event: Event) {
     const lastEvent = events[events.length - 1];
-    if (
-      lastEvent &&
-      lastEvent.comment === event.comment &&
-      lastEvent.end.getTime() === event.start.getTime()
-    ) {
+    if (lastEvent && shouldJoin(lastEvent, event)) {
       events[events.length - 1] = { ...event, start: lastEvent.start };
     } else {
       events.push(event);
