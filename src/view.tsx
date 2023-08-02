@@ -78,7 +78,8 @@ function Layout(props: Props) {
           cursor: pointer;
           width: 100%;
           height: 100%;
-          --balloon-font-size: 20px;
+          padding: 0;
+          text-align: center;
           -moz-appearance: none;
           -webkit-appearance: none;
         }
@@ -385,6 +386,8 @@ function Interval(props: {
   const hEnd = clampEnd(date, interval.end_timestamp);
   const tStart = timeToMinutes(hStart);
   const tEnd = timeToMinutes(hEnd);
+  const duration = intervalMinutes(hStart, hEnd) + 1;
+  const percent = 100 * (duration / 1440);
 
   const { open } = interval;
   const title = open
@@ -395,11 +398,14 @@ function Interval(props: {
   return (
     <li
       class={open ? "open" : "closed"}
-      style={`flex: ${intervalMinutes(hStart, hEnd)}`}
+      data-start={hStart}
+      data-end={hEnd}
+      data-minutes={duration}
       data-sunrise={sunrise}
       data-sunrise-end={sunriseEnd}
       data-sunset-start={sunsetStart}
       data-sunset={sunset}
+      style={`flex: ${duration}; max-width: ${percent}%;`}
     >
       <div class="time">{friendlyTimeStart(date, hStart)}</div>
       {open ? (
@@ -437,7 +443,7 @@ function Intervals(props: {
     return acc;
   }, {} as SunProps);
   return (
-    <ul class="intervals">
+    <ul class="intervals" data-date={date}>
       {intervals.map((interval) => (
         <Interval {...sunProps} {...{ date, rule, interval }} />
       ))}
