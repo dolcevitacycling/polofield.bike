@@ -1,4 +1,4 @@
-= polofield.bike
+# polofield.bike
 
 [polofield.bike](https://polofield.bike) is deployed as a
 [Cloudflare Worker](https://developers.cloudflare.com/workers/)
@@ -9,7 +9,7 @@ syntax with no types, bundler, or compiler. See `./static/js`.
 
 [Prettier](https://prettier.io) is used for formatting
 
-== Local dev runbook
+## Local dev runbook
 
 Setup
 
@@ -35,7 +35,7 @@ Run tests
 npm run jest
 ```
 
-== Deployment runbook
+## Deployment runbook
 
 ```
 npm run deploy
