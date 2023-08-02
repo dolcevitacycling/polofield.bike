@@ -15,12 +15,13 @@ Setup
 
 ```
 npm install
+npm run wrangler -- d1 migrations apply polofield --local
 ```
 
 Run dev server
 
 ```
-npm run dev
+npm run start
 ```
 
 Format code

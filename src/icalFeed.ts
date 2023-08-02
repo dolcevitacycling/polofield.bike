@@ -1,7 +1,6 @@
-// https://script.google.com/home/projects/168v2tynyO2O27zurN6acpGyRaNj6t3FlTHPTmlGeICYa5GdEptstrcd8/edit
 import { Context } from "hono";
 import { Bindings } from "./types";
-import { POLO_URL, ScrapeResult, scrapePoloURL } from "./cron";
+import { POLO_URL, ScrapeResult, cachedScrapeResult } from "./cron";
 import {
   shortTimeStyle,
   addMinutes,
@@ -241,9 +240,13 @@ function mapEvent(filter: FeedParameters) {
 
 export default function icalFeed(filter: FeedParameters) {
   return async (c: Context<{ Bindings: Bindings }>) => {
-    return c.text(feedText(filter, parseEvents(await scrapePoloURL())), 200, {
-      "Content-Type": "text/calendar; charset=utf-8",
-      "Content-Disposition": `attachment; filename="${basename(filter)}.ics"`,
-    });
+    return c.text(
+      feedText(filter, parseEvents(await cachedScrapeResult(c.env))),
+      200,
+      {
+        "Content-Type": "text/calendar; charset=utf-8",
+        "Content-Disposition": `attachment; filename="${basename(filter)}.ics"`,
+      },
+    );
   };
 }

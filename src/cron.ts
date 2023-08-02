@@ -1109,7 +1109,58 @@ export async function scrapePoloURL(): Promise<ScrapeResult> {
   return scraper.getResult();
 }
 
+interface ScrapeResultsRow {
+  readonly created_at: string;
+  readonly scrape_results_json: string;
+}
+
+export async function cachedScrapeResult(env: Bindings): Promise<ScrapeResult> {
+  const prev = await env.DB.prepare(
+    `SELECT created_at, scrape_results_json FROM scrape_results ORDER BY created_at DESC LIMIT 1`,
+  ).all<ScrapeResultsRow>();
+  if (prev.results.length === 0) {
+    console.error(`Expected cached row in scraped_results`);
+    return await refreshScrapeResult(env);
+  }
+  return JSON.parse(prev.results[0].scrape_results_json as string);
+}
+
+async function refreshScrapeResult(
+  env: Bindings,
+  { log }: { readonly log?: boolean } = {},
+): Promise<ScrapeResult> {
+  const result = await scrapePoloURL();
+  const prev = await env.DB.prepare(
+    `SELECT created_at, scrape_results_json FROM scrape_results ORDER BY created_at DESC LIMIT 1`,
+  ).all<ScrapeResultsRow>();
+  const created_at = new Date().toISOString();
+  const scrape_results_json = JSON.stringify(result);
+  if (
+    prev.results.length > 0 &&
+    prev.results[0].scrape_results_json === scrape_results_json
+  ) {
+    if (log) {
+      console.log(
+        `No change since ${prev.results[0].created_at}, skipping ${created_at}`,
+      );
+    }
+    return JSON.parse(prev.results[0].scrape_results_json);
+  } else {
+    await env.DB.prepare(
+      `INSERT INTO scrape_results (created_at, scrape_results_json) VALUES (?, ?)`,
+    )
+      .bind(created_at, scrape_results_json)
+      .run();
+    if (log) {
+      console.log(`Inserted new scrape result at ${created_at}`);
+    }
+    return result;
+  }
+}
+
 export async function handleCron(
   event: ScheduledController,
   env: Bindings,
-): Promise<void> {}
+): Promise<void> {
+  await refreshScrapeResult(env, { log: true });
+}

@@ -1,4 +1,4 @@
-import { handleCron, scrapePoloURL } from "./cron";
+import { cachedScrapeResult, handleCron } from "./cron";
 import { Bindings, PoloFieldMessage } from "./types";
 import { Hono } from "hono";
 import { serveStatic } from "hono/cloudflare-workers";
@@ -54,7 +54,7 @@ app.get("/calendar/all", calendarView({}));
 app.get("/calendar/all.ics", icalFeed({}));
 app.get("/today", async (c) => viewWeek(c, pacificISODate.format(new Date())));
 app.get("/scrape", async (c) => {
-  const result = await scrapePoloURL();
+  const result = await cachedScrapeResult(c.env);
   return c.text(JSON.stringify(result), 200, {
     "Content-Type": "application/json",
   });
