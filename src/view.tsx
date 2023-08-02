@@ -455,7 +455,7 @@ export async function viewWeek(
   date: string,
   days: number = 90,
 ) {
-  const result = await cachedScrapeResult(c.env);
+  const { scrape_results: result } = await cachedScrapeResult(c.env);
   const page = WeekPage({ date, result, days });
   if (!page) {
     return c.notFound();
@@ -467,7 +467,7 @@ export default async function view(
   c: Context<{ Bindings: Bindings }>,
   date: string,
 ) {
-  const result = await cachedScrapeResult(c.env);
+  const { scrape_results: result } = await cachedScrapeResult(c.env);
   const ruleIntervals = intervalsForDate(result, date);
   if (!ruleIntervals) {
     return c.notFound();

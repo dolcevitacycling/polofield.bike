@@ -1114,7 +1114,12 @@ interface ScrapeResultsRow {
   readonly scrape_results_json: string;
 }
 
-export async function cachedScrapeResult(env: Bindings): Promise<ScrapeResult> {
+export interface CachedScrapeResult {
+  readonly created_at: string;
+  readonly scrape_results: ScrapeResult;
+}
+
+export async function cachedScrapeResult(env: Bindings): Promise<CachedScrapeResult> {
   const prev = await env.DB.prepare(
     `SELECT created_at, scrape_results_json FROM scrape_results ORDER BY created_at DESC LIMIT 1`,
   ).all<ScrapeResultsRow>();
@@ -1128,7 +1133,7 @@ export async function cachedScrapeResult(env: Bindings): Promise<ScrapeResult> {
 async function refreshScrapeResult(
   env: Bindings,
   { log }: { readonly log?: boolean } = {},
-): Promise<ScrapeResult> {
+): Promise<CachedScrapeResult> {
   const result = await scrapePoloURL();
   const prev = await env.DB.prepare(
     `SELECT created_at, scrape_results_json FROM scrape_results ORDER BY created_at DESC LIMIT 1`,
@@ -1144,7 +1149,7 @@ async function refreshScrapeResult(
         `No change since ${prev.results[0].created_at}, skipping ${created_at}`,
       );
     }
-    return JSON.parse(prev.results[0].scrape_results_json);
+    return { created_at: prev.results[0].created_at, scrape_results: JSON.parse(prev.results[0].scrape_results_json) };
   } else {
     await env.DB.prepare(
       `INSERT INTO scrape_results (created_at, scrape_results_json) VALUES (?, ?)`,
@@ -1154,7 +1159,7 @@ async function refreshScrapeResult(
     if (log) {
       console.log(`Inserted new scrape result at ${created_at}`);
     }
-    return result;
+    return { created_at, scrape_results: result };
   }
 }
 

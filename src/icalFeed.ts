@@ -1,6 +1,6 @@
 import { Context } from "hono";
 import { Bindings } from "./types";
-import { POLO_URL, ScrapeResult, cachedScrapeResult } from "./cron";
+import { CachedScrapeResult, POLO_URL, cachedScrapeResult } from "./cron";
 import {
   shortTimeStyle,
   addMinutes,
@@ -160,9 +160,9 @@ function shouldJoin(a: Event, b: Event): boolean {
   );
 }
 
-function parseEvents(feed: ScrapeResult): Event[] {
+function parseEvents({ created_at, scrape_results }: CachedScrapeResult): Event[] {
   const events: Event[] = [];
-  const created = new Date();
+  const created = new Date(created_at);
   const modified = created;
   function pushEvent(event: Event) {
     const lastEvent = events[events.length - 1];
@@ -172,7 +172,7 @@ function parseEvents(feed: ScrapeResult): Event[] {
       events.push(event);
     }
   }
-  for (const { rules } of feed) {
+  for (const { rules } of scrape_results) {
     for (const rule of rules) {
       if (rule.type === "unknown_rules") {
         pushEvent({
