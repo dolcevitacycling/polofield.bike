@@ -1127,7 +1127,8 @@ export async function cachedScrapeResult(env: Bindings): Promise<CachedScrapeRes
     console.error(`Expected cached row in scraped_results`);
     return await refreshScrapeResult(env);
   }
-  return JSON.parse(prev.results[0].scrape_results_json as string);
+  const { created_at, scrape_results_json } = prev.results[0];
+  return { created_at, scrape_results: JSON.parse(scrape_results_json) };
 }
 
 async function refreshScrapeResult(

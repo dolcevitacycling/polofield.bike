@@ -36,6 +36,12 @@ Run tests
 npm run jest
 ```
 
+Check types
+
+```
+npm run check
+```
+
 ## Deployment runbook
 
 ```

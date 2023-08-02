@@ -9,7 +9,7 @@ import {
   intervalsForDate,
 } from "./cron";
 import { html } from "hono/html";
-import SunCalc from "suncalc";
+import { getTimes } from "suncalc";
 import {
   parseDate,
   shortDateStyle,
@@ -398,7 +398,7 @@ function Intervals(props: {
   intervals: RuleInterval[];
 }) {
   const { date, rule, intervals } = props;
-  const calc = SunCalc.getTimes(parseDate(date), POLO_LAT, POLO_LON);
+  const calc = getTimes(parseDate(date), POLO_LAT, POLO_LON);
   const sunProps = SUN_KEYS.reduce((acc, k) => {
     acc[k] = tzTimeFormat.format(calc[k]);
     return acc;
@@ -468,6 +468,7 @@ export default async function view(
   date: string,
 ) {
   const { scrape_results: result } = await cachedScrapeResult(c.env);
+
   const ruleIntervals = intervalsForDate(result, date);
   if (!ruleIntervals) {
     return c.notFound();
