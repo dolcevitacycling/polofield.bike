@@ -36,6 +36,9 @@ app.get("/", async (c) =>
     Intl.DateTimeFormat("fr-CA", {
       timeZone: "America/Los_Angeles",
     }).format(new Date()),
+    ((n) => (n && /^\d+/.test(n) ? parseInt(n, 10) : undefined))(
+      c.req.query("days"),
+    ),
   ),
 );
 app.get("/calendar", calendarView({ open: false }));

@@ -309,15 +309,15 @@ function titlePrefix(ruleIntervals: ReturnType<typeof intervalsForDate>) {
   return undefined;
 }
 
-function WeekPage(props: { date: string; result: ScrapeResult }) {
-  const { date, result } = props;
+function WeekPage(props: { date: string; result: ScrapeResult, days: number }) {
+  const { date, result, days } = props;
   const d = parseDate(date);
 
   const ruleIntervals = intervalsForDate(result, date);
 
   return (
     <Layout date={date} titlePrefix={titlePrefix(ruleIntervals)}>
-      {Array.from({ length: 90 }, (_, i) => {
+      {Array.from({ length: days }, (_, i) => {
         const date = shortDateStyle.format(addDays(d, i));
         const ruleIntervals = intervalsForDate(result, date);
         if (!ruleIntervals) {
@@ -473,9 +473,10 @@ function Rules(props: {
 export async function viewWeek(
   c: Context<{ Bindings: Bindings }>,
   date: string,
+  days: number = 90,
 ) {
   const result = await scrapePoloURL();
-  const page = WeekPage({ date, result });
+  const page = WeekPage({ date, result, days });
   if (!page) {
     return c.notFound();
   }
