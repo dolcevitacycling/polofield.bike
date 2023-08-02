@@ -1,4 +1,4 @@
-import { POLO_URL, handleCron, scrapePoloURL } from "./cron";
+import { POLO_URL, handleCron, parseDate, scrapePoloURL } from "./cron";
 import { Bindings, PoloFieldMessage } from "./types";
 import { Hono } from "hono";
 import { serveStatic } from "hono/cloudflare-workers";
@@ -35,8 +35,12 @@ app.get("/", async (c) =>
     c,
     Intl.DateTimeFormat("fr-CA", {
       timeZone: "America/Los_Angeles",
-    }).format(new Date()),
-    ((n) => (n && /^\d+/.test(n) ? parseInt(n, 10) : undefined))(
+    }).format(
+      ((n) => (n && /^\d{4}-\d{2}-\d{2}$/.test(n) ? parseDate(n) : new Date()))(
+        c.req.query("date"),
+      ),
+    ),
+    ((n) => (n && /^\d+$/.test(n) ? parseInt(n, 10) : undefined))(
       c.req.query("days"),
     ),
   ),
