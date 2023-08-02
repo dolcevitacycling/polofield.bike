@@ -1,3 +1,34 @@
+import {
+  toMinute,
+  startOfDay,
+  endOfDay,
+  parseDate,
+  isSameDay,
+  addDays,
+  addMinutes,
+  daily,
+  monthDayStyle,
+  shortDateStyle,
+  shortTimeStyle,
+} from "./dates";
+import {
+  stream,
+  streamAtEnd,
+  mapParser,
+  Parser,
+  Stream,
+  setCursor,
+  parseFirst,
+  parseAll,
+  apSecond,
+  apFirst,
+  optional,
+  ensureEndParsed,
+  parseSepBy1,
+  succeed,
+  ap,
+  parseMany1,
+} from "./parsing";
 import { Bindings } from "./types";
 
 export const POLO_URL = "https://www.sfrecpark.org/526/Polo-Field-Usage";
@@ -78,29 +109,6 @@ const WEEKDAYS: Record<
   Sat: 6,
 };
 
-export function parseDate(date: string): Date {
-  const [y, m, d] = date.split("-").map((s) => parseInt(s, 10));
-  return new Date(y, m - 1, d);
-}
-
-function formatTime(date: string, hour: number, minute: number): string {
-  return `${date} ${hour.toString().padStart(2, "0")}:${minute
-    .toString()
-    .padStart(2, "0")}`;
-}
-
-export function toMinute(hour: number, minute: number): number {
-  return hour * 60 + minute;
-}
-
-function startOfDay(date: string): string {
-  return formatTime(date, 0, 0);
-}
-
-function endOfDay(date: string): string {
-  return formatTime(date, 23, 59);
-}
-
 function dateInterval(date: Date, open: boolean, comment?: string) {
   return {
     start_timestamp: shortTimeStyle.format(date),
@@ -154,6 +162,7 @@ function minuteIntervals(
   }
   return r;
 }
+
 function closedMinuteIntervals(
   date: Date,
   start_minute: number,
@@ -161,70 +170,6 @@ function closedMinuteIntervals(
   comment?: string,
 ): RuleInterval[] {
   return minuteIntervals(date, start_minute, end_minute, false, comment);
-}
-
-type Arr<T> = readonly T[];
-type ResultOfParser<T> = T extends Parser<infer R> ? R : never;
-type AllResults<T> = {
-  [P in keyof T]: ResultOfParser<T[P]>;
-};
-
-function parseAll<T extends Arr<Parser<unknown>>>(
-  ...args: T
-): Parser<AllResults<T>> {
-  return (s: Stream) => {
-    const result: unknown[] = [];
-    for (const p of args) {
-      const r = p(s);
-      if (!r) {
-        return undefined;
-      }
-      result.push(r.result);
-      s = r.s;
-    }
-    return { s, result: result as AllResults<T> };
-  };
-}
-
-function parseFirst<T extends Arr<Parser<unknown>>>(
-  ...args: T
-): Parser<ResultOfParser<T[number]>> {
-  return (s: Stream) => {
-    for (const p of args) {
-      const r = p(s);
-      if (r) {
-        return r as ParseResult<ResultOfParser<T[number]>>;
-      }
-    }
-    return undefined;
-  };
-}
-
-function ap<T, U>(a: Parser<T>, b: Parser<(t: T) => U>): Parser<U> {
-  return (s: Stream) => {
-    const r = a(s);
-    if (!r) {
-      return undefined;
-    }
-    const r2 = b(r.s);
-    if (!r2) {
-      return undefined;
-    }
-    return { s: r2.s, result: r2.result(r.result) };
-  };
-}
-
-function apFirst<T, U>(a: Parser<T>, b: Parser<U>): Parser<T> {
-  return ap(
-    a,
-    mapParser(b, (_vb) => (va) => va),
-  );
-}
-function apSecond<T, U>(a: Parser<T>, b: Parser<U>): Parser<U> {
-  return ap(
-    a,
-    mapParser(b, (vb) => (_va) => vb),
-  );
 }
 
 function closedIntervals(
@@ -238,14 +183,6 @@ function closedIntervals(
     toMinute(start_hour, 0),
     toMinute(end_hour, 0),
     comment,
-  );
-}
-
-function isSameDay(a: Date, b: Date): boolean {
-  return (
-    a.getFullYear() === b.getFullYear() &&
-    a.getMonth() === b.getMonth() &&
-    a.getDate() === b.getDate()
   );
 }
 
@@ -277,47 +214,6 @@ function toKnown(rule: UnknownRules, intervals: RuleInterval[]): KnownRules {
     type: "known_rules",
     intervals,
   };
-}
-
-const monthDayStyle = new Intl.DateTimeFormat("fr-CA", {
-  month: "2-digit",
-  day: "2-digit",
-});
-export const shortDateStyle = new Intl.DateTimeFormat("sv-SE", {
-  dateStyle: "short",
-});
-export const shortTimeStyle = new Intl.DateTimeFormat("sv-SE", {
-  year: "numeric",
-  month: "2-digit",
-  day: "2-digit",
-  hour: "2-digit",
-  minute: "2-digit",
-});
-
-export function addDays(date: Date, days: number): Date {
-  const result = new Date(date);
-  result.setDate(result.getDate() + days);
-  return result;
-}
-
-export function addMinutes(date: Date, minutes: number): Date {
-  const result = new Date(date);
-  result.setMinutes(result.getMinutes() + minutes);
-  return result;
-}
-
-function daily<T>(
-  start_date: string,
-  end_date: string,
-  f: (date: Date) => T[],
-): T[] {
-  const result: T[] = [];
-  const start = parseDate(start_date);
-  const end = parseDate(end_date);
-  for (let date = start; date <= end; date.setDate(date.getDate() + 1)) {
-    result.push(...f(date));
-  }
-  return result;
 }
 
 type Recognizer = (rule: UnknownRules) => KnownRules | undefined;
@@ -352,91 +248,6 @@ function parseDateInterval(year: number) {
       end_date: fmt(year, end_month, end_day),
     };
   };
-}
-
-export interface Stream {
-  readonly input: string;
-  readonly cursor: number;
-}
-
-export function stream(input: string): Stream {
-  return { input, cursor: 0 };
-}
-
-export function streamAtEnd(s: Stream): boolean {
-  return s.cursor >= s.input.length;
-}
-
-export interface ParseResult<T> {
-  readonly s: Stream;
-  readonly result: T;
-}
-
-function mapParser<T, U>(p: Parser<T>, f: (v: T) => U): Parser<U> {
-  return (s: Stream) => {
-    const r = p(s);
-    return r ? { ...r, result: f(r.result) } : undefined;
-  };
-}
-
-type Parser<T> = (s: Stream) => ParseResult<T> | undefined;
-
-function ensureEndParsed<T>(p: Parser<T>): Parser<T> {
-  return (s: Stream) => {
-    const r = p(s);
-    if (!r || !streamAtEnd(r.s)) {
-      return undefined;
-    }
-    return r;
-  };
-}
-
-function parseMany1<T>(p: Parser<T>): Parser<readonly [T, ...T[]]> {
-  return (s: Stream) => {
-    let r = p(s);
-    if (!r) {
-      return undefined;
-    }
-    s = r.s;
-    const result: [T, ...T[]] = [r.result];
-    while ((r = p(s))) {
-      result.push(r.result);
-      s = r.s;
-    }
-    return { s, result };
-  };
-}
-
-function parseSepBy1<T>(
-  p: Parser<T>,
-  sepBy: Parser<unknown>,
-): Parser<readonly [T, ...T[]]> {
-  const sepP = apSecond(sepBy, p);
-  return (s: Stream) => {
-    let r = p(s);
-    if (!r) {
-      return undefined;
-    }
-    s = r.s;
-    const result: [T, ...T[]] = [r.result];
-    while ((r = sepP(s))) {
-      result.push(r.result);
-      s = r.s;
-    }
-    return { s, result };
-  };
-}
-
-function succeed<T>(result: T): Parser<T> {
-  return (s: Stream) => ({ s, result });
-}
-
-function optional<T>(p: Parser<T>): Parser<T | undefined> {
-  return parseFirst(p, succeed(undefined));
-}
-
-function setCursor(s: Stream, cursor: number): Stream {
-  return { ...s, cursor };
 }
 
 // January -> "01"
@@ -560,26 +371,6 @@ export const timeSpanReParser = parseFirst(
     return { start_minute: 0, end_minute: toMinute(24, 0) } as const;
   }),
 );
-
-function tap<T>(
-  p: Parser<T>,
-  f: (s: Stream, r: undefined | ParseResult<T>) => void,
-): Parser<T> {
-  return (s: Stream) => {
-    const r = p(s);
-    f(s, r);
-    return r;
-  };
-}
-
-function logFailure<T>(p: Parser<T>, message: string): Parser<T> {
-  return tap(p, (s, r) => {
-    if (!r) {
-      console.log(message, s.input.substring(s.cursor));
-    }
-    return r;
-  });
-}
 
 // "Friday, September 15 when track is closed from 7:30 a.m. to 12:30 p.m. for Sacred Heart Walkathon"
 export const parseFallException = mapParser(

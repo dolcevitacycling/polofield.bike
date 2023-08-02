@@ -1,9 +1,10 @@
-import { POLO_URL, handleCron, parseDate, scrapePoloURL } from "./cron";
+import { handleCron, scrapePoloURL } from "./cron";
 import { Bindings, PoloFieldMessage } from "./types";
 import { Hono } from "hono";
 import { serveStatic } from "hono/cloudflare-workers";
 import view, { viewWeek } from "./view";
 import icalFeed, { calendarView } from "./icalFeed";
+import { pacificISODate, parseDate } from "./dates";
 
 // Add calendar feeds?
 // Title hover
@@ -11,10 +12,6 @@ import icalFeed, { calendarView } from "./icalFeed";
 // Add weather? https://developer.apple.com/weatherkit/get-started/
 
 const app = new Hono<{ Bindings: Bindings }>();
-
-const localISODate = new Intl.DateTimeFormat("fr-CA", {
-  timeZone: "America/Los_Angeles",
-});
 
 app.use(async (c, next) => {
   const url = new URL(c.req.url);
@@ -37,7 +34,7 @@ app.use(async (c, next) => {
 app.get("/", async (c) =>
   viewWeek(
     c,
-    localISODate.format(
+    pacificISODate.format(
       ((n) => (n && /^\d{4}-\d{2}-\d{2}$/.test(n) ? parseDate(n) : new Date()))(
         c.req.query("date"),
       ),
@@ -55,7 +52,7 @@ app.get("/calendar/open", calendarView({ open: true }));
 app.get("/calendar/open.ics", icalFeed({ open: true }));
 app.get("/calendar/all", calendarView({}));
 app.get("/calendar/all.ics", icalFeed({}));
-app.get("/today", async (c) => viewWeek(c, localISODate.format(new Date())));
+app.get("/today", async (c) => viewWeek(c, pacificISODate.format(new Date())));
 app.get("/scrape", async (c) => {
   const result = await scrapePoloURL();
   return c.text(JSON.stringify(result), 200, {

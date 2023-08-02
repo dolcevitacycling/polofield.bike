@@ -5,15 +5,24 @@ import {
   POLO_URL,
   RuleInterval,
   ScrapeResult,
-  addDays,
   intervalsForDate,
-  parseDate,
   scrapePoloURL,
-  shortDateStyle,
-  toMinute,
 } from "./cron";
 import { html } from "hono/html";
 import SunCalc from "suncalc";
+import {
+  parseDate,
+  shortDateStyle,
+  addDays,
+  clampEnd,
+  clampStart,
+  friendlyDate,
+  friendlyTime,
+  friendlyTimeSpan,
+  friendlyTimeStart,
+  intervalMinutes,
+  timeToMinutes,
+} from "./dates";
 
 export const POLO_LAT = 37.76815;
 export const POLO_LON = -122.4927;
@@ -211,48 +220,6 @@ function Layout(props: Props) {
     </html>`;
 }
 
-const usFormat = new Intl.DateTimeFormat("en-US", {
-  weekday: "short",
-  month: "short",
-  day: "numeric",
-});
-function friendlyDate(date: string) {
-  return usFormat.format(parseDate(date));
-}
-function friendlyTime(time: string) {
-  const [h, m] = time.split(":");
-  const hh = parseInt(h, 10);
-  const h12 = hh % 12;
-  const ampm = h12 === hh ? "am" : "pm";
-  return `${h12 === 0 ? 12 : h12}${m === "00" ? "" : `:${m}`}${ampm}`;
-}
-function friendlyTimeStart(date: string, time: string) {
-  return time === "00:00" ? friendlyDate(date) : friendlyTime(time);
-}
-
-function friendlyTimeEnd(time: string) {
-  const mins = timeToMinutes(time) + 1;
-  const hh = Math.floor(mins / 60);
-  const mm = mins % 60;
-  const h12 = hh % 12;
-  const ampm = h12 === hh ? "am" : "pm";
-  return `${h12 === 0 ? 12 : h12}${
-    mm === 0 ? "" : `:${mm.toString().padStart(2, "0")}`
-  }${ampm}`;
-}
-
-function friendlyTimeSpan(hStart: string, hEnd: string) {
-  if (hStart === "00:00" && hEnd === "23:59") {
-    return "all day";
-  } else if (hStart === "00:00") {
-    return `until ${friendlyTimeEnd(hEnd)}`;
-  } else if (hEnd === "23:59") {
-    return `from ${friendlyTime(hStart)}`;
-  } else {
-    return `from ${friendlyTime(hStart)} to ${friendlyTimeEnd(hEnd)}`;
-  }
-}
-
 const skinTypes = [
   "", // default
   "\u{1f3fb}", // skin type 1-2
@@ -330,22 +297,6 @@ function WeekPage(props: { date: string; result: ScrapeResult; days: number }) {
   );
 }
 
-function clampStart(date: string, timestamp: string) {
-  const [tsDate, tsTime] = timestamp.split(" ");
-  return date === tsDate ? tsTime : "00:00";
-}
-function clampEnd(date: string, timestamp: string) {
-  const [tsDate, tsTime] = timestamp.split(" ");
-  return date === tsDate ? tsTime : "23:59";
-}
-export function timeToMinutes(time: string): number {
-  const [h, m] = time.split(":");
-  return parseInt(h, 10) * 60 + parseInt(m, 10);
-}
-function intervalMinutes(hStart: string, hEnd: string) {
-  return timeToMinutes(hEnd) - timeToMinutes(hStart);
-}
-
 function sunGradient(tStart: number, tEnd: number, sunProps: SunProps): string {
   const duration = tEnd - tStart;
   const rel = (k: keyof SunProps) =>
@@ -360,10 +311,15 @@ function sunGradient(tStart: number, tEnd: number, sunProps: SunProps): string {
   return `linear-gradient(${intervals.join(", ")})`;
 }
 
-function sunTimes({ hStart, hEnd, sunrise, sunsetStart }: Record<"hStart" | "hEnd" | "sunrise" | "sunsetStart", string>): string[] {
-  const result = []
+function sunTimes({
+  hStart,
+  hEnd,
+  sunrise,
+  sunsetStart,
+}: Record<"hStart" | "hEnd" | "sunrise" | "sunsetStart", string>): string[] {
+  const result = [];
   if (hStart <= sunrise) {
-    result.push(`🌅 ${friendlyTime(sunrise)}`)
+    result.push(`🌅 ${friendlyTime(sunrise)}`);
   }
   if (hEnd >= sunsetStart) {
     result.push(`🌉 ${friendlyTime(sunsetStart)}`);
@@ -391,7 +347,12 @@ function Interval(props: {
 
   const { open } = interval;
   const title = open
-    ? `Open ${friendlyTimeSpan(hStart, hEnd)}\n${sunTimes({ hStart, hEnd, sunrise, sunsetStart }).join("\n")}`
+    ? `Open ${friendlyTimeSpan(hStart, hEnd)}\n${sunTimes({
+        hStart,
+        hEnd,
+        sunrise,
+        sunsetStart,
+      }).join("\n")}`
     : `Closed ${friendlyTimeSpan(hStart, hEnd)}${
         interval.comment ? `\n${interval.comment}` : ""
       }`;
