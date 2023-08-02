@@ -339,9 +339,9 @@ function sunGradient(tStart: number, tEnd: number, sunProps: SunProps): string {
     Math.min(1, Math.max(0, timeToMinutes(sunProps[k]) - tStart) / duration);
   const intervals = [
     "to right",
-    `rgba(0, 0, 0, 0.1) 0% ${rel("sunrise")}%`,
+    `rgba(0, 0, 0, 0.3) 0% ${rel("sunrise")}%`,
     `rgba(0, 0, 0, 0) ${rel("sunriseEnd")}% ${rel("sunsetStart")}%`,
-    `rgba(0, 0, 0, 0.1) ${rel("sunset")}% 100%`,
+    `rgba(0, 0, 0, 0.3) ${rel("sunset")}% 100%`,
   ];
   return `linear-gradient(${intervals.join(", ")})`;
 }
