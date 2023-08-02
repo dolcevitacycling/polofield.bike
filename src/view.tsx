@@ -73,7 +73,7 @@ function Layout(props: Props) {
           position: relative;
           border: none;
           background: none;
-          font-size: inherit;
+          font-size: 2em;
           font-weight: inherit;
           cursor: pointer;
           width: 100%;
