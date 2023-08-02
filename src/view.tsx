@@ -309,7 +309,7 @@ function titlePrefix(ruleIntervals: ReturnType<typeof intervalsForDate>) {
   return undefined;
 }
 
-function WeekPage(props: { date: string; result: ScrapeResult, days: number }) {
+function WeekPage(props: { date: string; result: ScrapeResult; days: number }) {
   const { date, result, days } = props;
   const d = parseDate(date);
 
@@ -359,6 +359,17 @@ function sunGradient(tStart: number, tEnd: number, sunProps: SunProps): string {
   return `linear-gradient(${intervals.join(", ")})`;
 }
 
+function sunTimes({ hStart, hEnd, sunrise, sunsetStart }: Record<"hStart" | "hEnd" | "sunrise" | "sunsetStart", string>): string[] {
+  const result = []
+  if (hStart <= sunrise) {
+    result.push(`🌅 ${friendlyTime(sunrise)}`)
+  }
+  if (hEnd >= sunsetStart) {
+    result.push(`🌉 ${friendlyTime(sunsetStart)}`);
+  }
+  return result;
+}
+
 function Interval(props: {
   date: string;
   rule: KnownRules;
@@ -376,9 +387,11 @@ function Interval(props: {
   const tEnd = timeToMinutes(hEnd);
 
   const { open } = interval;
-  const title = `${open ? "Open" : "Closed"} ${friendlyTimeSpan(hStart, hEnd)}${
-    interval.comment ? ` for ${interval.comment}` : ""
-  }`;
+  const title = open
+    ? `Open ${friendlyTimeSpan(hStart, hEnd)}\n${sunTimes({ hStart, hEnd, sunrise, sunsetStart }).join("\n")}`
+    : `Closed ${friendlyTimeSpan(hStart, hEnd)}${
+        interval.comment ? `\n${interval.comment}` : ""
+      }`;
   return (
     <li
       class={open ? "open" : "closed"}

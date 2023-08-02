@@ -12,6 +12,10 @@ import icalFeed, { calendarView } from "./icalFeed";
 
 const app = new Hono<{ Bindings: Bindings }>();
 
+const localISODate = new Intl.DateTimeFormat("fr-CA", {
+  timeZone: "America/Los_Angeles",
+});
+
 app.use(async (c, next) => {
   const url = new URL(c.req.url);
   if (
@@ -33,9 +37,7 @@ app.use(async (c, next) => {
 app.get("/", async (c) =>
   viewWeek(
     c,
-    Intl.DateTimeFormat("fr-CA", {
-      timeZone: "America/Los_Angeles",
-    }).format(
+    localISODate.format(
       ((n) => (n && /^\d{4}-\d{2}-\d{2}$/.test(n) ? parseDate(n) : new Date()))(
         c.req.query("date"),
       ),
@@ -53,14 +55,7 @@ app.get("/calendar/open", calendarView({ open: true }));
 app.get("/calendar/open.ics", icalFeed({ open: true }));
 app.get("/calendar/all", calendarView({}));
 app.get("/calendar/all.ics", icalFeed({}));
-app.get("/today", async (c) =>
-  viewWeek(
-    c,
-    Intl.DateTimeFormat("fr-CA", {
-      timeZone: "America/Los_Angeles",
-    }).format(new Date()),
-  ),
-);
+app.get("/today", async (c) => viewWeek(c, localISODate.format(new Date())));
 app.get("/scrape", async (c) => {
   const result = await scrapePoloURL();
   return c.text(JSON.stringify(result), 200, {

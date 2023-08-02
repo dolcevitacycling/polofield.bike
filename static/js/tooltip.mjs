@@ -90,7 +90,11 @@ Array.prototype.forEach.call(
     const tooltip = document.createElement("div");
     tooltip.id = `tooltip-${tooltipId++}`;
     tooltip.className = "tooltip";
-    tooltip.innerText = el.getAttribute("aria-label");
+    const lines = el.getAttribute("aria-label").split("\n");
+    for (let i = 0; i < lines.length; i++) {
+      if (i > 0) tooltip.appendChild(document.createElement("br"));
+      tooltip.appendChild(document.createTextNode(lines[i]));
+    }
     tooltip.style.opacity = "0";
     tooltip.setAttribute("role", "tooltip");
     el.setAttribute("aria-describedby", tooltip.id);
