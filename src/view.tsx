@@ -93,6 +93,7 @@ function Layout(props: Props) {
           border: 10px solid #2dc937;
         }
         .closed {
+          position: relative;
           background-color: #cc3232;
           border: 10px solid #cc3232;
           background: repeating-linear-gradient(
@@ -104,8 +105,20 @@ function Layout(props: Props) {
           );
         }
         .closed .copy {
-          background-color: rgba(255, 255, 255, 0.8);
-          padding: 5px;
+          position: relative;
+          z-index: 0;
+        }
+        .closed .copy:before {
+          z-index: -1;
+          content: "";
+          position: absolute;
+          width: 1em;
+          height: 1em;
+          left: 50%;
+          top: 50%;
+          border-radius: 100%;
+          transform: translate(-50%, -50%);
+          background-color: #fff;
         }
         .background {
           position: absolute;
