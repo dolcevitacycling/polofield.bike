@@ -4,7 +4,7 @@ import { Hono } from "hono";
 import { serveStatic } from "hono/cloudflare-workers";
 import view, { viewWeek } from "./view";
 import icalFeed, { calendarView } from "./icalFeed";
-import { pacificISODate, parseDate } from "./dates";
+import { pacificISODate, parseDate, shortDateStyle } from "./dates";
 
 // Add calendar feeds?
 // Title hover
@@ -34,11 +34,10 @@ app.use(async (c, next) => {
 app.get("/", async (c) =>
   viewWeek(
     c,
-    pacificISODate.format(
-      ((n) => (n && /^\d{4}-\d{2}-\d{2}$/.test(n) ? parseDate(n) : new Date()))(
-        c.req.query("date"),
-      ),
-    ),
+    ((n) =>
+      n && /^\d{4}-\d{2}-\d{2}$/.test(n)
+        ? shortDateStyle.format(parseDate(n))
+        : pacificISODate.format(new Date()))(c.req.query("date")),
     ((n) => (n && /^\d+$/.test(n) ? parseInt(n, 10) : undefined))(
       c.req.query("days"),
     ),
