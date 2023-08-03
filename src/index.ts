@@ -57,6 +57,7 @@ app.get("/status.json", async (c) => {
   const now = new Date();
   const status = {
     now: now.toISOString(),
+    created_at: cache.created_at,
     cache_age_seconds: Math.round((now.getTime() - new Date(cache.created_at).getTime()) / 1000),
     has_unknown_rules: cache.scrape_results.some((y) => y.rules.some((x) => x.type === "unknown_rules")),
     years: cache.scrape_results.map((y) => y.year),
