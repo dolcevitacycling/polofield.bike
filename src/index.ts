@@ -52,6 +52,19 @@ app.get("/calendar/open.ics", icalFeed({ open: true }));
 app.get("/calendar/all", calendarView({}));
 app.get("/calendar/all.ics", icalFeed({}));
 app.get("/today", async (c) => viewWeek(c, pacificISODate.format(new Date())));
+app.get("/status.json", async (c) => {
+  const cache = await cachedScrapeResult(c.env);
+  const now = new Date();
+  const status = {
+    now: now.toISOString(),
+    cache_age_seconds: Math.round((now.getTime() - new Date(cache.created_at).getTime()) / 1000),
+    has_unknown_rules: cache.scrape_results.some((y) => y.rules.some((x) => x.type === "unknown_rules")),
+    years: cache.scrape_results.map((y) => y.year),
+  };
+  return c.text(JSON.stringify(status, null, 2), 200, {
+    "Content-Type": "application/json",
+  });
+});
 app.get("/scrape", async (c) =>
   c.text(JSON.stringify(await cachedScrapeResult(c.env)), 200, {
     "Content-Type": "application/json",
