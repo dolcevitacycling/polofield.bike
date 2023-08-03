@@ -31,6 +31,7 @@ interface Props {
   date: string;
   children?: unknown;
   titlePrefix?: string;
+  created_at: string;
 }
 
 function linkRelIcon(icon?: string) {
@@ -191,7 +192,7 @@ function Layout(props: Props) {
           }
         }
       </style>
-      <body>
+      <body data-created="${props.created_at}" data-render="${new Date().toISOString()}">
         <h1>
           <a href="${POLO_URL}"
             >Ethan Boyes Cycle Track @ GGP Polo Field Schedule</a
@@ -256,10 +257,11 @@ function randomCyclist() {
 
 function DayPage(props: {
   date: string;
+  created_at: string;
   ruleIntervals: ReturnType<typeof intervalsForDate>;
 }) {
   return (
-    <Layout date={props.date} titlePrefix={titlePrefix(props.ruleIntervals)}>
+    <Layout date={props.date} created_at={props.created_at} titlePrefix={titlePrefix(props.ruleIntervals)}>
       <Rules {...props} />
     </Layout>
   );
@@ -277,14 +279,14 @@ function titlePrefix(ruleIntervals: ReturnType<typeof intervalsForDate>) {
   return undefined;
 }
 
-function WeekPage(props: { date: string; result: ScrapeResult; days: number }) {
-  const { date, result, days } = props;
+function WeekPage(props: { date: string; created_at: string; result: ScrapeResult; days: number }) {
+  const { date, created_at, result, days } = props;
   const d = parseDate(date);
 
   const ruleIntervals = intervalsForDate(result, date);
 
   return (
-    <Layout date={date} titlePrefix={titlePrefix(ruleIntervals)}>
+    <Layout date={date} titlePrefix={titlePrefix(ruleIntervals)} created_at={created_at}>
       {Array.from({ length: days }, (_, i) => {
         const date = shortDateStyle.format(addDays(d, i));
         const ruleIntervals = intervalsForDate(result, date);
@@ -455,8 +457,11 @@ export async function viewWeek(
   date: string,
   days: number = 90,
 ) {
-  const { scrape_results: result } = await cachedScrapeResult(c.env);
-  const page = WeekPage({ date, result, days });
+  const { created_at, scrape_results: result } = await cachedScrapeResult(c.env);
+  if (c.req.headers.get("accept") === "application/json") {
+    return c.json({ date, created_at, result }, 200);
+  }
+  const page = WeekPage({ created_at, date, result, days });
   if (!page) {
     return c.notFound();
   }
@@ -467,11 +472,14 @@ export default async function view(
   c: Context<{ Bindings: Bindings }>,
   date: string,
 ) {
-  const { scrape_results: result } = await cachedScrapeResult(c.env);
+  const { created_at, scrape_results: result } = await cachedScrapeResult(c.env);
 
   const ruleIntervals = intervalsForDate(result, date);
   if (!ruleIntervals) {
     return c.notFound();
   }
-  return c.html(DayPage({ date, ruleIntervals }), 200);
+  if (c.req.headers.get("accept") === "application/json") {
+    return c.json({ date, created_at, ruleIntervals }, 200);
+  }
+  return c.html(DayPage({ date, created_at, ruleIntervals }), 200);
 }

@@ -160,7 +160,10 @@ function shouldJoin(a: Event, b: Event): boolean {
   );
 }
 
-function parseEvents({ created_at, scrape_results }: CachedScrapeResult): Event[] {
+function parseEvents({
+  created_at,
+  scrape_results,
+}: CachedScrapeResult): Event[] {
   const events: Event[] = [];
   const created = new Date(created_at);
   const modified = created;

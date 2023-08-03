@@ -53,9 +53,11 @@ app.get("/calendar/open.ics", icalFeed({ open: true }));
 app.get("/calendar/all", calendarView({}));
 app.get("/calendar/all.ics", icalFeed({}));
 app.get("/today", async (c) => viewWeek(c, pacificISODate.format(new Date())));
-app.get("/scrape", async (c) => c.text(JSON.stringify(await cachedScrapeResult(c.env)), 200, {
-  "Content-Type": "application/json",
-}));
+app.get("/scrape", async (c) =>
+  c.text(JSON.stringify(await cachedScrapeResult(c.env)), 200, {
+    "Content-Type": "application/json",
+  }),
+);
 app.get("/:date{[0-9]{4}-[0-9]{2}-[0-9]{2}}", async (c) =>
   view(c, c.req.param().date),
 );
