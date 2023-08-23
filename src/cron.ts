@@ -1169,6 +1169,16 @@ export async function refreshScrapeResult(
       created_at: prev.results[0].created_at,
       scrape_results: JSON.parse(prev.results[0].scrape_results_json),
     };
+  } else if (result.length === 0 && prev.results.length > 0) {
+    if (log) {
+      console.log(
+        `Error detected when scraping, skipping ${created_at}`,
+      );
+    }
+    return {
+      created_at: prev.results[0].created_at,
+      scrape_results: JSON.parse(prev.results[0].scrape_results_json),
+    };
   } else {
     await env.DB.prepare(
       `INSERT INTO scrape_results (created_at, scrape_results_json) VALUES (?, ?)`,
