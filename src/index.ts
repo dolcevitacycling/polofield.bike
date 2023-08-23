@@ -1,4 +1,9 @@
-import { cachedScrapeResult, handleCron } from "./cron";
+import {
+  cachedScrapeResult,
+  handleCron,
+  recentScrapedResults,
+  refreshScrapeResult,
+} from "./cron";
 import { Bindings, PoloFieldMessage } from "./types";
 import { Hono } from "hono";
 import { serveStatic } from "hono/cloudflare-workers";
@@ -6,8 +11,6 @@ import view, { viewWeek } from "./view";
 import icalFeed, { calendarView } from "./icalFeed";
 import { pacificISODate, parseDate, shortDateStyle } from "./dates";
 
-// Add calendar feeds?
-// Title hover
 // API
 // Add weather? https://developer.apple.com/weatherkit/get-started/
 
@@ -58,8 +61,12 @@ app.get("/status.json", async (c) => {
   const status = {
     now: now.toISOString(),
     created_at: cache.created_at,
-    cache_age_seconds: Math.round((now.getTime() - new Date(cache.created_at).getTime()) / 1000),
-    has_unknown_rules: cache.scrape_results.some((y) => y.rules.some((x) => x.type === "unknown_rules")),
+    cache_age_seconds: Math.round(
+      (now.getTime() - new Date(cache.created_at).getTime()) / 1000,
+    ),
+    has_unknown_rules: cache.scrape_results.some((y) =>
+      y.rules.some((x) => x.type === "unknown_rules"),
+    ),
     years: cache.scrape_results.map((y) => y.year),
   };
   return c.text(JSON.stringify(status, null, 2), 200, {
@@ -70,6 +77,14 @@ app.get("/scrape", async (c) =>
   c.text(JSON.stringify(await cachedScrapeResult(c.env)), 200, {
     "Content-Type": "application/json",
   }),
+);
+app.get("/dump.json", async (c) =>
+  c.text(JSON.stringify(await recentScrapedResults(c.env)), 200, {
+    "Content-Type": "application/json",
+  }),
+);
+app.get("/force-cron", async (c) =>
+  c.json(await refreshScrapeResult(c.env, { log: true })),
 );
 app.get("/:date{[0-9]{4}-[0-9]{2}-[0-9]{2}}", async (c) =>
   view(c, c.req.param().date),

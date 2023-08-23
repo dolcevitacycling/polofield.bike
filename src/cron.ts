@@ -1119,21 +1119,34 @@ export interface CachedScrapeResult {
   readonly scrape_results: ScrapeResult;
 }
 
+export async function recentScrapedResults(
+  env: Bindings,
+  limit = 1000,
+): Promise<CachedScrapeResult[]> {
+  return (
+    await env.DB.prepare(
+      `SELECT created_at, scrape_results_json FROM scrape_results ORDER BY created_at DESC LIMIT ?`,
+    )
+      .bind(limit)
+      .all<ScrapeResultsRow>()
+  ).results.map(({ created_at, scrape_results_json }) => ({
+    created_at,
+    scrape_results: JSON.parse(scrape_results_json),
+  }));
+}
+
 export async function cachedScrapeResult(
   env: Bindings,
 ): Promise<CachedScrapeResult> {
-  const prev = await env.DB.prepare(
-    `SELECT created_at, scrape_results_json FROM scrape_results ORDER BY created_at DESC LIMIT 1`,
-  ).all<ScrapeResultsRow>();
-  if (prev.results.length === 0) {
+  const results = await recentScrapedResults(env, 1);
+  if (results.length === 0) {
     console.error(`Expected cached row in scraped_results`);
     return await refreshScrapeResult(env);
   }
-  const { created_at, scrape_results_json } = prev.results[0];
-  return { created_at, scrape_results: JSON.parse(scrape_results_json) };
+  return results[0];
 }
 
-async function refreshScrapeResult(
+export async function refreshScrapeResult(
   env: Bindings,
   { log }: { readonly log?: boolean } = {},
 ): Promise<CachedScrapeResult> {
