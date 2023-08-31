@@ -537,7 +537,7 @@ export async function slackPolo(c: Context<{ Bindings: Bindings }>) {
       type: "section",
       text: {
         type: "mrkdwn",
-        text: `*${friendlyDate(date)}* ${sunTimes({
+        text: `*${friendlyDate(date)}*   ${sunTimes({
           hStart: "00:00",
           hEnd: "23:59",
           sunrise,
