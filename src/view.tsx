@@ -543,12 +543,12 @@ export async function slackPolo(c: Context<{ Bindings: Bindings }>) {
               ? `${randomCyclist()} Open ${friendlyTimeSpan(
                   hStart,
                   hEnd,
-                )} ${sunTimes({
+                )}   ${sunTimes({
                   hStart,
                   hEnd,
                   sunrise,
                   sunsetStart,
-                }).join(" ")}`
+                }).join("   ")}`
               : `${NO_BIKES} Closed ${friendlyTimeSpan(hStart, hEnd)}${
                   interval.comment ? `\n${interval.comment}` : ""
                 }`;
