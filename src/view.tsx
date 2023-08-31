@@ -22,6 +22,7 @@ import {
   friendlyTimeStart,
   intervalMinutes,
   timeToMinutes,
+  pacificISODate,
 } from "./dates";
 
 export const POLO_LAT = 37.76815;
@@ -491,6 +492,55 @@ export async function viewWeek(
     return c.notFound();
   }
   return c.html(page, 200);
+}
+
+export async function slackPolo(c: Context<{ Bindings: Bindings }>) {
+  if (
+    c.req.headers.get("content-type") !== "application/x-www-form-urlencoded"
+  ) {
+    return c.text("Invalid content-type", 400);
+  }
+  const body = await c.req.parseBody();
+  if (body.ssl_check) {
+    return c.json({});
+  }
+  // TODO verify x-slack-signature
+  const today = parseDate(pacificISODate.format(new Date()));
+  const { scrape_results: result } = await cachedScrapeResult(c.env);
+  const blocks = Array.from({ length: 5 }, (_, i) => {
+    const parsedDate = addDays(today, i);
+    const date = shortDateStyle.format(parsedDate);
+    const ruleIntervals = intervalsForDate(result, date);
+    if (!ruleIntervals || ruleIntervals.type !== "known") {
+      return {
+        type: "section",
+        text: {
+          type: "mrkdwn",
+          text: `*${friendlyDate(
+            date,
+          )}*\nI don't understand these rules yet, please consult the <${POLO_URL}|Polo Field Schedule>`,
+        },
+      };
+    }
+    const { intervals } = ruleIntervals;
+    return {
+      type: "section",
+      text: {
+        type: "mrkdwn",
+        text: `*${friendlyDate(date)}*\n${intervals
+          .map((interval) => {
+            const hStart = clampStart(date, interval.start_timestamp);
+            return `${friendlyTimeStart(date, hStart)} ${
+              interval.open ? randomCyclist() : NO_BIKES
+            }`;
+          })
+          .join("\n")}`,
+      },
+    };
+  });
+  return c.json({
+    blocks,
+  });
 }
 
 export default async function view(

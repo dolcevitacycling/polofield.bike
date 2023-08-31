@@ -7,7 +7,7 @@ import {
 import { Bindings, PoloFieldMessage } from "./types";
 import { Hono } from "hono";
 import { serveStatic } from "hono/cloudflare-workers";
-import view, { viewWeek } from "./view";
+import view, { slackPolo, viewWeek } from "./view";
 import icalFeed, { calendarView } from "./icalFeed";
 import { pacificISODate, parseDate, shortDateStyle } from "./dates";
 
@@ -90,6 +90,7 @@ app.get("/:date{[0-9]{4}-[0-9]{2}-[0-9]{2}}", async (c) =>
   view(c, c.req.param().date),
 );
 app.get("/*", serveStatic({ root: "./" }));
+app.post("/slack/polo", slackPolo);
 
 const mod: ExportedHandler<Bindings, PoloFieldMessage> = {
   async queue(batch, env) {
