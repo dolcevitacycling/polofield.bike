@@ -523,6 +523,13 @@ export async function slackPolo(c: Context<{ Bindings: Bindings }>) {
       };
     }
     const { intervals } = ruleIntervals;
+    const calc = getTimes(parsedDate, POLO_LAT, POLO_LON);
+
+    const sunProps = SUN_KEYS.reduce((acc, k) => {
+      acc[k] = tzTimeFormat.format(calc[k]);
+      return acc;
+    }, {} as SunProps);
+
     return {
       type: "section",
       text: {
@@ -530,9 +537,21 @@ export async function slackPolo(c: Context<{ Bindings: Bindings }>) {
         text: `*${friendlyDate(date)}*\n${intervals
           .map((interval) => {
             const hStart = clampStart(date, interval.start_timestamp);
-            return `${friendlyTimeStart(date, hStart)} ${
-              interval.open ? randomCyclist() : NO_BIKES
-            }`;
+            const hEnd = clampEnd(date, interval.end_timestamp);
+            const { sunrise, sunsetStart } = sunProps;
+            return interval.open
+              ? `${randomCyclist()} Open ${friendlyTimeSpan(
+                  hStart,
+                  hEnd,
+                )}\n${sunTimes({
+                  hStart,
+                  hEnd,
+                  sunrise,
+                  sunsetStart,
+                }).join("\n")}`
+              : `${NO_BIKES} Closed ${friendlyTimeSpan(hStart, hEnd)}${
+                  interval.comment ? `\n${interval.comment}` : ""
+                }`;
           })
           .join("\n")}`,
       },
