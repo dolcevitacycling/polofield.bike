@@ -1171,9 +1171,7 @@ export async function refreshScrapeResult(
     };
   } else if (result.length === 0 && prev.results.length > 0) {
     if (log) {
-      console.log(
-        `Error detected when scraping, skipping ${created_at}`,
-      );
+      console.log(`Error detected when scraping, skipping ${created_at}`);
     }
     return {
       created_at: prev.results[0].created_at,

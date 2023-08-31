@@ -506,9 +506,13 @@ export async function slackPolo(c: Context<{ Bindings: Bindings }>) {
   }
   // TODO verify x-slack-signature
   const today = parseDate(pacificISODate.format(new Date()));
+  const offset =
+    typeof body.text !== "string"
+      ? 0
+      : +(/^\s*\+?(\d+)\s*$/.exec(body.text ?? "")?.[1] ?? "0");
   const { scrape_results: result } = await cachedScrapeResult(c.env);
   const blocks = Array.from({ length: 5 }, (_, i) => {
-    const parsedDate = addDays(today, i);
+    const parsedDate = addDays(today, offset + i);
     const date = shortDateStyle.format(parsedDate);
     const ruleIntervals = intervalsForDate(result, date);
     if (!ruleIntervals || ruleIntervals.type !== "known") {
@@ -525,32 +529,27 @@ export async function slackPolo(c: Context<{ Bindings: Bindings }>) {
     const { intervals } = ruleIntervals;
     const calc = getTimes(parsedDate, POLO_LAT, POLO_LON);
 
-    const sunProps = SUN_KEYS.reduce((acc, k) => {
-      acc[k] = tzTimeFormat.format(calc[k]);
-      return acc;
-    }, {} as SunProps);
+    const [sunrise, sunsetStart] = (["sunrise", "sunsetStart"] as const).map(
+      (k) => tzTimeFormat.format(calc[k]),
+    );
 
     return {
       type: "section",
       text: {
         type: "mrkdwn",
-        text: `*${friendlyDate(date)}*\n${intervals
+        text: `*${friendlyDate(date)}* ${sunTimes({
+          hStart: "00:00",
+          hEnd: "23:59",
+          sunrise,
+          sunsetStart,
+        }).join("  ")}\n${intervals
           .map((interval) => {
             const hStart = clampStart(date, interval.start_timestamp);
             const hEnd = clampEnd(date, interval.end_timestamp);
-            const { sunrise, sunsetStart } = sunProps;
             return interval.open
-              ? `${randomCyclist()} Open ${friendlyTimeSpan(
-                  hStart,
-                  hEnd,
-                )}   ${sunTimes({
-                  hStart,
-                  hEnd,
-                  sunrise,
-                  sunsetStart,
-                }).join("   ")}`
+              ? `${randomCyclist()} Open ${friendlyTimeSpan(hStart, hEnd)}`
               : `${NO_BIKES} Closed ${friendlyTimeSpan(hStart, hEnd)}${
-                  interval.comment ? `\n${interval.comment}` : ""
+                  interval.comment ? `\n        _${interval.comment}_` : ""
                 }`;
           })
           .join("\n")}`,
