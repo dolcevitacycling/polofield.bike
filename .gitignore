@@ -10,3 +10,4 @@ node_modules
 /secrets
 /db
 /.wrangler
+.dev.vars

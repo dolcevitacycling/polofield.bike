@@ -6,6 +6,11 @@ compatibility_date = "2023-07-17"
 crons = ["*/5 * * * *"]
 [site]
 bucket = "./static" # Add the directory with your static assets!
+[vars]
+# SLACK_APP_ID
+# SLACK_CLIENT_ID
+# SLACK_CLIENT_SECRET
+# SLACK_SIGNING_SECRET
 [[d1_databases]]
 binding = "DB" # i.e. available in your Worker on env.DB
 database_name = "polofield"

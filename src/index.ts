@@ -7,9 +7,10 @@ import {
 import { Bindings, PoloFieldMessage } from "./types";
 import { Hono } from "hono";
 import { serveStatic } from "hono/cloudflare-workers";
-import view, { slackPolo, viewWeek } from "./view";
+import view, { viewWeek } from "./view";
 import icalFeed, { calendarView } from "./icalFeed";
 import { pacificISODate, parseDate, shortDateStyle } from "./dates";
+import { slackActionEndpoint, slackPolo } from "./slack";
 
 // API
 // Add weather? https://developer.apple.com/weatherkit/get-started/
@@ -90,7 +91,9 @@ app.get("/:date{[0-9]{4}-[0-9]{2}-[0-9]{2}}", async (c) =>
   view(c, c.req.param().date),
 );
 app.get("/*", serveStatic({ root: "./" }));
+
 app.post("/slack/polo", slackPolo);
+app.post("/slack/action-endpoint", slackActionEndpoint);
 
 const mod: ExportedHandler<Bindings, PoloFieldMessage> = {
   async queue(batch, env) {

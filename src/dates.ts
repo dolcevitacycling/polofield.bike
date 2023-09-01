@@ -43,6 +43,12 @@ export const shortTimeStyle = new Intl.DateTimeFormat("sv-SE", {
   hour: "2-digit",
   minute: "2-digit",
 });
+export const tzTimeFormat = new Intl.DateTimeFormat("en-US", {
+  hourCycle: "h24",
+  hour: "2-digit",
+  minute: "2-digit",
+  timeZone: "America/Los_Angeles",
+});
 
 export function addDays(date: Date, days: number): Date {
   const result = new Date(date);

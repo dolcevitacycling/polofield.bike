@@ -9,7 +9,6 @@ import {
   intervalsForDate,
 } from "./cron";
 import { html } from "hono/html";
-import { getTimes } from "suncalc";
 import {
   parseDate,
   shortDateStyle,
@@ -22,11 +21,9 @@ import {
   friendlyTimeStart,
   intervalMinutes,
   timeToMinutes,
-  pacificISODate,
 } from "./dates";
-
-export const POLO_LAT = 37.76815;
-export const POLO_LON = -122.4927;
+import { randomCyclist, NO_BIKES, randomShrug, WARNING, SUNRISE, SUNSET } from "./emoji";
+import { SunProps, getSunProps } from "./sun";
 
 interface Props {
   date: string;
@@ -232,40 +229,6 @@ function Layout(props: Props) {
     </html>`;
 }
 
-const skinTypes = [
-  "", // default
-  "\u{1f3fb}", // skin type 1-2
-  "\u{1f3fc}", // skin type 3
-  "\u{1f3fd}", // skin type 4
-  "\u{1f3fe}", // skin type 5
-  "\u{1f3ff}", // skin type 6
-];
-const cyclist = "\u{1f6b4}";
-const genders = [
-  "", // person
-  "\u{200d}\u{2642}\u{FE0F}", // man
-  "\u{200d}\u{2640}\u{FE0F}", // woman
-];
-
-function randomPersonType() {
-  return `${selectRandom(skinTypes)}${selectRandom(genders)}`;
-}
-
-function selectRandom(arr: string[]) {
-  return arr[Math.floor(Math.random() * arr.length)];
-}
-
-function randomShrug() {
-  return `🤷🏼${randomPersonType()}`;
-}
-
-const NO_BIKES = "🚳";
-const WARNING = "⚠️";
-
-function randomCyclist() {
-  return `${cyclist}${randomPersonType()}`;
-}
-
 function DayPage(props: {
   date: string;
   created_at: string;
@@ -345,10 +308,10 @@ function sunTimes({
 }: Record<"hStart" | "hEnd" | "sunrise" | "sunsetStart", string>): string[] {
   const result = [];
   if (hStart <= sunrise) {
-    result.push(`🌅 ${friendlyTime(sunrise)}`);
+    result.push(`${SUNRISE} ${friendlyTime(sunrise)}`);
   }
   if (hEnd >= sunsetStart) {
-    result.push(`🌉 ${friendlyTime(sunsetStart)}`);
+    result.push(`${SUNSET} ${friendlyTime(sunsetStart)}`);
   }
   return result;
 }
@@ -408,15 +371,6 @@ function Interval(props: {
   );
 }
 
-const tzTimeFormat = new Intl.DateTimeFormat("en-US", {
-  hourCycle: "h24",
-  hour: "2-digit",
-  minute: "2-digit",
-  timeZone: "America/Los_Angeles",
-});
-
-const SUN_KEYS = ["sunrise", "sunriseEnd", "sunset", "sunsetStart"] as const;
-type SunProps = Record<(typeof SUN_KEYS)[number], string>;
 
 function Intervals(props: {
   date: string;
@@ -424,15 +378,10 @@ function Intervals(props: {
   intervals: RuleInterval[];
 }) {
   const { date, rule, intervals } = props;
-  const calc = getTimes(parseDate(date), POLO_LAT, POLO_LON);
-  const sunProps = SUN_KEYS.reduce((acc, k) => {
-    acc[k] = tzTimeFormat.format(calc[k]);
-    return acc;
-  }, {} as SunProps);
   return (
     <ul class="intervals" data-date={date}>
       {intervals.map((interval) => (
-        <Interval {...sunProps} {...{ date, rule, interval }} />
+        <Interval {...getSunProps(parseDate(date))} {...{ date, rule, interval }} />
       ))}
     </ul>
   );
@@ -492,71 +441,6 @@ export async function viewWeek(
     return c.notFound();
   }
   return c.html(page, 200);
-}
-
-export async function slackPolo(c: Context<{ Bindings: Bindings }>) {
-  if (
-    c.req.headers.get("content-type") !== "application/x-www-form-urlencoded"
-  ) {
-    return c.text("Invalid content-type", 400);
-  }
-  const body = await c.req.parseBody();
-  if (body.ssl_check) {
-    return c.json({});
-  }
-  // TODO verify x-slack-signature
-  const today = parseDate(pacificISODate.format(new Date()));
-  const offset =
-    typeof body.text !== "string"
-      ? 0
-      : +(/^\s*\+?(\d+)\s*$/.exec(body.text ?? "")?.[1] ?? "0");
-  const { scrape_results: result } = await cachedScrapeResult(c.env);
-  const blocks = Array.from({ length: 5 }, (_, i) => {
-    const parsedDate = addDays(today, offset + i);
-    const date = shortDateStyle.format(parsedDate);
-    const ruleIntervals = intervalsForDate(result, date);
-    if (!ruleIntervals || ruleIntervals.type !== "known") {
-      return {
-        type: "section",
-        text: {
-          type: "mrkdwn",
-          text: `*${friendlyDate(
-            date,
-          )}*\nI don't understand these rules yet, please consult the <${POLO_URL}|Polo Field Schedule>`,
-        },
-      };
-    }
-    const { intervals } = ruleIntervals;
-    const calc = getTimes(parsedDate, POLO_LAT, POLO_LON);
-
-    const [sunrise, sunsetStart] = (["sunrise", "sunsetStart"] as const).map(
-      (k) => tzTimeFormat.format(calc[k]),
-    );
-
-    return {
-      type: "section",
-      text: {
-        type: "mrkdwn",
-        text: `*${friendlyDate(date)}*   ${sunTimes({
-          hStart: "00:00",
-          hEnd: "23:59",
-          sunrise,
-          sunsetStart,
-        }).join("  ")}\n${intervals
-          .map((interval) => {
-            const hStart = clampStart(date, interval.start_timestamp);
-            const hEnd = clampEnd(date, interval.end_timestamp);
-            return interval.open
-              ? `${randomCyclist()} Open ${friendlyTimeSpan(hStart, hEnd)}`
-              : `${NO_BIKES} Closed ${friendlyTimeSpan(hStart, hEnd)}`;
-          })
-          .join("\n")}`,
-      },
-    };
-  });
-  return c.json({
-    blocks,
-  });
 }
 
 export default async function view(
