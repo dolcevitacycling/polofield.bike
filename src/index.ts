@@ -16,6 +16,7 @@ import {
   shortDateStyle,
 } from "./dates";
 import { slackActionEndpoint, slackPolo } from "./slack";
+import { discordInteractions } from "./discord";
 
 // API
 // Add weather? https://developer.apple.com/weatherkit/get-started/
@@ -99,6 +100,7 @@ app.get("/*", serveStatic({ root: "./" }));
 
 app.post("/slack/polo", slackPolo);
 app.post("/slack/action-endpoint", slackActionEndpoint);
+app.post("/discord/interactions", discordInteractions);
 
 const mod: ExportedHandler<Bindings, PoloFieldMessage> = {
   async queue(batch, env) {

@@ -22,18 +22,10 @@ import { randomCyclist, NO_BIKES, SUNRISE, SUNSET } from "./emoji";
 import { getSunProps } from "./sun";
 import type {
   SectionBlock,
-  BasicSlackEvent,
   EnvelopedEvent,
   AppHomeOpenedEvent,
 } from "@slack/bolt";
-
-function hexToBuffer(hex: string) {
-  const b = new Uint8Array(hex.length / 2);
-  for (let i = 0; i < hex.length; i += 2) {
-    b[i / 2] = parseInt(hex.slice(i, i + 2), 16);
-  }
-  return b;
-}
+import hexToBuffer from "./hexToBuffer";
 
 async function verifySlackSignature(c: Context<{ Bindings: Bindings }>) {
   const secret = c.env.SLACK_SIGNING_SECRET;
@@ -53,7 +45,7 @@ async function verifySlackSignature(c: Context<{ Bindings: Bindings }>) {
     enc.encode(secret),
     { name: "HMAC", hash: "SHA-256" },
     false,
-    ["sign", "verify"],
+    ["verify"],
   );
   const data = await new Blob([
     enc.encode(`v0:${timestamp}:`),
@@ -125,7 +117,7 @@ export async function slackActionEndpoint(c: Context<{ Bindings: Bindings }>) {
   const failure = await verifySlackSignature(c);
   const body = await c.req.json();
   if (failure) {
-    return c.json({ error: failure }, 400);
+    return c.json({ error: failure }, 401);
   }
   switch (body.type) {
     case "url_verification":

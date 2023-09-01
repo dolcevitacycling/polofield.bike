@@ -11,6 +11,11 @@ bucket = "./static" # Add the directory with your static assets!
 # SLACK_CLIENT_ID
 # SLACK_CLIENT_SECRET
 # SLACK_SIGNING_SECRET
+# DISCORD_PUBLIC_KEY
+# DISCORD_CLIENT_ID
+# DISCORD_CLIENT_SECRET
+# DISCORD_INVITE_URL
+# DISCORD_PERMISSIONS_INTEGER
 [[d1_databases]]
 binding = "DB" # i.e. available in your Worker on env.DB
 database_name = "polofield"

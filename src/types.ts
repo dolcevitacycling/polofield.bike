@@ -5,6 +5,9 @@ export interface Bindings {
   SLACK_CLIENT_ID: string;
   SLACK_CLIENT_SECRET: string;
   SLACK_BOT_TOKEN: string;
+  DISCORD_PUBLIC_KEY: string;
+  DISCORD_CLIENT_ID: string;
+  DISCORD_CLIENT_SECRET: string;
   [key: string]: unknown;
 }
 
