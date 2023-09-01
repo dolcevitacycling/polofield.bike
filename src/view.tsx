@@ -548,9 +548,7 @@ export async function slackPolo(c: Context<{ Bindings: Bindings }>) {
             const hEnd = clampEnd(date, interval.end_timestamp);
             return interval.open
               ? `${randomCyclist()} Open ${friendlyTimeSpan(hStart, hEnd)}`
-              : `${NO_BIKES} Closed ${friendlyTimeSpan(hStart, hEnd)}${
-                  interval.comment ? `\n        _${interval.comment}_` : ""
-                }`;
+              : `${NO_BIKES} Closed ${friendlyTimeSpan(hStart, hEnd)}`;
           })
           .join("\n")}`,
       },
