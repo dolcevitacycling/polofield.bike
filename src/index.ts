@@ -9,7 +9,12 @@ import { Hono } from "hono";
 import { serveStatic } from "hono/cloudflare-workers";
 import view, { viewWeek } from "./view";
 import icalFeed, { calendarView } from "./icalFeed";
-import { pacificISODate, parseDate, shortDateStyle } from "./dates";
+import {
+  getTodayPacific,
+  pacificISODate,
+  parseDate,
+  shortDateStyle,
+} from "./dates";
 import { slackActionEndpoint, slackPolo } from "./slack";
 
 // API
@@ -41,7 +46,7 @@ app.get("/", async (c) =>
     ((n) =>
       n && /^\d{4}-\d{2}-\d{2}$/.test(n)
         ? shortDateStyle.format(parseDate(n))
-        : pacificISODate.format(new Date()))(c.req.query("date")),
+        : getTodayPacific())(c.req.query("date")),
     ((n) => (n && /^\d+$/.test(n) ? parseInt(n, 10) : undefined))(
       c.req.query("days"),
     ),
@@ -55,7 +60,7 @@ app.get("/calendar/open", calendarView({ open: true }));
 app.get("/calendar/open.ics", icalFeed({ open: true }));
 app.get("/calendar/all", calendarView({}));
 app.get("/calendar/all.ics", icalFeed({}));
-app.get("/today", async (c) => viewWeek(c, pacificISODate.format(new Date())));
+app.get("/today", async (c) => viewWeek(c, getTodayPacific()));
 app.get("/status.json", async (c) => {
   const cache = await cachedScrapeResult(c.env);
   const now = new Date();

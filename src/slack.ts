@@ -7,13 +7,25 @@ import {
   friendlyDate,
   friendlyTime,
   friendlyTimeSpan,
+  getTodayPacific,
   pacificISODate,
   parseDate,
   shortDateStyle,
 } from "./dates";
-import { cachedScrapeResult, intervalsForDate, POLO_URL } from "./cron";
+import {
+  cachedScrapeResult,
+  intervalsForDate,
+  POLO_URL,
+  ScrapeResult,
+} from "./cron";
 import { randomCyclist, NO_BIKES, SUNRISE, SUNSET } from "./emoji";
 import { getSunProps } from "./sun";
+import type {
+  SectionBlock,
+  BasicSlackEvent,
+  EnvelopedEvent,
+  AppHomeOpenedEvent,
+} from "@slack/bolt";
 
 function hexToBuffer(hex: string) {
   const b = new Uint8Array(hex.length / 2);
@@ -29,7 +41,6 @@ async function verifySlackSignature(c: Context<{ Bindings: Bindings }>) {
     c.req.headers.get("x-slack-signature") ?? "",
   )?.[1];
   const timestamp = c.req.headers.get("x-slack-request-timestamp");
-  console.log({ secret, signature, timestamp });
   if (!signature || !timestamp || !secret) {
     return;
   }
@@ -55,10 +66,60 @@ async function verifySlackSignature(c: Context<{ Bindings: Bindings }>) {
   }
 }
 
+type KnownEvents = AppHomeOpenedEvent;
+
+async function eventCallback<Event extends KnownEvents>(
+  c: Context<{ Bindings: Bindings }>,
+  body: EnvelopedEvent<Event>,
+) {
+  switch (body.event.type) {
+    case "app_home_opened": {
+      await appHomeOpened(c, body.event);
+      break;
+    }
+    default: {
+      return c.text("Not Found", 404);
+    }
+  }
+  return c.json({});
+}
+
+async function slackApiPost(
+  c: Context<{ Bindings: Bindings }>,
+  method: string,
+  body: any,
+) {
+  return await fetch(`https://slack.com/api/${method}`, {
+    body: JSON.stringify(body),
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${c.env.SLACK_BOT_TOKEN}`,
+    },
+  });
+}
+
+async function appHomeOpened(
+  c: Context<{ Bindings: Bindings }>,
+  event: AppHomeOpenedEvent,
+) {
+  const SLACK_POLO_DAYS = 7;
+  const today = parseDate(getTodayPacific());
+  const { scrape_results: result } = await cachedScrapeResult(c.env);
+  const blocks = Array.from({ length: SLACK_POLO_DAYS }, (_, i) =>
+    sectionBlockForDay(result, addDays(today, i)),
+  );
+  await slackApiPost(c, "views.publish", {
+    user_id: event.user,
+    view: {
+      type: "home",
+      blocks,
+    },
+  });
+}
+
 export async function slackActionEndpoint(c: Context<{ Bindings: Bindings }>) {
-  if (
-    c.req.headers.get("content-type") !== "application/json"
-  ) {
+  if (c.req.headers.get("content-type") !== "application/json") {
     return c.json({ error: "Invalid content-type" }, 400);
   }
   const failure = await verifySlackSignature(c);
@@ -66,10 +127,54 @@ export async function slackActionEndpoint(c: Context<{ Bindings: Bindings }>) {
   if (failure) {
     return c.json({ error: failure }, 400);
   }
-  if (body.type === "url_verification") {
-    return c.text(body.challenge);
+  switch (body.type) {
+    case "url_verification":
+      return c.text(body.challenge);
+    case "event_callback":
+      return await eventCallback(c, body);
+    default: {
+      console.log(JSON.stringify(body, null, 2));
+      return c.text("Not Found", 404);
+    }
   }
-  return c.text("Not Found", 404);
+}
+
+function sectionBlockForDay(
+  result: ScrapeResult,
+  parsedDate: Date,
+): SectionBlock {
+  const date = shortDateStyle.format(parsedDate);
+  const ruleIntervals = intervalsForDate(result, date);
+  if (!ruleIntervals || ruleIntervals.type !== "known") {
+    return {
+      type: "section",
+      text: {
+        type: "mrkdwn",
+        text: `*${friendlyDate(
+          date,
+        )}*\nI don't understand these rules yet, please consult the <${POLO_URL}|Polo Field Schedule>`,
+      },
+    };
+  }
+  const { intervals } = ruleIntervals;
+  const { sunrise, sunsetStart } = getSunProps(parsedDate);
+  return {
+    type: "section",
+    text: {
+      type: "mrkdwn",
+      text: `*${friendlyDate(date)}*   ${SUNRISE} ${friendlyTime(
+        sunrise,
+      )}  ${SUNSET} ${friendlyTime(sunsetStart)}\n${intervals
+        .map((interval) => {
+          const hStart = clampStart(date, interval.start_timestamp);
+          const hEnd = clampEnd(date, interval.end_timestamp);
+          return interval.open
+            ? `${randomCyclist()} Open ${friendlyTimeSpan(hStart, hEnd)}`
+            : `${NO_BIKES} Closed ${friendlyTimeSpan(hStart, hEnd)}`;
+        })
+        .join("\n")}`,
+    },
+  };
 }
 
 export async function slackPolo(c: Context<{ Bindings: Bindings }>) {
@@ -86,50 +191,16 @@ export async function slackPolo(c: Context<{ Bindings: Bindings }>) {
   if (body.ssl_check) {
     return c.json({});
   }
-  const today = parseDate(pacificISODate.format(new Date()));
+  const today = parseDate(getTodayPacific());
   const offset =
     typeof body.text !== "string"
       ? 0
       : +(/^\s*\+?(\d+)\s*$/.exec(body.text ?? "")?.[1] ?? "0");
   const SLACK_POLO_DAYS = 3;
   const { scrape_results: result } = await cachedScrapeResult(c.env);
-  const blocks = Array.from({ length: SLACK_POLO_DAYS }, (_, i) => {
-    const parsedDate = addDays(today, offset + i);
-    const date = shortDateStyle.format(parsedDate);
-    const ruleIntervals = intervalsForDate(result, date);
-    if (!ruleIntervals || ruleIntervals.type !== "known") {
-      return {
-        type: "section",
-        text: {
-          type: "mrkdwn",
-          text: `*${friendlyDate(
-            date,
-          )}*\nI don't understand these rules yet, please consult the <${POLO_URL}|Polo Field Schedule>`,
-        },
-      };
-    }
-    const { intervals } = ruleIntervals;
-
-    const { sunrise, sunsetStart } = getSunProps(parsedDate);
-
-    return {
-      type: "section",
-      text: {
-        type: "mrkdwn",
-        text: `*${friendlyDate(date)}*   ${SUNRISE} ${friendlyTime(
-          sunrise,
-        )}  ${SUNSET} ${friendlyTime(sunsetStart)}\n${intervals
-          .map((interval) => {
-            const hStart = clampStart(date, interval.start_timestamp);
-            const hEnd = clampEnd(date, interval.end_timestamp);
-            return interval.open
-              ? `${randomCyclist()} Open ${friendlyTimeSpan(hStart, hEnd)}`
-              : `${NO_BIKES} Closed ${friendlyTimeSpan(hStart, hEnd)}`;
-          })
-          .join("\n")}`,
-      },
-    };
-  });
+  const blocks = Array.from({ length: SLACK_POLO_DAYS }, (_, i) =>
+    sectionBlockForDay(result, addDays(today, offset + i)),
+  );
   return c.json({
     blocks,
   });

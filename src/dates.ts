@@ -143,3 +143,7 @@ export function timeToMinutes(time: string): number {
 export function intervalMinutes(hStart: string, hEnd: string): number {
   return timeToMinutes(hEnd) - timeToMinutes(hStart);
 }
+
+export function getTodayPacific(): string {
+  return pacificISODate.format(new Date());
+}
