@@ -57,7 +57,7 @@ async function verifySlackSignature(c: Context<{ Bindings: Bindings }>) {
 
 export async function slackActionEndpoint(c: Context<{ Bindings: Bindings }>) {
   if (
-    c.req.headers.get("content-type") !== "application/x-www-form-urlencoded"
+    c.req.headers.get("content-type") !== "application/json"
   ) {
     return c.json({ error: "Invalid content-type" }, 400);
   }
