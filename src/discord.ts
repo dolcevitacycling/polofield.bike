@@ -1,65 +1,122 @@
 import { Context } from "hono";
 import hexToBuffer from "./hexToBuffer";
 import { Bindings } from "./types";
+import {
+  Routes,
+  RouteBases,
+  InteractionType,
+  InteractionResponseType,
+  APIInteraction,
+  APIInteractionResponsePong,
+  APIApplicationCommandIntegerOption,
+  APIApplicationCommandInteraction,
+  APIInteractionResponseChannelMessageWithSource,
+  MessageFlags,
+} from "discord-api-types/v10";
+import {
+  POLO_URL,
+  ScrapeResult,
+  cachedScrapeResult,
+  intervalsForDate,
+} from "./cron";
+import {
+  addDays,
+  clampEnd,
+  clampStart,
+  friendlyDate,
+  friendlyTime,
+  friendlyTimeSpan,
+  getTodayPacific,
+  parseDate,
+  shortDateStyle,
+} from "./dates";
+import { SUNRISE, SUNSET, randomCyclist, NO_BIKES } from "./emoji";
+import { getSunProps } from "./sun";
 
-/**
- * The type of interaction this request is.
- */
-export enum InteractionType {
-  /**
-   * A ping.
-   */
-  PING = 1,
-  /**
-   * A command invocation.
-   */
-  APPLICATION_COMMAND = 2,
-  /**
-   * Usage of a message's component.
-   */
-  MESSAGE_COMPONENT = 3,
-  /**
-   * An interaction sent when an application command option is filled out.
-   */
-  APPLICATION_COMMAND_AUTOCOMPLETE = 4,
-  /**
-   * An interaction sent when a modal is submitted.
-   */
-  MODAL_SUBMIT = 5,
+export const COMMANDS = [
+  {
+    name: "polo",
+    description: "Get the current Polo Field cycle track schedule",
+  },
+] as const;
+
+async function discordApiFetch(
+  c: Context<{ Bindings: Bindings }>,
+  path: string,
+  method: "PUT" | "POST" | "PATCH",
+  body: any,
+) {
+  return await fetch(`${RouteBases.api}${path}`, {
+    body: JSON.stringify(body),
+    method,
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bot ${c.env.DISCORD_TOKEN}`,
+    },
+  });
 }
 
-/**
- * The type of response that is being sent.
- */
-export enum InteractionResponseType {
-  /**
-   * Acknowledge a `PING`.
-   */
-  PONG = 1,
-  /**
-   * Respond with a message, showing the user's input.
-   */
-  CHANNEL_MESSAGE_WITH_SOURCE = 4,
-  /**
-   * Acknowledge a command without sending a message, showing the user's input. Requires follow-up.
-   */
-  DEFERRED_CHANNEL_MESSAGE_WITH_SOURCE = 5,
-  /**
-   * Acknowledge an interaction and edit the original message that contains the component later; the user does not see a loading state.
-   */
-  DEFERRED_UPDATE_MESSAGE = 6,
-  /**
-   * Edit the message the component was attached to.
-   */
-  UPDATE_MESSAGE = 7,
-  /*
-   * Callback for an app to define the results to the user.
-   */
-  APPLICATION_COMMAND_AUTOCOMPLETE_RESULT = 8,
-  /*
-   * Respond with a modal.
-   */
-  MODAL = 9,
+export async function discordRegisterCommands(
+  c: Context<{ Bindings: Bindings }>,
+) {
+  const res = await discordApiFetch(
+    c,
+    Routes.applicationCommands(c.env.DISCORD_CLIENT_ID),
+    "PUT",
+    COMMANDS,
+  );
+  return c.text(
+    await res.text(),
+    res.status,
+    Object.fromEntries(res.headers.entries()),
+  );
+}
+
+function poloLineForDay(result: ScrapeResult, parsedDate: Date): string {
+  const date = shortDateStyle.format(parsedDate);
+  const ruleIntervals = intervalsForDate(result, date);
+  if (!ruleIntervals || ruleIntervals.type !== "known") {
+    return `**${friendlyDate(
+      date,
+    )}**\nI don't understand these rules yet, please consult the [${POLO_URL}](Polo Field Schedule)`;
+  }
+  const { intervals } = ruleIntervals;
+  const { sunrise, sunsetStart } = getSunProps(parsedDate);
+  return `**${friendlyDate(date)}**   ${SUNRISE} ${friendlyTime(
+    sunrise,
+  )}  ${SUNSET} ${friendlyTime(sunsetStart)}\n${intervals
+    .map((interval) => {
+      const hStart = clampStart(date, interval.start_timestamp);
+      const hEnd = clampEnd(date, interval.end_timestamp);
+      return interval.open
+        ? `${randomCyclist()} Open ${friendlyTimeSpan(hStart, hEnd)}`
+        : `${NO_BIKES} Closed ${friendlyTimeSpan(hStart, hEnd)}`;
+    })
+    .join("\n")}`;
+}
+
+export async function discordCommand(
+  c: Context<{ Bindings: Bindings }>,
+  body: APIApplicationCommandInteraction,
+) {
+  if (body.data.name === "polo") {
+    const POLO_DAYS = 3;
+    const today = parseDate(getTodayPacific());
+    const { scrape_results: result } = await cachedScrapeResult(c.env);
+    const lines = Array.from({ length: POLO_DAYS }, (_, i) =>
+      poloLineForDay(result, addDays(today, i)),
+    );
+
+    const res: APIInteractionResponseChannelMessageWithSource = {
+      type: InteractionResponseType.ChannelMessageWithSource,
+      data: {
+        content: lines.join("\n"),
+        flags: MessageFlags.SuppressNotifications,
+      },
+    };
+    return c.json(res);
+  }
+  return c.json({ error: "Unknown command" }, 400);
 }
 
 async function verifyDiscordSignature(c: Context<{ Bindings: Bindings }>) {
@@ -98,13 +155,18 @@ export async function discordInteractions(c: Context<{ Bindings: Bindings }>) {
     return c.json({ error: "Invalid content-type" }, 400);
   }
   const failure = await verifyDiscordSignature(c);
-  const body = await c.req.json();
+  const body: APIInteraction = await c.req.json();
   if (failure) {
     return c.text(failure, 401);
   }
   switch (body.type) {
-    case InteractionType.PING: {
-      return c.json({ type: InteractionResponseType.PONG });
+    case InteractionType.Ping: {
+      return c.json({
+        type: InteractionResponseType.Pong,
+      } satisfies APIInteractionResponsePong);
+    }
+    case InteractionType.ApplicationCommand: {
+      return await discordCommand(c, body);
     }
     default: {
       console.log(JSON.stringify(body, null, 2));

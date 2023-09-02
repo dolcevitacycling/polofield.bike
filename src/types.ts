@@ -8,6 +8,8 @@ export interface Bindings {
   DISCORD_PUBLIC_KEY: string;
   DISCORD_CLIENT_ID: string;
   DISCORD_CLIENT_SECRET: string;
+  DISCORD_TEST_GUILD_ID: string;
+  DISCORD_TOKEN: string;
   [key: string]: unknown;
 }
 
