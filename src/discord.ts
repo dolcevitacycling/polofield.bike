@@ -116,6 +116,7 @@ export async function discordCommand(
     };
     return c.json(res);
   }
+  console.log(JSON.stringify(body, null, 2));
   return c.json({ error: "Unknown command" }, 400);
 }
 
