@@ -1,5 +1,6 @@
 import {
   cachedScrapeResult,
+  cronBody,
   handleCron,
   recentScrapedResults,
   refreshScrapeResult,
@@ -9,12 +10,7 @@ import { Hono } from "hono";
 import { serveStatic } from "hono/cloudflare-workers";
 import view, { viewWeek } from "./view";
 import icalFeed, { calendarView } from "./icalFeed";
-import {
-  getTodayPacific,
-  pacificISODate,
-  parseDate,
-  shortDateStyle,
-} from "./dates";
+import { getTodayPacific, parseDate, shortDateStyle } from "./dates";
 import { slackActionEndpoint, slackPolo } from "./slack";
 import { discordInteractions, discordRegisterCommands } from "./discord";
 
@@ -91,7 +87,7 @@ app.get("/dump.json", async (c) =>
   }),
 );
 app.get("/force-cron", async (c) =>
-  c.json(await refreshScrapeResult(c.env, { log: true })),
+  c.json(await cronBody(c.env)),
 );
 app.get("/:date{[0-9]{4}-[0-9]{2}-[0-9]{2}}", async (c) =>
   view(c, c.req.param().date),

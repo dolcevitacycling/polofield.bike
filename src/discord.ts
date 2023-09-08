@@ -12,6 +12,7 @@ import {
   APIApplicationCommandInteraction,
   APIInteractionResponseChannelMessageWithSource,
   MessageFlags,
+  RESTPostAPIWebhookWithTokenJSONBody,
 } from "discord-api-types/v10";
 import {
   POLO_URL,
@@ -56,6 +57,22 @@ async function discordApiFetch(
   });
 }
 
+export async function discordReport(
+  env: Bindings,
+  content: string,
+): Promise<void> {
+  if (!env.DISCORD_WEBHOOK_URL) {
+    return;
+  }
+  await fetch(env.DISCORD_WEBHOOK_URL, {
+    body: JSON.stringify({
+      content,
+    } satisfies RESTPostAPIWebhookWithTokenJSONBody),
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+  });
+}
+
 export async function discordRegisterCommands(
   c: Context<{ Bindings: Bindings }>,
 ) {
@@ -72,7 +89,36 @@ export async function discordRegisterCommands(
   );
 }
 
-function poloLineForDay(result: ScrapeResult, parsedDate: Date): string {
+export interface RunDiscordWebhookParams {
+  webhook_url: string;
+  date: Date;
+  params: { type: "discord" };
+  scrape_results: ScrapeResult;
+}
+export async function runDiscordWebhook(
+  env: Bindings,
+  { webhook_url, date, params, scrape_results }: RunDiscordWebhookParams,
+) {
+  const res = await fetch(webhook_url, {
+    method: "POST",
+    body: JSON.stringify({
+      content: poloLineForDay(scrape_results, date),
+      flags: MessageFlags.SuppressNotifications,
+    } satisfies RESTPostAPIWebhookWithTokenJSONBody),
+    headers: { "Content-Type": "application/json" },
+  });
+  if (!res.ok) {
+    console.error(
+      "Failed to run webhook",
+      webhook_url,
+      res.status,
+      await res.text(),
+    );
+    throw new Error("Failed to run webhook");
+  }
+}
+
+export function poloLineForDay(result: ScrapeResult, parsedDate: Date): string {
   const date = shortDateStyle.format(parsedDate);
   const ruleIntervals = intervalsForDate(result, date);
   if (!ruleIntervals || ruleIntervals.type !== "known") {

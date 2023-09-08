@@ -10,6 +10,7 @@ export interface Bindings {
   DISCORD_CLIENT_SECRET: string;
   DISCORD_TEST_GUILD_ID: string;
   DISCORD_TOKEN: string;
+  DISCORD_WEBHOOK_URL?: string;
   [key: string]: unknown;
 }
 

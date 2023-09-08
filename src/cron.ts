@@ -10,7 +10,10 @@ import {
   monthDayStyle,
   shortDateStyle,
   shortTimeStyle,
+  pacificISODate,
+  getTodayPacific,
 } from "./dates";
+import { discordReport, runDiscordWebhook } from "./discord";
 import {
   stream,
   streamAtEnd,
@@ -1172,6 +1175,10 @@ export async function refreshScrapeResult(
   } else if (result.length === 0 && prev.results.length > 0) {
     if (log) {
       console.log(`Error detected when scraping, skipping ${created_at}`);
+      await discordReport(
+        env,
+        `Error detected when scraping, skipping ${created_at}`,
+      );
     }
     return {
       created_at: prev.results[0].created_at,
@@ -1185,14 +1192,65 @@ export async function refreshScrapeResult(
       .run();
     if (log) {
       console.log(`Inserted new scrape result at ${created_at}`);
+      await discordReport(env, `Inserted new scrape result at ${created_at}`);
     }
     return { created_at, scrape_results: result };
   }
+}
+
+async function bootstrapWebhooks(env: Bindings): Promise<void> {
+  if (!env.DISCORD_WEBHOOK_URL) {
+    console.log("no discord webhook url");
+    return;
+  }
+  await env.DB.prepare(
+    `INSERT OR IGNORE INTO daily_webhook_status (webhook_url, params_json, last_update_utc) VALUES (?, ?, '1970-01-01')`
+  ).bind(env.DISCORD_WEBHOOK_URL, JSON.stringify({ type: "discord" })).run();
+}
+
+async function runWebhooks(
+  env: Bindings,
+  { scrape_results }: CachedScrapeResult,
+): Promise<void> {
+  const today = getTodayPacific();
+  const rows = await env.DB.prepare(
+    `SELECT webhook_url, params_json, last_update_utc FROM daily_webhook_status WHERE last_update_utc < ?`,
+  )
+    .bind(today)
+    .all<Record<"webhook_url" | "last_update_utc" | "params_json", string>>();
+  const tomorrow = addDays(parseDate(today), 1);
+  await Promise.allSettled(
+    rows.results.map(async (row) => {
+      const params = JSON.parse(row.params_json);
+      if (params.type === "discord") {
+        await runDiscordWebhook(env, {
+          webhook_url: row.webhook_url,
+          date: tomorrow,
+          params: params,
+          scrape_results,
+        });
+      } else {
+        throw new Error(`Unknown webhook type: ${params.type}`);
+      }
+      await env.DB.prepare(
+        `UPDATE daily_webhook_status SET last_update_utc = ? WHERE webhook_url = ?`,
+      )
+        .bind(today, row.webhook_url)
+        .run();
+    }),
+  );
+}
+
+export async function cronBody(env: Bindings): Promise<CachedScrapeResult> {
+  const result = await refreshScrapeResult(env, { log: true });
+  await bootstrapWebhooks(env);
+  await runWebhooks(env, result);
+  return result;
 }
 
 export async function handleCron(
   event: ScheduledController,
   env: Bindings,
 ): Promise<void> {
-  await refreshScrapeResult(env, { log: true });
+  await cronBody(env);
 }
