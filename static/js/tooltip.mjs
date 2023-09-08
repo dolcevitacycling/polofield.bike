@@ -76,11 +76,7 @@ function showTooltip(e) {
   floatingEl.style.opacity = "1";
   floatingEl.dataset.event = "";
 }
-function hideTooltip(e) {
-  const referenceEl = e.currentTarget;
-  const floatingEl = document.getElementById(
-    referenceEl.getAttribute("aria-describedby"),
-  );
+function hideTooltip(_e) {
   cleanup && cleanup();
   cleanup = undefined;
 }

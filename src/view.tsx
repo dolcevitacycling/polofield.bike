@@ -22,7 +22,14 @@ import {
   intervalMinutes,
   timeToMinutes,
 } from "./dates";
-import { randomCyclist, NO_BIKES, randomShrug, WARNING, SUNRISE, SUNSET } from "./emoji";
+import {
+  randomCyclist,
+  NO_BIKES,
+  randomShrug,
+  WARNING,
+  SUNRISE,
+  SUNSET,
+} from "./emoji";
 import { SunProps, getSunProps } from "./sun";
 
 interface Props {
@@ -100,6 +107,42 @@ function Layout(props: Props) {
         .open {
           background-color: #2dc937;
           border: 10px solid #2dc937;
+        }
+        .open.now .copy {
+          text-shadow:
+            /* White glow */
+            0 0 7px #fff,
+            0 0 10px #fff,
+            0 0 21px #fff,
+            /* Green glow */
+            0 0 42px #0fa,
+            0 0 82px #0fa;
+        }
+        .now .background:after {
+          display: block;
+          position: absolute;
+          top: 0;
+          bottom: 0;
+          width: 10px;
+          transform: translate(-50%, 0);
+          left: var(--now-percent, 0);
+          content: " ";
+        }
+        .open.now .background:after {
+          background: linear-gradient(to right, #ffffff00, #ffffffff, #ffffff00);
+        }
+        .closed.now .background:after {
+          background: linear-gradient(to right, #00000000, #000000ff, #00000000);
+        }
+        .closed.now .copy {
+          text-shadow:
+            /* Black glow */
+            0 0 7px #000,
+            0 0 10px #000,
+            0 0 21px #000,
+            /* Red glow */
+            0 0 42px #f03,
+            0 0 82px #f03;
         }
         .closed {
           position: relative;
@@ -225,6 +268,7 @@ function Layout(props: Props) {
         </nav>
         ${props.children}
         <script type="module" src="/js/tooltip.mjs"></script>
+        <script type="module" src="/js/now.mjs"></script>
       </body>
     </html>`;
 }
@@ -371,7 +415,6 @@ function Interval(props: {
   );
 }
 
-
 function Intervals(props: {
   date: string;
   rule: KnownRules;
@@ -381,7 +424,10 @@ function Intervals(props: {
   return (
     <ul class="intervals" data-date={date}>
       {intervals.map((interval) => (
-        <Interval {...getSunProps(parseDate(date))} {...{ date, rule, interval }} />
+        <Interval
+          {...getSunProps(parseDate(date))}
+          {...{ date, rule, interval }}
+        />
       ))}
     </ul>
   );
