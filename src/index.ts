@@ -86,9 +86,7 @@ app.get("/dump.json", async (c) =>
     "Content-Type": "application/json",
   }),
 );
-app.get("/force-cron", async (c) =>
-  c.json(await cronBody(c.env)),
-);
+app.get("/force-cron", async (c) => c.json(await cronBody(c.env)));
 app.get("/:date{[0-9]{4}-[0-9]{2}-[0-9]{2}}", async (c) =>
   view(c, c.req.param().date),
 );

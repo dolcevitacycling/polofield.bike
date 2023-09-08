@@ -1204,8 +1204,10 @@ async function bootstrapWebhooks(env: Bindings): Promise<void> {
     return;
   }
   await env.DB.prepare(
-    `INSERT OR IGNORE INTO daily_webhook_status (webhook_url, params_json, last_update_utc) VALUES (?, ?, '1970-01-01')`
-  ).bind(env.DISCORD_WEBHOOK_URL, JSON.stringify({ type: "discord" })).run();
+    `INSERT OR IGNORE INTO daily_webhook_status (webhook_url, params_json, last_update_utc) VALUES (?, ?, '1970-01-01')`,
+  )
+    .bind(env.DISCORD_WEBHOOK_URL, JSON.stringify({ type: "discord" }))
+    .run();
 }
 
 async function runWebhooks(

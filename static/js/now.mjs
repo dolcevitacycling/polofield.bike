@@ -10,9 +10,14 @@ function dateTime(date) {
   return dateTimeFormat.format(date).split(" ");
 }
 
-function dayPercent(time) {
+function timeToMinutes(time) {
   const [hour, minute] = time.split(":").map(Number);
-  return `${100 * (hour * 60 + minute) / (24 * 60)}%`;
+  return hour * 60 + minute;
+}
+
+function dayPercent(startTime, endTime, nowTime) {
+  const [start, end, now] = [startTime, endTime, nowTime].map(timeToMinutes);
+  return `${(100 * (now - start)) / (end - start)}%`;
 }
 
 function schedule(delay) {
@@ -26,15 +31,23 @@ function stop() {
 }
 function step() {
   const [today, now] = dateTime(new Date());
-  for (const interval of document.querySelectorAll(`.intervals.today:not([data-date="${today}"])`)) {
+  for (const interval of document.querySelectorAll(
+    `.intervals.today:not([data-date="${today}"])`,
+  )) {
     interval.classList.remove("today");
   }
-  document.documentElement.style.setProperty("--now-percent", dayPercent(now));
   const el = document.querySelector(`.intervals[data-date="${today}"]`);
   if (el) {
     el.classList.add("today");
     for (const section of el.querySelectorAll(".intervals > li ")) {
-      section.classList.toggle("now", section.dataset.start <= now && now <= section.dataset.end);
+      const isNow = section.dataset.start <= now && now <= section.dataset.end;
+      section.classList.toggle("now", isNow);
+      if (isNow) {
+        document.documentElement.style.setProperty(
+          "--now-percent",
+          dayPercent(section.dataset.start, section.dataset.end, now),
+        );
+      }
     }
   }
   schedule(60000);
