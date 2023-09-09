@@ -377,6 +377,7 @@ function Layout(props: Props) {
           background-color: #000;
           color: #fff;
           padding: 1rem;
+          padding-bottom: calc(1rem + 100vh - 100dvh);
         }
         .sponsor .container {
           text-align: center;
