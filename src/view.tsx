@@ -66,7 +66,8 @@ function Layout(props: Props) {
         :root {
           --open-color: #2dc937;
           --closed-color: #cc3232;
-          --nav-height: 62px;
+          --nav-internal-height: 60px;
+          --nav-height: calc(var(--nav-internal-height) + 2px);
         }
         body {
           margin: 0;
@@ -256,7 +257,7 @@ function Layout(props: Props) {
 
         .nav-container {
           display: flex;
-          height: 60px;
+          height: var(--nav-internal-height);
         }
 
         .nav-container input[type="checkbox"] {
@@ -299,9 +300,8 @@ function Layout(props: Props) {
         .navbar .menu-items {
           position: absolute;
           left: 0px;
-          top: 60px;
-          box-shadow: inset 0 0 2000px rgba(255, 255, 255, 0.5);
-          height: calc(100vh - 60px);
+          top: var(--nav-internal-height);
+          height: calc(100vh - var(--nav-internal-height));
           width: 100vw;
           transform: translate(-150%);
           display: flex;
