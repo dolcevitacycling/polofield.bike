@@ -114,8 +114,7 @@ function Layout(props: Props) {
             0 0 7px #fff,
             0 0 10px #fff,
             0 0 21px #fff,
-            /* Green glow */
-            0 0 42px #0fa,
+            /* Green glow */ 0 0 42px #0fa,
             0 0 82px #0fa;
         }
         .now .background:after {
@@ -129,10 +128,20 @@ function Layout(props: Props) {
           content: " ";
         }
         .open.now .background:after {
-          background: linear-gradient(to right, #ffffff00, #ffffffff, #ffffff00);
+          background: linear-gradient(
+            to right,
+            #ffffff00,
+            #ffffffff,
+            #ffffff00
+          );
         }
         .closed.now .background:after {
-          background: linear-gradient(to right, #00000000, #000000ff, #00000000);
+          background: linear-gradient(
+            to right,
+            #00000000,
+            #000000ff,
+            #00000000
+          );
         }
         .closed.now .copy {
           text-shadow:
@@ -140,8 +149,7 @@ function Layout(props: Props) {
             0 0 7px #000,
             0 0 10px #000,
             0 0 21px #000,
-            /* Red glow */
-            0 0 42px #f03,
+            /* Red glow */ 0 0 42px #f03,
             0 0 82px #f03;
         }
         .closed {
@@ -402,12 +410,12 @@ function Interval(props: {
       style={`flex: ${duration}; max-width: ${percent}%;`}
     >
       <div class="time">{friendlyTimeStart(date, hStart)}</div>
-      {open ? (
-        <div
-          class="background"
-          style={`background: ${sunGradient(tStart, tEnd, props)};`}
-        ></div>
-      ) : null}
+      <div
+        class="background"
+        style={
+          open ? `background: ${sunGradient(tStart, tEnd, props)};` : undefined
+        }
+      ></div>
       <button aria-label={title}>
         <span class="copy">{open ? randomCyclist() : NO_BIKES}</span>
       </button>
