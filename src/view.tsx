@@ -37,6 +37,7 @@ interface Props {
   children?: unknown;
   titlePrefix?: string;
   created_at: string;
+  open?: boolean;
 }
 
 function linkRelIcon(icon?: string) {
@@ -58,13 +59,35 @@ function Layout(props: Props) {
       </head>
       <style>
         * {
+          box-sizing: border-box;
           font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
             Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
         }
-        body {
-          margin: 24px;
+        :root {
+          --open-color: #2dc937;
+          --closed-color: #cc3232;
+          --nav-height: 62px;
         }
-        ul {
+        body {
+          margin: 0;
+          padding: 0;
+        }
+        header {
+          position: fixed;
+          background-color: #fff;
+          width: 100%;
+          z-index: 1;
+        }
+        :global([id]) {
+          scroll-margin-top: var(--nav-height);
+        }
+        main {
+          position: relative;
+          z-index: 0;
+          margin: 24px;
+          padding-top: var(--nav-height);
+        }
+        ul.intervals {
           list-style-type: none;
           padding-left: 0;
           display: flex;
@@ -72,8 +95,7 @@ function Layout(props: Props) {
         h1 {
           text-align: center;
         }
-        li {
-          box-sizing: border-box;
+        .intervals > li {
           margin-top: 1em;
           position: relative;
           font-weight: bold;
@@ -83,8 +105,7 @@ function Layout(props: Props) {
           align-items: center;
           justify-content: center;
         }
-        li > button {
-          box-sizing: border-box;
+        .intervals > li > button {
           position: relative;
           border: none;
           background: none;
@@ -105,8 +126,8 @@ function Layout(props: Props) {
           transform: translate(0, -100%);
         }
         .open {
-          background-color: #2dc937;
-          border: 10px solid #2dc937;
+          background-color: var(--open-color);
+          border: 10px solid var(--open-color);
         }
         .open.now .copy {
           text-shadow:
@@ -154,12 +175,12 @@ function Layout(props: Props) {
         }
         .closed {
           position: relative;
-          background-color: #cc3232;
-          border: 10px solid #cc3232;
+          background-color: var(--closed-color);
+          border: 10px solid var(--closed-color);
           background: repeating-linear-gradient(
             135deg,
-            #cc3232,
-            #cc3232 10px,
+            var(--closed-color),
+            var(--closed-color) 10px,
             #ffffff 10px,
             #ffffff 20px
           );
@@ -201,6 +222,8 @@ function Layout(props: Props) {
           padding: 5px;
           border-radius: 4px;
           font-size: 90%;
+          z-index: 2;
+          pointer-events: none;
         }
         .tooltip-arrow {
           position: absolute;
@@ -209,28 +232,165 @@ function Layout(props: Props) {
           height: 8px;
           transform: rotate(45deg);
         }
-        nav {
-          text-align: center;
+        .container {
+          max-width: 1050px;
+          width: 90%;
+          margin: auto;
+        }
+
+        .navbar {
+          width: 100%;
+          box-shadow: 0 1px 4px rgb(146 161 176 / 15%);
+        }
+
+        .nav-container {
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          height: var(--nav-height);
+        }
+
+        .navbar .nav-container li {
+          list-style: none;
+        }
+
+        .nav-container {
+          display: flex;
+          height: 60px;
+        }
+
+        .nav-container input[type="checkbox"] {
+          display: none;
+        }
+
+        .nav-container .hamburger-lines {
+          display: block;
+          cursor: pointer;
+          height: 42px;
+          width: 48px;
+          padding: 8px;
+          display: flex;
+          flex-direction: column;
+          justify-content: space-between;
+        }
+
+        .nav-container .hamburger-lines .line {
+          display: block;
+          height: 4px;
+          width: 100%;
+          border-radius: 10px;
+          background: #0e2431;
+        }
+
+        .nav-container .hamburger-lines .line1 {
+          transform-origin: 0% 0%;
+          transition: transform 0.4s ease-in-out;
+        }
+
+        .nav-container .hamburger-lines .line2 {
+          transition: transform 0.2s ease-in-out;
+        }
+
+        .nav-container .hamburger-lines .line3 {
+          transform-origin: 0% 100%;
+          transition: transform 0.4s ease-in-out;
+        }
+
+        .navbar .menu-items {
+          position: absolute;
+          left: 0px;
+          top: 60px;
+          box-shadow: inset 0 0 2000px rgba(255, 255, 255, 0.5);
+          height: calc(100vh - 60px);
+          width: 100vw;
+          transform: translate(-150%);
+          display: flex;
+          flex-direction: column;
+          justify-content: space-between;
+          transition: transform 0.5s ease-in-out;
+          background-color: var(--open-color);
+        }
+
+        .navbar .menu-items ul {
+          display: flex;
+          flex-direction: column;
+          margin: 0 auto;
+          padding: 1rem 0;
+        }
+
+        .navbar .menu-items li {
+          margin-bottom: 1.2rem;
+          font-size: 1.5rem;
+          font-weight: 500;
+        }
+        .menu-items li > a {
           display: flex;
           align-items: center;
-          justify-content: center;
-          gap: 0.5em;
+          color: #000;
+          gap: 0.5rem;
         }
-        nav a {
+        .menu-items a .base {
           position: relative;
+          font-size: 2rem;
         }
-        nav a .base {
-          font-size: 2em;
-        }
-        nav a .overlap {
+        .menu-items a .overlap {
           position: absolute;
-          font-size: 1em;
           left: 50%;
-          top: 60%;
-          transform: translate(-50%, -50%);
+          top: 50%;
+          transform: scale(0.5) translate(-100%, -75%);
         }
+        .nav-container input[type="checkbox"]:checked ~ .menu-items {
+          transform: translateX(0);
+        }
+
+        .nav-container
+          input[type="checkbox"]:checked
+          ~ .hamburger-lines
+          .line1 {
+          transform: rotate(45deg);
+        }
+
+        .nav-container
+          input[type="checkbox"]:checked
+          ~ .hamburger-lines
+          .line2 {
+          transform: scaleY(0);
+        }
+        .nav-container
+          input[type="checkbox"]:checked
+          ~ .hamburger-lines
+          .line3 {
+          transform: rotate(-45deg);
+        }
+
+        .logo a {
+          color: #000;
+        }
+        .status.open-now:after {
+          content: "${randomCyclist()}";
+        }
+        .status.closed-now:after {
+          content: "${NO_BIKES}";
+        }
+
+        .sponsor {
+          background-color: #000;
+          color: #fff;
+          padding: 1rem;
+        }
+        .sponsor .container {
+          text-align: center;
+        }
+        .sponsor h2 {
+          margin: 0 0 0.5rem;
+        }
+        .sponsor img {
+          max-width: 250px;
+          padding: 8px;
+        }
+
         @media only screen and (max-width: 480px) {
-          body {
+          main {
             margin: 12px;
             font-size: 10px;
           }
@@ -245,36 +405,87 @@ function Layout(props: Props) {
         data-created="${props.created_at}"
         data-render="${new Date().toISOString()}"
       >
-        <h1>
-          <a href="${POLO_URL}"
-            >Ethan Boyes Cycle Track @ GGP Polo Field Schedule</a
-          >
-        </h1>
-        <nav>
-          <a
-            href="/calendar/open"
-            class="no-underline"
-            title="Google Calendar of Cycle Track openings"
-            ><span class="base">🗓️</span
-            ><span class="overlap">${randomCyclist()}</span></a
-          >
-          |
-          <a
-            href="/calendar/closed"
-            class="no-underline"
-            title="Google Calendar of Cycle Track closures"
-            ><span class="base">🗓️</span
-            ><span class="overlap">${NO_BIKES}</span></a
-          >
-          |
-          <a
-            href="tel:415-831-2700"
-            class="no-underline"
-            title="Contact SF Rec &amp; Parks"
-            ><span class="base">☎️</span></a
-          >
-        </nav>
-        ${props.children}
+        <header>
+          <nav role="navigation">
+            <div class="navbar">
+              <div class="container nav-container">
+                <input type="checkbox" id="nav-toggle" />
+                <label class="hamburger-lines" for="nav-toggle">
+                  <span class="line line1"></span>
+                  <span class="line line2"></span>
+                  <span class="line line3"></span>
+                </label>
+                <div class="logo">
+                  <h1>
+                    <span class="status base"
+                      ></span
+                    >
+                    <a href="https://polofield.bike" class="no-underline"
+                      >polofield.bike</a
+                    >
+                  </h1>
+                </div>
+                <div class="menu-items">
+                  <ul class="container">
+                    <li>
+                      <a href="${POLO_URL}" class="no-underline"
+                        ><span class="base">🏞️</span>Ethan Boyes Cycle Track @
+                        GGP Polo Field Schedule</a
+                      >
+                    </li>
+                    <li>
+                      <a
+                        href="/calendar/open"
+                        class="no-underline"
+                        title="Google Calendar of Cycle Track openings"
+                        ><span class="base"
+                          >🗓️<span class="overlap"
+                            >${randomCyclist()}</span
+                          ></span
+                        >
+                        Cycle Track openings</a
+                      >
+                    </li>
+                    <li>
+                      <a
+                        href="/calendar/closed"
+                        class="no-underline"
+                        title="Google Calendar of Cycle Track closures"
+                        ><span class="base"
+                          >🗓️<span class="overlap">${NO_BIKES}</span></span
+                        >
+                        Cycle Track closures</a
+                      >
+                    </li>
+                    <li>
+                      <a
+                        href="tel:415-831-2700"
+                        class="no-underline"
+                        title="Contact SF Rec &amp; Parks"
+                        ><span class="base">☎️</span> Contact SF Rec &amp;
+                        Parks</a
+                      >
+                    </li>
+                  </ul>
+                  <div class="sponsor">
+                    <div class="container">
+                      <h2>Powered By</h2>
+                      <a
+                        href="https://www.dolcevitacycling.org/"
+                        target="_blank"
+                        title="Powered by Dolce Vita Cycling"
+                        ><img
+                          src="/img/dvc-logo-horizontal.svg"
+                          alt="Dolce Vita Cycling logo"
+                      /></a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </nav>
+        </header>
+        <main class="container">${props.children}</main>
         <script type="module" src="/js/tooltip.mjs"></script>
         <script type="module" src="/js/now.mjs"></script>
       </body>
@@ -465,7 +676,7 @@ function Rules(props: {
         <h3>
           {friendlyDate(rule.start_date)} to {friendlyDate(rule.end_date)}
         </h3>
-        <ul>
+        <ul class="rules">
           {rule.rules.map((t) => (
             <li>{t}</li>
           ))}

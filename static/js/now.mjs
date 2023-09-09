@@ -47,6 +47,12 @@ function step() {
           "--now-percent",
           dayPercent(section.dataset.start, section.dataset.end, now),
         );
+        const logo = document.querySelector("header .logo .status");
+        if (logo) {
+          for (const cls of ["open", "closed"]) {
+            logo.classList.toggle(`${cls}-now`, section.classList.contains(cls));
+          }
+        }
       }
     }
   }

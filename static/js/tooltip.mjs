@@ -5,7 +5,7 @@ import {
   flip,
   shift,
   arrow,
-} from "https://cdn.jsdelivr.net/npm/@floating-ui/dom@1.5.0/+esm";
+} from "https://cdn.jsdelivr.net/npm/@floating-ui/dom@1.5.1/+esm";
 const tooltips = document.createDocumentFragment();
 let tooltipId = 0;
 let cleanup;
