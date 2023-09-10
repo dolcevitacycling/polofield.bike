@@ -422,9 +422,7 @@ function Layout(props: Props) {
                 </label>
                 <div class="logo">
                   <h1>
-                    <span class="status base"
-                      ></span
-                    >
+                    <span class="status base"></span>
                     <a href="https://polofield.bike" class="no-underline"
                       >polofield.bike</a
                     >
@@ -469,6 +467,21 @@ function Layout(props: Props) {
                         title="Contact SF Rec &amp; Parks"
                         ><span class="base">☎️</span> Contact SF Rec &amp;
                         Parks</a
+                      >
+                    </li>
+                    <li>
+                      <a
+                        href="https://discord.gg/FYqedSVJ78"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        class="no-underline"
+                        ><span class="base"
+                          ><img
+                            src="/img/discord-mark-blue.svg"
+                            style="width: 1em; height: 1em; position: relative; top: 0.15em; filter: drop-shadow(1px 1px 0px rgb(255 255 255 / 0.4));"
+                            alt="Discord logo"
+                        /></span>
+                        polofield.bike Discord</a
                       >
                     </li>
                   </ul>
