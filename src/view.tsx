@@ -133,6 +133,9 @@ function Layout(props: Props) {
           background-color: var(--open-color);
           border: 10px solid var(--open-color);
         }
+        .now .copy {
+          transition: text-shadow 0.25s ease-in-out;
+        }
         .open.now .copy {
           text-shadow:
             /* White glow */
