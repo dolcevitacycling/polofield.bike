@@ -126,6 +126,9 @@ function Layout(props: Props) {
           left: -0.25em;
           transform: translate(0, -100%);
         }
+        .today > li:first-of-type .time {
+          font-weight: bolder;
+        }
         .open {
           background-color: var(--open-color);
           border: 10px solid var(--open-color);
@@ -147,6 +150,7 @@ function Layout(props: Props) {
           width: 10px;
           transform: translate(-50%, 0);
           left: var(--now-percent, 0);
+          transition: left 0.5s ease-in-out;
           content: " ";
         }
         .open.now .background:after {

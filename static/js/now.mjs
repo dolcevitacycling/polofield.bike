@@ -3,7 +3,7 @@ let reqId;
 const dateTimeFormat = new Intl.DateTimeFormat("sv-SE", {
   timeZone: "America/Los_Angeles",
   dateStyle: "short",
-  timeStyle: "short",
+  timeStyle: "medium",
 });
 
 function dateTime(date) {
@@ -11,13 +11,14 @@ function dateTime(date) {
 }
 
 function timeToMinutes(time) {
-  const [hour, minute] = time.split(":").map(Number);
-  return hour * 60 + minute;
+  const [hour, minute, second] = time.split(":").map(Number);
+  return hour * 60 + minute + (second ?? 0) / 60;
 }
 
 function dayPercent(startTime, endTime, nowTime) {
   const [start, end, now] = [startTime, endTime, nowTime].map(timeToMinutes);
-  return `${(100 * (now - start)) / (end - start)}%`;
+  // end time is the leading edge of the minute so we add one
+  return `${(100 * (now - start)) / (end - start + 1)}%`;
 }
 
 function schedule(delay) {
@@ -30,10 +31,16 @@ function stop() {
   reqId = undefined;
 }
 function step() {
-  const [today, now] = dateTime(new Date());
+  const [today, now] = dateTime(Date.now());
   for (const interval of document.querySelectorAll(
     `.intervals.today:not([data-date="${today}"])`,
   )) {
+    for (const el of interval.querySelectorAll(".now")) {
+      el.classList.remove("now");
+      for (const logo of el.querySelectorAll(".open-now,.closed-now")) {
+        logo.classList.remove("open-now", "closed-now");
+      }
+    }
     interval.classList.remove("today");
   }
   const el = document.querySelector(`.intervals[data-date="${today}"]`);
@@ -56,7 +63,7 @@ function step() {
       }
     }
   }
-  schedule(60000);
+  schedule(5000);
 }
 
 document.addEventListener("visibilitychange", () => {
