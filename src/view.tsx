@@ -212,8 +212,14 @@ function Layout(props: Props) {
           left: 0;
           right: 0;
         }
-        .closed .background {
+        .closed .background:before {
           border: 10px solid var(--closed-color);
+          content: " ";
+          position: absolute;
+          left: 0;
+          top: 0;
+          right: 0;
+          bottom: 0;
         }
         .no-underline {
           text-decoration: none;
