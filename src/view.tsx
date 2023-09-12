@@ -122,8 +122,8 @@ function Layout(props: Props) {
         }
         .time {
           position: absolute;
-          top: -0.5em;
-          left: -0.25em;
+          top: 0;
+          left: 0;
           transform: translate(0, -100%);
         }
         .today > li:first-of-type .time {
