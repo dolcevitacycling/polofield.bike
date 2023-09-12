@@ -131,7 +131,6 @@ function Layout(props: Props) {
         }
         .open {
           background-color: var(--open-color);
-          border: 10px solid var(--open-color);
         }
         .now .copy {
           transition: text-shadow 0.25s ease-in-out;
@@ -182,9 +181,6 @@ function Layout(props: Props) {
             0 0 82px #f03;
         }
         .closed {
-          position: relative;
-          background-color: var(--closed-color);
-          border: 10px solid var(--closed-color);
           background: repeating-linear-gradient(
             135deg,
             var(--closed-color),
@@ -211,10 +207,13 @@ function Layout(props: Props) {
         }
         .background {
           position: absolute;
-          top: -10px;
-          bottom: -10px;
-          left: -10px;
-          right: -10px;
+          top: 0;
+          bottom: 0;
+          left: 0;
+          right: 0;
+        }
+        .closed .background {
+          border: 10px solid var(--closed-color);
         }
         .no-underline {
           text-decoration: none;
