@@ -122,7 +122,7 @@ function Layout(props: Props) {
         }
         .time {
           position: absolute;
-          top: 0;
+          top: -0.1em;
           left: 0;
           transform: translate(0, -100%);
         }
@@ -403,8 +403,6 @@ function Layout(props: Props) {
           }
           .time {
             font-size: 12px;
-            top: -1em;
-            left: -0.75em;
           }
         }
       </style>
