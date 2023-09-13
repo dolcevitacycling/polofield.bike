@@ -229,6 +229,7 @@ function Layout(props: Props) {
           top: 0;
           left: 0;
           width: max-content;
+          max-width: 90%;
           background: #222;
           color: white;
           font-weight: bold;
