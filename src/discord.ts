@@ -60,11 +60,13 @@ async function discordApiFetch(
 export async function discordReport(
   env: Bindings,
   content: string,
+  webhook_name = "DISCORD_DIAGNOSTICS_WEBHOOK_URL",
 ): Promise<void> {
-  if (!env.DISCORD_WEBHOOK_URL) {
+  const url = env[webhook_name];
+  if (typeof url !== "string" || !url) {
     return;
   }
-  await fetch(env.DISCORD_WEBHOOK_URL, {
+  await fetch(url, {
     body: JSON.stringify({
       content,
     } satisfies RESTPostAPIWebhookWithTokenJSONBody),

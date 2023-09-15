@@ -10,7 +10,6 @@ import {
   monthDayStyle,
   shortDateStyle,
   shortTimeStyle,
-  pacificISODate,
   getTodayPacific,
 } from "./dates";
 import { discordReport, runDiscordWebhook } from "./discord";

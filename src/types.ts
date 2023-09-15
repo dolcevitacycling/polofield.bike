@@ -11,6 +11,7 @@ export interface Bindings {
   DISCORD_TEST_GUILD_ID: string;
   DISCORD_TOKEN: string;
   DISCORD_WEBHOOK_URL?: string;
+  DISCORD_DIAGNOSTICS_WEBHOOK_URL?: string;
   [key: string]: unknown;
 }
 
