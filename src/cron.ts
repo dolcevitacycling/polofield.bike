@@ -705,7 +705,7 @@ function fallRecognizer(rule: UnknownRules): KnownRules | undefined {
 
 const RECOGNIZERS = [
   recognizer(
-    /^(The Cycle Track will remain open - Polo Fields Closed|The Cycle Track Will be Open Mondays through Sundays all day)$/i,
+    /^(The Cycle Track will remain open - Polo Fields? Closed|The Cycle Track Will be Open Mondays through Sundays all day)$/i,
     (rule) => [dayInterval(rule.start_date, rule.end_date, true)],
   ),
   recognizer(
@@ -742,7 +742,7 @@ const RECOGNIZERS = [
       }),
   ),
   recognizer(
-    /^The Cycle Track will remain open - Polo Fields Closed Except on Tuesdays and Thursdays from 6:30 p\.m\. to 8:45 p\.m\. for adult sports programming\.$/i,
+    /^The Cycle Track will remain open - Polo Fields? Closed Except on Tuesdays and Thursdays from 6:30 p\.m\. to 8:45 p\.m\. for adult sports programming\.$/i,
     (rule) =>
       daily(rule.start_date, rule.end_date, (date) => {
         const weekday = date.getDay();
