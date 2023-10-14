@@ -723,7 +723,7 @@ export async function viewWeek(
   const { created_at, scrape_results: result } = await cachedScrapeResult(
     c.env,
   );
-  if (c.req.headers.get("accept") === "application/json") {
+  if (c.req.header("accept") === "application/json") {
     return c.json({ date, created_at, result }, 200);
   }
   const page = WeekPage({ created_at, date, result, days });
@@ -745,7 +745,7 @@ export default async function view(
   if (!ruleIntervals) {
     return c.notFound();
   }
-  if (c.req.headers.get("accept") === "application/json") {
+  if (c.req.header("accept") === "application/json") {
     return c.json({ date, created_at, ruleIntervals }, 200);
   }
   return c.html(DayPage({ date, created_at, ruleIntervals }), 200);

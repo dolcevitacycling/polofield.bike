@@ -29,9 +29,9 @@ import hexToBuffer from "./hexToBuffer";
 async function verifySlackSignature(c: Context<{ Bindings: Bindings }>) {
   const secret = c.env.SLACK_SIGNING_SECRET;
   const signature = /^v0=([0-9a-f]+)$/i.exec(
-    c.req.headers.get("x-slack-signature") ?? "",
+    c.req.header("x-slack-signature") ?? "",
   )?.[1];
-  const timestamp = c.req.headers.get("x-slack-request-timestamp");
+  const timestamp = c.req.header("x-slack-request-timestamp");
   if (!signature || !timestamp || !secret) {
     return;
   }
@@ -76,7 +76,7 @@ async function eventCallback<Event extends KnownEvents>(
 }
 
 async function slackApiPost(
-  c: Context<{ Bindings: Bindings }>,
+  c: { readonly env: Bindings },
   method: string,
   body: any,
 ) {
@@ -110,7 +110,7 @@ async function appHomeOpened(
 }
 
 export async function slackActionEndpoint(c: Context<{ Bindings: Bindings }>) {
-  if (c.req.headers.get("content-type") !== "application/json") {
+  if (c.req.header("content-type") !== "application/json") {
     return c.json({ error: "Invalid content-type" }, 400);
   }
   const failure = await verifySlackSignature(c);
@@ -168,10 +168,34 @@ function sectionBlockForDay(
   };
 }
 
+export interface RunSlackWebhookParams {
+  webhook_url: string;
+  date: Date;
+  params: { type: "slack:chat.postMessage" };
+  scrape_results: ScrapeResult;
+}
+
+export async function runSlackWebhook(
+  env: Bindings,
+  { webhook_url, date, params, scrape_results }: RunSlackWebhookParams,
+): Promise<void> {
+  const res = await slackApiPost({ env }, "chat.postMessage", {
+    blocks: [sectionBlockForDay(scrape_results, date)],
+    channel: env.SLACK_CHANNEL_ID,
+  });
+  if (!res.ok) {
+    console.error(
+      "Failed to run webhook",
+      webhook_url,
+      res.status,
+      await res.text(),
+    );
+    throw new Error("Failed to run webhook");
+  }
+}
+
 export async function slackPolo(c: Context<{ Bindings: Bindings }>) {
-  if (
-    c.req.headers.get("content-type") !== "application/x-www-form-urlencoded"
-  ) {
+  if (c.req.header("content-type") !== "application/x-www-form-urlencoded") {
     return c.json({ error: "Invalid content-type" }, 400);
   }
   const failure = await verifySlackSignature(c);

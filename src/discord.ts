@@ -173,8 +173,8 @@ async function verifyDiscordSignature(c: Context<{ Bindings: Bindings }>) {
   // https://developers.cloudflare.com/workers/runtime-apis/web-crypto/
   const publicKey = c.env.DISCORD_PUBLIC_KEY;
   const ALGORITHM = "Ed25519";
-  const signature = c.req.headers.get("X-Signature-Ed25519");
-  const timestamp = c.req.headers.get("X-Signature-Timestamp");
+  const signature = c.req.header("X-Signature-Ed25519");
+  const timestamp = c.req.header("X-Signature-Timestamp");
   if (!signature || !timestamp || !publicKey) {
     return;
   }
@@ -200,7 +200,7 @@ async function verifyDiscordSignature(c: Context<{ Bindings: Bindings }>) {
 }
 
 export async function discordInteractions(c: Context<{ Bindings: Bindings }>) {
-  if (c.req.headers.get("content-type") !== "application/json") {
+  if (c.req.header("content-type") !== "application/json") {
     return c.json({ error: "Invalid content-type" }, 400);
   }
   const failure = await verifyDiscordSignature(c);

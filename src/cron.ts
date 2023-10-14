@@ -31,6 +31,7 @@ import {
   ap,
   parseMany1,
 } from "./parsing";
+import { runSlackWebhook } from "./slack";
 import { Bindings } from "./types";
 
 export const POLO_URL = "https://www.sfrecpark.org/526/Polo-Field-Usage";
@@ -1207,13 +1208,21 @@ async function bootstrapWebhooks(env: Bindings): Promise<void> {
   )
     .bind(env.DISCORD_WEBHOOK_URL, JSON.stringify({ type: "discord" }))
     .run();
+  await env.DB.prepare(
+    `INSERT OR IGNORE INTO daily_webhook_status (webhook_url, params_json, last_update_utc) VALUES (?, ?, '1970-01-01')`,
+  )
+    .bind("slack://", JSON.stringify({ type: "slack:chat.postMessage" }))
+    .run();
 }
 
 async function runWebhooks(
   env: Bindings,
   { scrape_results }: CachedScrapeResult,
 ): Promise<void> {
-  const today = getTodayPacific();
+  // Shift to reporting the next day at 4pm instead of midnight
+  const now = new Date();
+  now.setHours(now.getHours() - 16);
+  const today = getTodayPacific(now);
   const rows = await env.DB.prepare(
     `SELECT webhook_url, params_json, last_update_utc FROM daily_webhook_status WHERE last_update_utc < ?`,
   )
@@ -1225,6 +1234,13 @@ async function runWebhooks(
       const params = JSON.parse(row.params_json);
       if (params.type === "discord") {
         await runDiscordWebhook(env, {
+          webhook_url: row.webhook_url,
+          date: tomorrow,
+          params: params,
+          scrape_results,
+        });
+      } else if (params.type === "slack:chat.postMessage") {
+        await runSlackWebhook(env, {
           webhook_url: row.webhook_url,
           date: tomorrow,
           params: params,

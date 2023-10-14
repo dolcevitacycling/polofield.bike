@@ -144,6 +144,6 @@ export function intervalMinutes(hStart: string, hEnd: string): number {
   return timeToMinutes(hEnd) - timeToMinutes(hStart);
 }
 
-export function getTodayPacific(): string {
-  return pacificISODate.format(new Date());
+export function getTodayPacific(date = new Date()): string {
+  return pacificISODate.format(date);
 }
