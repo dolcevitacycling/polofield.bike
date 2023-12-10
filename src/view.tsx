@@ -751,7 +751,7 @@ function dayToHex(
     }
     return bitmap.reduce((t, x) => t + x.toString(16).padStart(2, '0'), '')
   }
-  // Date for that day is inconsistent, return an empty string
+  // Data for that day are inconsistent, return an empty string
   return "";
 }
 
