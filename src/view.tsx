@@ -733,6 +733,45 @@ export async function viewWeek(
   return c.html(page, 200);
 }
 
+function dayToHex(
+  day: string,
+  ruleIntervals: ReturnType<typeof intervalsForDate>,
+) {
+  if (ruleIntervals?.type === "known") {
+    const bitmap = new Uint8Array((24 * 4) / 8);
+    for (const interval of ruleIntervals.intervals) {
+      if (!interval.open) {
+        const mStart = Math.floor(timeToMinutes(clampStart(day, interval.start_timestamp)) / 15);
+        const mEnd = Math.floor(timeToMinutes(clampEnd(day, interval.end_timestamp)) / 15);
+        for (let i = mStart; i <= mEnd; i++) {
+          // highest bit is 00:00, next bit is 00:15, etc.
+          bitmap[Math.floor(i / 8)] |= 1 << (7 - (i % 8));
+        }
+      }
+    }
+    return bitmap.reduce((t, x) => t + x.toString(16).padStart(2, '0'), '')
+  }
+  // Date for that day is inconsistent, return an empty string
+  return "";
+}
+
+export async function viewHex(
+  c: Context<{ Bindings: Bindings }>,
+  date: string,
+) {
+  const { scrape_results: result } = await cachedScrapeResult(c.env);
+  const d = parseDate(date);
+  const daysStr = c.req.query("days");
+  const days = daysStr && /^\d+$/.test(daysStr) ? +daysStr : 7;
+  return c.text(
+    Array.from({ length: days }, (_, i) => {
+      const currentDate = shortDateStyle.format(addDays(d, i));
+      return dayToHex(currentDate, intervalsForDate(result, currentDate));
+    }).join("\n") + "\n",
+    200,
+  );
+}
+
 export default async function view(
   c: Context<{ Bindings: Bindings }>,
   date: string,
@@ -745,7 +784,10 @@ export default async function view(
   if (!ruleIntervals) {
     return c.notFound();
   }
-  if (c.req.header("accept") === "application/json" || c.req.query("format") === "json") {
+  if (
+    c.req.header("accept") === "application/json" ||
+    c.req.query("format") === "json"
+  ) {
     return c.json({ date, created_at, ruleIntervals }, 200);
   }
   return c.html(DayPage({ date, created_at, ruleIntervals }), 200);

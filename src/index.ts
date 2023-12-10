@@ -8,7 +8,7 @@ import {
 import { Bindings, PoloFieldMessage } from "./types";
 import { Hono } from "hono";
 import { serveStatic } from "hono/cloudflare-workers";
-import view, { viewWeek } from "./view";
+import view, { viewHex, viewWeek } from "./view";
 import icalFeed, { calendarView } from "./icalFeed";
 import { getTodayPacific, parseDate, shortDateStyle } from "./dates";
 import { slackActionEndpoint, slackPolo } from "./slack";
@@ -89,6 +89,9 @@ app.get("/dump.json", async (c) =>
 app.get("/force-cron", async (c) => c.json(await cronBody(c.env)));
 app.get("/:date{[0-9]{4}-[0-9]{2}-[0-9]{2}}", async (c) =>
   view(c, c.req.param().date),
+);
+app.get("/api/hex/:hexdate{[0-9]{4}-[0-9]{2}-[0-9]{2}}", async (c) =>
+  viewHex(c, c.req.param().hexdate),
 );
 app.get("/*", serveStatic({ root: "./" }));
 
