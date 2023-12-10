@@ -745,7 +745,7 @@ export default async function view(
   if (!ruleIntervals) {
     return c.notFound();
   }
-  if (c.req.header("accept") === "application/json" || c.req.param("format") === "json") {
+  if (c.req.header("accept") === "application/json" || c.req.query("format") === "json") {
     return c.json({ date, created_at, ruleIntervals }, 200);
   }
   return c.html(DayPage({ date, created_at, ruleIntervals }), 200);
