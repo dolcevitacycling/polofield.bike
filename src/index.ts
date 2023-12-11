@@ -90,8 +90,14 @@ app.get("/force-cron", async (c) => c.json(await cronBody(c.env)));
 app.get("/:date{[0-9]{4}-[0-9]{2}-[0-9]{2}}", async (c) =>
   view(c, c.req.param().date),
 );
-app.get("/api/hex/:hexdate{[0-9]{4}-[0-9]{2}-[0-9]{2}}", async (c) =>
-  viewHex(c, c.req.param().hexdate),
+function optionalDateParam(date: string) {
+  return (date === "" || date === "today") ? getTodayPacific() : date;
+}
+app.get("/api/hex", async (c) =>
+  viewHex(c, getTodayPacific()),
+);
+app.get("/api/hex/:hexdate{[0-9]{4}-[0-9]{2}-[0-9]{2}|today}", async (c) =>
+  viewHex(c, optionalDateParam(c.req.param().hexdate)),
 );
 app.get("/*", serveStatic({ root: "./" }));
 

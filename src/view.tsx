@@ -767,28 +767,18 @@ export async function viewHex(
   const d = parseDate(date);
   const daysStr = c.req.query("days");
   const days = daysStr && /^\d+$/.test(daysStr) ? +daysStr : 7;
-  if (c.req.query("format") === "json") {
-    return c.json(
-      Object.fromEntries(
-        Array.from({ length: days }, (_, i) => {
-          const currentDate = shortDateStyle.format(addDays(d, i));
-          return [
-            currentDate,
-            dayToHex(currentDate, intervalsForDate(result, currentDate)),
-          ];
-        }),
-      ),
-      200,
-    );
-  } else {
-    return c.text(
+  return c.json(
+    Object.fromEntries(
       Array.from({ length: days }, (_, i) => {
         const currentDate = shortDateStyle.format(addDays(d, i));
-        return dayToHex(currentDate, intervalsForDate(result, currentDate));
-      }).join("\n") + "\n",
-      200,
-    );
-  }
+        return [
+          currentDate.replace(/-/g, ""),
+          dayToHex(currentDate, intervalsForDate(result, currentDate)),
+        ];
+      }),
+    ),
+    200,
+  );
 }
 
 export default async function view(
