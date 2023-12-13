@@ -491,6 +491,17 @@ function Layout(props: Props) {
                         polofield.bike Discord</a
                       >
                     </li>
+                    <li>
+                      <a
+                        href="https://apps.garmin.com/en-US/apps/6a1c1bd0-1870-4aed-ae65-6886141eec4a"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        class="no-underline"
+                        ><span class="base"
+                          >⌚</span>
+                        Garmin Connect IQ app</a
+                      >
+                    </li>
                   </ul>
                   <div class="sponsor">
                     <div class="container">
