@@ -499,7 +499,7 @@ function Layout(props: Props) {
                         class="no-underline"
                         ><span class="base"
                           >⌚</span>
-                        Garmin Connect IQ app</a
+                        Garmin app</a
                       >
                     </li>
                   </ul>
