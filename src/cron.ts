@@ -1081,8 +1081,10 @@ export function intervalsForDate(
     }
   | { readonly type: "unknown"; readonly rule: UnknownRules }
   | undefined {
+  let maxYear: number | null = null;
   const year = parseInt(date.split("-")[0], 10);
   for (const sched of result) {
+    maxYear = Math.max(maxYear ?? sched.year, sched.year);
     if (sched.year !== year) {
       continue;
     }
@@ -1098,6 +1100,28 @@ export function intervalsForDate(
         );
         return { type: "known", intervals, rule };
       }
+    }
+  }
+  if (maxYear !== null) {
+    const nextYear = maxYear + 1;
+    const jan1 = `${nextYear}-01-01 00:00`;
+    const jan31 = `${nextYear}-01-31 23:59`;
+    if (date >= jan1 && date <= jan31) {
+      const intervals = [
+        { start_timestamp: jan1, end_timestamp: jan31, open: true },
+      ];
+      return {
+        type: "known",
+        intervals,
+        rule: {
+          type: "known_rules",
+          intervals,
+          text: `January ${nextYear}`,
+          rules: ["[polofield.bike assumption] PF is historically open all January"],
+          start_date: jan1.split(" ")[0],
+          end_date: jan31.split(" ")[0],
+        },
+      };
     }
   }
   return undefined;
