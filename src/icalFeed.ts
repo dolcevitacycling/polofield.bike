@@ -21,8 +21,8 @@ ${text(
     filter.open === undefined
       ? "Schedule"
       : filter.open
-      ? "Availability"
-      : "Closures"
+        ? "Availability"
+        : "Closures"
   }`,
 )}
 X-WR-TIMEZONE:America/Los_Angeles
@@ -114,8 +114,8 @@ function comment(event: Event): string {
   return event.open
     ? "Cycle track open"
     : event.comment
-    ? `Cycle track closed for ${event.comment}`
-    : "Cycle track closed";
+      ? `Cycle track closed for ${event.comment}`
+      : "Cycle track closed";
 }
 
 function eventText(event: Event): string {
@@ -220,8 +220,8 @@ export function calendarView(filter: FeedParameters) {
       filter.open === undefined
         ? "https://calendar.google.com/calendar/embed?src=gunjrgf8u7adb8tklsjip1onkgq8jt4b%40import.calendar.google.com&ctz=America%2FLos_Angeles"
         : filter.open
-        ? "https://calendar.google.com/calendar/embed?src=gbkbujrfqfvtqt9hehn2lj5j3kjeqs7i%40import.calendar.google.com&ctz=America%2FLos_Angeles"
-        : "https://calendar.google.com/calendar/embed?src=c3eifni8meiomobvdguo8ahoumb8b2f6%40import.calendar.google.com&ctz=America%2FLos_Angeles",
+          ? "https://calendar.google.com/calendar/embed?src=gbkbujrfqfvtqt9hehn2lj5j3kjeqs7i%40import.calendar.google.com&ctz=America%2FLos_Angeles"
+          : "https://calendar.google.com/calendar/embed?src=c3eifni8meiomobvdguo8ahoumb8b2f6%40import.calendar.google.com&ctz=America%2FLos_Angeles",
     );
   };
 }
@@ -230,8 +230,8 @@ function basename(filter: FeedParameters) {
   return filter.open === undefined
     ? "calendar"
     : filter.open
-    ? "open"
-    : "closed";
+      ? "open"
+      : "closed";
 }
 
 function mapEvent(filter: FeedParameters) {
