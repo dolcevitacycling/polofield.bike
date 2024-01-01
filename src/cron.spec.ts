@@ -2,9 +2,58 @@ import {
   parseFallException,
   timeSpanReParser,
   timeToMinuteParser,
+  intervalsForDate,
+  type ScrapeResult,
 } from "./cron";
 import { toMinute, shortDateStyle } from "./dates";
 import { stream, streamAtEnd } from "./parsing";
+
+describe("intervalsForDate", () => {
+  it("Will make an assumption for January of maxYear+1", () => {
+    const result: ScrapeResult = [
+      {
+        type: "year",
+        year: 2023,
+        rules: [
+          {
+            type: "known_rules",
+            text: "Sunday, January 1 through Sunday, February 26",
+            start_date: "2023-01-01",
+            end_date: "2023-02-26",
+            rules: ["The Cycle Track will remain open - Polo Field Closed"],
+            intervals: [
+              {
+                start_timestamp: "2023-01-01 00:00",
+                end_timestamp: "2023-02-26 23:59",
+                open: true,
+              },
+            ],
+          },
+        ],
+      },
+    ];
+    const nextYear = 2024;
+    const jan1 = `${nextYear}-01-01 00:00`;
+    const jan31 = `${nextYear}-01-31 23:59`;
+    const intervals = [
+      { start_timestamp: jan1, end_timestamp: jan31, open: true },
+    ];
+    const janRules = {
+      type: "known",
+      intervals,
+      rule: {
+        type: "known_rules",
+        intervals,
+        text: `January ${nextYear}`,
+        rules: ["[polofield.bike assumption] PF is historically open all January"],
+        start_date: jan1.split(" ")[0],
+        end_date: jan31.split(" ")[0],
+      },
+    };
+    expect(intervalsForDate(result, "2024-01-01")).toEqual(janRules);
+    expect(intervalsForDate(result, "2024-01-02")).toEqual(janRules);
+  });
+});
 
 describe("timeToMinuteParser", () => {
   [

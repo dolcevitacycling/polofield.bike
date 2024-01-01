@@ -1104,11 +1104,15 @@ export function intervalsForDate(
   }
   if (maxYear !== null) {
     const nextYear = maxYear + 1;
-    const jan1 = `${nextYear}-01-01 00:00`;
-    const jan31 = `${nextYear}-01-31 23:59`;
+    const jan1 = `${nextYear}-01-01`;
+    const jan31 = `${nextYear}-01-31`;
     if (date >= jan1 && date <= jan31) {
       const intervals = [
-        { start_timestamp: jan1, end_timestamp: jan31, open: true },
+        {
+          start_timestamp: `${jan1} 00:00`,
+          end_timestamp: `${jan31} 23:59`,
+          open: true,
+        },
       ];
       return {
         type: "known",
@@ -1117,9 +1121,11 @@ export function intervalsForDate(
           type: "known_rules",
           intervals,
           text: `January ${nextYear}`,
-          rules: ["[polofield.bike assumption] PF is historically open all January"],
-          start_date: jan1.split(" ")[0],
-          end_date: jan31.split(" ")[0],
+          rules: [
+            "[polofield.bike assumption] PF is historically open all January",
+          ],
+          start_date: jan1,
+          end_date: jan31,
         },
       };
     }
