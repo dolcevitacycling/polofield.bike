@@ -126,7 +126,7 @@ export function poloLineForDay(result: ScrapeResult, parsedDate: Date): string {
   if (!ruleIntervals || ruleIntervals.type !== "known") {
     return `**${friendlyDate(
       date,
-    )}**\nI don't understand these rules yet, please consult the [${POLO_URL}](Polo Field Schedule)`;
+    )}**\nI don't understand these rules yet, please consult the [Polo Field Schedule](${POLO_URL})`;
   }
   const { intervals } = ruleIntervals;
   const { sunrise, sunsetStart } = getSunProps(parsedDate);
