@@ -710,17 +710,18 @@ const RECOGNIZERS = [
     (rule) => [dayInterval(rule.start_date, rule.end_date, true)],
   ),
   recognizer(
-    /^The Cycle Track will be closed for Outside Lands Load in, Event and Load Out$/i,
+    /^The Cycle Track will be closed for Outside Lands Load in, Event and Load Out( and Polo Fields Concert Event and Load Out)?$/i,
     (rule) => [
       dayInterval(rule.start_date, rule.end_date, false, "Outside Lands"),
     ],
   ),
   recognizer(
-    /^The Cycle Track (?:will be )?Closed for (?<comment>(?:\w+ )+)from (?<start>\d+) to (?<end>\d+) (?<ampm>[ap])\.m\.$/i,
+    /^The Cycle Track (?:will be )?Closed for (?<comment>(?:\w+ )+)from (?<start>\d+) ((?<startampm>[ap])\.m\. )?to (?<end>\d+) (?<ampm>[ap])\.m\.$/i,
     (rule, m) => {
-      const hour = /p/i.test(m.groups?.ampm ?? "") ? 12 : 0;
-      const start_hour = (parseInt(m.groups?.start ?? "", 10) % 12) + hour;
-      const end_hour = parseInt(m.groups?.end ?? "", 10) + hour;
+      const ampmStart = /p/i.test(m.groups?.startampm ?? m.groups?.ampm ?? "") ? 12 : 0;
+      const ampmEnd = /p/i.test(m.groups?.ampm ?? "") ? 12 : 0;
+      const start_hour = (parseInt(m.groups?.start ?? "", 10) % 12) + ampmStart;
+      const end_hour = parseInt(m.groups?.end ?? "", 10) + ampmEnd;
       const comment = m.groups?.comment.trim();
 
       return daily(rule.start_date, rule.end_date, (date) =>
@@ -728,6 +729,15 @@ const RECOGNIZERS = [
       );
     },
   ),
+  recognizer(
+    /^The Cycle Track will be open after (?<start>\d+) (?<startampm>[ap])\.m\.$/i,
+    (rule, m) => {
+      const ampmStart = /p/i.test(m.groups?.startampm ?? m.groups?.ampm ?? "") ? 12 : 0;
+      const start_hour = (parseInt(m.groups?.start ?? "", 10) % 12) + ampmStart;
+      return daily(rule.start_date, rule.end_date, (date) =>
+        closedIntervals(date, 0, start_hour),
+      );
+    }),
   recognizer(
     /^The Cycle Track will be open after 5:30 p.m. on Saturday and after 7:30 p.m. on Sunday.$/i,
     (rule) =>
@@ -760,72 +770,38 @@ const RECOGNIZERS = [
       }),
   ),
   recognizer(
-    /^Youth and Adult Sports Programs Begin\. The Cycle Track Will be Open: Mondays all day Tuesdays\*, Wednesdays, Thursdays\* and Fridays before 2 p\.m\. and after 6:45 p\.m\. \(\*On Tuesdays beginning March 14, the cycling track will be open after 8:45 p\.m\. On Thursdays beginning March 30, the track will be open after 8:45 p\.m\.\) Saturdays and Sundays before 7 a\.m\. and after 6:45 p\.m\. EXCEPT Saturday, March 4 where track will be open all day and Wednesday, April 26, 7:30am through Friday, April 28, when the track will be closed for maintenance\. The track will reopen Saturday, April 29 after 6:45pm\./i,
+    /^Youth and Adult Sports Programs Begin\. The Cycle Track Will be Open: Mondays all day Tuesdays\*, Wednesdays, Thursdays\* and Fridays before 2 p\.m\. and after 6:45 p\.m\. \(\*On Tuesdays beginning March 12, the cycling track will be open after 8:45 p\.m\. On Thursdays beginning March 14, the track will be open after 8:45 p\.m\.\) Saturdays and Sundays before 7 a\.m\. and after 6:45 p\.m\.$/i,
     (rule) =>
       /*
-      Youth and Adult Sports Programs Begin.
-      The Cycle Track Will be Open: Mondays all day
-      Tuesdays*, Wednesdays, Thursdays* and Fridays before 2 p.m. and after 6:45 p.m.
-      (*On Tuesdays beginning March 14, the cycling track will be open after 8:45 p.m. On Thursdays beginning March 30, the track will be open after 8:45 p.m.)
-      Saturdays and Sundays before 7 a.m. and after 6:45 p.m. EXCEPT Saturday, March 4 where track will be open all day
-      and Wednesday, April 26, 7:30am through Friday, April 28, when the track will be closed for maintenance.
-      The track will reopen Saturday, April 29 after 6:45pm.
+      Youth and Adult Sports Programs Begin. The Cycle Track Will be Open:
+      Mondays all day
+      Tuesdays*, Wednesdays, Thursdays* and Fridays before 2 p.m. and after 6:45 p.m. (*On Tuesdays beginning March 12, the cycling track will be open after 8:45 p.m. On Thursdays beginning March 14, the track will be open after 8:45 p.m.)
+      Saturdays and Sundays before 7 a.m. and after 6:45 p.m.
       */
       daily(rule.start_date, rule.end_date, (date) => {
         const fmtDate = shortDateStyle.format(date);
         const weekday = date.getDay();
-        const march4 = `${date.getFullYear()}-03-04`;
+        const march12 = `${date.getFullYear()}-03-12`;
         const march14 = `${date.getFullYear()}-03-14`;
-        const march30 = `${date.getFullYear()}-03-30`;
-        const apr26 = `${date.getFullYear()}-04-26`;
-        const apr29 = `${date.getFullYear()}-04-29`;
         const comment = "Youth and Adult Sports Programs";
-        if (fmtDate >= apr26 && fmtDate <= apr29) {
-          return closedTimestampIntervals(
-            date,
-            addMinutes(parseDate(apr26), toMinute(7, 30)),
-            addMinutes(parseDate(apr29), toMinute(18, 45)),
-            "maintenance",
-          );
-        }
-        if (weekday === WEEKDAYS.Mon || fmtDate === march4) {
+        if (weekday === WEEKDAYS.Mon) {
           return [dateInterval(date, true)];
+        } else if ((weekday === WEEKDAYS.Tue && fmtDate >= march12) || (weekday === WEEKDAYS.Thu && fmtDate >= march14)) {
+          return closedMinuteIntervals(date, toMinute(14, 0), toMinute(20, 45), comment);
+        } else if (weekday === WEEKDAYS.Tue || weekday === WEEKDAYS.Wed || weekday === WEEKDAYS.Thu || weekday === WEEKDAYS.Fri) {
+          return closedMinuteIntervals(date, toMinute(14, 0), toMinute(18, 45), comment);
+        } else if (weekday === WEEKDAYS.Sat || weekday === WEEKDAYS.Sun) {
+          return closedMinuteIntervals(date, toMinute(7, 0), toMinute(18, 45), comment);
+        } else {
+          throw new Error(`Unhandled case for weekday ${fmtDate} ${weekday}`);
         }
-        if (
-          [WEEKDAYS.Tue, WEEKDAYS.Wed, WEEKDAYS.Thu, WEEKDAYS.Fri].includes(
-            weekday,
-          )
-        ) {
-          let end_minute = toMinute(18, 45);
-          if (
-            (weekday === WEEKDAYS.Tue && fmtDate >= march14) ||
-            (weekday === WEEKDAYS.Thu && fmtDate >= march30)
-          ) {
-            end_minute = toMinute(20, 45);
-          }
-          return closedMinuteIntervals(
-            date,
-            toMinute(14, 0),
-            end_minute,
-            comment,
-          );
-        }
-        if (weekday === WEEKDAYS.Sat || weekday === WEEKDAYS.Sun) {
-          return closedMinuteIntervals(
-            date,
-            toMinute(7, 0),
-            toMinute(18, 45),
-            comment,
-          );
-        }
-        return [dateInterval(date, true)];
       }),
   ),
   summerRecognizer,
   fallRecognizer,
 ];
 
-function nlpRule(rule: UnknownRules): UnknownRules | KnownRules {
+export function nlpRule(rule: UnknownRules): UnknownRules | KnownRules {
   for (const r of RECOGNIZERS) {
     const known = r(rule);
     if (known) {
