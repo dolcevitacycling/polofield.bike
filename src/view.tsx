@@ -696,7 +696,7 @@ function Rules(props: {
     return (
       <p>
         No rules found for {props.date}, please consult{" "}
-        <a href="${POLO_URL}">Polo Field Schedule</a>!
+        <a href={POLO_URL}>Polo Field Schedule</a>!
       </p>
     );
   } else if (props.ruleIntervals.type === "unknown") {
@@ -706,7 +706,7 @@ function Rules(props: {
         <p>
           We don't quite understand for rules found for{" "}
           {friendlyDate(props.date)} yet, please consult{" "}
-          <a href="${POLO_URL}">Polo Field Schedule</a>!
+          <a href={POLO_URL}>Polo Field Schedule</a>!
         </p>
         <h2>{rule.text}</h2>
         <h3>

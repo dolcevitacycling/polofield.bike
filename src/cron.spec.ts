@@ -45,7 +45,9 @@ describe("intervalsForDate", () => {
         type: "known_rules",
         intervals,
         text: `January ${nextYear}`,
-        rules: ["[polofield.bike assumption] PF is historically open all January"],
+        rules: [
+          "[polofield.bike assumption] PF is historically open all January",
+        ],
         start_date: jan1.split(" ")[0],
         end_date: jan31.split(" ")[0],
       },
