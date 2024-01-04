@@ -1,0 +1,2716 @@
+[
+  {
+    "type": "year",
+    "year": 2024,
+    "rules": [
+      {
+        "type": "known_rules",
+        "text": "Monday, January 1 through Sunday, February 25",
+        "start_date": "2024-01-01",
+        "end_date": "2024-02-25",
+        "rules": [
+          "The Cycle Track will remain open - Polo Field Closed"
+        ],
+        "intervals": [
+          {
+            "start_timestamp": "2024-01-01 00:00",
+            "end_timestamp": "2024-02-25 23:59",
+            "open": true
+          }
+        ]
+      },
+      {
+        "type": "known_rules",
+        "text": "Monday, February 26 through Sunday, May 26",
+        "start_date": "2024-02-26",
+        "end_date": "2024-05-26",
+        "rules": [
+          "Youth and Adult Sports Programs Begin. The Cycle Track Will be Open:",
+          "Mondays all day",
+          "Tuesdays*, Wednesdays, Thursdays* and Fridays before 2 p.m. and after 6:45 p.m. (*On Tuesdays beginning March 12, the cycling track will be open after 8:45 p.m. On Thursdays beginning March 14, the track will be open after 8:45 p.m.)",
+          "Saturdays and Sundays before 7 a.m. and after 6:45 p.m."
+        ],
+        "intervals": [
+          {
+            "start_timestamp": "2024-02-26 00:00",
+            "end_timestamp": "2024-02-26 23:59",
+            "open": true
+          },
+          {
+            "open": true,
+            "start_timestamp": "2024-02-27 00:00",
+            "end_timestamp": "2024-02-27 13:59"
+          },
+          {
+            "open": false,
+            "start_timestamp": "2024-02-27 14:00",
+            "end_timestamp": "2024-02-27 18:44",
+            "comment": "Youth and Adult Sports Programs"
+          },
+          {
+            "open": true,
+            "start_timestamp": "2024-02-27 18:45",
+            "end_timestamp": "2024-02-27 23:59"
+          },
+          {
+            "open": true,
+            "start_timestamp": "2024-02-28 00:00",
+            "end_timestamp": "2024-02-28 13:59"
+          },
+          {
+            "open": false,
+            "start_timestamp": "2024-02-28 14:00",
+            "end_timestamp": "2024-02-28 18:44",
+            "comment": "Youth and Adult Sports Programs"
+          },
+          {
+            "open": true,
+            "start_timestamp": "2024-02-28 18:45",
+            "end_timestamp": "2024-02-28 23:59"
+          },
+          {
+            "open": true,
+            "start_timestamp": "2024-02-29 00:00",
+            "end_timestamp": "2024-02-29 13:59"
+          },
+          {
+            "open": false,
+            "start_timestamp": "2024-02-29 14:00",
+            "end_timestamp": "2024-02-29 18:44",
+            "comment": "Youth and Adult Sports Programs"
+          },
+          {
+            "open": true,
+            "start_timestamp": "2024-02-29 18:45",
+            "end_timestamp": "2024-02-29 23:59"
+          },
+          {
+            "open": true,
+            "start_timestamp": "2024-03-01 00:00",
+            "end_timestamp": "2024-03-01 13:59"
+          },
+          {
+            "open": false,
+            "start_timestamp": "2024-03-01 14:00",
+            "end_timestamp": "2024-03-01 18:44",
+            "comment": "Youth and Adult Sports Programs"
+          },
+          {
+            "open": true,
+            "start_timestamp": "2024-03-01 18:45",
+            "end_timestamp": "2024-03-01 23:59"
+          },
+          {
+            "open": true,
+            "start_timestamp": "2024-03-02 00:00",
+            "end_timestamp": "2024-03-02 06:59"
+          },
+          {
+            "open": false,
+            "start_timestamp": "2024-03-02 07:00",
+            "end_timestamp": "2024-03-02 18:44",
+            "comment": "Youth and Adult Sports Programs"
+          },
+          {
+            "open": true,
+            "start_timestamp": "2024-03-02 18:45",
+            "end_timestamp": "2024-03-02 23:59"
+          },
+          {
+            "open": true,
+            "start_timestamp": "2024-03-03 00:00",
+            "end_timestamp": "2024-03-03 06:59"
+          },
+          {
+            "open": false,
+            "start_timestamp": "2024-03-03 07:00",
+            "end_timestamp": "2024-03-03 18:44",
+            "comment": "Youth and Adult Sports Programs"
+          },
+          {
+            "open": true,
+            "start_timestamp": "2024-03-03 18:45",
+            "end_timestamp": "2024-03-03 23:59"
+          },
+          {
+            "start_timestamp": "2024-03-04 00:00",
+            "end_timestamp": "2024-03-04 23:59",
+            "open": true
+          },
+          {
+            "open": true,
+            "start_timestamp": "2024-03-05 00:00",
+            "end_timestamp": "2024-03-05 13:59"
+          },
+          {
+            "open": false,
+            "start_timestamp": "2024-03-05 14:00",
+            "end_timestamp": "2024-03-05 18:44",
+            "comment": "Youth and Adult Sports Programs"
+          },
+          {
+            "open": true,
+            "start_timestamp": "2024-03-05 18:45",
+            "end_timestamp": "2024-03-05 23:59"
+          },
+          {
+            "open": true,
+            "start_timestamp": "2024-03-06 00:00",
+            "end_timestamp": "2024-03-06 13:59"
+          },
+          {
+            "open": false,
+            "start_timestamp": "2024-03-06 14:00",
+            "end_timestamp": "2024-03-06 18:44",
+            "comment": "Youth and Adult Sports Programs"
+          },
+          {
+            "open": true,
+            "start_timestamp": "2024-03-06 18:45",
+            "end_timestamp": "2024-03-06 23:59"
+          },
+          {
+            "open": true,
+            "start_timestamp": "2024-03-07 00:00",
+            "end_timestamp": "2024-03-07 13:59"
+          },
+          {
+            "open": false,
+            "start_timestamp": "2024-03-07 14:00",
+            "end_timestamp": "2024-03-07 18:44",
+            "comment": "Youth and Adult Sports Programs"
+          },
+          {
+            "open": true,
+            "start_timestamp": "2024-03-07 18:45",
+            "end_timestamp": "2024-03-07 23:59"
+          },
+          {
+            "open": true,
+            "start_timestamp": "2024-03-08 00:00",
+            "end_timestamp": "2024-03-08 13:59"
+          },
+          {
+            "open": false,
+            "start_timestamp": "2024-03-08 14:00",
+            "end_timestamp": "2024-03-08 18:44",
+            "comment": "Youth and Adult Sports Programs"
+          },
+          {
+            "open": true,
+            "start_timestamp": "2024-03-08 18:45",
+            "end_timestamp": "2024-03-08 23:59"
+          },
+          {
+            "open": true,
+            "start_timestamp": "2024-03-09 00:00",
+            "end_timestamp": "2024-03-09 06:59"
+          },
+          {
+            "open": false,
+            "start_timestamp": "2024-03-09 07:00",
+            "end_timestamp": "2024-03-09 18:44",
+            "comment": "Youth and Adult Sports Programs"
+          },
+          {
+            "open": true,
+            "start_timestamp": "2024-03-09 18:45",
+            "end_timestamp": "2024-03-09 23:59"
+          },
+          {
+            "open": true,
+            "start_timestamp": "2024-03-10 00:00",
+            "end_timestamp": "2024-03-10 06:59"
+          },
+          {
+            "open": false,
+            "start_timestamp": "2024-03-10 07:00",
+            "end_timestamp": "2024-03-10 18:44",
+            "comment": "Youth and Adult Sports Programs"
+          },
+          {
+            "open": true,
+            "start_timestamp": "2024-03-10 18:45",
+            "end_timestamp": "2024-03-10 23:59"
+          },
+          {
+            "start_timestamp": "2024-03-11 00:00",
+            "end_timestamp": "2024-03-11 23:59",
+            "open": true
+          },
+          {
+            "open": true,
+            "start_timestamp": "2024-03-12 00:00",
+            "end_timestamp": "2024-03-12 13:59"
+          },
+          {
+            "open": false,
+            "start_timestamp": "2024-03-12 14:00",
+            "end_timestamp": "2024-03-12 20:44",
+            "comment": "Youth and Adult Sports Programs"
+          },
+          {
+            "open": true,
+            "start_timestamp": "2024-03-12 20:45",
+            "end_timestamp": "2024-03-12 23:59"
+          },
+          {
+            "open": true,
+            "start_timestamp": "2024-03-13 00:00",
+            "end_timestamp": "2024-03-13 13:59"
+          },
+          {
+            "open": false,
+            "start_timestamp": "2024-03-13 14:00",
+            "end_timestamp": "2024-03-13 18:44",
+            "comment": "Youth and Adult Sports Programs"
+          },
+          {
+            "open": true,
+            "start_timestamp": "2024-03-13 18:45",
+            "end_timestamp": "2024-03-13 23:59"
+          },
+          {
+            "open": true,
+            "start_timestamp": "2024-03-14 00:00",
+            "end_timestamp": "2024-03-14 13:59"
+          },
+          {
+            "open": false,
+            "start_timestamp": "2024-03-14 14:00",
+            "end_timestamp": "2024-03-14 20:44",
+            "comment": "Youth and Adult Sports Programs"
+          },
+          {
+            "open": true,
+            "start_timestamp": "2024-03-14 20:45",
+            "end_timestamp": "2024-03-14 23:59"
+          },
+          {
+            "open": true,
+            "start_timestamp": "2024-03-15 00:00",
+            "end_timestamp": "2024-03-15 13:59"
+          },
+          {
+            "open": false,
+            "start_timestamp": "2024-03-15 14:00",
+            "end_timestamp": "2024-03-15 18:44",
+            "comment": "Youth and Adult Sports Programs"
+          },
+          {
+            "open": true,
+            "start_timestamp": "2024-03-15 18:45",
+            "end_timestamp": "2024-03-15 23:59"
+          },
+          {
+            "open": true,
+            "start_timestamp": "2024-03-16 00:00",
+            "end_timestamp": "2024-03-16 06:59"
+          },
+          {
+            "open": false,
+            "start_timestamp": "2024-03-16 07:00",
+            "end_timestamp": "2024-03-16 18:44",
+            "comment": "Youth and Adult Sports Programs"
+          },
+          {
+            "open": true,
+            "start_timestamp": "2024-03-16 18:45",
+            "end_timestamp": "2024-03-16 23:59"
+          },
+          {
+            "open": true,
+            "start_timestamp": "2024-03-17 00:00",
+            "end_timestamp": "2024-03-17 06:59"
+          },
+          {
+            "open": false,
+            "start_timestamp": "2024-03-17 07:00",
+            "end_timestamp": "2024-03-17 18:44",
+            "comment": "Youth and Adult Sports Programs"
+          },
+          {
+            "open": true,
+            "start_timestamp": "2024-03-17 18:45",
+            "end_timestamp": "2024-03-17 23:59"
+          },
+          {
+            "start_timestamp": "2024-03-18 00:00",
+            "end_timestamp": "2024-03-18 23:59",
+            "open": true
+          },
+          {
+            "open": true,
+            "start_timestamp": "2024-03-19 00:00",
+            "end_timestamp": "2024-03-19 13:59"
+          },
+          {
+            "open": false,
+            "start_timestamp": "2024-03-19 14:00",
+            "end_timestamp": "2024-03-19 20:44",
+            "comment": "Youth and Adult Sports Programs"
+          },
+          {
+            "open": true,
+            "start_timestamp": "2024-03-19 20:45",
+            "end_timestamp": "2024-03-19 23:59"
+          },
+          {
+            "open": true,
+            "start_timestamp": "2024-03-20 00:00",
+            "end_timestamp": "2024-03-20 13:59"
+          },
+          {
+            "open": false,
+            "start_timestamp": "2024-03-20 14:00",
+            "end_timestamp": "2024-03-20 18:44",
+            "comment": "Youth and Adult Sports Programs"
+          },
+          {
+            "open": true,
+            "start_timestamp": "2024-03-20 18:45",
+            "end_timestamp": "2024-03-20 23:59"
+          },
+          {
+            "open": true,
+            "start_timestamp": "2024-03-21 00:00",
+            "end_timestamp": "2024-03-21 13:59"
+          },
+          {
+            "open": false,
+            "start_timestamp": "2024-03-21 14:00",
+            "end_timestamp": "2024-03-21 20:44",
+            "comment": "Youth and Adult Sports Programs"
+          },
+          {
+            "open": true,
+            "start_timestamp": "2024-03-21 20:45",
+            "end_timestamp": "2024-03-21 23:59"
+          },
+          {
+            "open": true,
+            "start_timestamp": "2024-03-22 00:00",
+            "end_timestamp": "2024-03-22 13:59"
+          },
+          {
+            "open": false,
+            "start_timestamp": "2024-03-22 14:00",
+            "end_timestamp": "2024-03-22 18:44",
+            "comment": "Youth and Adult Sports Programs"
+          },
+          {
+            "open": true,
+            "start_timestamp": "2024-03-22 18:45",
+            "end_timestamp": "2024-03-22 23:59"
+          },
+          {
+            "open": true,
+            "start_timestamp": "2024-03-23 00:00",
+            "end_timestamp": "2024-03-23 06:59"
+          },
+          {
+            "open": false,
+            "start_timestamp": "2024-03-23 07:00",
+            "end_timestamp": "2024-03-23 18:44",
+            "comment": "Youth and Adult Sports Programs"
+          },
+          {
+            "open": true,
+            "start_timestamp": "2024-03-23 18:45",
+            "end_timestamp": "2024-03-23 23:59"
+          },
+          {
+            "open": true,
+            "start_timestamp": "2024-03-24 00:00",
+            "end_timestamp": "2024-03-24 06:59"
+          },
+          {
+            "open": false,
+            "start_timestamp": "2024-03-24 07:00",
+            "end_timestamp": "2024-03-24 18:44",
+            "comment": "Youth and Adult Sports Programs"
+          },
+          {
+            "open": true,
+            "start_timestamp": "2024-03-24 18:45",
+            "end_timestamp": "2024-03-24 23:59"
+          },
+          {
+            "start_timestamp": "2024-03-25 00:00",
+            "end_timestamp": "2024-03-25 23:59",
+            "open": true
+          },
+          {
+            "open": true,
+            "start_timestamp": "2024-03-26 00:00",
+            "end_timestamp": "2024-03-26 13:59"
+          },
+          {
+            "open": false,
+            "start_timestamp": "2024-03-26 14:00",
+            "end_timestamp": "2024-03-26 20:44",
+            "comment": "Youth and Adult Sports Programs"
+          },
+          {
+            "open": true,
+            "start_timestamp": "2024-03-26 20:45",
+            "end_timestamp": "2024-03-26 23:59"
+          },
+          {
+            "open": true,
+            "start_timestamp": "2024-03-27 00:00",
+            "end_timestamp": "2024-03-27 13:59"
+          },
+          {
+            "open": false,
+            "start_timestamp": "2024-03-27 14:00",
+            "end_timestamp": "2024-03-27 18:44",
+            "comment": "Youth and Adult Sports Programs"
+          },
+          {
+            "open": true,
+            "start_timestamp": "2024-03-27 18:45",
+            "end_timestamp": "2024-03-27 23:59"
+          },
+          {
+            "open": true,
+            "start_timestamp": "2024-03-28 00:00",
+            "end_timestamp": "2024-03-28 13:59"
+          },
+          {
+            "open": false,
+            "start_timestamp": "2024-03-28 14:00",
+            "end_timestamp": "2024-03-28 20:44",
+            "comment": "Youth and Adult Sports Programs"
+          },
+          {
+            "open": true,
+            "start_timestamp": "2024-03-28 20:45",
+            "end_timestamp": "2024-03-28 23:59"
+          },
+          {
+            "open": true,
+            "start_timestamp": "2024-03-29 00:00",
+            "end_timestamp": "2024-03-29 13:59"
+          },
+          {
+            "open": false,
+            "start_timestamp": "2024-03-29 14:00",
+            "end_timestamp": "2024-03-29 18:44",
+            "comment": "Youth and Adult Sports Programs"
+          },
+          {
+            "open": true,
+            "start_timestamp": "2024-03-29 18:45",
+            "end_timestamp": "2024-03-29 23:59"
+          },
+          {
+            "open": true,
+            "start_timestamp": "2024-03-30 00:00",
+            "end_timestamp": "2024-03-30 06:59"
+          },
+          {
+            "open": false,
+            "start_timestamp": "2024-03-30 07:00",
+            "end_timestamp": "2024-03-30 18:44",
+            "comment": "Youth and Adult Sports Programs"
+          },
+          {
+            "open": true,
+            "start_timestamp": "2024-03-30 18:45",
+            "end_timestamp": "2024-03-30 23:59"
+          },
+          {
+            "open": true,
+            "start_timestamp": "2024-03-31 00:00",
+            "end_timestamp": "2024-03-31 06:59"
+          },
+          {
+            "open": false,
+            "start_timestamp": "2024-03-31 07:00",
+            "end_timestamp": "2024-03-31 18:44",
+            "comment": "Youth and Adult Sports Programs"
+          },
+          {
+            "open": true,
+            "start_timestamp": "2024-03-31 18:45",
+            "end_timestamp": "2024-03-31 23:59"
+          },
+          {
+            "start_timestamp": "2024-04-01 00:00",
+            "end_timestamp": "2024-04-01 23:59",
+            "open": true
+          },
+          {
+            "open": true,
+            "start_timestamp": "2024-04-02 00:00",
+            "end_timestamp": "2024-04-02 13:59"
+          },
+          {
+            "open": false,
+            "start_timestamp": "2024-04-02 14:00",
+            "end_timestamp": "2024-04-02 20:44",
+            "comment": "Youth and Adult Sports Programs"
+          },
+          {
+            "open": true,
+            "start_timestamp": "2024-04-02 20:45",
+            "end_timestamp": "2024-04-02 23:59"
+          },
+          {
+            "open": true,
+            "start_timestamp": "2024-04-03 00:00",
+            "end_timestamp": "2024-04-03 13:59"
+          },
+          {
+            "open": false,
+            "start_timestamp": "2024-04-03 14:00",
+            "end_timestamp": "2024-04-03 18:44",
+            "comment": "Youth and Adult Sports Programs"
+          },
+          {
+            "open": true,
+            "start_timestamp": "2024-04-03 18:45",
+            "end_timestamp": "2024-04-03 23:59"
+          },
+          {
+            "open": true,
+            "start_timestamp": "2024-04-04 00:00",
+            "end_timestamp": "2024-04-04 13:59"
+          },
+          {
+            "open": false,
+            "start_timestamp": "2024-04-04 14:00",
+            "end_timestamp": "2024-04-04 20:44",
+            "comment": "Youth and Adult Sports Programs"
+          },
+          {
+            "open": true,
+            "start_timestamp": "2024-04-04 20:45",
+            "end_timestamp": "2024-04-04 23:59"
+          },
+          {
+            "open": true,
+            "start_timestamp": "2024-04-05 00:00",
+            "end_timestamp": "2024-04-05 13:59"
+          },
+          {
+            "open": false,
+            "start_timestamp": "2024-04-05 14:00",
+            "end_timestamp": "2024-04-05 18:44",
+            "comment": "Youth and Adult Sports Programs"
+          },
+          {
+            "open": true,
+            "start_timestamp": "2024-04-05 18:45",
+            "end_timestamp": "2024-04-05 23:59"
+          },
+          {
+            "open": true,
+            "start_timestamp": "2024-04-06 00:00",
+            "end_timestamp": "2024-04-06 06:59"
+          },
+          {
+            "open": false,
+            "start_timestamp": "2024-04-06 07:00",
+            "end_timestamp": "2024-04-06 18:44",
+            "comment": "Youth and Adult Sports Programs"
+          },
+          {
+            "open": true,
+            "start_timestamp": "2024-04-06 18:45",
+            "end_timestamp": "2024-04-06 23:59"
+          },
+          {
+            "open": true,
+            "start_timestamp": "2024-04-07 00:00",
+            "end_timestamp": "2024-04-07 06:59"
+          },
+          {
+            "open": false,
+            "start_timestamp": "2024-04-07 07:00",
+            "end_timestamp": "2024-04-07 18:44",
+            "comment": "Youth and Adult Sports Programs"
+          },
+          {
+            "open": true,
+            "start_timestamp": "2024-04-07 18:45",
+            "end_timestamp": "2024-04-07 23:59"
+          },
+          {
+            "start_timestamp": "2024-04-08 00:00",
+            "end_timestamp": "2024-04-08 23:59",
+            "open": true
+          },
+          {
+            "open": true,
+            "start_timestamp": "2024-04-09 00:00",
+            "end_timestamp": "2024-04-09 13:59"
+          },
+          {
+            "open": false,
+            "start_timestamp": "2024-04-09 14:00",
+            "end_timestamp": "2024-04-09 20:44",
+            "comment": "Youth and Adult Sports Programs"
+          },
+          {
+            "open": true,
+            "start_timestamp": "2024-04-09 20:45",
+            "end_timestamp": "2024-04-09 23:59"
+          },
+          {
+            "open": true,
+            "start_timestamp": "2024-04-10 00:00",
+            "end_timestamp": "2024-04-10 13:59"
+          },
+          {
+            "open": false,
+            "start_timestamp": "2024-04-10 14:00",
+            "end_timestamp": "2024-04-10 18:44",
+            "comment": "Youth and Adult Sports Programs"
+          },
+          {
+            "open": true,
+            "start_timestamp": "2024-04-10 18:45",
+            "end_timestamp": "2024-04-10 23:59"
+          },
+          {
+            "open": true,
+            "start_timestamp": "2024-04-11 00:00",
+            "end_timestamp": "2024-04-11 13:59"
+          },
+          {
+            "open": false,
+            "start_timestamp": "2024-04-11 14:00",
+            "end_timestamp": "2024-04-11 20:44",
+            "comment": "Youth and Adult Sports Programs"
+          },
+          {
+            "open": true,
+            "start_timestamp": "2024-04-11 20:45",
+            "end_timestamp": "2024-04-11 23:59"
+          },
+          {
+            "open": true,
+            "start_timestamp": "2024-04-12 00:00",
+            "end_timestamp": "2024-04-12 13:59"
+          },
+          {
+            "open": false,
+            "start_timestamp": "2024-04-12 14:00",
+            "end_timestamp": "2024-04-12 18:44",
+            "comment": "Youth and Adult Sports Programs"
+          },
+          {
+            "open": true,
+            "start_timestamp": "2024-04-12 18:45",
+            "end_timestamp": "2024-04-12 23:59"
+          },
+          {
+            "open": true,
+            "start_timestamp": "2024-04-13 00:00",
+            "end_timestamp": "2024-04-13 06:59"
+          },
+          {
+            "open": false,
+            "start_timestamp": "2024-04-13 07:00",
+            "end_timestamp": "2024-04-13 18:44",
+            "comment": "Youth and Adult Sports Programs"
+          },
+          {
+            "open": true,
+            "start_timestamp": "2024-04-13 18:45",
+            "end_timestamp": "2024-04-13 23:59"
+          },
+          {
+            "open": true,
+            "start_timestamp": "2024-04-14 00:00",
+            "end_timestamp": "2024-04-14 06:59"
+          },
+          {
+            "open": false,
+            "start_timestamp": "2024-04-14 07:00",
+            "end_timestamp": "2024-04-14 18:44",
+            "comment": "Youth and Adult Sports Programs"
+          },
+          {
+            "open": true,
+            "start_timestamp": "2024-04-14 18:45",
+            "end_timestamp": "2024-04-14 23:59"
+          },
+          {
+            "start_timestamp": "2024-04-15 00:00",
+            "end_timestamp": "2024-04-15 23:59",
+            "open": true
+          },
+          {
+            "open": true,
+            "start_timestamp": "2024-04-16 00:00",
+            "end_timestamp": "2024-04-16 13:59"
+          },
+          {
+            "open": false,
+            "start_timestamp": "2024-04-16 14:00",
+            "end_timestamp": "2024-04-16 20:44",
+            "comment": "Youth and Adult Sports Programs"
+          },
+          {
+            "open": true,
+            "start_timestamp": "2024-04-16 20:45",
+            "end_timestamp": "2024-04-16 23:59"
+          },
+          {
+            "open": true,
+            "start_timestamp": "2024-04-17 00:00",
+            "end_timestamp": "2024-04-17 13:59"
+          },
+          {
+            "open": false,
+            "start_timestamp": "2024-04-17 14:00",
+            "end_timestamp": "2024-04-17 18:44",
+            "comment": "Youth and Adult Sports Programs"
+          },
+          {
+            "open": true,
+            "start_timestamp": "2024-04-17 18:45",
+            "end_timestamp": "2024-04-17 23:59"
+          },
+          {
+            "open": true,
+            "start_timestamp": "2024-04-18 00:00",
+            "end_timestamp": "2024-04-18 13:59"
+          },
+          {
+            "open": false,
+            "start_timestamp": "2024-04-18 14:00",
+            "end_timestamp": "2024-04-18 20:44",
+            "comment": "Youth and Adult Sports Programs"
+          },
+          {
+            "open": true,
+            "start_timestamp": "2024-04-18 20:45",
+            "end_timestamp": "2024-04-18 23:59"
+          },
+          {
+            "open": true,
+            "start_timestamp": "2024-04-19 00:00",
+            "end_timestamp": "2024-04-19 13:59"
+          },
+          {
+            "open": false,
+            "start_timestamp": "2024-04-19 14:00",
+            "end_timestamp": "2024-04-19 18:44",
+            "comment": "Youth and Adult Sports Programs"
+          },
+          {
+            "open": true,
+            "start_timestamp": "2024-04-19 18:45",
+            "end_timestamp": "2024-04-19 23:59"
+          },
+          {
+            "open": true,
+            "start_timestamp": "2024-04-20 00:00",
+            "end_timestamp": "2024-04-20 06:59"
+          },
+          {
+            "open": false,
+            "start_timestamp": "2024-04-20 07:00",
+            "end_timestamp": "2024-04-20 18:44",
+            "comment": "Youth and Adult Sports Programs"
+          },
+          {
+            "open": true,
+            "start_timestamp": "2024-04-20 18:45",
+            "end_timestamp": "2024-04-20 23:59"
+          },
+          {
+            "open": true,
+            "start_timestamp": "2024-04-21 00:00",
+            "end_timestamp": "2024-04-21 06:59"
+          },
+          {
+            "open": false,
+            "start_timestamp": "2024-04-21 07:00",
+            "end_timestamp": "2024-04-21 18:44",
+            "comment": "Youth and Adult Sports Programs"
+          },
+          {
+            "open": true,
+            "start_timestamp": "2024-04-21 18:45",
+            "end_timestamp": "2024-04-21 23:59"
+          },
+          {
+            "start_timestamp": "2024-04-22 00:00",
+            "end_timestamp": "2024-04-22 23:59",
+            "open": true
+          },
+          {
+            "open": true,
+            "start_timestamp": "2024-04-23 00:00",
+            "end_timestamp": "2024-04-23 13:59"
+          },
+          {
+            "open": false,
+            "start_timestamp": "2024-04-23 14:00",
+            "end_timestamp": "2024-04-23 20:44",
+            "comment": "Youth and Adult Sports Programs"
+          },
+          {
+            "open": true,
+            "start_timestamp": "2024-04-23 20:45",
+            "end_timestamp": "2024-04-23 23:59"
+          },
+          {
+            "open": true,
+            "start_timestamp": "2024-04-24 00:00",
+            "end_timestamp": "2024-04-24 13:59"
+          },
+          {
+            "open": false,
+            "start_timestamp": "2024-04-24 14:00",
+            "end_timestamp": "2024-04-24 18:44",
+            "comment": "Youth and Adult Sports Programs"
+          },
+          {
+            "open": true,
+            "start_timestamp": "2024-04-24 18:45",
+            "end_timestamp": "2024-04-24 23:59"
+          },
+          {
+            "open": true,
+            "start_timestamp": "2024-04-25 00:00",
+            "end_timestamp": "2024-04-25 13:59"
+          },
+          {
+            "open": false,
+            "start_timestamp": "2024-04-25 14:00",
+            "end_timestamp": "2024-04-25 20:44",
+            "comment": "Youth and Adult Sports Programs"
+          },
+          {
+            "open": true,
+            "start_timestamp": "2024-04-25 20:45",
+            "end_timestamp": "2024-04-25 23:59"
+          },
+          {
+            "open": true,
+            "start_timestamp": "2024-04-26 00:00",
+            "end_timestamp": "2024-04-26 13:59"
+          },
+          {
+            "open": false,
+            "start_timestamp": "2024-04-26 14:00",
+            "end_timestamp": "2024-04-26 18:44",
+            "comment": "Youth and Adult Sports Programs"
+          },
+          {
+            "open": true,
+            "start_timestamp": "2024-04-26 18:45",
+            "end_timestamp": "2024-04-26 23:59"
+          },
+          {
+            "open": true,
+            "start_timestamp": "2024-04-27 00:00",
+            "end_timestamp": "2024-04-27 06:59"
+          },
+          {
+            "open": false,
+            "start_timestamp": "2024-04-27 07:00",
+            "end_timestamp": "2024-04-27 18:44",
+            "comment": "Youth and Adult Sports Programs"
+          },
+          {
+            "open": true,
+            "start_timestamp": "2024-04-27 18:45",
+            "end_timestamp": "2024-04-27 23:59"
+          },
+          {
+            "open": true,
+            "start_timestamp": "2024-04-28 00:00",
+            "end_timestamp": "2024-04-28 06:59"
+          },
+          {
+            "open": false,
+            "start_timestamp": "2024-04-28 07:00",
+            "end_timestamp": "2024-04-28 18:44",
+            "comment": "Youth and Adult Sports Programs"
+          },
+          {
+            "open": true,
+            "start_timestamp": "2024-04-28 18:45",
+            "end_timestamp": "2024-04-28 23:59"
+          },
+          {
+            "start_timestamp": "2024-04-29 00:00",
+            "end_timestamp": "2024-04-29 23:59",
+            "open": true
+          },
+          {
+            "open": true,
+            "start_timestamp": "2024-04-30 00:00",
+            "end_timestamp": "2024-04-30 13:59"
+          },
+          {
+            "open": false,
+            "start_timestamp": "2024-04-30 14:00",
+            "end_timestamp": "2024-04-30 20:44",
+            "comment": "Youth and Adult Sports Programs"
+          },
+          {
+            "open": true,
+            "start_timestamp": "2024-04-30 20:45",
+            "end_timestamp": "2024-04-30 23:59"
+          },
+          {
+            "open": true,
+            "start_timestamp": "2024-05-01 00:00",
+            "end_timestamp": "2024-05-01 13:59"
+          },
+          {
+            "open": false,
+            "start_timestamp": "2024-05-01 14:00",
+            "end_timestamp": "2024-05-01 18:44",
+            "comment": "Youth and Adult Sports Programs"
+          },
+          {
+            "open": true,
+            "start_timestamp": "2024-05-01 18:45",
+            "end_timestamp": "2024-05-01 23:59"
+          },
+          {
+            "open": true,
+            "start_timestamp": "2024-05-02 00:00",
+            "end_timestamp": "2024-05-02 13:59"
+          },
+          {
+            "open": false,
+            "start_timestamp": "2024-05-02 14:00",
+            "end_timestamp": "2024-05-02 20:44",
+            "comment": "Youth and Adult Sports Programs"
+          },
+          {
+            "open": true,
+            "start_timestamp": "2024-05-02 20:45",
+            "end_timestamp": "2024-05-02 23:59"
+          },
+          {
+            "open": true,
+            "start_timestamp": "2024-05-03 00:00",
+            "end_timestamp": "2024-05-03 13:59"
+          },
+          {
+            "open": false,
+            "start_timestamp": "2024-05-03 14:00",
+            "end_timestamp": "2024-05-03 18:44",
+            "comment": "Youth and Adult Sports Programs"
+          },
+          {
+            "open": true,
+            "start_timestamp": "2024-05-03 18:45",
+            "end_timestamp": "2024-05-03 23:59"
+          },
+          {
+            "open": true,
+            "start_timestamp": "2024-05-04 00:00",
+            "end_timestamp": "2024-05-04 06:59"
+          },
+          {
+            "open": false,
+            "start_timestamp": "2024-05-04 07:00",
+            "end_timestamp": "2024-05-04 18:44",
+            "comment": "Youth and Adult Sports Programs"
+          },
+          {
+            "open": true,
+            "start_timestamp": "2024-05-04 18:45",
+            "end_timestamp": "2024-05-04 23:59"
+          },
+          {
+            "open": true,
+            "start_timestamp": "2024-05-05 00:00",
+            "end_timestamp": "2024-05-05 06:59"
+          },
+          {
+            "open": false,
+            "start_timestamp": "2024-05-05 07:00",
+            "end_timestamp": "2024-05-05 18:44",
+            "comment": "Youth and Adult Sports Programs"
+          },
+          {
+            "open": true,
+            "start_timestamp": "2024-05-05 18:45",
+            "end_timestamp": "2024-05-05 23:59"
+          },
+          {
+            "start_timestamp": "2024-05-06 00:00",
+            "end_timestamp": "2024-05-06 23:59",
+            "open": true
+          },
+          {
+            "open": true,
+            "start_timestamp": "2024-05-07 00:00",
+            "end_timestamp": "2024-05-07 13:59"
+          },
+          {
+            "open": false,
+            "start_timestamp": "2024-05-07 14:00",
+            "end_timestamp": "2024-05-07 20:44",
+            "comment": "Youth and Adult Sports Programs"
+          },
+          {
+            "open": true,
+            "start_timestamp": "2024-05-07 20:45",
+            "end_timestamp": "2024-05-07 23:59"
+          },
+          {
+            "open": true,
+            "start_timestamp": "2024-05-08 00:00",
+            "end_timestamp": "2024-05-08 13:59"
+          },
+          {
+            "open": false,
+            "start_timestamp": "2024-05-08 14:00",
+            "end_timestamp": "2024-05-08 18:44",
+            "comment": "Youth and Adult Sports Programs"
+          },
+          {
+            "open": true,
+            "start_timestamp": "2024-05-08 18:45",
+            "end_timestamp": "2024-05-08 23:59"
+          },
+          {
+            "open": true,
+            "start_timestamp": "2024-05-09 00:00",
+            "end_timestamp": "2024-05-09 13:59"
+          },
+          {
+            "open": false,
+            "start_timestamp": "2024-05-09 14:00",
+            "end_timestamp": "2024-05-09 20:44",
+            "comment": "Youth and Adult Sports Programs"
+          },
+          {
+            "open": true,
+            "start_timestamp": "2024-05-09 20:45",
+            "end_timestamp": "2024-05-09 23:59"
+          },
+          {
+            "open": true,
+            "start_timestamp": "2024-05-10 00:00",
+            "end_timestamp": "2024-05-10 13:59"
+          },
+          {
+            "open": false,
+            "start_timestamp": "2024-05-10 14:00",
+            "end_timestamp": "2024-05-10 18:44",
+            "comment": "Youth and Adult Sports Programs"
+          },
+          {
+            "open": true,
+            "start_timestamp": "2024-05-10 18:45",
+            "end_timestamp": "2024-05-10 23:59"
+          },
+          {
+            "open": true,
+            "start_timestamp": "2024-05-11 00:00",
+            "end_timestamp": "2024-05-11 06:59"
+          },
+          {
+            "open": false,
+            "start_timestamp": "2024-05-11 07:00",
+            "end_timestamp": "2024-05-11 18:44",
+            "comment": "Youth and Adult Sports Programs"
+          },
+          {
+            "open": true,
+            "start_timestamp": "2024-05-11 18:45",
+            "end_timestamp": "2024-05-11 23:59"
+          },
+          {
+            "open": true,
+            "start_timestamp": "2024-05-12 00:00",
+            "end_timestamp": "2024-05-12 06:59"
+          },
+          {
+            "open": false,
+            "start_timestamp": "2024-05-12 07:00",
+            "end_timestamp": "2024-05-12 18:44",
+            "comment": "Youth and Adult Sports Programs"
+          },
+          {
+            "open": true,
+            "start_timestamp": "2024-05-12 18:45",
+            "end_timestamp": "2024-05-12 23:59"
+          },
+          {
+            "start_timestamp": "2024-05-13 00:00",
+            "end_timestamp": "2024-05-13 23:59",
+            "open": true
+          },
+          {
+            "open": true,
+            "start_timestamp": "2024-05-14 00:00",
+            "end_timestamp": "2024-05-14 13:59"
+          },
+          {
+            "open": false,
+            "start_timestamp": "2024-05-14 14:00",
+            "end_timestamp": "2024-05-14 20:44",
+            "comment": "Youth and Adult Sports Programs"
+          },
+          {
+            "open": true,
+            "start_timestamp": "2024-05-14 20:45",
+            "end_timestamp": "2024-05-14 23:59"
+          },
+          {
+            "open": true,
+            "start_timestamp": "2024-05-15 00:00",
+            "end_timestamp": "2024-05-15 13:59"
+          },
+          {
+            "open": false,
+            "start_timestamp": "2024-05-15 14:00",
+            "end_timestamp": "2024-05-15 18:44",
+            "comment": "Youth and Adult Sports Programs"
+          },
+          {
+            "open": true,
+            "start_timestamp": "2024-05-15 18:45",
+            "end_timestamp": "2024-05-15 23:59"
+          },
+          {
+            "open": true,
+            "start_timestamp": "2024-05-16 00:00",
+            "end_timestamp": "2024-05-16 13:59"
+          },
+          {
+            "open": false,
+            "start_timestamp": "2024-05-16 14:00",
+            "end_timestamp": "2024-05-16 20:44",
+            "comment": "Youth and Adult Sports Programs"
+          },
+          {
+            "open": true,
+            "start_timestamp": "2024-05-16 20:45",
+            "end_timestamp": "2024-05-16 23:59"
+          },
+          {
+            "open": true,
+            "start_timestamp": "2024-05-17 00:00",
+            "end_timestamp": "2024-05-17 13:59"
+          },
+          {
+            "open": false,
+            "start_timestamp": "2024-05-17 14:00",
+            "end_timestamp": "2024-05-17 18:44",
+            "comment": "Youth and Adult Sports Programs"
+          },
+          {
+            "open": true,
+            "start_timestamp": "2024-05-17 18:45",
+            "end_timestamp": "2024-05-17 23:59"
+          },
+          {
+            "open": true,
+            "start_timestamp": "2024-05-18 00:00",
+            "end_timestamp": "2024-05-18 06:59"
+          },
+          {
+            "open": false,
+            "start_timestamp": "2024-05-18 07:00",
+            "end_timestamp": "2024-05-18 18:44",
+            "comment": "Youth and Adult Sports Programs"
+          },
+          {
+            "open": true,
+            "start_timestamp": "2024-05-18 18:45",
+            "end_timestamp": "2024-05-18 23:59"
+          },
+          {
+            "open": true,
+            "start_timestamp": "2024-05-19 00:00",
+            "end_timestamp": "2024-05-19 06:59"
+          },
+          {
+            "open": false,
+            "start_timestamp": "2024-05-19 07:00",
+            "end_timestamp": "2024-05-19 18:44",
+            "comment": "Youth and Adult Sports Programs"
+          },
+          {
+            "open": true,
+            "start_timestamp": "2024-05-19 18:45",
+            "end_timestamp": "2024-05-19 23:59"
+          },
+          {
+            "start_timestamp": "2024-05-20 00:00",
+            "end_timestamp": "2024-05-20 23:59",
+            "open": true
+          },
+          {
+            "open": true,
+            "start_timestamp": "2024-05-21 00:00",
+            "end_timestamp": "2024-05-21 13:59"
+          },
+          {
+            "open": false,
+            "start_timestamp": "2024-05-21 14:00",
+            "end_timestamp": "2024-05-21 20:44",
+            "comment": "Youth and Adult Sports Programs"
+          },
+          {
+            "open": true,
+            "start_timestamp": "2024-05-21 20:45",
+            "end_timestamp": "2024-05-21 23:59"
+          },
+          {
+            "open": true,
+            "start_timestamp": "2024-05-22 00:00",
+            "end_timestamp": "2024-05-22 13:59"
+          },
+          {
+            "open": false,
+            "start_timestamp": "2024-05-22 14:00",
+            "end_timestamp": "2024-05-22 18:44",
+            "comment": "Youth and Adult Sports Programs"
+          },
+          {
+            "open": true,
+            "start_timestamp": "2024-05-22 18:45",
+            "end_timestamp": "2024-05-22 23:59"
+          },
+          {
+            "open": true,
+            "start_timestamp": "2024-05-23 00:00",
+            "end_timestamp": "2024-05-23 13:59"
+          },
+          {
+            "open": false,
+            "start_timestamp": "2024-05-23 14:00",
+            "end_timestamp": "2024-05-23 20:44",
+            "comment": "Youth and Adult Sports Programs"
+          },
+          {
+            "open": true,
+            "start_timestamp": "2024-05-23 20:45",
+            "end_timestamp": "2024-05-23 23:59"
+          },
+          {
+            "open": true,
+            "start_timestamp": "2024-05-24 00:00",
+            "end_timestamp": "2024-05-24 13:59"
+          },
+          {
+            "open": false,
+            "start_timestamp": "2024-05-24 14:00",
+            "end_timestamp": "2024-05-24 18:44",
+            "comment": "Youth and Adult Sports Programs"
+          },
+          {
+            "open": true,
+            "start_timestamp": "2024-05-24 18:45",
+            "end_timestamp": "2024-05-24 23:59"
+          },
+          {
+            "open": true,
+            "start_timestamp": "2024-05-25 00:00",
+            "end_timestamp": "2024-05-25 06:59"
+          },
+          {
+            "open": false,
+            "start_timestamp": "2024-05-25 07:00",
+            "end_timestamp": "2024-05-25 18:44",
+            "comment": "Youth and Adult Sports Programs"
+          },
+          {
+            "open": true,
+            "start_timestamp": "2024-05-25 18:45",
+            "end_timestamp": "2024-05-25 23:59"
+          },
+          {
+            "open": true,
+            "start_timestamp": "2024-05-26 00:00",
+            "end_timestamp": "2024-05-26 06:59"
+          },
+          {
+            "open": false,
+            "start_timestamp": "2024-05-26 07:00",
+            "end_timestamp": "2024-05-26 18:44",
+            "comment": "Youth and Adult Sports Programs"
+          },
+          {
+            "open": true,
+            "start_timestamp": "2024-05-26 18:45",
+            "end_timestamp": "2024-05-26 23:59"
+          }
+        ]
+      },
+      {
+        "type": "known_rules",
+        "text": "Monday, May 27 through Friday, June 7",
+        "start_date": "2024-05-27",
+        "end_date": "2024-06-07",
+        "rules": [
+          "The Cycle Track will remain open - Polo Fields Closed"
+        ],
+        "intervals": [
+          {
+            "start_timestamp": "2024-05-27 00:00",
+            "end_timestamp": "2024-06-07 23:59",
+            "open": true
+          }
+        ]
+      },
+      {
+        "type": "known_rules",
+        "text": "Saturday, June 8 through Sunday, June 9",
+        "start_date": "2024-06-08",
+        "end_date": "2024-06-09",
+        "rules": [
+          "The Cycle Track will be open after 7 p.m."
+        ],
+        "intervals": [
+          {
+            "open": false,
+            "start_timestamp": "2024-06-08 00:00",
+            "end_timestamp": "2024-06-08 18:59"
+          },
+          {
+            "open": true,
+            "start_timestamp": "2024-06-08 19:00",
+            "end_timestamp": "2024-06-08 23:59"
+          },
+          {
+            "open": false,
+            "start_timestamp": "2024-06-09 00:00",
+            "end_timestamp": "2024-06-09 18:59"
+          },
+          {
+            "open": true,
+            "start_timestamp": "2024-06-09 19:00",
+            "end_timestamp": "2024-06-09 23:59"
+          }
+        ]
+      },
+      {
+        "type": "unknown_rules",
+        "text": "Monday, June 10 through Sunday, July 28",
+        "start_date": "2024-06-10",
+        "end_date": "2024-07-28",
+        "rules": [
+          "Summer Camps, Youth and Adult Sports Programs will take place on the field. The schedule is forthcoming."
+        ]
+      },
+      {
+        "type": "known_rules",
+        "text": "Monday, July 29 through Friday, August 23",
+        "start_date": "2024-07-29",
+        "end_date": "2024-08-23",
+        "rules": [
+          "The Cycle Track will be closed for Outside Lands Load in, Event and Load Out and Polo Fields Concert Event and Load Out"
+        ],
+        "intervals": [
+          {
+            "start_timestamp": "2024-07-29 00:00",
+            "end_timestamp": "2024-08-23 23:59",
+            "open": false,
+            "comment": "Outside Lands"
+          }
+        ]
+      },
+      {
+        "type": "known_rules",
+        "text": "Saturday, August 24 through Monday, September 2",
+        "start_date": "2024-08-24",
+        "end_date": "2024-09-02",
+        "rules": [
+          "The Cycle Track will remain open - Polo Fields Closed"
+        ],
+        "intervals": [
+          {
+            "start_timestamp": "2024-08-24 00:00",
+            "end_timestamp": "2024-09-02 23:59",
+            "open": true
+          }
+        ]
+      },
+      {
+        "type": "known_rules",
+        "text": "Tuesday, September 3 through Wednesday, November 27",
+        "start_date": "2024-09-03",
+        "end_date": "2024-11-27",
+        "rules": [
+          "Fall Youth and Adult Sports Programs Begin. The Cycle Track Will be Open:",
+          "Mondays all day",
+          "Tuesdays, Wednesdays, Thursdays and Fridays before 2 p.m. and after 6:45 p.m.",
+          "EXCEPT:",
+          "Friday, September 13 when track is closed from 7:30 a.m. to 12:30 p.m. for Sacred Heart Walkathon",
+          "Friday, October 4 when track is closed all day for Hardly Strictly Bluegrass",
+          "Wednesday, November 20 when track is closed from noon to 6 p.m. for SFUSD Cross Country Finals",
+          "Saturdays and Sundays before 7 a.m. and after 6:15 p.m. EXCEPT:",
+          "Saturday, October 5 and Sunday, October 6 when track is closed all day for Hardly Strictly Bluegrass"
+        ],
+        "intervals": [
+          {
+            "open": true,
+            "start_timestamp": "2024-09-03 00:00",
+            "end_timestamp": "2024-09-03 13:59"
+          },
+          {
+            "open": false,
+            "start_timestamp": "2024-09-03 14:00",
+            "end_timestamp": "2024-09-03 18:44",
+            "comment": "Youth and Adult Sports Programs"
+          },
+          {
+            "open": true,
+            "start_timestamp": "2024-09-03 18:45",
+            "end_timestamp": "2024-09-03 23:59"
+          },
+          {
+            "open": true,
+            "start_timestamp": "2024-09-04 00:00",
+            "end_timestamp": "2024-09-04 13:59"
+          },
+          {
+            "open": false,
+            "start_timestamp": "2024-09-04 14:00",
+            "end_timestamp": "2024-09-04 18:44",
+            "comment": "Youth and Adult Sports Programs"
+          },
+          {
+            "open": true,
+            "start_timestamp": "2024-09-04 18:45",
+            "end_timestamp": "2024-09-04 23:59"
+          },
+          {
+            "open": true,
+            "start_timestamp": "2024-09-05 00:00",
+            "end_timestamp": "2024-09-05 13:59"
+          },
+          {
+            "open": false,
+            "start_timestamp": "2024-09-05 14:00",
+            "end_timestamp": "2024-09-05 18:44",
+            "comment": "Youth and Adult Sports Programs"
+          },
+          {
+            "open": true,
+            "start_timestamp": "2024-09-05 18:45",
+            "end_timestamp": "2024-09-05 23:59"
+          },
+          {
+            "open": true,
+            "start_timestamp": "2024-09-06 00:00",
+            "end_timestamp": "2024-09-06 13:59"
+          },
+          {
+            "open": false,
+            "start_timestamp": "2024-09-06 14:00",
+            "end_timestamp": "2024-09-06 18:44",
+            "comment": "Youth and Adult Sports Programs"
+          },
+          {
+            "open": true,
+            "start_timestamp": "2024-09-06 18:45",
+            "end_timestamp": "2024-09-06 23:59"
+          },
+          {
+            "open": true,
+            "start_timestamp": "2024-09-07 00:00",
+            "end_timestamp": "2024-09-07 06:59"
+          },
+          {
+            "open": false,
+            "start_timestamp": "2024-09-07 07:00",
+            "end_timestamp": "2024-09-07 18:14",
+            "comment": "Youth and Adult Sports Programs"
+          },
+          {
+            "open": true,
+            "start_timestamp": "2024-09-07 18:15",
+            "end_timestamp": "2024-09-07 23:59"
+          },
+          {
+            "open": true,
+            "start_timestamp": "2024-09-08 00:00",
+            "end_timestamp": "2024-09-08 06:59"
+          },
+          {
+            "open": false,
+            "start_timestamp": "2024-09-08 07:00",
+            "end_timestamp": "2024-09-08 18:14",
+            "comment": "Youth and Adult Sports Programs"
+          },
+          {
+            "open": true,
+            "start_timestamp": "2024-09-08 18:15",
+            "end_timestamp": "2024-09-08 23:59"
+          },
+          {
+            "open": true,
+            "start_timestamp": "2024-09-09 00:00",
+            "end_timestamp": "2024-09-09 23:59"
+          },
+          {
+            "open": true,
+            "start_timestamp": "2024-09-10 00:00",
+            "end_timestamp": "2024-09-10 13:59"
+          },
+          {
+            "open": false,
+            "start_timestamp": "2024-09-10 14:00",
+            "end_timestamp": "2024-09-10 18:44",
+            "comment": "Youth and Adult Sports Programs"
+          },
+          {
+            "open": true,
+            "start_timestamp": "2024-09-10 18:45",
+            "end_timestamp": "2024-09-10 23:59"
+          },
+          {
+            "open": true,
+            "start_timestamp": "2024-09-11 00:00",
+            "end_timestamp": "2024-09-11 13:59"
+          },
+          {
+            "open": false,
+            "start_timestamp": "2024-09-11 14:00",
+            "end_timestamp": "2024-09-11 18:44",
+            "comment": "Youth and Adult Sports Programs"
+          },
+          {
+            "open": true,
+            "start_timestamp": "2024-09-11 18:45",
+            "end_timestamp": "2024-09-11 23:59"
+          },
+          {
+            "open": true,
+            "start_timestamp": "2024-09-12 00:00",
+            "end_timestamp": "2024-09-12 13:59"
+          },
+          {
+            "open": false,
+            "start_timestamp": "2024-09-12 14:00",
+            "end_timestamp": "2024-09-12 18:44",
+            "comment": "Youth and Adult Sports Programs"
+          },
+          {
+            "open": true,
+            "start_timestamp": "2024-09-12 18:45",
+            "end_timestamp": "2024-09-12 23:59"
+          },
+          {
+            "open": true,
+            "start_timestamp": "2024-09-13 00:00",
+            "end_timestamp": "2024-09-13 07:29"
+          },
+          {
+            "open": false,
+            "start_timestamp": "2024-09-13 07:30",
+            "end_timestamp": "2024-09-13 12:29",
+            "comment": "Sacred Heart Walkathon"
+          },
+          {
+            "open": true,
+            "start_timestamp": "2024-09-13 12:30",
+            "end_timestamp": "2024-09-13 23:59"
+          },
+          {
+            "open": true,
+            "start_timestamp": "2024-09-14 00:00",
+            "end_timestamp": "2024-09-14 06:59"
+          },
+          {
+            "open": false,
+            "start_timestamp": "2024-09-14 07:00",
+            "end_timestamp": "2024-09-14 18:14",
+            "comment": "Youth and Adult Sports Programs"
+          },
+          {
+            "open": true,
+            "start_timestamp": "2024-09-14 18:15",
+            "end_timestamp": "2024-09-14 23:59"
+          },
+          {
+            "open": true,
+            "start_timestamp": "2024-09-15 00:00",
+            "end_timestamp": "2024-09-15 06:59"
+          },
+          {
+            "open": false,
+            "start_timestamp": "2024-09-15 07:00",
+            "end_timestamp": "2024-09-15 18:14",
+            "comment": "Youth and Adult Sports Programs"
+          },
+          {
+            "open": true,
+            "start_timestamp": "2024-09-15 18:15",
+            "end_timestamp": "2024-09-15 23:59"
+          },
+          {
+            "open": true,
+            "start_timestamp": "2024-09-16 00:00",
+            "end_timestamp": "2024-09-16 23:59"
+          },
+          {
+            "open": true,
+            "start_timestamp": "2024-09-17 00:00",
+            "end_timestamp": "2024-09-17 13:59"
+          },
+          {
+            "open": false,
+            "start_timestamp": "2024-09-17 14:00",
+            "end_timestamp": "2024-09-17 18:44",
+            "comment": "Youth and Adult Sports Programs"
+          },
+          {
+            "open": true,
+            "start_timestamp": "2024-09-17 18:45",
+            "end_timestamp": "2024-09-17 23:59"
+          },
+          {
+            "open": true,
+            "start_timestamp": "2024-09-18 00:00",
+            "end_timestamp": "2024-09-18 13:59"
+          },
+          {
+            "open": false,
+            "start_timestamp": "2024-09-18 14:00",
+            "end_timestamp": "2024-09-18 18:44",
+            "comment": "Youth and Adult Sports Programs"
+          },
+          {
+            "open": true,
+            "start_timestamp": "2024-09-18 18:45",
+            "end_timestamp": "2024-09-18 23:59"
+          },
+          {
+            "open": true,
+            "start_timestamp": "2024-09-19 00:00",
+            "end_timestamp": "2024-09-19 13:59"
+          },
+          {
+            "open": false,
+            "start_timestamp": "2024-09-19 14:00",
+            "end_timestamp": "2024-09-19 18:44",
+            "comment": "Youth and Adult Sports Programs"
+          },
+          {
+            "open": true,
+            "start_timestamp": "2024-09-19 18:45",
+            "end_timestamp": "2024-09-19 23:59"
+          },
+          {
+            "open": true,
+            "start_timestamp": "2024-09-20 00:00",
+            "end_timestamp": "2024-09-20 13:59"
+          },
+          {
+            "open": false,
+            "start_timestamp": "2024-09-20 14:00",
+            "end_timestamp": "2024-09-20 18:44",
+            "comment": "Youth and Adult Sports Programs"
+          },
+          {
+            "open": true,
+            "start_timestamp": "2024-09-20 18:45",
+            "end_timestamp": "2024-09-20 23:59"
+          },
+          {
+            "open": true,
+            "start_timestamp": "2024-09-21 00:00",
+            "end_timestamp": "2024-09-21 06:59"
+          },
+          {
+            "open": false,
+            "start_timestamp": "2024-09-21 07:00",
+            "end_timestamp": "2024-09-21 18:14",
+            "comment": "Youth and Adult Sports Programs"
+          },
+          {
+            "open": true,
+            "start_timestamp": "2024-09-21 18:15",
+            "end_timestamp": "2024-09-21 23:59"
+          },
+          {
+            "open": true,
+            "start_timestamp": "2024-09-22 00:00",
+            "end_timestamp": "2024-09-22 06:59"
+          },
+          {
+            "open": false,
+            "start_timestamp": "2024-09-22 07:00",
+            "end_timestamp": "2024-09-22 18:14",
+            "comment": "Youth and Adult Sports Programs"
+          },
+          {
+            "open": true,
+            "start_timestamp": "2024-09-22 18:15",
+            "end_timestamp": "2024-09-22 23:59"
+          },
+          {
+            "open": true,
+            "start_timestamp": "2024-09-23 00:00",
+            "end_timestamp": "2024-09-23 23:59"
+          },
+          {
+            "open": true,
+            "start_timestamp": "2024-09-24 00:00",
+            "end_timestamp": "2024-09-24 13:59"
+          },
+          {
+            "open": false,
+            "start_timestamp": "2024-09-24 14:00",
+            "end_timestamp": "2024-09-24 18:44",
+            "comment": "Youth and Adult Sports Programs"
+          },
+          {
+            "open": true,
+            "start_timestamp": "2024-09-24 18:45",
+            "end_timestamp": "2024-09-24 23:59"
+          },
+          {
+            "open": true,
+            "start_timestamp": "2024-09-25 00:00",
+            "end_timestamp": "2024-09-25 13:59"
+          },
+          {
+            "open": false,
+            "start_timestamp": "2024-09-25 14:00",
+            "end_timestamp": "2024-09-25 18:44",
+            "comment": "Youth and Adult Sports Programs"
+          },
+          {
+            "open": true,
+            "start_timestamp": "2024-09-25 18:45",
+            "end_timestamp": "2024-09-25 23:59"
+          },
+          {
+            "open": true,
+            "start_timestamp": "2024-09-26 00:00",
+            "end_timestamp": "2024-09-26 13:59"
+          },
+          {
+            "open": false,
+            "start_timestamp": "2024-09-26 14:00",
+            "end_timestamp": "2024-09-26 18:44",
+            "comment": "Youth and Adult Sports Programs"
+          },
+          {
+            "open": true,
+            "start_timestamp": "2024-09-26 18:45",
+            "end_timestamp": "2024-09-26 23:59"
+          },
+          {
+            "open": true,
+            "start_timestamp": "2024-09-27 00:00",
+            "end_timestamp": "2024-09-27 13:59"
+          },
+          {
+            "open": false,
+            "start_timestamp": "2024-09-27 14:00",
+            "end_timestamp": "2024-09-27 18:44",
+            "comment": "Youth and Adult Sports Programs"
+          },
+          {
+            "open": true,
+            "start_timestamp": "2024-09-27 18:45",
+            "end_timestamp": "2024-09-27 23:59"
+          },
+          {
+            "open": true,
+            "start_timestamp": "2024-09-28 00:00",
+            "end_timestamp": "2024-09-28 06:59"
+          },
+          {
+            "open": false,
+            "start_timestamp": "2024-09-28 07:00",
+            "end_timestamp": "2024-09-28 18:14",
+            "comment": "Youth and Adult Sports Programs"
+          },
+          {
+            "open": true,
+            "start_timestamp": "2024-09-28 18:15",
+            "end_timestamp": "2024-09-28 23:59"
+          },
+          {
+            "open": true,
+            "start_timestamp": "2024-09-29 00:00",
+            "end_timestamp": "2024-09-29 06:59"
+          },
+          {
+            "open": false,
+            "start_timestamp": "2024-09-29 07:00",
+            "end_timestamp": "2024-09-29 18:14",
+            "comment": "Youth and Adult Sports Programs"
+          },
+          {
+            "open": true,
+            "start_timestamp": "2024-09-29 18:15",
+            "end_timestamp": "2024-09-29 23:59"
+          },
+          {
+            "open": true,
+            "start_timestamp": "2024-09-30 00:00",
+            "end_timestamp": "2024-09-30 23:59"
+          },
+          {
+            "open": true,
+            "start_timestamp": "2024-10-01 00:00",
+            "end_timestamp": "2024-10-01 13:59"
+          },
+          {
+            "open": false,
+            "start_timestamp": "2024-10-01 14:00",
+            "end_timestamp": "2024-10-01 18:44",
+            "comment": "Youth and Adult Sports Programs"
+          },
+          {
+            "open": true,
+            "start_timestamp": "2024-10-01 18:45",
+            "end_timestamp": "2024-10-01 23:59"
+          },
+          {
+            "open": true,
+            "start_timestamp": "2024-10-02 00:00",
+            "end_timestamp": "2024-10-02 13:59"
+          },
+          {
+            "open": false,
+            "start_timestamp": "2024-10-02 14:00",
+            "end_timestamp": "2024-10-02 18:44",
+            "comment": "Youth and Adult Sports Programs"
+          },
+          {
+            "open": true,
+            "start_timestamp": "2024-10-02 18:45",
+            "end_timestamp": "2024-10-02 23:59"
+          },
+          {
+            "open": true,
+            "start_timestamp": "2024-10-03 00:00",
+            "end_timestamp": "2024-10-03 13:59"
+          },
+          {
+            "open": false,
+            "start_timestamp": "2024-10-03 14:00",
+            "end_timestamp": "2024-10-03 18:44",
+            "comment": "Youth and Adult Sports Programs"
+          },
+          {
+            "open": true,
+            "start_timestamp": "2024-10-03 18:45",
+            "end_timestamp": "2024-10-03 23:59"
+          },
+          {
+            "open": false,
+            "start_timestamp": "2024-10-04 00:00",
+            "end_timestamp": "2024-10-04 23:59",
+            "comment": "Hardly Strictly Bluegrass"
+          },
+          {
+            "open": false,
+            "start_timestamp": "2024-10-05 00:00",
+            "end_timestamp": "2024-10-05 23:59",
+            "comment": "Hardly Strictly Bluegrass"
+          },
+          {
+            "open": false,
+            "start_timestamp": "2024-10-06 00:00",
+            "end_timestamp": "2024-10-06 23:59",
+            "comment": "Hardly Strictly Bluegrass"
+          },
+          {
+            "open": true,
+            "start_timestamp": "2024-10-07 00:00",
+            "end_timestamp": "2024-10-07 23:59"
+          },
+          {
+            "open": true,
+            "start_timestamp": "2024-10-08 00:00",
+            "end_timestamp": "2024-10-08 13:59"
+          },
+          {
+            "open": false,
+            "start_timestamp": "2024-10-08 14:00",
+            "end_timestamp": "2024-10-08 18:44",
+            "comment": "Youth and Adult Sports Programs"
+          },
+          {
+            "open": true,
+            "start_timestamp": "2024-10-08 18:45",
+            "end_timestamp": "2024-10-08 23:59"
+          },
+          {
+            "open": true,
+            "start_timestamp": "2024-10-09 00:00",
+            "end_timestamp": "2024-10-09 13:59"
+          },
+          {
+            "open": false,
+            "start_timestamp": "2024-10-09 14:00",
+            "end_timestamp": "2024-10-09 18:44",
+            "comment": "Youth and Adult Sports Programs"
+          },
+          {
+            "open": true,
+            "start_timestamp": "2024-10-09 18:45",
+            "end_timestamp": "2024-10-09 23:59"
+          },
+          {
+            "open": true,
+            "start_timestamp": "2024-10-10 00:00",
+            "end_timestamp": "2024-10-10 13:59"
+          },
+          {
+            "open": false,
+            "start_timestamp": "2024-10-10 14:00",
+            "end_timestamp": "2024-10-10 18:44",
+            "comment": "Youth and Adult Sports Programs"
+          },
+          {
+            "open": true,
+            "start_timestamp": "2024-10-10 18:45",
+            "end_timestamp": "2024-10-10 23:59"
+          },
+          {
+            "open": true,
+            "start_timestamp": "2024-10-11 00:00",
+            "end_timestamp": "2024-10-11 13:59"
+          },
+          {
+            "open": false,
+            "start_timestamp": "2024-10-11 14:00",
+            "end_timestamp": "2024-10-11 18:44",
+            "comment": "Youth and Adult Sports Programs"
+          },
+          {
+            "open": true,
+            "start_timestamp": "2024-10-11 18:45",
+            "end_timestamp": "2024-10-11 23:59"
+          },
+          {
+            "open": true,
+            "start_timestamp": "2024-10-12 00:00",
+            "end_timestamp": "2024-10-12 06:59"
+          },
+          {
+            "open": false,
+            "start_timestamp": "2024-10-12 07:00",
+            "end_timestamp": "2024-10-12 18:14",
+            "comment": "Youth and Adult Sports Programs"
+          },
+          {
+            "open": true,
+            "start_timestamp": "2024-10-12 18:15",
+            "end_timestamp": "2024-10-12 23:59"
+          },
+          {
+            "open": true,
+            "start_timestamp": "2024-10-13 00:00",
+            "end_timestamp": "2024-10-13 06:59"
+          },
+          {
+            "open": false,
+            "start_timestamp": "2024-10-13 07:00",
+            "end_timestamp": "2024-10-13 18:14",
+            "comment": "Youth and Adult Sports Programs"
+          },
+          {
+            "open": true,
+            "start_timestamp": "2024-10-13 18:15",
+            "end_timestamp": "2024-10-13 23:59"
+          },
+          {
+            "open": true,
+            "start_timestamp": "2024-10-14 00:00",
+            "end_timestamp": "2024-10-14 23:59"
+          },
+          {
+            "open": true,
+            "start_timestamp": "2024-10-15 00:00",
+            "end_timestamp": "2024-10-15 13:59"
+          },
+          {
+            "open": false,
+            "start_timestamp": "2024-10-15 14:00",
+            "end_timestamp": "2024-10-15 18:44",
+            "comment": "Youth and Adult Sports Programs"
+          },
+          {
+            "open": true,
+            "start_timestamp": "2024-10-15 18:45",
+            "end_timestamp": "2024-10-15 23:59"
+          },
+          {
+            "open": true,
+            "start_timestamp": "2024-10-16 00:00",
+            "end_timestamp": "2024-10-16 13:59"
+          },
+          {
+            "open": false,
+            "start_timestamp": "2024-10-16 14:00",
+            "end_timestamp": "2024-10-16 18:44",
+            "comment": "Youth and Adult Sports Programs"
+          },
+          {
+            "open": true,
+            "start_timestamp": "2024-10-16 18:45",
+            "end_timestamp": "2024-10-16 23:59"
+          },
+          {
+            "open": true,
+            "start_timestamp": "2024-10-17 00:00",
+            "end_timestamp": "2024-10-17 13:59"
+          },
+          {
+            "open": false,
+            "start_timestamp": "2024-10-17 14:00",
+            "end_timestamp": "2024-10-17 18:44",
+            "comment": "Youth and Adult Sports Programs"
+          },
+          {
+            "open": true,
+            "start_timestamp": "2024-10-17 18:45",
+            "end_timestamp": "2024-10-17 23:59"
+          },
+          {
+            "open": true,
+            "start_timestamp": "2024-10-18 00:00",
+            "end_timestamp": "2024-10-18 13:59"
+          },
+          {
+            "open": false,
+            "start_timestamp": "2024-10-18 14:00",
+            "end_timestamp": "2024-10-18 18:44",
+            "comment": "Youth and Adult Sports Programs"
+          },
+          {
+            "open": true,
+            "start_timestamp": "2024-10-18 18:45",
+            "end_timestamp": "2024-10-18 23:59"
+          },
+          {
+            "open": true,
+            "start_timestamp": "2024-10-19 00:00",
+            "end_timestamp": "2024-10-19 06:59"
+          },
+          {
+            "open": false,
+            "start_timestamp": "2024-10-19 07:00",
+            "end_timestamp": "2024-10-19 18:14",
+            "comment": "Youth and Adult Sports Programs"
+          },
+          {
+            "open": true,
+            "start_timestamp": "2024-10-19 18:15",
+            "end_timestamp": "2024-10-19 23:59"
+          },
+          {
+            "open": true,
+            "start_timestamp": "2024-10-20 00:00",
+            "end_timestamp": "2024-10-20 06:59"
+          },
+          {
+            "open": false,
+            "start_timestamp": "2024-10-20 07:00",
+            "end_timestamp": "2024-10-20 18:14",
+            "comment": "Youth and Adult Sports Programs"
+          },
+          {
+            "open": true,
+            "start_timestamp": "2024-10-20 18:15",
+            "end_timestamp": "2024-10-20 23:59"
+          },
+          {
+            "open": true,
+            "start_timestamp": "2024-10-21 00:00",
+            "end_timestamp": "2024-10-21 23:59"
+          },
+          {
+            "open": true,
+            "start_timestamp": "2024-10-22 00:00",
+            "end_timestamp": "2024-10-22 13:59"
+          },
+          {
+            "open": false,
+            "start_timestamp": "2024-10-22 14:00",
+            "end_timestamp": "2024-10-22 18:44",
+            "comment": "Youth and Adult Sports Programs"
+          },
+          {
+            "open": true,
+            "start_timestamp": "2024-10-22 18:45",
+            "end_timestamp": "2024-10-22 23:59"
+          },
+          {
+            "open": true,
+            "start_timestamp": "2024-10-23 00:00",
+            "end_timestamp": "2024-10-23 13:59"
+          },
+          {
+            "open": false,
+            "start_timestamp": "2024-10-23 14:00",
+            "end_timestamp": "2024-10-23 18:44",
+            "comment": "Youth and Adult Sports Programs"
+          },
+          {
+            "open": true,
+            "start_timestamp": "2024-10-23 18:45",
+            "end_timestamp": "2024-10-23 23:59"
+          },
+          {
+            "open": true,
+            "start_timestamp": "2024-10-24 00:00",
+            "end_timestamp": "2024-10-24 13:59"
+          },
+          {
+            "open": false,
+            "start_timestamp": "2024-10-24 14:00",
+            "end_timestamp": "2024-10-24 18:44",
+            "comment": "Youth and Adult Sports Programs"
+          },
+          {
+            "open": true,
+            "start_timestamp": "2024-10-24 18:45",
+            "end_timestamp": "2024-10-24 23:59"
+          },
+          {
+            "open": true,
+            "start_timestamp": "2024-10-25 00:00",
+            "end_timestamp": "2024-10-25 13:59"
+          },
+          {
+            "open": false,
+            "start_timestamp": "2024-10-25 14:00",
+            "end_timestamp": "2024-10-25 18:44",
+            "comment": "Youth and Adult Sports Programs"
+          },
+          {
+            "open": true,
+            "start_timestamp": "2024-10-25 18:45",
+            "end_timestamp": "2024-10-25 23:59"
+          },
+          {
+            "open": true,
+            "start_timestamp": "2024-10-26 00:00",
+            "end_timestamp": "2024-10-26 06:59"
+          },
+          {
+            "open": false,
+            "start_timestamp": "2024-10-26 07:00",
+            "end_timestamp": "2024-10-26 18:14",
+            "comment": "Youth and Adult Sports Programs"
+          },
+          {
+            "open": true,
+            "start_timestamp": "2024-10-26 18:15",
+            "end_timestamp": "2024-10-26 23:59"
+          },
+          {
+            "open": true,
+            "start_timestamp": "2024-10-27 00:00",
+            "end_timestamp": "2024-10-27 06:59"
+          },
+          {
+            "open": false,
+            "start_timestamp": "2024-10-27 07:00",
+            "end_timestamp": "2024-10-27 18:14",
+            "comment": "Youth and Adult Sports Programs"
+          },
+          {
+            "open": true,
+            "start_timestamp": "2024-10-27 18:15",
+            "end_timestamp": "2024-10-27 23:59"
+          },
+          {
+            "open": true,
+            "start_timestamp": "2024-10-28 00:00",
+            "end_timestamp": "2024-10-28 23:59"
+          },
+          {
+            "open": true,
+            "start_timestamp": "2024-10-29 00:00",
+            "end_timestamp": "2024-10-29 13:59"
+          },
+          {
+            "open": false,
+            "start_timestamp": "2024-10-29 14:00",
+            "end_timestamp": "2024-10-29 18:44",
+            "comment": "Youth and Adult Sports Programs"
+          },
+          {
+            "open": true,
+            "start_timestamp": "2024-10-29 18:45",
+            "end_timestamp": "2024-10-29 23:59"
+          },
+          {
+            "open": true,
+            "start_timestamp": "2024-10-30 00:00",
+            "end_timestamp": "2024-10-30 13:59"
+          },
+          {
+            "open": false,
+            "start_timestamp": "2024-10-30 14:00",
+            "end_timestamp": "2024-10-30 18:44",
+            "comment": "Youth and Adult Sports Programs"
+          },
+          {
+            "open": true,
+            "start_timestamp": "2024-10-30 18:45",
+            "end_timestamp": "2024-10-30 23:59"
+          },
+          {
+            "open": true,
+            "start_timestamp": "2024-10-31 00:00",
+            "end_timestamp": "2024-10-31 13:59"
+          },
+          {
+            "open": false,
+            "start_timestamp": "2024-10-31 14:00",
+            "end_timestamp": "2024-10-31 18:44",
+            "comment": "Youth and Adult Sports Programs"
+          },
+          {
+            "open": true,
+            "start_timestamp": "2024-10-31 18:45",
+            "end_timestamp": "2024-10-31 23:59"
+          },
+          {
+            "open": true,
+            "start_timestamp": "2024-11-01 00:00",
+            "end_timestamp": "2024-11-01 13:59"
+          },
+          {
+            "open": false,
+            "start_timestamp": "2024-11-01 14:00",
+            "end_timestamp": "2024-11-01 18:44",
+            "comment": "Youth and Adult Sports Programs"
+          },
+          {
+            "open": true,
+            "start_timestamp": "2024-11-01 18:45",
+            "end_timestamp": "2024-11-01 23:59"
+          },
+          {
+            "open": true,
+            "start_timestamp": "2024-11-02 00:00",
+            "end_timestamp": "2024-11-02 06:59"
+          },
+          {
+            "open": false,
+            "start_timestamp": "2024-11-02 07:00",
+            "end_timestamp": "2024-11-02 18:14",
+            "comment": "Youth and Adult Sports Programs"
+          },
+          {
+            "open": true,
+            "start_timestamp": "2024-11-02 18:15",
+            "end_timestamp": "2024-11-02 23:59"
+          },
+          {
+            "open": true,
+            "start_timestamp": "2024-11-03 00:00",
+            "end_timestamp": "2024-11-03 06:59"
+          },
+          {
+            "open": false,
+            "start_timestamp": "2024-11-03 07:00",
+            "end_timestamp": "2024-11-03 18:14",
+            "comment": "Youth and Adult Sports Programs"
+          },
+          {
+            "open": true,
+            "start_timestamp": "2024-11-03 18:15",
+            "end_timestamp": "2024-11-03 23:59"
+          },
+          {
+            "open": true,
+            "start_timestamp": "2024-11-04 00:00",
+            "end_timestamp": "2024-11-04 23:59"
+          },
+          {
+            "open": true,
+            "start_timestamp": "2024-11-05 00:00",
+            "end_timestamp": "2024-11-05 13:59"
+          },
+          {
+            "open": false,
+            "start_timestamp": "2024-11-05 14:00",
+            "end_timestamp": "2024-11-05 18:44",
+            "comment": "Youth and Adult Sports Programs"
+          },
+          {
+            "open": true,
+            "start_timestamp": "2024-11-05 18:45",
+            "end_timestamp": "2024-11-05 23:59"
+          },
+          {
+            "open": true,
+            "start_timestamp": "2024-11-06 00:00",
+            "end_timestamp": "2024-11-06 13:59"
+          },
+          {
+            "open": false,
+            "start_timestamp": "2024-11-06 14:00",
+            "end_timestamp": "2024-11-06 18:44",
+            "comment": "Youth and Adult Sports Programs"
+          },
+          {
+            "open": true,
+            "start_timestamp": "2024-11-06 18:45",
+            "end_timestamp": "2024-11-06 23:59"
+          },
+          {
+            "open": true,
+            "start_timestamp": "2024-11-07 00:00",
+            "end_timestamp": "2024-11-07 13:59"
+          },
+          {
+            "open": false,
+            "start_timestamp": "2024-11-07 14:00",
+            "end_timestamp": "2024-11-07 18:44",
+            "comment": "Youth and Adult Sports Programs"
+          },
+          {
+            "open": true,
+            "start_timestamp": "2024-11-07 18:45",
+            "end_timestamp": "2024-11-07 23:59"
+          },
+          {
+            "open": true,
+            "start_timestamp": "2024-11-08 00:00",
+            "end_timestamp": "2024-11-08 13:59"
+          },
+          {
+            "open": false,
+            "start_timestamp": "2024-11-08 14:00",
+            "end_timestamp": "2024-11-08 18:44",
+            "comment": "Youth and Adult Sports Programs"
+          },
+          {
+            "open": true,
+            "start_timestamp": "2024-11-08 18:45",
+            "end_timestamp": "2024-11-08 23:59"
+          },
+          {
+            "open": true,
+            "start_timestamp": "2024-11-09 00:00",
+            "end_timestamp": "2024-11-09 06:59"
+          },
+          {
+            "open": false,
+            "start_timestamp": "2024-11-09 07:00",
+            "end_timestamp": "2024-11-09 18:14",
+            "comment": "Youth and Adult Sports Programs"
+          },
+          {
+            "open": true,
+            "start_timestamp": "2024-11-09 18:15",
+            "end_timestamp": "2024-11-09 23:59"
+          },
+          {
+            "open": true,
+            "start_timestamp": "2024-11-10 00:00",
+            "end_timestamp": "2024-11-10 06:59"
+          },
+          {
+            "open": false,
+            "start_timestamp": "2024-11-10 07:00",
+            "end_timestamp": "2024-11-10 18:14",
+            "comment": "Youth and Adult Sports Programs"
+          },
+          {
+            "open": true,
+            "start_timestamp": "2024-11-10 18:15",
+            "end_timestamp": "2024-11-10 23:59"
+          },
+          {
+            "open": true,
+            "start_timestamp": "2024-11-11 00:00",
+            "end_timestamp": "2024-11-11 23:59"
+          },
+          {
+            "open": true,
+            "start_timestamp": "2024-11-12 00:00",
+            "end_timestamp": "2024-11-12 13:59"
+          },
+          {
+            "open": false,
+            "start_timestamp": "2024-11-12 14:00",
+            "end_timestamp": "2024-11-12 18:44",
+            "comment": "Youth and Adult Sports Programs"
+          },
+          {
+            "open": true,
+            "start_timestamp": "2024-11-12 18:45",
+            "end_timestamp": "2024-11-12 23:59"
+          },
+          {
+            "open": true,
+            "start_timestamp": "2024-11-13 00:00",
+            "end_timestamp": "2024-11-13 13:59"
+          },
+          {
+            "open": false,
+            "start_timestamp": "2024-11-13 14:00",
+            "end_timestamp": "2024-11-13 18:44",
+            "comment": "Youth and Adult Sports Programs"
+          },
+          {
+            "open": true,
+            "start_timestamp": "2024-11-13 18:45",
+            "end_timestamp": "2024-11-13 23:59"
+          },
+          {
+            "open": true,
+            "start_timestamp": "2024-11-14 00:00",
+            "end_timestamp": "2024-11-14 13:59"
+          },
+          {
+            "open": false,
+            "start_timestamp": "2024-11-14 14:00",
+            "end_timestamp": "2024-11-14 18:44",
+            "comment": "Youth and Adult Sports Programs"
+          },
+          {
+            "open": true,
+            "start_timestamp": "2024-11-14 18:45",
+            "end_timestamp": "2024-11-14 23:59"
+          },
+          {
+            "open": true,
+            "start_timestamp": "2024-11-15 00:00",
+            "end_timestamp": "2024-11-15 13:59"
+          },
+          {
+            "open": false,
+            "start_timestamp": "2024-11-15 14:00",
+            "end_timestamp": "2024-11-15 18:44",
+            "comment": "Youth and Adult Sports Programs"
+          },
+          {
+            "open": true,
+            "start_timestamp": "2024-11-15 18:45",
+            "end_timestamp": "2024-11-15 23:59"
+          },
+          {
+            "open": true,
+            "start_timestamp": "2024-11-16 00:00",
+            "end_timestamp": "2024-11-16 06:59"
+          },
+          {
+            "open": false,
+            "start_timestamp": "2024-11-16 07:00",
+            "end_timestamp": "2024-11-16 18:14",
+            "comment": "Youth and Adult Sports Programs"
+          },
+          {
+            "open": true,
+            "start_timestamp": "2024-11-16 18:15",
+            "end_timestamp": "2024-11-16 23:59"
+          },
+          {
+            "open": true,
+            "start_timestamp": "2024-11-17 00:00",
+            "end_timestamp": "2024-11-17 06:59"
+          },
+          {
+            "open": false,
+            "start_timestamp": "2024-11-17 07:00",
+            "end_timestamp": "2024-11-17 18:14",
+            "comment": "Youth and Adult Sports Programs"
+          },
+          {
+            "open": true,
+            "start_timestamp": "2024-11-17 18:15",
+            "end_timestamp": "2024-11-17 23:59"
+          },
+          {
+            "open": true,
+            "start_timestamp": "2024-11-18 00:00",
+            "end_timestamp": "2024-11-18 23:59"
+          },
+          {
+            "open": true,
+            "start_timestamp": "2024-11-19 00:00",
+            "end_timestamp": "2024-11-19 13:59"
+          },
+          {
+            "open": false,
+            "start_timestamp": "2024-11-19 14:00",
+            "end_timestamp": "2024-11-19 18:44",
+            "comment": "Youth and Adult Sports Programs"
+          },
+          {
+            "open": true,
+            "start_timestamp": "2024-11-19 18:45",
+            "end_timestamp": "2024-11-19 23:59"
+          },
+          {
+            "open": true,
+            "start_timestamp": "2024-11-20 00:00",
+            "end_timestamp": "2024-11-20 11:59"
+          },
+          {
+            "open": false,
+            "start_timestamp": "2024-11-20 12:00",
+            "end_timestamp": "2024-11-20 17:59",
+            "comment": "SFUSD Cross Country Finals"
+          },
+          {
+            "open": true,
+            "start_timestamp": "2024-11-20 18:00",
+            "end_timestamp": "2024-11-20 23:59"
+          },
+          {
+            "open": true,
+            "start_timestamp": "2024-11-21 00:00",
+            "end_timestamp": "2024-11-21 13:59"
+          },
+          {
+            "open": false,
+            "start_timestamp": "2024-11-21 14:00",
+            "end_timestamp": "2024-11-21 18:44",
+            "comment": "Youth and Adult Sports Programs"
+          },
+          {
+            "open": true,
+            "start_timestamp": "2024-11-21 18:45",
+            "end_timestamp": "2024-11-21 23:59"
+          },
+          {
+            "open": true,
+            "start_timestamp": "2024-11-22 00:00",
+            "end_timestamp": "2024-11-22 13:59"
+          },
+          {
+            "open": false,
+            "start_timestamp": "2024-11-22 14:00",
+            "end_timestamp": "2024-11-22 18:44",
+            "comment": "Youth and Adult Sports Programs"
+          },
+          {
+            "open": true,
+            "start_timestamp": "2024-11-22 18:45",
+            "end_timestamp": "2024-11-22 23:59"
+          },
+          {
+            "open": true,
+            "start_timestamp": "2024-11-23 00:00",
+            "end_timestamp": "2024-11-23 06:59"
+          },
+          {
+            "open": false,
+            "start_timestamp": "2024-11-23 07:00",
+            "end_timestamp": "2024-11-23 18:14",
+            "comment": "Youth and Adult Sports Programs"
+          },
+          {
+            "open": true,
+            "start_timestamp": "2024-11-23 18:15",
+            "end_timestamp": "2024-11-23 23:59"
+          },
+          {
+            "open": true,
+            "start_timestamp": "2024-11-24 00:00",
+            "end_timestamp": "2024-11-24 06:59"
+          },
+          {
+            "open": false,
+            "start_timestamp": "2024-11-24 07:00",
+            "end_timestamp": "2024-11-24 18:14",
+            "comment": "Youth and Adult Sports Programs"
+          },
+          {
+            "open": true,
+            "start_timestamp": "2024-11-24 18:15",
+            "end_timestamp": "2024-11-24 23:59"
+          },
+          {
+            "open": true,
+            "start_timestamp": "2024-11-25 00:00",
+            "end_timestamp": "2024-11-25 23:59"
+          },
+          {
+            "open": true,
+            "start_timestamp": "2024-11-26 00:00",
+            "end_timestamp": "2024-11-26 13:59"
+          },
+          {
+            "open": false,
+            "start_timestamp": "2024-11-26 14:00",
+            "end_timestamp": "2024-11-26 18:44",
+            "comment": "Youth and Adult Sports Programs"
+          },
+          {
+            "open": true,
+            "start_timestamp": "2024-11-26 18:45",
+            "end_timestamp": "2024-11-26 23:59"
+          },
+          {
+            "open": true,
+            "start_timestamp": "2024-11-27 00:00",
+            "end_timestamp": "2024-11-27 13:59"
+          },
+          {
+            "open": false,
+            "start_timestamp": "2024-11-27 14:00",
+            "end_timestamp": "2024-11-27 18:44",
+            "comment": "Youth and Adult Sports Programs"
+          },
+          {
+            "open": true,
+            "start_timestamp": "2024-11-27 18:45",
+            "end_timestamp": "2024-11-27 23:59"
+          }
+        ]
+      },
+      {
+        "type": "known_rules",
+        "text": "Thursday, November 28",
+        "start_date": "2024-11-28",
+        "end_date": "2024-11-28",
+        "rules": [
+          "The Cycle Track Closed for Turkey Trot from 7 a.m. to 11 a.m."
+        ],
+        "intervals": [
+          {
+            "open": true,
+            "start_timestamp": "2024-11-28 00:00",
+            "end_timestamp": "2024-11-28 06:59"
+          },
+          {
+            "open": false,
+            "start_timestamp": "2024-11-28 07:00",
+            "end_timestamp": "2024-11-28 10:59",
+            "comment": "Turkey Trot"
+          },
+          {
+            "open": true,
+            "start_timestamp": "2024-11-28 11:00",
+            "end_timestamp": "2024-11-28 23:59"
+          }
+        ]
+      },
+      {
+        "type": "known_rules",
+        "text": "Friday, November 29 through Tuesday, December 31",
+        "start_date": "2024-11-29",
+        "end_date": "2024-12-31",
+        "rules": [
+          "The Cycle Track Will be Open Mondays through Sundays all day"
+        ],
+        "intervals": [
+          {
+            "start_timestamp": "2024-11-29 00:00",
+            "end_timestamp": "2024-12-31 23:59",
+            "open": true
+          }
+        ]
+      }
+    ]
+  }
+]

@@ -1,0 +1,2247 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+	<meta http-equiv="Content-type" content="text/html; charset=UTF-8" />
+<!-- Google Tag Manager -->
+				<script>(function(w,d,s,l,i){w.GATrackingId='UA-204535805-22';w[l]=w[l]||[];w[l].push({'gtm.start':
+				new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+				j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+				'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+				})(window,document,'script','cpDataLayer','GTM-WKGQMK5');</script>
+				<!-- End Google Tag Manager --><!-- Google Tag Manager for GA4 -->
+				<script>(function(w,d,s,l,i){w.GAMeasurementID='G-N7NC9SMJ85';w[l]=w[l]||[];w[l].push({'gtm.start':
+				new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+				j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+				'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+				})(window,document,'script','cpDataLayerGA4','GTM-K73C5PS');</script>
+				<!-- End Google Tag Manager for GA4 -->
+				<script type='text/javascript'>
+					var enableTelemetry = 'false'
+					var aiConfig = {
+					instrumentationKey: '1cde048e-3185-4906-aa46-c92a7312b60f'						
+					}
+					var appInsights = window.appInsights || function (a) { function b(a) { c[a] = function () { var b = arguments; c.queue.push(function () { c[a].apply(c, b) }) } } var c = { config: a }, d = document, e = window; setTimeout(function () { var b = d.createElement('script'); b.src = a.url || 'https://az416426.vo.msecnd.net/scripts/a/ai.0.js', d.getElementsByTagName('script')[0].parentNode.appendChild(b) }); try { c.cookie = d.cookie } catch (a) { } c.queue = []; for (var f = ['Event', 'Exception', 'Metric', 'PageView', 'Trace', 'Dependency']; f.length;)b('track' + f.pop()); if (b('setAuthenticatedUserContext'), b('clearAuthenticatedUserContext'), b('startTrackEvent'), b('stopTrackEvent'), b('startTrackPage'), b('stopTrackPage'), b('flush'), !a.disableExceptionTracking) { f = 'onerror', b('_' + f); var g = e[f]; e[f] = function (a, b, d, e, h) { var i = g && g(a, b, d, e, h); return !0 !== i && c['_' + f](a, b, d, e, h), i } } return c }(aiConfig);
+					window.appInsights = appInsights, appInsights.queue && 0 === appInsights.queue.length;
+					// Add telemetry initializer
+					appInsights.queue.push(function() {
+						appInsights.context.addTelemetryInitializer(function(envelope) {
+							var telemetryItem = envelope.data.baseData;
+							// To check the telemetry item’s type:
+							if (!false)
+							{
+								//If the telemetry is not enabled, we still want to capture Google map custom event, so only allow that
+								if (envelope.name.indexOf('.Event') == -1)
+									return false;
+							}
+						});
+					});						
+					appInsights.trackPageView();
+				</script>
+	<script>
+		function populateAntiForgery(token) {
+			var input = document.createElement("input");
+			input.name = "__RequestVerificationToken";
+			input.type = "hidden";
+			input.value = token;
+			var absPat = /^https?:\/\/|^\/\//i;
+			var forms = document.getElementsByTagName("form");
+			for (var i = 0; i < forms.length; i++) {
+				if (forms[i].method == "post" &&
+					!forms[i].querySelector('[name="__RequestVerificationToken"]') &&
+					!absPat.test(forms[i].getAttribute("action"))) {
+					forms[i].appendChild(input.cloneNode());
+				}
+			}
+		}
+
+		function getAntiForgeryToken(callback, error) {
+			var xhr = new XMLHttpRequest();
+			xhr.open("GET", "/antiforgery");
+			xhr.addEventListener("load", function() {
+				try {
+					if (this.status !== 200) {
+						throw Error("Invalid status. Could not retrieve antiforgery token.");
+		}
+					var obj = JSON.parse(this.responseText);
+					callback(obj.token);
+				} catch (e) {
+					typeof error === "function" && error(e);
+				}
+			});
+			xhr.send();
+		}
+
+		getAntiForgeryToken(function(token) {
+			if (document.readyState === "complete"
+				|| document.readyState === "loaded" 
+				|| document.readyState === "interactive") {
+				populateAntiForgery(token);
+				return;
+			}
+			document.addEventListener("DOMContentLoaded", function() {
+				populateAntiForgery(token);
+			}, false);
+		}, console.error);
+			</script>
+			
+	
+<script type="text/javascript">
+		window.departmentHeader = {"DepartmentHeaderId":387,"DepartmentHeaderName":"PERMITS & RESERVATIONS"};
+		window.pageSectionTracker = {};
+        window.isResponsiveEnabled = true;
+		window.isRemoveSetHeights= false;
+		if (window.isRemoveSetHeights) {
+			document.documentElement.className += ' removeSetHeights';
+		}
+		window.mainMenuMediaQuery = 'screen and (max-width: 40em)';
+		window.isMobileBrowserIncludingTablets = false;
+		window.fixedResponsiveMenu = false;
+		window.fullWidthResponsiveMenu = false;
+		window.responsiveMenuHeight = '';
+		window.responsiveMenuFontSize = '';
+		(function () {
+			window.setSizeCookie = function () {
+				document.cookie = "dpi=" + window.devicePixelRatio + "; path=/";
+				document.cookie = "viewportWidth=" + window.innerWidth + "; path=/";
+				document.cookie = "viewportHeight=" + window.innerHeight + "; path=/";
+				if (screen && screen.width && screen.height) {
+					document.cookie = "screenWidth=" + screen.width + "; path=/";
+					document.cookie = "screenHeight=" + screen.height + "; path=/";
+				}
+				document.cookie = "responsiveGhost=1; path=/";
+			};
+
+			setSizeCookie();
+		}());
+</script>
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+	
+	<meta name="category0" content="San Francisco Recreation and Parks Homepage" />
+<meta name="category1" content="PERMITS &amp; RESERVATIONS" />
+<meta name="category2" content="Athletic Field Reservations" />
+<meta name="category3" content="Polo Field Usage" />
+
+	
+	<meta name="theme-color" content="#4f6835">
+	<link rel="icon" href="/images/favicon.ico" type="image/x-icon" />
+	<link rel="shortcut icon" href="/images/favicon.ico" type="image/x-icon" />
+		<title>Polo Field Usage | San Francisco Recreation and Parks, CA</title>
+	
+		<meta name="description" content="View a schedule of when the polo field is occupied for games and tournaments.">
+				
+	<!--[if IE 6]><script language="JavaScript" type="text/javascript"> var isie6 = true; </script><![endif]-->
+	<!--[if IE 7]><script language="JavaScript" type="text/javascript"> var isie7 = true; </script><![endif]-->
+	<!--[if IE 8]><script language="JavaScript" type="text/javascript"> var isie8 = true; </script><![endif]-->
+	<!--[if IE 9]><script language="JavaScript" type="text/javascript"> var isie8 = true; </script><![endif]-->
+	<script type="text/javascript"><!--
+	var intCountryCode = 840;
+	var externalSiteDialogHeight = '390px';
+	var order = '';
+//--></script>
+	
+	<link href="/360777705.css" rel="stylesheet" type="text/css" />	<link href="/-991953517.css" rel="stylesheet" type="text/css" />
+
+	<link rel="stylesheet" type="text/css" href="/Assets/Styles/Print.css" media="print">
+<script type="text/javascript" src="/Scripts/2011.3.1115/jquery-1.6.4.min.js"></script>
+	<script type="text/javascript">
+		window.Pages = window.Pages || {};
+		// FrontEnd RWD initialization
+		window.Pages.rwdReady = $.Deferred();
+		window.Pages.toolBarDeferred = $.Deferred();
+		window.Pages.rwdSetupComplete = $.Deferred();
+		window.Pages.megaMenuLoaded = $.Deferred();
+		window.Pages.angularToolbarComplete = $.Deferred();
+		window.Pages.frontEndToolbarComplete = $.Deferred();
+	</script>
+	<!--CPHeadContent-->
+	<script src="/248816995.js" type="text/javascript"></script>
+	
+	
+	
+	
+
+
+
+
+	<!--[if lte IE 8]><link rel="stylesheet" type="text/css" href="/App_Themes/ie8.css"><![endif]-->
+	<!--[if lte IE 7]><link rel="stylesheet" type="text/css" href="/App_Themes/ie7.css"><![endif]-->
+	<!--[if lte IE 6]><link rel="stylesheet" type="text/css" href="/App_Themes/ie6.css"><![endif]-->
+	<!--[if lt IE 9]><script type="text/javascript" src="/Scripts/html5.js"></script><![endif]-->
+
+	<script type="text/javascript">
+		setEditorVariables(false, 840);
+		function getPrintPreviewType() { return 0; } function printPreview() {pPreview(getPrintPreviewType()); }
+	</script>
+	
+</head>
+<body class="wide " >
+
+	<script>jQuery(document).click(function (event) {
+	var target = jQuery(event.target);
+	if (target.attr('src') && target.parents('.image').length && target.parents('.widget').length) {
+		var text = target.attr('title');
+		
+		if (!text.length) {
+			text = "N/A";
+		}
+		ga('send',
+			{
+				hitType: 'event',
+				eventCategory: 'Image',
+				eventAction: 'Image - ' + text,
+				eventLabel: window.location.href
+			});
+	}
+	if (target.is('button') || target.hasClass('button') || target.parents().hasClass('button')) {
+		var text = "";
+		if (target.parents('.button')[0]) {
+			text = target.parents('.button')[0].text;
+		} else if (target.text().length) {
+			text = target.text();
+		} else if (target.attr('title').length) {
+			text = target.attr('title');
+		}
+		if (!text.length) {
+			text = "N/A";
+		}
+		ga('send',
+			{
+				hitType: 'event',
+				eventCategory: 'Button',
+				eventAction: 'Button - ' + text,
+				eventLabel: window.location.href
+			});
+	}
+	if (target.parents('.widgetCustomHtml').length) {
+		ga('send',
+			{
+				hitType: 'event',
+				eventCategory: 'Custom Html',
+				eventAction: 'Custom Html Clicked',
+				eventLabel: window.location.href
+			});
+	}
+	if (target.parents('.editor').length) {
+		ga('send',
+			{
+				hitType: 'event',
+				eventCategory: 'Editor',
+				eventAction: 'Editor Link Clicked',
+				eventLabel: window.location.href
+			});
+	}
+	if (target.parents('.GraphicLinks').length) {
+		var text = "";
+		var targetGraphicLink = target;
+		if (target.hasClass('widgetGraphicLinksLink')) {
+			targetGraphicLink = jQuery(target.children()[0]);
+		}
+		if (targetGraphicLink.hasClass('text')) {
+			text = targetGraphicLink.text();
+		} else if (targetGraphicLink.attr('src').length) {
+			if (targetGraphicLink.attr('alt').length) {
+				text = targetGraphicLink.attr('alt');
+			} else {
+				text = targetGraphicLink.attr('src');
+			}
+		} else {
+			text = "N/A";
+		}
+		ga('send',
+			{
+				hitType: 'event',
+				eventCategory: 'Graphic Links',
+				eventAction: 'Graphic Link - ' + text,
+				eventLabel: window.location.href
+			});
+	}
+	if (target.parents('.InfoAdvanced').length) {
+		ga('send',
+			{
+				hitType: 'event',
+				eventCategory: 'Info Advanced',
+				eventAction: 'Info Advanced Clicked',
+				eventLabel: window.location.href
+			});
+	}
+	if (target.parents('.list').length) {
+		ga('send',
+			{
+				hitType: 'event',
+				eventCategory: 'List',
+				eventAction: 'List Clicked',
+				eventLabel: window.location.href
+			});
+	}
+	if (target.parents('.megaMenuItem').length || target.parents('.topMenuItem').length) {
+		var megaMenuText = jQuery('.topMenuItem.mouseover').find('span').text();
+		var breadCrumbs = [];
+		jQuery('.breadCrumbs > li').each(function () {
+			 breadCrumbs.push(this.textContent);
+		});
+		var pageTitle = breadCrumbs.join('>');
+		var subTitleText = target.parents('.megaMenuItem').children('.widgetTitle').children().text();
+		var text = "";
+		if (pageTitle) {
+			text += pageTitle + " | ";
+		} else {
+			text += document.title + ' - ';
+		}
+		if (target.text() == "" && megaMenuText == "") {
+			text += "N/A";
+		} else if (target.text().length && megaMenuText.length) {
+			if (megaMenuText == target.text()) {
+				text += megaMenuText;
+			} else {
+				text += megaMenuText + " - " + subTitleText + " - " + target.text();
+			}
+		} else if (target.text() == "") {
+			text += megaMenuText;
+		} else {
+			text += target.text();
+		}
+		if (!text.length) {
+			text = "N/A";
+		}
+		ga('send',
+			{
+				hitType: 'event',
+				eventCategory: 'Mega Menu',
+				eventAction: 'Mega Menu : ' + text,
+				eventLabel: window.location.href
+			});
+	}
+	if (target.parents('.widgetNewsFlash').length && target.parents('.widgetItem').length) {
+		var text = jQuery(target.parents('.widgetItem')[0]).find('.widgetTitle').children().text();
+		if (!text.length) {
+			text = "N/A";
+		}
+		ga('send',
+			{
+				hitType: 'event',
+				eventCategory: 'News Flash',
+				eventAction: 'News Flash - ' + text,
+				eventLabel: window.location.href
+			});
+	}
+	if (target.hasClass('widgetQuickLinksLink') || target.find('.widgetQuickLinksLink').length) {
+		var text = target.text();
+		if (!text.length) {
+			text = "N/A";
+		}
+		ga('send',
+			{
+				hitType: 'event',
+				eventCategory: 'Quick Links',
+				eventAction: 'Quick Links - ' + text,
+				eventLabel: window.location.href
+			});
+	}
+	if (target.attr('src') && target.parents('.cpSlideshow').length) {
+		var text = target.attr('title');
+		if (!text.length) {
+			text = "N/A";
+		}
+		ga('send',
+			{
+				hitType: 'event',
+				eventCategory: 'Slideshow',
+				eventAction: 'Slideshow - ' + text,
+				eventLabel: window.location.href
+			});
+	}
+	if (target.parents('.widgetText').length) {
+		ga('send',
+			{
+				hitType: 'event',
+				eventCategory: 'Text',
+				eventAction: 'Text Link Clicked',
+				eventLabel: window.location.href
+			});
+	}
+});</script>
+
+	<div id="fb-root"></div>
+<div id=skipToContentLinks>
+<a href="#cc51982c35-056e-49f1-9c5a-82bd529d00a6" target="_self" class="skipToContentLink">Skip to Main Content</a>
+</div>
+	<form id="frmReferenceFormForTelerikEditorDialogs"></form>
+
+		<input type="hidden" id="GoogleMapsKey" value="AIzaSyDWUuE-ifkbhxblF920N8MjpBdTg1Wt784" />
+	
+
+<link href="/745732998.css" rel="stylesheet" type="text/css" />
+
+<div tabindex="0"></div>
+<div id="SplashMessageWrapper" class="cp-Splash-wrapper">
+    <div role="dialog" aria-labelledby="cp-Splash-title" aria-describedby="editorContentDesc" aria-modal="true" tabindex="-1" id="SplashMessage" class="hidden cp-Splash cp-Splash--modal is-open">
+        <div class="cp-Splash-header">
+            <h3 class="cp-Splash-title" id="cp-Splash-title">Loading</h3>
+            <button class="cp-Splash-Btn cp-Splash-close" aria-label="Close this modal" title="Close this window">
+                <svg id="iconClose" viewBox="0 0 25 25">
+                    <polygon style="fill:currentcolor"
+                             points="18.806,6.98 18.075,6.248 12.532,11.792 6.989,6.248 6.257,6.98 11.786,12.508 6.212,18.084 6.943,18.815 12.532,13.224 18.12,18.815 18.851,18.084 13.277,12.508"></polygon>
+                </svg>
+            </button>
+        </div>
+        <div class="cp-Splash-body">
+            <div class="cp-Splash-Prose editorContent fr-view fr-element" id="editorContentDesc">
+                <!-- Content from the Froala Editor will go here. -->
+                Loading
+            </div>
+        </div>
+        <div class="cp-Splash-footer">
+            <button class="cp-Splash-Btn cp-Splash-Btn--NoShow">Do Not Show Again</button>
+            <button class="cp-Splash-Btn cp-Splash-Btn--Close">Close</button>
+        </div>
+    </div>
+</div>
+<div tabindex="0"></div>
+
+<script src="/Assets/Scripts/APIClient.js"></script>
+<script src="/Assets/Scripts/MomentJs/2.29.1/moment.min.js"></script>
+<script src="/Assets/Scripts/SplashModal/SplashModalRender.js"></script>
+<script>
+
+		$(document).ready(function () {
+			var filter = {
+				targetId: '526',
+				targetType: 1
+			}
+
+            new SplashModalRender().triggerRender(filter);
+		});
+</script>
+	
+	
+<input type="hidden" id="cpcDomain" value="https://cp-civicplusuniversity2.civicplus.com">
+	<input type="hidden" id="hdnStructureID" value="10" />
+	<input type="hidden" id="hdnContentCollectionID" value="8d94cd42-bb7a-467d-a4fa-a1c0d72dc394" />
+	<input type="hidden" id="hdnWorkingCopyID" value="00000000-0000-0000-0000-000000000000" />
+	<input type="hidden" id="hdnThemeID" value="34" />
+	<input type="hidden" id="pageIsFrontEnd" value="true" />
+	<input type="hidden" id="pageModuleID" />
+	<input type="hidden" id="pagePageID" value="526" />
+	<input type="hidden" id="hdnModuleEligibleForJquery224Upgrade" value="true" />
+
+		<div id="stickyPlaceholder"></div>
+	<div id="outer-wrap" class="outer-wrap">
+		<div id="inner-wrap" class="inner-wrap">
+				<div id="divToolbars" class="cpToolbars newCP mui-fixed" style="">
+					
+<!--[if lte IE 7]><link rel="stylesheet" type="text/css" href="/App_Themes/CP/ie7.css"><![endif]-->
+<!-- Allow Dashboard, Favorites Enabled -->
+
+				</div>
+			<div id="bodyWrapper">
+				<div id="mainNavHolderMobile" class="mainNavHolderMobile"></div>
+				
+<div data-cpRole="structuralContainer" id="structuralContainer1a">
+<header data-cpRole="structuralContainer" id="headerContainerTS" class="fixedTopTS">
+<div class="siteWrap"><div data-cpRole="banner" id="banner2" class="logo empty">
+
+
+
+
+				<a style="			display: block; text-align: center;
+" class="bannerObject" href="/" target="_self"><img alt="Click to home" class="bannerObject" height="92" src="/ImageRepository/Document?documentID=817" width="171" /></a>
+
+</div><aside data-cpRole="contentContainer" id="contentContainer1" class="searchCWK">	<div id="cc6f7e14fb-7f16-4bf7-aab6-90658ae6d90a" data-containerid="6f7e14fb-7f16-4bf7-aab6-90658ae6d90a" class="pageContent cpGrid cpGrid24 isLockedContainer showInMobile" data-contentcontainerbreakpoint="34">
+				                
+
+		<div class="row outer wide"><!--
+--><div class="outer col col8 first" style="" data-widgetcontainerid="b3e56425-8c0e-4eae-a728-e2122090c198">				
+	<div class="row nest first last wide">
+	
+	<div class="inner col col8 first last id694f213d-839a-4cd7-bc92-224629cce66e" style="" data-widgetcontainerid="694f213d-839a-4cd7-bc92-224629cce66e">	
+<div data-widget-id="8efcb198-c6ae-4d06-8869-04be2d6d7e51" data-widget-controller-path="/GraphicLinks/Widget">
+
+
+
+
+<div id="graphicLinkWidget8efcb198-c6ae-4d06-8869-04be2d6d7e51" class="widget widgetGraphicLinks skin70 widgetOptionSet43 wide" data-elementqueryclasses='{"wide-narrow":"min-width:1em"}' data-elementquerymatch='matchMultiColumn' data-elementqueryunmatch='unmatchMultiColumn' data-modulewidgettype="graphicLinks">
+	<div class="widgetHeader">
+		<div class="">
+				</div>
+	</div>
+	<div class="widgetBody cpGrid cpGrid4 ">	
+			<div class="row   wide"><!--
+--><div class="col col1 first "><div class="semanticList"><!--
+	    --><div class="widgetItem GraphicLinks"><a class="widgetDesc widgetGraphicLinksLink" href="https://www.facebook.com/sfrecpark/" target="_blank"  aria-label="Facebook graphic opens in new window"><img src="/ImageRepository/Document?documentID=1078" 
+     class="graphicButtonLink" alt="Facebook" 
+     onmouseover="this.src='/ImageRepository/Document?documentID=1106'" 
+	onmouseout="this.src='/ImageRepository/Document?documentID=1078'"
+     onfocus="this.src='/ImageRepository/Document?documentID=1106'" 
+	onblur="this.src='/ImageRepository/Document?documentID=1078'"> </a></div><!--
+--></div></div><!----><div class="col col1  "><div class="semanticList"><!--
+	    --><div class="widgetItem GraphicLinks"><a class="widgetDesc widgetGraphicLinksLink" href="https://twitter.com/RecParkSF/" target="_blank"  aria-label="Twitter graphic opens in new window"><img src="/ImageRepository/Document?documentID=1082" 
+     class="graphicButtonLink" alt="Twitter" 
+     onmouseover="this.src='/ImageRepository/Document?documentID=1108'" 
+	onmouseout="this.src='/ImageRepository/Document?documentID=1082'"
+     onfocus="this.src='/ImageRepository/Document?documentID=1108'" 
+	onblur="this.src='/ImageRepository/Document?documentID=1082'"> </a></div><!--
+--></div></div><!----><div class="col col1  "><div class="semanticList"><!--
+	    --><div class="widgetItem GraphicLinks"><a class="widgetDesc widgetGraphicLinksLink" href="https://www.youtube.com/user/sfRecPark" target="_blank"  aria-label="YouTube graphic opens in new window"><img src="/ImageRepository/Document?documentID=1084" 
+     class="graphicButtonLink" alt="YouTube" 
+     onmouseover="this.src='/ImageRepository/Document?documentID=1109'" 
+	onmouseout="this.src='/ImageRepository/Document?documentID=1084'"
+     onfocus="this.src='/ImageRepository/Document?documentID=1109'" 
+	onblur="this.src='/ImageRepository/Document?documentID=1084'"> </a></div><!--
+--></div></div><!----><div class="col col1  last"><div class="semanticList"><!--
+	    --><div class="widgetItem GraphicLinks"><a class="widgetDesc widgetGraphicLinksLink" href="https://www.instagram.com/sfrecpark/" target="_blank"  aria-label="Instagram graphic opens in new window"><img src="/ImageRepository/Document?documentID=1080" 
+     class="graphicButtonLink" alt="Instagram" 
+     onmouseover="this.src='/ImageRepository/Document?documentID=1107'" 
+	onmouseout="this.src='/ImageRepository/Document?documentID=1080'"
+     onfocus="this.src='/ImageRepository/Document?documentID=1107'" 
+	onblur="this.src='/ImageRepository/Document?documentID=1080'"> </a></div><!--
+--></div></div><!--			--></div>
+	</div>
+	<div class="widgetFooter">
+			</div>
+</div>
+
+</div>
+	</div> <!-- inner column -->
+
+	</div> <!-- inner row -->
+
+			</div><!-- outer column --><!----><div class="outer col col16 last" style="" data-widgetcontainerid="3269c024-bf28-4b48-b1c5-0855c7f8fd0f">				
+	<div class="row nest first last wide">
+	
+	<div class="inner col col16 first last id2a1272e8-5a23-428b-a336-5b447c934799" style="" data-widgetcontainerid="2a1272e8-5a23-428b-a336-5b447c934799">	
+<div data-widget-id="a9e2ec5a-f5fc-4018-8fa9-5d0764a7ca62" data-widget-controller-path="/Layout/WidgetSearch">
+	
+		<script defer type="text/javascript" src="/Common/Controls/jquery-ui/js/jquery.ui.autocomplete.min.js"></script>
+	<script defer src="/Areas/Layout/Assets/Scripts/Search.js" type="text/javascript"></script>
+	<script defer type="text/javascript">
+
+		$(document).ready(function () {
+			try {
+				$(".widgetSearchButton.widgetSearchButtona9e2ec5a-f5fc-4018-8fa9-5d0764a7ca62").click(function (e) {
+				e.preventDefault();
+					if ($("#ysnSearchOnlyDepta9e2ec5a-f5fc-4018-8fa9-5d0764a7ca62").is(':checked')) {
+						doWidgetSearch($(this).siblings(".widgetSearchBox").val(), Number(0));
+					} else {
+						doWidgetSearch($(this).siblings(".widgetSearchBox").val(), 0);
+					}
+			});
+			$("#searchFielda9e2ec5a-f5fc-4018-8fa9-5d0764a7ca62").keypress(function (e) {
+				if (window.clipboardData) {
+					if (e.keyCode == 13) {
+							if ($("#ysnSearchOnlyDepta9e2ec5a-f5fc-4018-8fa9-5d0764a7ca62").is(':checked')) {
+								doWidgetSearch($(this).val(), Number(0));
+							} else {
+								doWidgetSearch($(this).val(), 0);
+							}
+						return false;
+					}
+				} else {
+					if (e.which == 13) {
+							if ($("#ysnSearchOnlyDepta9e2ec5a-f5fc-4018-8fa9-5d0764a7ca62").is(':checked')) {
+								doWidgetSearch($(this).val(), Number(0));
+							} else {
+								doWidgetSearch($(this).val(), 0);
+							}
+						return false;
+					}
+				}
+				return true;
+			});
+
+				if (true) {
+					var currentRequest = null;
+
+					var $searchField = $("#searchFielda9e2ec5a-f5fc-4018-8fa9-5d0764a7ca62").autocomplete({
+						source: function (request, response) {
+							currentRequest = $.ajax({
+								url: '/Search/AutoComplete',
+								dataType: "json",
+								timeout: 10000,
+								beforeSend: function () {
+									if (currentRequest != null) {
+										currentRequest.abort();
+									}
+								},
+								data:
+								{
+									term: request.term,
+								},
+								success: function (data) {
+									response(data);
+									$('.autoCompleteError').remove();
+								},
+								error: function (xmlhttprequest, textstatus, message) {
+									if (textstatus === "timeout") {
+										if ($("#searchFielda9e2ec5a-f5fc-4018-8fa9-5d0764a7ca62").siblings('.autoCompleteError').length == 0)
+											$('<span class="autoCompleteError"><p class="alert error">Search autocomplete is currently not responding. Please try again later.</p></span>').insertAfter($("#searchFielda9e2ec5a-f5fc-4018-8fa9-5d0764a7ca62"));
+									}
+								}
+							});
+						},
+						html: true,
+						delay: 500,
+						select: function (event, ui) {
+							$(this).val(ui.item.value);
+							$(this).next().click();
+						}
+					});
+
+					if (false && true) {
+						$searchField.data("ui-autocomplete")._renderItem = function (ul, item) {
+							return $("<li class=\"itemList\"></li>")
+								.data("ui-autocomplete-item", item)
+								.append("<a>" + item.label + "</a>")
+								.appendTo(ul);
+						};
+					}
+					else {
+						$searchField.data("autocomplete")._renderItem = function (ul, item) {
+							return $("<li></li>")
+								.data("item.autocomplete", item)
+								.append("<a>" + item.label + "</a>")
+								.appendTo(ul);
+						};
+					}
+}
+}
+			catch(e) {} //we're going to eat this error. Autocomplete won't work but we dont wan't to break anything else on the page.
+		});
+	</script>
+
+	<section id="widgetPreviewSearch" class="widget widgetSearch skin43 widgetOptionSet33" style="display: block;" aria-label="Search">
+				<!-- For the button right and inside -->
+		<div class="widgetBody buttonRightInside">
+			<input class="widgetSearchBox widgetSearchBoxa9e2ec5a-f5fc-4018-8fa9-5d0764a7ca62" cp5ph="true" id="searchFielda9e2ec5a-f5fc-4018-8fa9-5d0764a7ca62" name="searchField" onchange="searchBtnApplyQuery();" placeholder="Search Our Site..." title="Search Our Site..." type="text" value="" />
+							<a href="/Search/Results" id="btnSearchIcon" class="widgetSearchButton widgetSearchButtona9e2ec5a-f5fc-4018-8fa9-5d0764a7ca62" role="button"><img alt="Search" class="imageHover" data-hover="/ImageRepository/Document?documentID=838" data-image="/ImageRepository/Document?documentID=838" src="/ImageRepository/Document?documentID=838" /></a>
+
+			<label class="searchLabel" for="searchFielda9e2ec5a-f5fc-4018-8fa9-5d0764a7ca62">Search</label>
+		</div>
+
+	</section>
+
+
+<style scoped>
+    
+        .widgetSearch ::-webkit-input-placeholder {
+        color: #ffffff;
+      }
+        .widgetSearch :-moz-placeholder { /* Firefox 18- */
+       color: #ffffff;
+    }
+        .widgetSearch ::-moz-placeholder {  /* Firefox 19+ */
+       color: #ffffff;
+    }
+    .widgetSearch :-ms-input-placeholder {
+       color: #ffffff;
+    }
+    
+
+	.widgetSearch .widgetBody .widgetSearchBoxa9e2ec5a-f5fc-4018-8fa9-5d0764a7ca62
+	{
+        color: #ffffff;
+		border-radius: 29px;background-color: rgba(0, 0, 0, .28);border:none;Height:58px;padding-left:2.5em; font-size:.8em;
+	}
+	.widgetSearch .widgetBody .widgetSearchButtona9e2ec5a-f5fc-4018-8fa9-5d0764a7ca62
+	{
+		margin:16px 16px 0 0;
+	}
+	.widgetSearch .widgetSearch-onlyDepta9e2ec5a-f5fc-4018-8fa9-5d0764a7ca62
+	{
+		display: inline-block;
+		color: #333;
+		
+		
+		 padding-top: 10px;
+	}
+	#ysnSearchOnlyDepta9e2ec5a-f5fc-4018-8fa9-5d0764a7ca62
+	{
+		position: relative;
+		top: .125em;
+	}
+
+</style>
+
+	<link rel="stylesheet" href="https://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css">
+
+
+	<script type="text/javascript">
+	//Updates search icons href to have the correct queryString
+	function searchBtnApplyQuery() {
+		document.getElementById("btnSearchIcon").href = "/Search?searchPhrase=" + document.getElementById("searchFielda9e2ec5a-f5fc-4018-8fa9-5d0764a7ca62").value;
+    }
+	</script>
+
+</div>
+	</div> <!-- inner column -->
+
+	</div> <!-- inner row -->
+
+			</div><!-- outer column --><!--		--></div> <!-- outer row -->
+
+
+	</div>
+</aside><nav data-cpRole="nav" id="mainNav" class="siteNav mainNav" role="navigation">
+<ol id="mainNavMenu" data-parent="1" class="rootNavMenu" role="menu"><!--
+--><li id="MainItem384" class="topMenuItem" aria-haspopup="true" role="menuitem" data-pageid="384" data-displaymegamenu="True"><!--
+			--><!--
+			--><a id="mainNavEXPLOREOURPARKS" class="navMainItem mainNavItem mainNavItem1" href="/384/EXPLORE-OUR-PARKS" target="_self">EXPLORE OUR PARKS</a><!--
+			--><!--
+			--></li><!----><li id="MainItem386" class="topMenuItem" aria-haspopup="true" role="menuitem" data-pageid="386" data-displaymegamenu="True"><!--
+			--><!--
+			--><a id="mainNavFINDAPROGRAM" class="navMainItem mainNavItem mainNavItem2" href="/386/FIND-A-PROGRAM" target="_self">FIND A PROGRAM</a><!--
+			--><!--
+			--></li><!----><li id="MainItem387" class="topMenuItem" aria-haspopup="true" role="menuitem" data-pageid="387" data-displaymegamenu="True"><!--
+			--><!--
+			--><a id="mainNavPERMITSRESERVATIONS" class="navMainItem mainNavItem mainNavItem3" href="/387/PERMITS-RESERVATIONS" target="_self">PERMITS &amp; RESERVATIONS</a><!--
+			--><!--
+			--></li><!----><li id="MainItem388" class="topMenuItem" aria-haspopup="true" role="menuitem" data-pageid="388" data-displaymegamenu="True"><!--
+			--><!--
+			--><a id="mainNavABOUTUS" class="navMainItem mainNavItem mainNavItem4" href="/388/ABOUT-US" target="_self">ABOUT US</a><!--
+			--><!--
+			--></li><!---->
+</ol>
+
+
+	<script type="text/javascript">
+		$(document).ready(function () {
+			var menuID = 'mainNavMenu';
+			var menuType = MAIN_MENU;
+
+			//setup menu manager properties for main menu
+			if (!menuManager.mobileMainNav && true)
+				menuManager.adjustMainItemsWidth('#' + menuID);
+			menuManager.isMainMenuEditable = false;
+			menuManager.mainMenuMaxSubMenuLevels = 4;
+			menuManager.setMOMMode(2, menuType);
+
+			//Init main menu
+			var setupDraggable = menuManager.isMainMenuEditable;
+			var urlToGetHiddenMenus = '/Pages/MenuMain/HiddenMainSubMenus?pageID=1&moduleID=&themeID=34&menuContainerID=mainNav';
+
+			menuManager.setupMenu(menuID, 'mainNav', menuType, setupDraggable, urlToGetHiddenMenus);
+			menuManager.mainMenuInit = true;
+			menuManager.mainMenuTextResizer = true;
+			if (0.99 > 0)
+				menuManager.mainMenuTextResizerRatio = 0.99;
+			if (window.isResponsiveEnabled)
+				menuManager.mainMenuReady.resolve();
+
+		});
+	</script>
+
+
+<aside data-cpRole="megaMenu" id="megaMenu" class="megaMenu" style="display: none;"><input type="hidden" id="megaMenuPopupDirection" value="0"><input type="hidden" id="megaMenuWidthReference" value="0"><aside data-cpRole="contentContainer" id="mainNavMegaMenu384" class="contentTop mainNavMegaMenu megaMenuContainer pageID_384 hidden" data-orientation="horizontal">	<div id="cce0ec9469-d65d-489c-9ba1-0c46c91836b9" data-containerid="e0ec9469-d65d-489c-9ba1-0c46c91836b9" class="pageContent cpGrid cpGrid24">
+				                
+
+
+
+	</div>
+</aside><aside data-cpRole="contentContainer" id="mainNavMegaMenu386" class="contentTop mainNavMegaMenu megaMenuContainer pageID_386 hidden" data-orientation="horizontal">	<div id="cc94beca00-ce7c-4b7d-92b5-7f311d7296a0" data-containerid="94beca00-ce7c-4b7d-92b5-7f311d7296a0" class="pageContent cpGrid cpGrid24">
+				                
+
+
+
+	</div>
+</aside><aside data-cpRole="contentContainer" id="mainNavMegaMenu387" class="contentTop mainNavMegaMenu megaMenuContainer pageID_387 hidden" data-orientation="horizontal">	<div id="cc542a2d53-ba54-4e2f-afc5-aa8ca5a78603" data-containerid="542a2d53-ba54-4e2f-afc5-aa8ca5a78603" class="pageContent cpGrid cpGrid24">
+				                
+
+
+
+	</div>
+</aside><aside data-cpRole="contentContainer" id="mainNavMegaMenu388" class="contentTop mainNavMegaMenu megaMenuContainer pageID_388 hidden" data-orientation="horizontal">	<div id="cc5cc3815a-69f7-40df-9dc0-30a72872d3b0" data-containerid="5cc3815a-69f7-40df-9dc0-30a72872d3b0" class="pageContent cpGrid cpGrid24">
+				                
+
+
+
+	</div>
+</aside></aside></nav></div>
+</header><!-- Banner --><div data-cpRole="structuralContainer" id="bannerContainerTS">
+<div data-cpRole="banner" id="banner1"><div data-cpRole="structuralContainer" id="bannerSizingTS">
+<div class="siteWrap"><div data-cpRole="structuralContainer" id="bannerContentTS">
+<div data-cpRole="contentContainer" id="bannerContentContainerTS">	<div id="cc121c6538-88ba-4cd3-8b24-ac33b903a95c" data-containerid="121c6538-88ba-4cd3-8b24-ac33b903a95c" class="pageContent cpGrid cpGrid24 showInMobile">
+				                
+
+
+
+	</div>
+</div>
+</div></div>
+</div>
+
+
+
+
+			<div id="bannerImagesJSON94" class="hidden"></div>
+				<div id="bannerSlideshowControls_banner1" class="bannerSlideshowControlsNew none " style="display:none">
+					<button id="arrowPrev_banner1" class="arrowNew prev cp-Btn--nonStyled" aria-label="Banner Arrow Previous"><svg class=""><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#iconSlideshowArrowLeft"></use></svg></button>
+					<button id="arrowNext_banner1" class="arrowNew next cp-Btn--nonStyled" aria-label="Banner Arrow Next"><svg class=""><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#iconSlideshowArrowRight"></use></svg></button>
+				</div>
+			<script type="text/javascript">
+				onOrLive($(window), function () {
+					$.when(window.Pages.rwdSetupComplete)
+						.done(function () {
+							renderExternalBannerSlideshow('banner1',
+									{"BannerOptionID":94,"ThemeID":34,"SlotName":"banner1","Name":"Default","IsDefault":true,"BannerMode":2,"SlideShowSlideTiming":"5","SlideshowTransition":0,"SlideShowTransitionTiming":"1","ImageScale":false,"ImageAlignment":2,"ImageScroll":true,"MuteSound":true,"VideoType":0,"Status":40,"SlideshowControlsPosition":0,"SlideshowControlsAlignment":0,"SlideshowBannerControlsColorScheme":0,"BannerImages":[{"BannerImageID":143,"BannerOptionID":94,"FileName":"/ImageRepository/Document?documentID=818","Height":484,"Width":2200,"StartingOn":null,"StoppingOn":null,"IsLink":false,"LinkAddress":null,"Sequence":0,"RecordStatus":0,"ModifiedBy":0,"ModifiedOn":"\/Date(-62135575200000)\/","AltText":""}],"BannerVideos":[],"RecordStatus":0,"ModifiedBy":0,"ModifiedOn":"\/Date(-62135575200000)\/"},
+								'/App_Themes/Interior - 2019/Images/',
+								'Rotating',
+								'0');
+						});
+				}, "load");				
+			</script>
+
+
+</div>
+</div><div data-cpRole="structuralContainer" id="structuralContainer5">
+<div class="siteWrapThree"><div data-cpRole="structuralContainer" id="structuralContainer6" class="mainWrap" role="main">
+<div data-cpRole="structuralContainer" id="structuralContainer7" class="outerContentWrap">
+<div data-cpRole="structuralContainer" id="structuralContainer8" class="contentWrap">
+<div data-cpRole="breadCrumbs" class="breadCrumbContainer" id="breadCrumbs">		<ol class="semanticList breadCrumbs">
+			<li><a class="breadCrumb" href="/387/PERMITS-RESERVATIONS">PERMITS & RESERVATIONS</a></li><li><a class="breadCrumb" href="/423/Athletic-Field-Reservations">Athletic Field Reservations</a></li><li id="currentBCPage" data-pageid="526">Polo Field Usage</li>
+		</ol>
+
+	   
+    
+</div><div data-cpRole="mainContentContainer" id="moduleContent">
+	
+	<div id="page" class="moduleContentNew">
+		
+
+	<input id="hdnPageID" name="hdnPageID" type="hidden" value="526" />
+	<input id="hdnParentID" name="hdnParentID" type="hidden" value="423" />
+	<input id="hdnVersionID" name="hdnVersionID" type="hidden" value="18961" />
+	<input id="pageMenuTitle" name="pageMenuTitle" type="hidden" value="Polo Field Usage" />
+	<input id="pageShowFeatureColumn" name="pageShowFeatureColumn" type="hidden" value="False" />
+	<input id="hdnIsLayoutPage" name="hdnIsLayoutPage" type="hidden" value="False" />
+	<input id="hdnPageStatus" name="hdnPageStatus" type="hidden" value="Published" />
+
+				<h1 id="versionHeadLine" class="headline">
+
+Polo Field Usage		</h1>
+	
+		<div id="cc51982c35-056e-49f1-9c5a-82bd529d00a6" data-containerid="51982c35-056e-49f1-9c5a-82bd529d00a6" class="pageContent cpGrid cpGrid24"  >
+			
+
+		<div class="row outer wide"><!--
+--><div class="outer col col24 first last" style="" data-widgetcontainerid="1cbf7940-ab7a-4b56-a398-872b205bac13">				
+	<div class="row nest first last wide">
+	
+	<div class="inner col col24 first last id3bb303da-0f45-4a85-b87e-ee0cb241a1a8" style="" data-widgetcontainerid="3bb303da-0f45-4a85-b87e-ee0cb241a1a8">	
+<div class="widget editor pageStyles narrow" id="divEditor88f02ffe-1190-4d50-8d43-0056b7f7ae69" data-elementqueryclasses='{"wide-narrow":"min-width:25em"}'>
+        <div class="fr-view">
+
+
+        <p><span style="font-size: 14px; font-family: Verdana, Geneva, sans-serif;">The cycle track at the Polo Field may only be used when the Polo Field is not in use. Following is a list of dates and times when the Polo Field will NOT be in use and the track is available for cycle activities.</span></p><p><span style="font-size: 14px; font-family: Verdana, Geneva, sans-serif;">In the event of a special circumstance like a field closure due to saturation from rain, the Polo Field will not be in use and the track will be available for cycle activities. For information on field closures due to rain, visit <a href="https://sfrecpark.org/507/Field-Rain-Out-Info" id="isPasted">https://sfrecpark.org/507/Field-Rain-Out-Info</a></span></p><p><span style="font-size: 14px; font-family: Verdana, Geneva, sans-serif;">The Cycle Track will be open the following dates and times:</span></p><p><span style="font-size: 14px; font-family: Verdana, Geneva, sans-serif;"><strong>2024</strong></span></p><p id="isPasted" style='margin-right:0in;margin-left:0in;font-size:15px;font-family:"Calibri",sans-serif;margin-top:0in;margin-bottom:8.0pt;line-height:107%;margin:0in;background:white;'><span style="font-family: Verdana, Geneva, sans-serif; font-size: 14px;"><strong><span style="color: black; border: 1pt none windowtext; padding: 0in;">Monday, January 1 through Sunday, February 25</span></strong></span></p><p style='margin-right:0in;margin-left:0in;font-size:15px;font-family:"Calibri",sans-serif;margin-top:0in;margin-bottom:8.0pt;line-height:107%;margin:0in;background:white; border-box;font-variant-ligatures: normal;font-variant-caps: normal;orphans: 2;widows: 2;-webkit-text-stroke-width: 0px;text-decoration-thickness: initial;text-decoration-style: initial;text-decoration-color: initial;word-spacing:0px;'><span style="font-size: 14px; font-family: Verdana, Geneva, sans-serif; color: black; border: 1pt none windowtext; padding: 0in;">The Cycle Track will remain open - Polo Field Closed</span></p><p style='margin-right:0in;margin-left:0in;font-size:15px;font-family:"Calibri",sans-serif;margin-top:0in;margin-bottom:8.0pt;line-height:107%;margin:0in;background:white; border-box;font-variant-ligatures: normal;font-variant-caps: normal;orphans: 2;widows: 2;-webkit-text-stroke-width: 0px;text-decoration-thickness: initial;text-decoration-style: initial;text-decoration-color: initial;word-spacing:0px;'><span style="font-family: Verdana, Geneva, sans-serif; font-size: 14px;"><br></span></p><p id="isPasted" style='margin-right:0in;margin-left:0in;font-size:15px;font-family:"Calibri",sans-serif;margin-top:0in;margin-bottom:8.0pt;line-height:107%;margin:0in;background:white;'><span style="font-family: Verdana, Geneva, sans-serif; font-size: 14px;"><strong><span style="color: black; border: 1pt none windowtext; padding: 0in;">Monday, February 26 through Sunday, May 26</span></strong></span></p><p style='margin-right:0in;margin-left:0in;font-size:15px;font-family:"Calibri",sans-serif;margin-top:0in;margin-bottom:16.8pt;line-height:107%;background:white; border-box;font-variant-ligatures: normal;font-variant-caps: normal;orphans: 2;widows: 2;-webkit-text-stroke-width: 0px;text-decoration-thickness: initial;text-decoration-style: initial;text-decoration-color: initial;word-spacing:0px;'><span style="font-family: Verdana, Geneva, sans-serif; color: black; font-size: 14px;">Youth and Adult Sports Programs Begin. The Cycle Track Will be Open:</span></p><p style='margin-right:0in;margin-left:0in;font-size:15px;font-family:"Calibri",sans-serif;margin-top:0in;margin-bottom:16.8pt;line-height:107%;background:white; border-box;font-variant-ligatures: normal;font-variant-caps: normal;orphans: 2;widows: 2;-webkit-text-stroke-width: 0px;text-decoration-thickness: initial;text-decoration-style: initial;text-decoration-color: initial;word-spacing:0px;'><span style="font-family: Verdana, Geneva, sans-serif; color: black; font-size: 14px;">Mondays all day</span></p><p style='margin-right:0in;margin-left:0in;font-size:15px;font-family:"Calibri",sans-serif;margin-top:0in;margin-bottom:16.8pt;line-height:107%;background:white; border-box;font-variant-ligatures: normal;font-variant-caps: normal;orphans: 2;widows: 2;-webkit-text-stroke-width: 0px;text-decoration-thickness: initial;text-decoration-style: initial;text-decoration-color: initial;word-spacing:0px;'><span style="font-family: Verdana, Geneva, sans-serif; color: black; font-size: 14px;">Tuesdays*, Wednesdays, Thursdays* and Fridays before 2 p.m. and after 6:45 p.m. (*On Tuesdays beginning March 12, the cycling track will be open after 8:45 p.m. On Thursdays beginning March 14, the track will be open after 8:45 p.m.)&nbsp;</span></p><p style='margin-right:0in;margin-left:0in;font-size:15px;font-family:"Calibri",sans-serif;margin-top:0in;margin-bottom:16.8pt;line-height:107%;background:white; border-box;font-variant-ligatures: normal;font-variant-caps: normal;orphans: 2;widows: 2;-webkit-text-stroke-width: 0px;text-decoration-thickness: initial;text-decoration-style: initial;text-decoration-color: initial;word-spacing:0px;'><span style="font-family: Verdana, Geneva, sans-serif; color: black; font-size: 14px;">Saturdays and Sundays before 7 a.m. and after 6:45 p.m.</span></p><p id="isPasted" style='margin-right:0in;margin-left:0in;font-size:15px;font-family:"Calibri",sans-serif;margin-top:0in;margin-bottom:8.0pt;line-height:107%;margin:0in;background:white;'><span style="font-family: Verdana, Geneva, sans-serif; font-size: 14px;"><strong><span style="color: black; border: 1pt none windowtext; padding: 0in;">Monday, May 27 through Friday, June 7</span></strong></span></p><p style='margin-right:0in;margin-left:0in;font-size:15px;font-family:"Calibri",sans-serif;margin-top:0in;margin-bottom:8.0pt;line-height:107%;margin:0in;background:white; border-box;font-variant-ligatures: normal;font-variant-caps: normal;orphans: 2;widows: 2;-webkit-text-stroke-width: 0px;text-decoration-thickness: initial;text-decoration-style: initial;text-decoration-color: initial;word-spacing:0px;'><span style="font-size: 14px; font-family: Verdana, Geneva, sans-serif; color: black; border: 1pt none windowtext; padding: 0in;">The Cycle Track will remain open - Polo Fields Closed&nbsp;</span></p><p style='margin-right:0in;margin-left:0in;font-size:15px;font-family:"Calibri",sans-serif;margin-top:0in;margin-bottom:8.0pt;line-height:107%;margin:0in;background:white;'><span style="font-family: Verdana, Geneva, sans-serif; font-size: 14px;">&nbsp;</span></p><p id="isPasted" style='margin-right:0in;margin-left:0in;font-size:15px;font-family:"Calibri",sans-serif;margin-top:0in;margin-bottom:8.0pt;line-height:107%;margin:0in;background:white; border-box;font-variant-ligatures: normal;font-variant-caps: normal;orphans: 2;widows: 2;-webkit-text-stroke-width: 0px;text-decoration-thickness: initial;text-decoration-style: initial;text-decoration-color: initial;word-spacing:0px;'><span style="font-family: Verdana, Geneva, sans-serif; font-size: 14px;"><strong><span style="color: black; border: 1pt none windowtext; padding: 0in;">Saturday, June 8 through Sunday, June 9</span></strong></span></p><p style='margin-right:0in;margin-left:0in;font-size:15px;font-family:"Calibri",sans-serif;margin-top:0in;margin-bottom:8.0pt;line-height:107%;margin:0in;background:white; border-box;font-variant-ligatures: normal;font-variant-caps: normal;orphans: 2;widows: 2;-webkit-text-stroke-width: 0px;text-decoration-thickness: initial;text-decoration-style: initial;text-decoration-color: initial;word-spacing:0px;'><span style="font-size: 14px; font-family: Verdana, Geneva, sans-serif; color: black; border: 1pt none windowtext; padding: 0in; background: white;">The Cycle Track will be open after 7 p.m.&nbsp;</span></p><p style='margin-right:0in;margin-left:0in;font-size:15px;font-family:"Calibri",sans-serif;margin-top:0in;margin-bottom:8.0pt;line-height:107%;margin:0in;background:white; border-box;font-variant-ligatures: normal;font-variant-caps: normal;orphans: 2;widows: 2;-webkit-text-stroke-width: 0px;text-decoration-thickness: initial;text-decoration-style: initial;text-decoration-color: initial;word-spacing:0px;'><br></p><p style='margin-right:0in;margin-left:0in;font-size:15px;font-family:"Calibri",sans-serif;margin-top:0in;margin-bottom:8.0pt;line-height:107%;margin:0in;background:white;' id="isPasted"><span style="font-family: Verdana, Geneva, sans-serif; font-size: 14px;"><strong><span style="color: black; border: 1pt none windowtext; padding: 0in;">Monday, June 10 through Sunday, July 28</span></strong></span></p><p style='margin:0in;font-size:15px;font-family:"Calibri",sans-serif;margin-bottom:16.8pt;background:white;'><span style='font-family:"Arial",sans-serif;color:#3C4137;'>Summer Camps, Youth and Adult Sports Programs will take place on the field. <em>The schedule is forthcoming.&nbsp;</em></span></p><p id="isPasted" style='margin-right:0in;margin-left:0in;font-size:15px;font-family:"Calibri",sans-serif;margin-top:0in;margin-bottom:8.0pt;line-height:107%;margin:0in;background:white;'><span style="font-family: Verdana, Geneva, sans-serif; font-size: 14px;"><strong><span style="color: black; border: 1pt none windowtext; padding: 0in;">Monday, July 29 through Friday, August 23</span></strong></span></p><p style='margin-right:0in;margin-left:0in;font-size:15px;font-family:"Calibri",sans-serif;margin-top:0in;margin-bottom:16.8pt;line-height:107%;background:white; border-box;font-variant-ligatures: normal;font-variant-caps: normal;orphans: 2;widows: 2;-webkit-text-stroke-width: 0px;text-decoration-thickness: initial;text-decoration-style: initial;text-decoration-color: initial;word-spacing:0px;'><span style="font-family: Verdana, Geneva, sans-serif; color: black; font-size: 14px;">The Cycle Track will be closed for Outside Lands Load in, Event and Load Out and Polo Fields Concert Event and Load Out</span></p><p style='margin-right:0in;margin-left:0in;font-size:15px;font-family:"Calibri",sans-serif;margin-top:0in;margin-bottom:8.0pt;line-height:107%;margin:0in;background:white;'><span style="font-family: Verdana, Geneva, sans-serif; font-size: 14px;"><strong><span style="color: black; border: 1pt none windowtext; padding: 0in;">Saturday, August 24 through Monday, September 2</span></strong></span><span style="font-size: 14px; font-family: Verdana, Geneva, sans-serif; color: black; border: 1pt none windowtext; padding: 0in; background: white;">&nbsp;</span></p><p style='margin-right:0in;margin-left:0in;font-size:15px;font-family:"Calibri",sans-serif;margin-top:0in;margin-bottom:8.0pt;line-height:107%;margin:0in;background:white;'><span style="font-size: 14px; font-family: Verdana, Geneva, sans-serif; color: black; border: 1pt none windowtext; padding: 0in; background: white;">The Cycle Track will&nbsp;</span><span style="font-size: 14px; font-family: Verdana, Geneva, sans-serif; color: black; border: 1pt none windowtext; padding: 0in;">remain open - Polo Fields Closed</span></p><p style='margin-right:0in;margin-left:0in;font-size:15px;font-family:"Calibri",sans-serif;margin-top:0in;margin-bottom:8.0pt;line-height:107%;margin:0in;background:white;'><span style="font-size: 14px; font-family: Verdana, Geneva, sans-serif; border: 1pt none windowtext; padding: 0in;">&nbsp;</span></p><p style='margin-right:0in;margin-left:0in;font-size:15px;font-family:"Calibri",sans-serif;margin-top:0in;margin-bottom:8.0pt;line-height:107%;margin:0in;background:white;'><span style="font-family: Verdana, Geneva, sans-serif; font-size: 14px;"><strong><span style="color: black; border: 1pt none windowtext; padding: 0in; background: white;">Tuesday, September 3 through Wednesday, November 27</span></strong></span><span style="font-family: Verdana, Geneva, sans-serif; color: black; font-size: 14px;">&nbsp;</span></p><p style='margin-right:0in;margin-left:0in;font-size:15px;font-family:"Calibri",sans-serif;margin-top:0in;margin-bottom:16.8pt;line-height:107%;background:white; border-box;font-variant-ligatures: normal;font-variant-caps: normal;orphans: 2;widows: 2;-webkit-text-stroke-width: 0px;text-decoration-thickness: initial;text-decoration-style: initial;text-decoration-color: initial;word-spacing:0px;'><span style="font-family: Verdana, Geneva, sans-serif; color: black; font-size: 14px;">Fall Youth and Adult Sports Programs Begin. The Cycle Track Will be Open:</span></p><p style='margin-right:0in;margin-left:0in;font-size:15px;font-family:"Calibri",sans-serif;margin-top:0in;margin-bottom:16.8pt;line-height:107%;background:white; border-box;font-variant-ligatures: normal;font-variant-caps: normal;orphans: 2;widows: 2;-webkit-text-stroke-width: 0px;text-decoration-thickness: initial;text-decoration-style: initial;text-decoration-color: initial;word-spacing:0px;'><span style="font-family: Verdana, Geneva, sans-serif; color: black; font-size: 14px;">Mondays all day</span></p><p style='margin-right:0in;margin-left:0in;font-size:15px;font-family:"Calibri",sans-serif;margin-top:0in;margin-bottom:16.8pt;line-height:107%;background:white;'><span style="font-family: Verdana, Geneva, sans-serif; color: black; font-size: 14px;">Tuesdays, Wednesdays, Thursdays and Fridays before 2 p.m. and after 6:45 p.m.</span></p><p style='margin-right:0in;margin-left:0in;font-size:15px;font-family:"Calibri",sans-serif;margin-top:0in;margin-bottom:16.8pt;line-height:107%;background:white;'><span style="font-family: Verdana, Geneva, sans-serif; color: black; font-size: 14px;">EXCEPT:</span></p><ul style="margin-bottom:0in;" type="circle"><li style="margin: 0in 0in 4.2pt; line-height: normal; font-size: 14px; font-family: Verdana, Geneva, sans-serif; background: white;"><span style="color: black;">Friday, September 13 when track is closed from 7:30 a.m. to 12:30 p.m. for Sacred Heart Walkathon</span></li><li style="margin: 0in 0in 4.2pt; line-height: normal; font-size: 14px; font-family: Verdana, Geneva, sans-serif; background: white;"><span style="color: black;">Friday, October 4 when track is closed all day for Hardly Strictly Bluegrass</span></li><li style="margin: 0in 0in 4.2pt; line-height: normal; font-size: 14px; font-family: Verdana, Geneva, sans-serif; background: white;"><span style="color: black;">Wednesday, November 20 when track is closed from noon to 6 p.m. for SFUSD Cross Country Finals</span></li></ul><p style='margin-right:0in;margin-left:0in;font-size:15px;font-family:"Calibri",sans-serif;margin-top:0in;margin-bottom:4.2pt;line-height:normal;background:white;'><span style="font-family: Verdana, Geneva, sans-serif; font-size: 14px;">&nbsp;</span></p><p style='margin-right:0in;margin-left:0in;font-size:15px;font-family:"Calibri",sans-serif;margin-top:0in;margin-bottom:16.8pt;line-height:107%;background:white;'><span style="font-family: Verdana, Geneva, sans-serif; color: black; font-size: 14px;">Saturdays and Sundays before 7 a.m. and after 6:15 p.m. EXCEPT:</span></p><ul style="margin-bottom:0in;" type="circle"><li style="margin: 0in 0in 4.2pt; line-height: normal; font-size: 14px; font-family: Verdana, Geneva, sans-serif; background: white;"><span style="color: black;">Saturday, October 5 and Sunday, October 6 when track is closed all day for Hardly Strictly Bluegrass</span></li></ul><p style='margin-right:0in;margin-left:0in;font-size:15px;font-family:"Calibri",sans-serif;margin-top:0in;margin-bottom:8.0pt;line-height:107%;background:white;'><br></p><p style='margin-right:0in;margin-left:0in;font-size:15px;font-family:"Calibri",sans-serif;margin-top:0in;margin-bottom:8.0pt;line-height:107%;background:white;'><span style="font-family: Verdana, Geneva, sans-serif; font-size: 14px;"><strong><span style="line-height: 107%; color: black; border: 1pt none windowtext; padding: 0in;">Thursday, November 28</span></strong></span></p><p style='margin-right:0in;margin-left:0in;font-size:15px;font-family:"Calibri",sans-serif;margin-top:0in;margin-bottom:8.0pt;line-height:107%;background:white;'><span style="font-size: 14px; line-height: 107%; font-family: Verdana, Geneva, sans-serif; color: black; border: 1pt none windowtext; padding: 0in;">The Cycle Track Closed for Turkey Trot from 7 a.m. to 11 a.m.</span></p><p style='margin-right:0in;margin-left:0in;font-size:15px;font-family:"Calibri",sans-serif;margin-top:0in;margin-bottom:8.0pt;line-height:107%;'><span style="font-family: Verdana, Geneva, sans-serif; font-size: 14px;">&nbsp;</span></p><p style='margin-right:0in;margin-left:0in;font-size:15px;font-family:"Calibri",sans-serif;margin-top:0in;margin-bottom:8.0pt;line-height:107%;background:white;'><span style="font-family: Verdana, Geneva, sans-serif; font-size: 14px;"><strong><span style="line-height: 107%; color: black; border: 1pt none windowtext; padding: 0in;">Friday, November 29 through Tuesday, December 31</span></strong></span></p><p style='margin-right:0in;margin-left:0in;font-size:15px;font-family:"Calibri",sans-serif;margin-top:0in;margin-bottom:8.0pt;line-height:107%;background:white;'><span style="font-size: 14px; line-height: 107%; font-family: Verdana, Geneva, sans-serif; color: black; border: 1pt none windowtext; padding: 0in;">The Cycle Track Will be Open Mondays through Sundays all day</span></p>
+    </div>
+
+<script type="text/javascript">
+	$(document).ready(function (e) {		
+	    renderSlideshowIfApplicable($('#divEditor' + '88f02ffe-1190-4d50-8d43-0056b7f7ae69'));
+	});
+</script>
+</div>
+	</div> <!-- inner column -->
+
+	</div> <!-- inner row -->
+
+			</div><!-- outer column --><!--		--></div> <!-- outer row -->
+
+
+		</div>
+
+	</div>
+
+	
+	<div class="newCP">
+
+	</div>
+</div>
+</div><aside data-cpRole="contentContainer" id="featureColumn" class="secondaryContent">	<div id="cc62a6b3b0-600f-44be-850c-6d0d6d728ccb" data-containerid="62a6b3b0-600f-44be-850c-6d0d6d728ccb" class="pageContent cpGrid cpGrid24 showInMobile">
+				                
+
+
+
+	</div>
+</aside>
+</div><div data-cpRole="structuralContainer" id="structuralContainer9" class="siteSidebar">
+<nav data-cpRole="nav" id="secondaryNav" class="siteNav secondaryNav">
+
+
+
+
+	<ol role="menu" id="secondaryMenusecondaryNav" data-parent="423" class="rootNavMenu accordionNav">
+	<li role="menuitem" aria-haspopup="true" class="topMenuItem sideNavLi hasAccordionChildren" id="SideItem735" data-pageid="735">
+		<div class="accordionNavItem">
+			<a href="/735/Athletic-Field-Directory" target="_self" class="navMainItem secondaryNavItem cpComponent" data-type="SecondaryMainItem">Athletic Field Directory</a>
+		</div>
+			</li>
+	<li role="menuitem" aria-haspopup="true" class="topMenuItem sideNavLi hasAccordionChildren" id="SideItem525" data-pageid="525">
+		<div class="accordionNavItem">
+			<a href="/525/Individual-Field-Maps" target="_self" class="navMainItem secondaryNavItem cpComponent" data-type="SecondaryMainItem">Individual Field Maps</a>
+		</div>
+			</li>
+	<li role="menuitem" aria-haspopup="true" class="topMenuItem sideNavLi hasAccordionChildren" id="SideItem502" data-pageid="502">
+		<div class="accordionNavItem">
+			<a href="/502/Advanced-Reservations" target="_self" class="navMainItem secondaryNavItem cpComponent" data-type="SecondaryMainItem">Advanced Reservations</a>
+				<a href="#" class="openAccordionNav accordionSecondaryNavItem" title="Expand Advanced Reservations Submenu"></a>
+		</div>
+					<ol role="menu" aria-hidden="true" class="accordionNavContainer accordionNavContainer--lvl1" style="display: none;" data-parent="502">
+						<li role="menuitem" aria-haspopup="true" class="sideNavLi subMenuItem hasAccordionChildren" id="SideItem504" data-pageid="504">
+			<div class="accordionNavItem">
+				<a href="/504/Practice-Fields" target="_self" class="navMenuItem cpComponent" data-type="SecondaryMenuItem">Practice Fields</a>
+			</div>
+					</li>
+
+			</ol>
+	</li>
+	<li role="menuitem" aria-haspopup="true" class="topMenuItem sideNavLi hasAccordionChildren" id="SideItem506" data-pageid="506">
+		<div class="accordionNavItem">
+			<a href="/506/Occasional-Reservations" target="_self" class="navMainItem secondaryNavItem cpComponent" data-type="SecondaryMainItem">Occasional Reservations</a>
+				<a href="#" class="openAccordionNav accordionSecondaryNavItem" title="Expand Occasional Reservations Submenu"></a>
+		</div>
+					<ol role="menu" aria-hidden="true" class="accordionNavContainer accordionNavContainer--lvl1" style="display: none;" data-parent="506">
+						<li role="menuitem" aria-haspopup="true" class="sideNavLi subMenuItem hasAccordionChildren" id="SideItem1632" data-pageid="1632">
+			<div class="accordionNavItem">
+				<a href="https://fs12.formsite.com/sfrpsurvey/SFResidencyApp/index.html" target="_self" class="navMenuItem cpComponent" data-type="SecondaryMenuItem">Application for SF Residency Account for Discounted Athletic Fields</a>
+			</div>
+					</li>
+
+			</ol>
+	</li>
+	<li role="menuitem" aria-haspopup="true" class="topMenuItem sideNavLi hasAccordionChildren" id="SideItem508" data-pageid="508">
+		<div class="accordionNavItem">
+			<a href="/508/Open-Play" target="_self" class="navMainItem secondaryNavItem cpComponent" data-type="SecondaryMainItem">Open Play</a>
+		</div>
+			</li>
+	<li role="menuitem" aria-haspopup="true" class="topMenuItem sideNavLi hasAccordionChildren" id="SideItem526" data-pageid="526">
+		<div class="accordionNavItem">
+			<a href="/526/Polo-Field-Usage" target="_self" class="navMainItem secondaryNavItem cpComponent" data-type="SecondaryMainItem">Polo Field Usage</a>
+		</div>
+			</li>
+	<li role="menuitem" aria-haspopup="true" class="topMenuItem sideNavLi hasAccordionChildren" id="SideItem514" data-pageid="514">
+		<div class="accordionNavItem">
+			<a href="/514/Approved-Public-Benefit-Programs" target="_self" class="navMainItem secondaryNavItem cpComponent" data-type="SecondaryMainItem">Approved Public Benefit Programs</a>
+		</div>
+			</li>
+	<li role="menuitem" aria-haspopup="true" class="topMenuItem sideNavLi hasAccordionChildren" id="SideItem1643" data-pageid="1643">
+		<div class="accordionNavItem">
+			<a href="/1643/Youth-Activities-in-Parks-During-School-" target="_self" class="navMainItem secondaryNavItem cpComponent" data-type="SecondaryMainItem">Youth Activities in Parks During School Hours</a>
+		</div>
+			</li>
+	<li role="menuitem" aria-haspopup="true" class="topMenuItem sideNavLi hasAccordionChildren" id="SideItem1536" data-pageid="1536">
+		<div class="accordionNavItem">
+			<a href="/1536/Spotery-Draft" target="_self" class="navMainItem secondaryNavItem cpComponent" data-type="SecondaryMainItem">Spotery Draft</a>
+		</div>
+			</li>
+	<li role="menuitem" aria-haspopup="true" class="topMenuItem sideNavLi hasAccordionChildren" id="SideItem1191" data-pageid="1191">
+		<div class="accordionNavItem">
+			<a href="/507/Field-Rain-Out-Info" target="_self" class="navMainItem secondaryNavItem cpComponent" data-type="SecondaryMainItem">Field Rain Out Info</a>
+		</div>
+			</li>
+	<li role="menuitem" aria-haspopup="true" class="topMenuItem sideNavLi hasAccordionChildren" id="SideItem1270" data-pageid="1270">
+		<div class="accordionNavItem">
+			<a href="/DocumentCenter/View/8014/Park-Code-Fees-for-Website-1" target="_blank" class="navMainItem secondaryNavItem cpComponent" data-type="SecondaryMainItem">Park Code Fees (PDF)</a>
+		</div>
+			</li>
+	<li role="menuitem" aria-haspopup="true" class="topMenuItem sideNavLi hasAccordionChildren" id="SideItem1248" data-pageid="1248">
+		<div class="accordionNavItem">
+			<a href="/1247/Contact-Us--Permits-Reservations" target="_self" class="navMainItem secondaryNavItem cpComponent" data-type="SecondaryMainItem">Contact Us- Permits &amp; Reservations Office</a>
+		</div>
+			</li>
+	<li role="menuitem" aria-haspopup="true" class="topMenuItem sideNavLi hasAccordionChildren" id="SideItem1255" data-pageid="1255">
+		<div class="accordionNavItem">
+			<a href="/387/Permits-Reservations" target="_self" class="navMainItem secondaryNavItem cpComponent" data-type="SecondaryMainItem">Permits &amp; Reservations Home</a>
+		</div>
+			</li>
+
+	</ol>
+
+
+	<script type="text/javascript">
+        $(document).ready(function () {
+            //setup menu manager properties for secondary menu
+            menuManager.isSideMenuEditable = false;
+		    menuManager.sideMenuMaxSubMenuLevels = 4;
+            menuManager.sideMenuHasCustomLinks = false;
+        });
+	</script>
+
+	<script type="text/javascript">
+		$(document).ready(function () {
+			$('*[id^="SideItem"]').each(function () {
+				var ids = $('[id="' + this.id + '"]');
+				if (ids.length > 1)
+					$.each(ids, function (index, value) {
+						value.id = value.id + '_' + index;
+					});
+			});
+
+			$('.hasAccordionChildren .openAccordionNav').click(function (e) {
+				e.preventDefault();
+				showHideAccordionMenuForSecondaryNav($(this));
+			});
+
+			$("#secondaryNav .grippy").each(function () {
+				menuManager.setupDraggableElement($(this), SIDE_MENU, '#secondaryNav');
+			});
+
+			$("#secondaryNav li").each(function () {
+				menuManager.setupDroppableAccordionElement($(this), SIDE_MENU);
+			});
+		});
+	</script>
+
+
+
+</nav>
+</div>
+</div></div>
+</div><div data-cpRole="structuralContainer" id="structuralContainer14">
+<div class="siteWrapTwo"><aside data-cpRole="contentContainer" id="contentContainer10">	<div id="cc7c44bc5f-1f30-4899-9dcf-61efe9112135" data-containerid="7c44bc5f-1f30-4899-9dcf-61efe9112135" class="pageContent cpGrid cpGrid24 isLockedContainer showInMobile">
+				                
+
+		<div class="row outer wide"><!--
+--><div class="outer col col24 first last" style="" data-widgetcontainerid="e561a936-6cbf-4975-95a4-f1c4ba7831bd">				
+	<div class="row nest first last wide">
+	
+	<div class="inner col col24 first last idf0d377e9-f391-48ea-872b-0a1010ecb9b7" style="" data-widgetcontainerid="f0d377e9-f391-48ea-872b-0a1010ecb9b7">	
+<div data-widget-id="e3150417-c975-4383-80ff-6f9f820502e5" data-widget-controller-path="/GraphicLinks/Widget">
+
+
+
+
+<div id="graphicLinkWidgete3150417-c975-4383-80ff-6f9f820502e5" class="widget widgetGraphicLinks skin62 widgetOptionSet40 wide" data-elementqueryclasses='{"wide-narrow":"min-width:25em"}' data-elementquerymatch='matchMultiColumn' data-elementqueryunmatch='unmatchMultiColumn' data-modulewidgettype="graphicLinks">
+	<div class="widgetHeader">
+		<div class="">
+				</div>
+	</div>
+	<div class="widgetBody cpGrid cpGrid5 ">	
+			<div class="row   wide"><!--
+--><div class="col col1 first "><div class="semanticList"><!--
+	    --><div class="widgetItem GraphicLinks">
+
+<div>
+	<a href="/770/Golden-Gate-Park" target="_self" class="fancyButton fancyButton133 " >
+		<span>
+			<span><span class="text">DISCOVER <br>GOLDEN GATE PARK</span></span>
+		</span>
+	</a>
+</div>
+		<style scoped="scoped">.fancyButton133.fancyButton:link,.fancyButton133.fancyButton:visited, .fancyButton133div.fancyButton{
+	background-image: url('/ImageRepository/Document?documentID=16603');
+	background-repeat: no-repeat;
+	background-position: center 1.5em ;
+max-width:230px;
+opacity: 1;
+    -webkit-transition: all 0.3s ease-in-out;
+    -moz-transition: all 0.3s ease-in-out;
+    -o-transition: all 0.3s ease-in-out;
+    transition: all 0.3s ease-in-out;
+float:none;
+margin: 0 auto;}
+.fancyButton133.fancyButton:hover,.fancyButton133.fancyButton:focus,.fancyButton133.fancyButton:active,.fancyButton133.fancyButton.hover{
+	background-image: url('/ImageRepository/Document?documentID=16593');
+	background-repeat: no-repeat;
+	background-position: center 1.5em ;
+opacity: 1;
+    -webkit-transition: all 0.3s ease-in-out;
+    -moz-transition: all 0.3s ease-in-out;
+    -o-transition: all 0.3s ease-in-out;
+    transition: all 0.3s ease-in-out;}
+.fancyButton133.fancyButton:link > span,.fancyButton133.fancyButton:visited > span, .fancyButton133div.fancyButton > span{
+}
+.fancyButton133.fancyButton:hover > span,.fancyButton133.fancyButton:focus > span,.fancyButton133.fancyButton:active > span,.fancyButton133.fancyButton.hover > span{
+}
+.fancyButton133.fancyButton .text{
+	color: #000;
+	font-size: 0.8em;
+	font-family: "Arial";
+	text-align: center;
+	padding-top: 140px;
+	font-weight: 700;
+	text-decoration: none;
+	padding-top: 140px;
+	background-repeat: no-repeat;
+	background-position: left top;
+
+
+}
+.fancyButton133.fancyButton:hover .text,.fancyButton133.fancyButton:focus .text,.fancyButton133.fancyButton:active .text,.fancyButton133.fancyButton.hover .text{
+	color: #000;
+	font-size: .8em;
+	text-align: center;
+	text-decoration: none;
+	background-repeat: no-repeat;
+	background-position: left top;
+
+
+}
+</style>
+
+ </div><!--
+--></div></div><!----><div class="col col1  "><div class="semanticList"><!--
+	    --><div class="widgetItem GraphicLinks">
+
+<div>
+	<a href="https://www.sfrecpark.org/507/Field-Rain-Out-Info" target="_blank" class="fancyButton fancyButton134 "  aria-label="FIELD RAINOUT INFO Opens in new window">
+		<span>
+			<span><span class="text">FIELD RAINOUT<br>INFO</span></span>
+		</span>
+	</a>
+</div>
+		<style scoped="scoped">.fancyButton134.fancyButton:link,.fancyButton134.fancyButton:visited, .fancyButton134div.fancyButton{
+	background-image: url('/ImageRepository/Document?documentID=20070');
+	background-repeat: no-repeat;
+	background-position: center 1.5em ;
+max-width:230px;
+opacity: 1;
+    -webkit-transition: all 0.3s ease-in-out;
+    -moz-transition: all 0.3s ease-in-out;
+    -o-transition: all 0.3s ease-in-out;
+    transition: all 0.3s ease-in-out;
+float:none;
+margin: 0 auto;}
+.fancyButton134.fancyButton:hover,.fancyButton134.fancyButton:focus,.fancyButton134.fancyButton:active,.fancyButton134.fancyButton.hover{
+	background-image: url('/ImageRepository/Document?documentID=20069');
+	background-repeat: no-repeat;
+	background-position: center 1.5em ;
+opacity: 1;
+    -webkit-transition: all 0.3s ease-in-out;
+    -moz-transition: all 0.3s ease-in-out;
+    -o-transition: all 0.3s ease-in-out;
+    transition: all 0.3s ease-in-out;}
+.fancyButton134.fancyButton:link > span,.fancyButton134.fancyButton:visited > span, .fancyButton134div.fancyButton > span{
+}
+.fancyButton134.fancyButton:hover > span,.fancyButton134.fancyButton:focus > span,.fancyButton134.fancyButton:active > span,.fancyButton134.fancyButton.hover > span{
+}
+.fancyButton134.fancyButton .text{
+	color: #000;
+	font-size: .8em;
+	font-family: "Arial";
+	text-align: center;
+	padding-top: 140px;
+	font-weight: 700;
+	text-decoration: none;
+	padding-top: 140px;
+	background-repeat: no-repeat;
+	background-position: left top;
+
+
+}
+.fancyButton134.fancyButton:hover .text,.fancyButton134.fancyButton:focus .text,.fancyButton134.fancyButton:active .text,.fancyButton134.fancyButton.hover .text{
+	color: #000;
+	font-size: .8em;
+	text-align: center;
+	text-decoration: none;
+	background-repeat: no-repeat;
+	background-position: left top;
+
+
+}
+</style>
+
+ </div><!--
+--></div></div><!----><div class="col col1  "><div class="semanticList"><!--
+	    --><div class="widgetItem GraphicLinks">
+
+<div>
+	<a href="/1188/Tennis-Court-Reservations" target="_self" class="fancyButton fancyButton128 " >
+		<span>
+			<span><span class="text">RESERVE A<br>TENNIS COURT</span></span>
+		</span>
+	</a>
+</div>
+		<style scoped="scoped">.fancyButton128.fancyButton:link,.fancyButton128.fancyButton:visited, .fancyButton128div.fancyButton{
+	background-image: url('/ImageRepository/Document?documentID=16606');
+	background-repeat: no-repeat;
+	background-position: center 1.5em ;
+max-width:230px;
+opacity: 1;
+    -webkit-transition: all 0.3s ease-in-out;
+    -moz-transition: all 0.3s ease-in-out;
+    -o-transition: all 0.3s ease-in-out;
+    transition: all 0.3s ease-in-out;
+float:none;
+margin: 0 auto;}
+.fancyButton128.fancyButton:hover,.fancyButton128.fancyButton:focus,.fancyButton128.fancyButton:active,.fancyButton128.fancyButton.hover{
+	background-image: url('/ImageRepository/Document?documentID=16596');
+	background-repeat: no-repeat;
+	background-position: center 1.5em ;
+opacity: 1;
+    -webkit-transition: all 0.3s ease-in-out;
+    -moz-transition: all 0.3s ease-in-out;
+    -o-transition: all 0.3s ease-in-out;
+    transition: all 0.3s ease-in-out;}
+.fancyButton128.fancyButton:link > span,.fancyButton128.fancyButton:visited > span, .fancyButton128div.fancyButton > span{
+}
+.fancyButton128.fancyButton:hover > span,.fancyButton128.fancyButton:focus > span,.fancyButton128.fancyButton:active > span,.fancyButton128.fancyButton.hover > span{
+}
+.fancyButton128.fancyButton .text{
+	color: #000;
+	font-size: .8em;
+	font-family: "Arial";
+	text-align: center;
+	padding-top: 140px;
+	font-weight: 700;
+	text-decoration: none;
+	padding-top: 140px;
+	background-repeat: no-repeat;
+	background-position: left top;
+
+
+}
+.fancyButton128.fancyButton:hover .text,.fancyButton128.fancyButton:focus .text,.fancyButton128.fancyButton:active .text,.fancyButton128.fancyButton.hover .text{
+	color: #000;
+	font-size: .8em;
+	text-align: center;
+	text-decoration: none;
+	background-repeat: no-repeat;
+	background-position: left top;
+
+
+}
+</style>
+
+ </div><!--
+--></div></div><!----><div class="col col1  "><div class="semanticList"><!--
+	    --><div class="widgetItem GraphicLinks">
+
+<div>
+	<a href="/445/Golf-Courses" target="_self" class="fancyButton fancyButton135 " >
+		<span>
+			<span><span class="text">PLAY A ROUND<br>OF GOLF</span></span>
+		</span>
+	</a>
+</div>
+		<style scoped="scoped">.fancyButton135.fancyButton:link,.fancyButton135.fancyButton:visited, .fancyButton135div.fancyButton{
+	background-image: url('/ImageRepository/Document?documentID=16604');
+	background-repeat: no-repeat;
+	background-position: center 1.5em ;
+max-width:230px;
+opacity: 1;
+    -webkit-transition: all 0.3s ease-in-out;
+    -moz-transition: all 0.3s ease-in-out;
+    -o-transition: all 0.3s ease-in-out;
+    transition: all 0.3s ease-in-out;
+float:none;
+margin: 0 auto;}
+.fancyButton135.fancyButton:hover,.fancyButton135.fancyButton:focus,.fancyButton135.fancyButton:active,.fancyButton135.fancyButton.hover{
+	background-image: url('/ImageRepository/Document?documentID=16594');
+	background-repeat: no-repeat;
+	background-position: center 1.5em ;
+opacity: 1;
+    -webkit-transition: all 0.3s ease-in-out;
+    -moz-transition: all 0.3s ease-in-out;
+    -o-transition: all 0.3s ease-in-out;
+    transition: all 0.3s ease-in-out;}
+.fancyButton135.fancyButton:link > span,.fancyButton135.fancyButton:visited > span, .fancyButton135div.fancyButton > span{
+}
+.fancyButton135.fancyButton:hover > span,.fancyButton135.fancyButton:focus > span,.fancyButton135.fancyButton:active > span,.fancyButton135.fancyButton.hover > span{
+}
+.fancyButton135.fancyButton .text{
+	color: #000;
+	font-size: .8em;
+	font-family: "Montserrat";
+	text-align: center;
+	padding-top: 140px;
+	font-weight: 600;
+	text-decoration: none;
+	padding-top: 140px;
+	background-repeat: no-repeat;
+	background-position: left top;
+
+
+}
+.fancyButton135.fancyButton:hover .text,.fancyButton135.fancyButton:focus .text,.fancyButton135.fancyButton:active .text,.fancyButton135.fancyButton.hover .text{
+	color: #000;
+	font-size: .8em;
+	text-align: center;
+	text-decoration: none;
+	background-repeat: no-repeat;
+	background-position: left top;
+
+
+}
+.fancyButton135.fancyButton .textStyle1{
+	color: #000000;
+	font-size: .8em;
+	font-family: Arial;
+	font-weight: 700;
+	text-decoration: none;
+
+}
+.fancyButton135.fancyButton:hover .textStyle1, .fancyButton135.fancyButton.hover .textStyle1{
+	color: #000000;
+	font-size: .8em;
+	text-decoration: none;
+
+}
+</style>
+
+ </div><!--
+--></div></div><!----><div class="col col1  last"><div class="semanticList"><!--
+	    --><div class="widgetItem GraphicLinks">
+
+<div>
+	<a href="/Facilities/Facility/PrepopulatedSearch?isReservableOnly=false&amp;categoryIDs=2" target="_blank" class="fancyButton fancyButton136 "  aria-label="FIND A PLAYGROUND Opens in new window">
+		<span>
+			<span><span class="text">FIND A<br>PLAYGROUND</span></span>
+		</span>
+	</a>
+</div>
+		<style scoped="scoped">.fancyButton136.fancyButton:link,.fancyButton136.fancyButton:visited, .fancyButton136div.fancyButton{
+	background-image: url('/ImageRepository/Document?documentID=16605');
+	background-repeat: no-repeat;
+	background-position: center 1.5em ;
+max-width:230px;
+opacity: 1;
+    -webkit-transition: all 0.3s ease-in-out;
+    -moz-transition: all 0.3s ease-in-out;
+    -o-transition: all 0.3s ease-in-out;
+    transition: all 0.3s ease-in-out;
+float:none;
+margin: 0 auto;}
+.fancyButton136.fancyButton:hover,.fancyButton136.fancyButton:focus,.fancyButton136.fancyButton:active,.fancyButton136.fancyButton.hover{
+	background-image: url('/ImageRepository/Document?documentID=16595');
+	background-repeat: no-repeat;
+	background-position: center 1.5em ;
+opacity: 1;
+    -webkit-transition: all 0.3s ease-in-out;
+    -moz-transition: all 0.3s ease-in-out;
+    -o-transition: all 0.3s ease-in-out;
+    transition: all 0.3s ease-in-out;}
+.fancyButton136.fancyButton:link > span,.fancyButton136.fancyButton:visited > span, .fancyButton136div.fancyButton > span{
+}
+.fancyButton136.fancyButton:hover > span,.fancyButton136.fancyButton:focus > span,.fancyButton136.fancyButton:active > span,.fancyButton136.fancyButton.hover > span{
+}
+.fancyButton136.fancyButton .text{
+	color: #000;
+	font-size: .8em;
+	font-family: "Arial";
+	text-align: center;
+	padding-top: 140px;
+	font-weight: 700;
+	text-decoration: none;
+	padding-top: 140px;
+	background-repeat: no-repeat;
+	background-position: left top;
+
+
+}
+.fancyButton136.fancyButton:hover .text,.fancyButton136.fancyButton:focus .text,.fancyButton136.fancyButton:active .text,.fancyButton136.fancyButton.hover .text{
+	color: #000;
+	font-size: .8em;
+	text-align: center;
+	text-decoration: none;
+	background-repeat: no-repeat;
+	background-position: left top;
+
+
+}
+</style>
+
+ </div><!--
+--></div></div><!--			--></div>
+	</div>
+	<div class="widgetFooter">
+			</div>
+</div>
+
+</div>
+	</div> <!-- inner column -->
+
+	</div> <!-- inner row -->
+
+			</div><!-- outer column --><!--		--></div> <!-- outer row -->
+
+
+	</div>
+</aside></div>
+</div><div data-cpRole="structuralContainer" id="structuralContainer11">
+<div class="siteWrapThree"><aside data-cpRole="contentContainer" id="contentContainer4">	<div id="ccd49d8903-3276-4b99-aff3-ac8b74ef7422" data-containerid="d49d8903-3276-4b99-aff3-ac8b74ef7422" class="pageContent cpGrid cpGrid24 isLockedContainer showInMobile" data-contentcontainerbreakpoint="40">
+				                
+
+		<div class="row outer wide"><!--
+--><div class="outer col col24 first last" style="" data-widgetcontainerid="d863b25c-c05e-4af9-aa1f-62687dcf63ac">				
+	<div class="row nest first last wide">
+	
+	<div class="inner col col24 first last id9ef98d0f-5917-4490-a6b8-4fb331b8fdf0" style="" data-widgetcontainerid="9ef98d0f-5917-4490-a6b8-4fb331b8fdf0">	
+    <div data-widget-id="fbf77d18-ae91-40d4-8137-6c56004014ac" data-widget-controller-path="/InfoAdvanced/Widget">
+
+
+
+
+
+	<section id="divInfoAdvfbf77d18-ae91-40d4-8137-6c56004014ac" class="widget widgetInfoAdvanced skin63 widgetOptionSet5 wide" data-modulewidgettype="infoAdv" data-elementqueryclasses='{"wide-narrow":"min-width:25em"}' data-elementquerymatch='matchMultiColumn' data-elementqueryunmatch='unmatchMultiColumn' aria-labelledby="headerfbf77d18-ae91-40d4-8137-6c56004014ac">
+			<header class="widgetHeader" id="headerfbf77d18-ae91-40d4-8137-6c56004014ac">
+		<div class="">
+					<h3 >About Us</h3>
+								</div>
+	</header>
+	<div class="widgetBody  cpGrid cpGrid1 ">
+		<div class="row  wide">
+					<div class="col col1 first last">
+						<ol class="pageStyles semanticList">
+
+<li class="InfoAdvanced widgetItem fr-view">
+	<p style=" "><span style="font-size: 10pt;"><span style="font-size: 10pt;">The San Francisco Recreation and Park Department currently manages more than 220 parks, playgrounds and open spaces throughout San Francisco, including two outside city limits—Sharp Park in Pacifica and Camp Mather in the High Sierras. The system includes full-complex recreation centers, swimming pools, golf courses, sports fields and numerous small-to-medium-sized </span><span style="font-size: 10pt;">club</span><span style="font-size: 10pt;">houses that offer a variety of sports- and arts-related recreation programs for people of all ages.&nbsp; Included in the Department’s responsibilities are </span><span style="font-size: 10pt;">Golden Gate Park, Coit Tower, </span><span style="font-size: 10pt;">the Marina Yacht Harbor, the San Francisco Zoo and Lake Merced.</span></span></p>
+<p style=" "> </p>
+<p style=" "><span style="font-size: 10pt;"><span style="font-size: 10pt;">In 2017, San Francisco became the first city in the nation where all residents have access to a park within a 10-minute walk, a direct result of the Department’s commitment to increasing and improving parkland in the city.</span><span style="font-size: 10pt;">&nbsp;<strong>&nbsp;</strong></span><span style="font-size: 10pt;" class="hyperlink"><a href="/419/Who-We-Are" style="" target="_self" class="hyperlink"><span style="font-size: 10pt;" class="hyperlink">Learn More</span></a></span></span></p>
+</li>						</ol>
+					</div>
+		</div>
+	</div>
+	<div class="widgetFooter">
+
+	</div>
+
+	</section>
+
+
+
+<script type="text/javascript">
+	//Render slideshow if info advacned items contain one.
+	$(document).ready(function (e) {
+		$('#divInfoAdvfbf77d18-ae91-40d4-8137-6c56004014ac .InfoAdvanced.widgetItem').each(function () {
+			renderSlideshowIfApplicable($(this));		
+		});
+	});
+</script></div>	</div> <!-- inner column -->
+
+	</div> <!-- inner row -->
+
+			</div><!-- outer column --><!--		--></div> <!-- outer row -->
+
+
+	</div>
+</aside><aside data-cpRole="contentContainer" id="contentContainer4b">	<div id="cc1ab19d6d-d8a9-4c05-9d33-fed03dc31cee" data-containerid="1ab19d6d-d8a9-4c05-9d33-fed03dc31cee" class="pageContent cpGrid cpGrid24 isLockedContainer showInMobile" data-contentcontainerbreakpoint="25">
+				                
+
+		<div class="row outer wide"><!--
+--><div class="outer col col9 first" style="" data-widgetcontainerid="f2776d7c-8587-41ee-aef9-431459d1c910">				
+	<div class="row nest first last wide">
+	
+	<div class="inner col col9 first last id8794e142-2ccf-403d-92f9-c01a926037a1" style="" data-widgetcontainerid="8794e142-2ccf-403d-92f9-c01a926037a1">	
+	<div data-widget-id="040a5b02-2d5a-4e6e-b4f2-ae7aa16a199e" data-widget-controller-path="/QuickLinks/Widget">
+
+
+
+
+
+ 
+
+
+	<section id="widgetQuicklink040a5b02-2d5a-4e6e-b4f2-ae7aa16a199e" class="widget widgetQuickLinks skin63 widgetOptionSet26 narrow" data-modulewidgettype="quickLinks" data-elementqueryclasses='{"wide-narrow":"min-width:25em"}' data-elementquerymatch='matchMultiColumn' data-elementqueryunmatch='unmatchMultiColumn' aria-labelledby="quickLinksHeader040a5b02-2d5a-4e6e-b4f2-ae7aa16a199e">
+			<header class="widgetHeader" id="quickLinksHeader040a5b02-2d5a-4e6e-b4f2-ae7aa16a199e">
+		<div class="">
+					<h3><a  style="" href="/QuickLinks.aspx?CID=37" >Social Media</a></h3>
+						</div>
+	</header>
+	<div class="widgetBody cpGrid cpGrid1 ">
+        <div class="row  narrow">
+				<div class="col col1 first last">
+					<ol class="semanticList">
+
+    <li style="position:relative" class="widgetItem QuickLinks">
+        <a class="widgetDesc widgetQuickLinksLink" href="https://twitter.com/RecParkSF/" target="_blank"  aria-label="Twitter opens in new window">Twitter</a>
+        <div class="widgetMeta"></div>
+    </li>
+
+    <li style="position:relative" class="widgetItem QuickLinks">
+        <a class="widgetDesc widgetQuickLinksLink" href="https://www.facebook.com/sfrecpark/" target="_blank"  aria-label="Facebook opens in new window">Facebook</a>
+        <div class="widgetMeta"></div>
+    </li>
+
+    <li style="position:relative" class="widgetItem QuickLinks">
+        <a class="widgetDesc widgetQuickLinksLink" href="https://www.instagram.com/sfrecpark/" target="_blank"  aria-label="Instagram opens in new window">Instagram</a>
+        <div class="widgetMeta"></div>
+    </li>
+
+    <li style="position:relative" class="widgetItem QuickLinks">
+        <a class="widgetDesc widgetQuickLinksLink" href="https://www.youtube.com/channel/UCQ-22dignmyJOp1i4-CTIRQ" target="_blank"  aria-label="YouTube opens in new window">YouTube</a>
+        <div class="widgetMeta"></div>
+    </li>
+
+    <li style="position:relative" class="widgetItem QuickLinks">
+        <a class="widgetDesc widgetQuickLinksLink" href="/1412/Our-Podcast" target="_blank"  aria-label="Podcast opens in new window">Podcast</a>
+        <div class="widgetMeta"></div>
+    </li>
+
+    <li style="position:relative" class="widgetItem QuickLinks">
+        <a class="widgetDesc widgetQuickLinksLink" href="https://visitor.r20.constantcontact.com/manage/optin/ea?v=0013ay8ttmh6C6SjObo1CzBww%3D%3D" target="_blank"  aria-label="eNews Signup opens in new window">eNews Signup</a>
+        <div class="widgetMeta"></div>
+    </li>
+					</ol>
+				</div>
+		</div>
+        
+	</div>
+	<div class="widgetFooter">
+	</div>
+	<div class="addItemModal hidden">
+		<div class="url hidden">/QuickLinks.aspx</div>
+	</div>
+
+	</section>
+</div>
+	</div> <!-- inner column -->
+
+	</div> <!-- inner row -->
+
+			</div><!-- outer column --><!----><div class="outer col col9" style="" data-widgetcontainerid="b05b04d8-7e94-4e55-b23a-c81ebbd40fb5">				
+	<div class="row nest first last wide">
+	
+	<div class="inner col col9 first last id00151fc7-201a-4564-b279-08f26c06d560" style="" data-widgetcontainerid="00151fc7-201a-4564-b279-08f26c06d560">	
+	<div data-widget-id="73b8ad0e-ac54-401e-b662-804355f36bb9" data-widget-controller-path="/QuickLinks/Widget">
+</div>
+	</div> <!-- inner column -->
+
+	</div> <!-- inner row -->
+
+			</div><!-- outer column --><!----><div class="outer col col6 last" style="" data-widgetcontainerid="c67c1f22-a688-4cc3-9add-feded16dcd27">				
+	<div class="row nest first last wide">
+	
+	<div class="inner col col6 first last idfc70fb59-024c-4f28-a15f-0dc524389154" style="" data-widgetcontainerid="fc70fb59-024c-4f28-a15f-0dc524389154">	
+    <div data-widget-id="e58d930b-a57d-4e76-9491-e381f8d12180" data-widget-controller-path="/InfoAdvanced/Widget">
+
+
+
+
+
+	<section id="divInfoAdve58d930b-a57d-4e76-9491-e381f8d12180" class="widget widgetInfoAdvanced skin63 widgetOptionSet5 wide" data-modulewidgettype="infoAdv" data-elementqueryclasses='{"wide-narrow":"min-width:25em"}' data-elementquerymatch='matchMultiColumn' data-elementqueryunmatch='unmatchMultiColumn' aria-labelledby="headere58d930b-a57d-4e76-9491-e381f8d12180">
+			<header class="widgetHeader" id="headere58d930b-a57d-4e76-9491-e381f8d12180">
+		<div class="">
+					<h3 >Contact Us</h3>
+								</div>
+	</header>
+	<div class="widgetBody  cpGrid cpGrid1 ">
+		<div class="row  wide">
+					<div class="col col1 first last">
+						<ol class="pageStyles semanticList">
+
+<li class="InfoAdvanced widgetItem fr-view">
+	San Francisco Recreation &amp; Parks
+</li>
+<li class="InfoAdvanced widgetItem fr-view">
+	McLaren Lodge-Golden Gate Park
+</li>
+<li class="InfoAdvanced widgetItem fr-view">
+	501 Stanyan Street
+</li>
+<li class="InfoAdvanced widgetItem fr-view">
+	San Francisco, CA 94117
+</li>
+<li class="InfoAdvanced widgetItem fr-view">
+	<p>Phone: <a href="tel:415-831-2700">415-831-2700</a></p><p>Recreation Program Registration (Translation Available): <a href="tel:415-831-6800" rel="noopener" target="_blank">(415) 831-6800</a></p>
+</li>
+<li class="InfoAdvanced widgetItem fr-view">
+	<a href="mailto: rpdinfo@sfgov.org" target="_self" class="Hyperlink">Email Us</a>
+</li>						</ol>
+					</div>
+		</div>
+	</div>
+	<div class="widgetFooter">
+
+	</div>
+
+	</section>
+
+
+
+<script type="text/javascript">
+	//Render slideshow if info advacned items contain one.
+	$(document).ready(function (e) {
+		$('#divInfoAdve58d930b-a57d-4e76-9491-e381f8d12180 .InfoAdvanced.widgetItem').each(function () {
+			renderSlideshowIfApplicable($(this));		
+		});
+	});
+</script></div>	</div> <!-- inner column -->
+
+	</div> <!-- inner row -->
+
+			</div><!-- outer column --><!--		--></div> <!-- outer row -->
+
+
+	</div>
+</aside></div>
+</div><div data-cpRole="structuralContainer" id="structuralContainer13" class="fixedBottom_ts">
+<div class="siteWrapThree"><footer data-cpRole="contentContainer" id="contentContainer7" class="siteFooter">	<div id="cc3062ee7d-5e85-443f-ab59-904c1c9580fe" data-containerid="3062ee7d-5e85-443f-ab59-904c1c9580fe" class="pageContent cpGrid cpGrid24 isLockedContainer showInMobile">
+				                
+
+		<div class="row outer wide"><!--
+--><div class="outer col col24 first last" style="" data-widgetcontainerid="6dee347d-0712-47c7-811d-e9aebd260193">				
+	<div class="row nest first last wide">
+	
+	<div class="inner col col24 first last id1072fdd3-dba8-4478-b5f0-48e0a5714579" style="" data-widgetcontainerid="1072fdd3-dba8-4478-b5f0-48e0a5714579">	
+    <div data-widget-id="d9304d4b-e748-4932-869a-9d7875c9d1ac" data-widget-controller-path="/InfoAdvanced/Widget">
+
+
+
+
+
+	<section id="divInfoAdvd9304d4b-e748-4932-869a-9d7875c9d1ac" class="widget widgetInfoAdvanced skin43 widgetOptionSet5 wide" data-modulewidgettype="infoAdv" data-elementqueryclasses='{"wide-narrow":"min-width:25em"}' data-elementquerymatch='matchMultiColumn' data-elementqueryunmatch='unmatchMultiColumn' aria-label="Info Advanced">
+			<header class="widgetHeader" id="headerd9304d4b-e748-4932-869a-9d7875c9d1ac">
+		<div class="">
+								</div>
+	</header>
+	<div class="widgetBody  cpGrid cpGrid1 ">
+		<div class="row  wide">
+					<div class="col col1 first last">
+						<ol class="pageStyles semanticList">
+
+<li class="InfoAdvanced widgetItem fr-view">
+	<a href="/"><img src="/ImageRepository/Document?documentID=845" alt="Footer site" title="Footer site"></a>
+</li>						</ol>
+					</div>
+		</div>
+	</div>
+	<div class="widgetFooter">
+
+	</div>
+
+	</section>
+
+
+
+<script type="text/javascript">
+	//Render slideshow if info advacned items contain one.
+	$(document).ready(function (e) {
+		$('#divInfoAdvd9304d4b-e748-4932-869a-9d7875c9d1ac .InfoAdvanced.widgetItem').each(function () {
+			renderSlideshowIfApplicable($(this));		
+		});
+	});
+</script></div>	</div> <!-- inner column -->
+
+	</div> <!-- inner row -->
+
+			</div><!-- outer column --><!--		--></div> <!-- outer row -->
+
+
+	</div>
+</footer><footer data-cpRole="contentContainer" id="contentContainer8" class="siteFooter">	<div id="cc7273fb8f-ce31-4b74-9b84-9a0fe9c921d5" data-containerid="7273fb8f-ce31-4b74-9b84-9a0fe9c921d5" class="pageContent cpGrid cpGrid24 isLockedContainer showInMobile" data-contentcontainerbreakpoint="25">
+				                
+
+		<div class="row outer wide"><!--
+--><div class="outer col col24 first last" style="" data-widgetcontainerid="54449c13-c389-4651-9e80-82ca62c36206">				
+	<div class="row nest first last wide">
+	
+	<div class="inner col col24 first last id14ba29f6-f1c8-4c01-852a-40982f82f4e3" style="" data-widgetcontainerid="14ba29f6-f1c8-4c01-852a-40982f82f4e3">	
+	<div data-widget-id="674c6821-ee4b-4f0c-9c5c-c3a587eed1b3" data-widget-controller-path="/QuickLinks/Widget">
+</div>
+	</div> <!-- inner column -->
+
+	</div> <!-- inner row -->
+
+			</div><!-- outer column --><!--		--></div> <!-- outer row -->
+
+
+	</div>
+</footer><footer data-cpRole="contentContainer" id="contentContainer9" class="siteFooter">	<div id="cca9bc683d-2408-4e77-892e-704ded8c8bcc" data-containerid="a9bc683d-2408-4e77-892e-704ded8c8bcc" class="pageContent cpGrid cpGrid24 isLockedContainer showInMobile" data-contentcontainerbreakpoint="1">
+				                
+
+		<div class="row outer wide"><!--
+--><div class="outer col col5 first" style="" data-widgetcontainerid="f4a09fab-6507-407f-81c5-c8f97309d679">				
+	<div class="row nest first last wide">
+	
+	<div class="inner col col5 first last id915404b6-783a-4db1-9804-92fbaa4f4ced" style="" data-widgetcontainerid="915404b6-783a-4db1-9804-92fbaa4f4ced">	
+<div data-widget-id="54a55d78-0206-4ef2-bd6d-1a5bb8f2942c" data-widget-controller-path="/Layout/WidgetShare">
+
+		<script type="text/javascript">
+			$(document).ready(function () {
+				setWidgetServiceClicking($("#widgetShareHeader54a55d78-0206-4ef2-bd6d-1a5bb8f2942c"), true, function () {
+					var $widgetBody = $('#widgetShareBody54a55d78-0206-4ef2-bd6d-1a5bb8f2942c');
+
+					if ($widgetBody.is(':visible')) {
+						var menuItems = $('.widgetItem a', $widgetBody);
+
+						$(menuItems[0]).focus();
+
+						$('.widgetItem', $widgetBody).unbind("keydown").bind("keydown", function (e) {
+
+							if (e.which === 9) {
+								var index = menuItems.index(e.target);
+
+								if ((index === 0 && e.shiftKey) || (index === (menuItems.length - 1) && !e.shiftKey)) {
+									$("#widgetShareHeader54a55d78-0206-4ef2-bd6d-1a5bb8f2942c").trigger('click').focus();
+								}
+							}
+			});
+					} else {
+						$('.widgetItem', $widgetBody).unbind("keydown");
+					}
+				});
+			});
+		</script>
+<style type="text/css">.widgetOptionSet35.widget {
+padding-top:.35em;
+}</style>
+	<section id="widgetShare54a55d78-0206-4ef2-bd6d-1a5bb8f2942c" class="widget widgetShare skin55 widgetOptionSet35 flyOutParent wide"  aria-label="Share">
+			<header id="widgetShareHeader54a55d78-0206-4ef2-bd6d-1a5bb8f2942c" class="widgetHeader" tabindex="0" role="button" aria-haspopup="true">
+				<h3><img alt="Share" class="imageHover" data-hover="/ImageRepository/Document?documentID=841" data-image="/ImageRepository/Document?documentID=842" src="/ImageRepository/Document?documentID=842" /></h3>
+	</header>
+    <div id="widgetShareBody54a55d78-0206-4ef2-bd6d-1a5bb8f2942c" class="widgetBody flyOut top rightEdge widget widgetShare skin55 cpGrid cpGrid2" style="display:none;">
+        <div class="row                   
+ wide">
+	<div class="col col1 first ">
+		<ol class="semanticList">
+                <li class="widgetItem" ><a tabindex="0" role="button" class="widgetShareFacebook shareService" onkeypress="if(event.which == 13) { this.onclick(); }" href="/Layout/WidgetShare/ShareLink/Facebook" target="_blank" aria-label="Share on Facebook opens in new window">Facebook</a></li>
+                <li class="widgetItem" ><a tabindex="0" role="button" class="widgetShareTwitter shareService" onkeypress="if(event.which == 13) { this.onclick(); }" href="/Layout/WidgetShare/ShareLink/Twitter" target="_blank" aria-label="Share on Twitter opens in new window">Twitter</a></li>
+                <li class="widgetItem" ><a tabindex="0" role="button" class="widgetSharePinterest shareService" onkeypress="if(event.which == 13) { this.onclick(); }" href="/Layout/WidgetShare/ShareLink/Pinterest" target="_blank" aria-label="Share on Pinterest opens in new window">Pinterest</a></li>
+                <li class="widgetItem" ><a tabindex="0" role="button" class="widgetShareDelicious shareService" onkeypress="if(event.which == 13) { this.onclick(); }" href="/Layout/WidgetShare/ShareLink/Delicious" target="_blank" aria-label="Share on Delicious opens in new window">Delicious</a></li>
+		</ol>
+	</div>
+	<div class="col col1  last">
+		<ol class="semanticList">
+                <li class="widgetItem" ><a tabindex="0" role="button" class="widgetShareBlogger shareService" onkeypress="if(event.which == 13) { this.onclick(); }" href="/Layout/WidgetShare/ShareLink/Blogger" target="_blank" aria-label="Share on Blogger opens in new window">Blogger</a></li>
+                <li class="widgetItem" ><a tabindex="0" role="button" class="widgetShareLinkedIn shareService" onkeypress="if(event.which == 13) { this.onclick(); }" href="/Layout/WidgetShare/ShareLink/LinkedIn" target="_blank" aria-label="Share on LinkedIn opens in new window">LinkedIn</a></li>
+		</ol>
+	</div>
+
+        </div>
+    </div>
+
+	</section>
+
+</div>
+	</div> <!-- inner column -->
+
+	</div> <!-- inner row -->
+
+			</div><!-- outer column --><!----><div class="outer col col6" style="" data-widgetcontainerid="0c6785d3-3aae-47d5-985a-65ba485a5561">				
+	<div class="row nest first last wide">
+	
+	<div class="inner col col6 first last idb0ab4bd7-8b46-428d-bfec-10ca14788696" style="" data-widgetcontainerid="b0ab4bd7-8b46-428d-bfec-10ca14788696">	
+<div data-widget-id="d3ded036-b5cc-479e-aa42-e94d6467367c" data-widget-controller-path="/Layout/WidgetSiteTools">
+
+		<script type="text/javascript">
+			$(document).ready(function () {
+				setWidgetServiceClicking($("#widgetSiteToolsHeaderd3ded036-b5cc-479e-aa42-e94d6467367c"), true, function () {
+					var $widgetBody = $('#widgetSiteToolsBodyd3ded036-b5cc-479e-aa42-e94d6467367c');
+
+					if ($widgetBody.is(':visible')) {
+						var menuItems = $('.widgetItem a', $widgetBody);
+
+						$(menuItems[0]).focus();
+
+						$('.widgetItem', $widgetBody).unbind("keydown").bind("keydown", function (e) {
+
+							if (e.which === 9) {
+								var index = menuItems.index(e.target);
+
+								if ((index === 0 && e.shiftKey) || (index === (menuItems.length - 1) && !e.shiftKey)) {
+									$("#widgetSiteToolsHeaderd3ded036-b5cc-479e-aa42-e94d6467367c").trigger('click').focus();
+								}
+							}
+						});
+					} else {
+						$('.widgetItem', $widgetBody).unbind("keydown");
+					}
+				});
+			});
+		</script>
+	<style type="text/css">.widgetOptionSet36.widget {
+padding-top:.35em;
+}</style>
+
+	<section id="widgetSiteToolsd3ded036-b5cc-479e-aa42-e94d6467367c" class="widget widgetSiteTools skin55 widgetOptionSet36 flyOutParent wide"  aria-label="Site Tools">
+				<header id="widgetSiteToolsHeaderd3ded036-b5cc-479e-aa42-e94d6467367c" class="widgetHeader" tabindex="0" role="button" aria-haspopup="true">
+			<h3><img alt="Site Tools" class="imageHover" data-hover="/ImageRepository/Document?documentID=843" data-image="/ImageRepository/Document?documentID=844" src="/ImageRepository/Document?documentID=844" /></h3>
+		</header>
+	<div id="widgetSiteToolsBodyd3ded036-b5cc-479e-aa42-e94d6467367c" class="widgetBody whiteIcons flyOut top rightEdge widget widgetSiteTools skin55 cpGrid cpGrid1" style="display:none;">
+         <div class="row                   
+ wide">
+	<div class="col col1 first last">
+		<ol class="semanticList">
+					<li class="widgetItem"><a tabindex="0" role="button" aria-label="Site Tools Home" class="widgetSiteToolsHome siteToolsService" href="/">Home</a></li>
+					<li class="widgetItem"><a tabindex="0" role="button" aria-label="Site Tools My Account" class="widgetSiteToolsMyAccount siteToolsService" href="/MyAccount">My Account</a></li>
+					<li id="PrinterFriendlyd3ded036-b5cc-479e-aa42-e94d6467367c" class="widgetItem"><a tabindex="0" aria-label="Site Tools Printer Friendly opens in new window" role="button" class="widgetSiteToolsPrinterFriendly siteToolsService" onkeypress="if (event.which == 13) { this.onclick(); }" onclick="Core.Layout.dynamicJavascript('printPreview();'); return false;" href="#PrinterFriendlyd3ded036-b5cc-479e-aa42-e94d6467367c">Printer Friendly</a></li>
+					<li class="widgetItem"><a tabindex="0" role="button" aria-label="Site Tools Email Page" class="widgetSiteToolsEmailPage siteToolsService" href="/EmailPage">Email Page</a></li>
+					<li class="widgetItem"><a tabindex="0" role="button" aria-label="Site Tools Contact Us" class="widgetSiteToolsContactUs siteToolsService" href="/directory.aspx">Contact Us</a></li>
+					<li class="widgetItem"><a tabindex="0" role="button" aria-label="Site Tools RSS" class="widgetSiteToolsRSS siteToolsService" href="/rss.aspx">RSS</a></li>
+					<li class="widgetItem"><a tabindex="0" role="button" aria-label="Site Tools Site Map" class="widgetSiteToolsSiteMap siteToolsService" href="/SiteMap">Site Map</a></li>
+					<li id="TranslatePaged3ded036-b5cc-479e-aa42-e94d6467367c" class="widgetItem"><a tabindex="0" aria-label="Site Tools Translate Page opens in new window" role="button" class="widgetSiteToolsTranslatePage siteToolsService" onkeypress="if (event.which == 13) { this.onclick(); }" onclick="Core.Layout.dynamicJavascript('window.open(\&#39;https://translate.google.com/translate?js=n&amp;sl=auto&amp;tl=es&amp;u=\&#39; + document.location.href, \&quot;TranslateWindow\&quot;);'); return false;" href="#TranslatePaged3ded036-b5cc-479e-aa42-e94d6467367c">Translate Page</a></li>
+					<li class="widgetItem"><a tabindex="0" role="button" aria-label="Site Tools Notifications" class="widgetSiteToolsNotifications siteToolsService" href="/list.aspx">Notifications</a></li>
+					<li class="widgetItem"><a tabindex="0" role="button" aria-label="Site Tools Documents" class="widgetSiteToolsDocuments siteToolsService" href="/DocumentCenter">Documents</a></li>
+		</ol>
+	</div>
+
+		 </div>
+	</div>
+
+	</section>
+
+
+
+</div>
+	</div> <!-- inner column -->
+
+	</div> <!-- inner row -->
+
+			</div><!-- outer column --><!----><div class="outer col col13 last" style="" data-widgetcontainerid="1fa903ca-d653-48b8-814c-1de6908aa454">				
+	<div class="row nest first last wide">
+	
+	<div class="inner col col13 first last ide8be1f8a-5514-422e-9c73-030d633c1f2c" style="" data-widgetcontainerid="e8be1f8a-5514-422e-9c73-030d633c1f2c">	
+    <div data-widget-id="6d4d2b94-a558-4406-9dcc-2483929c48fe" data-widget-controller-path="/InfoAdvanced/Widget">
+
+
+
+<style type="text/css">.widgetOptionSet37.widget{
+padding-top:.25em;
+}</style>
+
+	<section id="divInfoAdv6d4d2b94-a558-4406-9dcc-2483929c48fe" class="widget widgetInfoAdvanced skin64 widgetOptionSet37 wide" data-modulewidgettype="infoAdv" data-elementqueryclasses='{"wide-narrow":"min-width:25em"}' data-elementquerymatch='matchMultiColumn' data-elementqueryunmatch='unmatchMultiColumn' aria-label="Info Advanced">
+			<header class="widgetHeader" id="header6d4d2b94-a558-4406-9dcc-2483929c48fe">
+		<div class="">
+								</div>
+	</header>
+	<div class="widgetBody  cpGrid cpGrid1 ">
+		<div class="row  wide">
+					<div class="col col1 first last">
+						<ol class="pageStyles semanticList">
+
+<li class="InfoAdvanced widgetItem fr-view">
+	<img src="/ImageRepository/Document?documentID=819" alt="CP logo" title="CP logo">&nbsp; &nbsp;Government Websites by <a href="https://www.civicplus.com/">CivicPlus&reg;</a>
+</li>						</ol>
+					</div>
+		</div>
+	</div>
+	<div class="widgetFooter">
+
+	</div>
+
+	</section>
+
+
+
+<script type="text/javascript">
+	//Render slideshow if info advacned items contain one.
+	$(document).ready(function (e) {
+		$('#divInfoAdv6d4d2b94-a558-4406-9dcc-2483929c48fe .InfoAdvanced.widgetItem').each(function () {
+			renderSlideshowIfApplicable($(this));		
+		});
+	});
+</script></div>	</div> <!-- inner column -->
+
+	</div> <!-- inner row -->
+
+			</div><!-- outer column --><!--		--></div> <!-- outer row -->
+
+
+	</div>
+</footer></div>
+</div>
+</div>
+
+			</div>
+		</div>
+	</div>
+	
+	
+	
+	
+	
+
+
+
+	<script type="text/javascript">function dynamicStretchContainers () {Core.Layout.stretchContainers('#structuralContainer9');}</script>
+
+
+
+
+
+
+	<script src="/-444702515.js" type="text/javascript"></script>
+	<!----------Google Translate (Mobile Friendly)--------->
+
+
+
+<style>#google-translate-container {float: right;padding: 3px 5px 0px 0px;}.goog-te-combo,.goog-te-banner *,.goog-te-ftab *,.goog-te-menu *,.goog-te-menu2 *,.goog-te-balloon * {font-family: arial;font-size: 10pt;background-image: url("https://theme.zdassets.com/theme_assets/958586/bae8aa24db8d43595871692a9d259186f2db3fb4.png");background-position: 3px 4px;background-size: 22px;background-repeat: no-repeat;text-indent: 20px;background-color: #fff;color: #000 !important;}.goog-logo-link {display: none !important;}.goog-te-gadget {color: transparent !important;}.goog-te-gadget .goog-te-combo {margin: 2px 0 !important;border-radius: 15px !important;}.goog-te-combo{border: 1px solid !important;border-color: #bcc9d7 #96a3b1 #96a3b1 #bcc9d7 !important;border-radius: 0 !important;height:32px; !important;padding: 0 1px 0 .25rem !important;}
+
+#launcher-wrapper {bottom: 50px !important;}
+
+</style>
+
+<div id="google-translate-container">
+
+<div id="google_translate_element" style="position: fixed; top: 120px; right: 20px; z-index: 5;"></div>
+
+</div>
+
+<script>
+
+function googleTranslateElementInit() {
+
+new google.translate.TranslateElement({ pageLanguage: "en" }, "google_translate_element");
+
+// begin accessibility compliance
+
+$('img.goog-te-gadget-icon').attr('alt','Google Translate');
+
+$('div#goog-gt-tt div.logo img').attr('alt','translate');
+
+$('div#goog-gt-tt .original-text').css('text-align','left');
+
+$('.goog-te-gadget-simple .goog-te-menu-value span').css('color','#000000');
+
+$('.goog-te-combo').attr('aria-label','google translate languages');
+
+$('svg.goog-te-spinner').attr('title','Google Translate Spinner');
+
+$('.goog-te-gadget-simple .goog-te-menu-value span').css('color','#000000');
+
+}
+
+$(function() {
+
+$.getScript("//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit");
+
+});
+
+</script>
+
+
+
+<!--------------End Google Translate----------------->
+	
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-20665788-2"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-20665788-2');
+</script>
+
+<!-- End Google Analytics -->
+
+
+<!-- Fixed Nav Adjustment -->
+<script>
+  function getValueTS(elem, attr) {
+    const val = elem.css(attr);
+    if (val === undefined) return undefined;
+    const num = parseInt(val, 10);
+    if (num === NaN) return undefined;
+    return num;
+  }
+
+  function clampTS(number, min, max) {
+    return Math.min(Math.max(number, min), max);
+  }
+
+  function isPageEditingTS() {
+    return (
+      $("#doneEditing").length > 0 || // In live edit
+      typeof DesignCenter !== "undefined" // In theme manager
+    );
+  }
+
+  const bgColorRegexTS = /rgba\((\d+), (\d+), (\d+), (\d*\.?\d*)\)/;
+  function isTransparentTS(elem) {
+    const bg = elem.css('background-color');
+    if (typeof bg !== "string" || !bg.startsWith('rgba(')) return false;
+    const matchState = bg.match(bgColorRegexTS);
+    if (!matchState || matchState.length !== 5) return false;
+    const alpha = parseFloat(matchState[4], 10);
+    if (!(alpha >= 0 && alpha < 1)) return false;
+    return true;
+  }
+
+  function iterateLeftpads(cb) {
+    const containersTS = $("[class^='siteWrap'],[class*=' siteWrap']");
+    for (let i = 0; i < containersTS.length; i++) {
+      const containerTS = containersTS[i];
+      // Skip the body container and anything with data-skip-leftpad
+      if (
+        containerTS.id !== "bodyContainerTS" &&
+        containerTS.getAttribute('data-skip-leftpad') === null
+      ) {
+        cb(containerTS);
+      }
+    }
+  }
+
+  const anchor = $("#divToolbars");
+  const bodyContainerTS = $("#bodyContainerTS");
+
+  // Outer banner padding (push banner down)
+  const outerSizingTS = $("#bannerContainerTS");
+  // Inner banner padding (push banner content down) - Transparent header OR on attaching headers
+  const innerSizingTS = $("#bannerSizingTS");
+
+  const forceUnfixClassTS = "forceUnfixTS";
+
+  const fixedTopTS = $(".fixedTopTS");
+  const fixedBottomTS = $(".fixedBottomTS");
+  const fixedLeftTS = $(".fixedLeftTS");
+
+  var initialTopTS;
+  var topAttachTS;
+  if (fixedTopTS && fixedTopTS.length === 1) {
+    initialTopTS = getValueTS(fixedTopTS, 'top');
+    const attachment = fixedTopTS.attr('data-attach');
+    if (attachment) topAttachTS = $("#" + attachment);
+    if (!topAttachTS || topAttachTS.length !== 1) topAttachTS = undefined;
+  }
+
+  function resizeAdjustmentTS() {
+    const editing = isPageEditingTS();
+
+    // Fixed top script
+    (function () {
+      if (!fixedTopTS || fixedTopTS.length !== 1 || initialTopTS === undefined) return;
+
+      if (editing) {
+        fixedTopTS[0].classList.add(forceUnfixClassTS);
+      } else {
+        fixedTopTS[0].classList.remove(forceUnfixClassTS);
+      }
+
+      const topPosition = fixedTopTS.css('position');
+      if (topPosition === 'fixed') {
+        if (topAttachTS) {
+          scrollAdjustmentTS();
+        } else {
+          const anchorHeight = anchor.outerHeight() - 1;
+          fixedTopTS.css('top', anchorHeight + initialTopTS);
+        }
+      } else {
+        fixedTopTS.css('top', initialTopTS);
+      }
+
+      if (topPosition === 'fixed' || topPosition === 'absolute') {
+        // Bump the banner content down
+        if (isTransparentTS(fixedTopTS)) {
+          innerSizingTS.css('padding-top', initialTopTS + fixedTopTS.outerHeight());
+          outerSizingTS.css('padding-top', '');
+
+          try {
+            window.Pages.onResizeHandlersExecute();
+          } catch (e) { }
+        } else {
+          outerSizingTS.css('padding-top', fixedTopTS.outerHeight());
+          innerSizingTS.css('padding-top', '');
+        }
+      } else {
+        innerSizingTS.css('padding-top', '');
+        outerSizingTS.css('padding-top', '');
+      }
+    })();
+
+    // Fixed bottom script
+    (function () {
+      if (!fixedBottomTS || fixedBottomTS.length === 0) return;
+
+      // If the widget has gone narrow, force unfix
+      if (editing || fixedBottomTS.outerHeight() > 200) {
+        fixedBottomTS[0].classList.add(forceUnfixClassTS);
+      } else {
+        fixedBottomTS[0].classList.remove(forceUnfixClassTS);
+      }
+
+      if (fixedBottomTS.css('position') === 'fixed') {
+        bodyContainerTS.css('padding-bottom', fixedBottomTS.outerHeight());
+      } else {
+        bodyContainerTS.css('padding-bottom', '');
+      }
+    })();
+
+    // Fixed left script
+    (function () {
+      if (!fixedLeftTS || fixedLeftTS.length === 0) return;
+
+      if (editing) {
+        fixedLeftTS[0].classList.add(forceUnfixClassTS);
+      } else {
+        fixedLeftTS[0].classList.remove(forceUnfixClassTS);
+      }
+
+      if (fixedLeftTS.css('position') === 'fixed') {
+        const anchorHeight = anchor.outerHeight() - 1;
+        fixedLeftTS.css('top', anchorHeight);
+        const leftBoundingTS = fixedLeftTS[0].getBoundingClientRect();
+        iterateLeftpads(function (containerTS) {
+          const containerBoundingTS = containerTS.getBoundingClientRect();
+          if (containerBoundingTS.left <= leftBoundingTS.right) {
+            $(containerTS).css('padding-left', leftBoundingTS.width + 16);
+          }
+        });
+      } else {
+        fixedLeftTS.css('top', '');
+        iterateLeftpads(function (containerTS) {
+          $(containerTS).css('padding-left', '');
+        });
+      }
+    })();
+  }
+
+  function scrollAdjustmentTS() {
+    if (!fixedTopTS || fixedTopTS.length !== 1 || !topAttachTS || topAttachTS.length !== 1) return;
+    const topPosition = fixedTopTS.css('position');
+    if (topPosition === 'fixed' || topPosition === 'absolute') {
+      const anchorBounding = anchor[0].getBoundingClientRect();
+      const attachBounding = topAttachTS[0].getBoundingClientRect();
+      const scrollTop = $(window).scrollTop();
+
+      fixedTopTS.css('top', Math.max(anchorBounding.bottom - 1, attachBounding.bottom));
+    } else {
+      fixedTopTS.css('top', initialTopTS);
+    }
+  }
+
+  $(window).load(function () {
+    setTimeout(function () {
+      try {
+        resizeAdjustmentTS();
+      } catch (e) {
+        console.error(e);
+      }
+    }, 350);
+
+    $(window).scroll(function () {
+      try {
+        scrollAdjustmentTS();
+      } catch (e) {
+        console.error(e);
+      }
+    });
+
+    var adjustTimeoutTS;
+    $(window).resize(function () {
+      clearTimeout(adjustTimeoutTS);
+      adjustTimeoutTS = setTimeout(function () {
+        try {
+          resizeAdjustmentTS();
+        } catch (e) {
+          console.error(e);
+        }
+      }, 350);
+    });
+
+    $.when(window.Pages.angularToolbarComplete).done(function () {
+      try {
+        resizeAdjustmentTS();
+      } catch (e) {
+        console.error(e);
+      }
+    });
+  });
+</script>
+<!-- End Fixed Nav Adjustment -->
+
+<!-- Google tag (gtag.js) 515457--> 
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-SRSZTGZ82T"></script> <script> window.dataLayer = window.dataLayer || []; function gtag(){dataLayer.push(arguments);} gtag('js', new Date()); gtag('config', 'G-SRSZTGZ82T'); </script>
+<!--End Google tag (gtag.js) -->
+
+<script type="text/javascript">
+    window._monsido = window._monsido || {
+        token: "MrZQdwIzMAaEi7Qfb02k5Q",
+        statistics: {
+            enabled: true,
+            cookieLessTracking: true,
+            documentTracking: {
+                enabled: true,
+                documentCls: "monsido_download",
+                documentIgnoreCls: "monsido_ignore_download",
+                documentExt: [".pdf"],
+            },
+        },
+        heatmap: {
+            enabled: true,
+        },
+        pageCorrect: {
+            enabled: true,
+        },
+        pageAssistV2: {
+            enabled: true,
+            theme: "light",
+            mainColor: "#783CE2",
+            textColor: "#ffffff",
+            linkColor: "#783CE2",
+            buttonHoverColor: "#783CE2",
+            mainDarkColor: "#052942",
+            textDarkColor: "#ffffff",
+            linkColorDark: "#FFCF4B",
+            buttonHoverDarkColor: "#FFCF4B",
+            greeting: "Discover your personalization options",
+            direction: "leftbottom",
+            coordinates: "undefined undefined undefined undefined",
+            iconShape: "circle",
+            title: "Personalization Options",
+            titleText: "Welcome to PageAssist&#8482; toolbar! Adjust the options below to cater the website to your accessibility needs.",
+            iconPictureUrl: "logo",
+            logoPictureUrl: "",
+            logoPictureBase64: "",
+            languages: [""],
+            defaultLanguage: "",
+            skipTo: false,
+            alwaysOnTop: false,
+        },
+    };
+</script>
+<script type="text/javascript" async src="https://app-script.monsido.com/v2/monsido-script.js"></script>
+
+
+	<script type="text/javascript">
+		$(function () {
+			document.cookie = "responsiveGhost=0; path=/";
+		});
+		onOrLive($(window), function () {
+			$('body').addClass('doneLoading').removeClass('hideContent');
+
+			if ($('#404Content').length > 0)
+				$('div#bodyWrapper').css('padding', '0px');
+		}, 'load');
+	</script>
+
+	<noscript>
+		<style>
+			body.hideContent {
+				opacity: 1 !important;
+			}
+		</style>
+	</noscript>
+
+		
+<div style="display: none;">
+	<svg xmlns="http://www.w3.org/2000/svg" style="display:none;">
+
+		<symbol id="iconArrow--left" viewbox="0 0 25 25">
+			<title>Arrow Left</title>
+			<polygon style="fill:currentcolor" points="18.044,25 19.498,23.545 8.409,12.454 19.408,1.455 17.954,0 5.502,12.452"></polygon>
+		</symbol>
+
+		<symbol id="iconArrow--right" viewbox="0 0 25 25">
+			<title>Arrow Right</title>
+			<polygon style="fill:currentcolor" points="6.957,0 5.502,1.455 16.591,12.546 5.592,23.545 7.047,25 19.498,12.548"></polygon>
+		</symbol>
+
+	</svg>
+</div>
+	<script type="text/javascript">loadCSS('//fonts.googleapis.com/css?family=Montserrat:500,600,700,800,regular|Quicksand:300,500,700,regular|');</script>
+	
+
+	<div class="hidden activeWidgetSkinComponentsOnPageJson">[]</div>
+		<div style="display: none;">
+			<svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+				<symbol id="iconSlideshowArrowLeft" viewBox="0 0 22.68 40">
+					<title>Slideshow Left Arrow</title>
+					<g>
+						<path style="fill:currentcolor;" d="M20,40a2.67,2.67,0,0,1-1.9-.79L.79,21.9a2.68,2.68,0,0,1,0-3.79L18.1.79a2.68,2.68,0,1,1,3.79,3.79L6.47,20,21.89,35.42A2.68,2.68,0,0,1,20,40Z"></path>
+					</g>
+				</symbol>
+				<symbol id="iconSlideshowArrowRight" viewBox="0 0 22.68 40">
+					<title>Slideshow Right Arrow</title>
+					<g>
+						<path style="fill:currentcolor;" d="M2.68,0a2.67,2.67,0,0,1,1.9.79L21.89,18.1a2.68,2.68,0,0,1,0,3.79L4.58,39.21A2.68,2.68,0,0,1,.79,35.42L16.21,20,.79,4.58A2.68,2.68,0,0,1,2.68,0Z"></path>
+					</g>
+				</symbol>
+			</svg>
+		</div>
+	
+	
+
+	</body>
+</html>

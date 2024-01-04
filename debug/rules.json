@@ -1,0 +1,520 @@
+[
+  {
+    "type": "year",
+    "year": 2024,
+    "rules": [
+      {
+        "type": "rule",
+        "buffer": [
+          {
+            "levels": {
+              "span": 2,
+              "underline": 0,
+              "strong": 1,
+              "ul": 0,
+              "li": 0,
+              "p": 1
+            },
+            "text": "Monday, January 1 through Sunday, February 25"
+          }
+        ]
+      },
+      {
+        "type": "rule",
+        "buffer": [
+          {
+            "levels": {
+              "span": 1,
+              "underline": 0,
+              "strong": 0,
+              "ul": 0,
+              "li": 0,
+              "p": 1
+            },
+            "text": "The Cycle Track will remain open - Polo Field Closed"
+          }
+        ]
+      },
+      {
+        "type": "rule",
+        "buffer": [
+          {
+            "levels": {
+              "span": 2,
+              "underline": 0,
+              "strong": 1,
+              "ul": 0,
+              "li": 0,
+              "p": 1
+            },
+            "text": "Monday, February 26 through Sunday, May 26"
+          }
+        ]
+      },
+      {
+        "type": "rule",
+        "buffer": [
+          {
+            "levels": {
+              "span": 1,
+              "underline": 0,
+              "strong": 0,
+              "ul": 0,
+              "li": 0,
+              "p": 1
+            },
+            "text": "Youth and Adult Sports Programs Begin. The Cycle Track Will be Open:"
+          }
+        ]
+      },
+      {
+        "type": "rule",
+        "buffer": [
+          {
+            "levels": {
+              "span": 1,
+              "underline": 0,
+              "strong": 0,
+              "ul": 0,
+              "li": 0,
+              "p": 1
+            },
+            "text": "Mondays all day"
+          }
+        ]
+      },
+      {
+        "type": "rule",
+        "buffer": [
+          {
+            "levels": {
+              "span": 1,
+              "underline": 0,
+              "strong": 0,
+              "ul": 0,
+              "li": 0,
+              "p": 1
+            },
+            "text": "Tuesdays*, Wednesdays, Thursdays* and Fridays before 2 p.m. and after 6:45 p.m. (*On Tuesdays beginning March 12, the cycling track will be open after 8:45 p.m. On Thursdays beginning March 14, the track will be open after 8:45 p.m.)&nbsp;"
+          }
+        ]
+      },
+      {
+        "type": "rule",
+        "buffer": [
+          {
+            "levels": {
+              "span": 1,
+              "underline": 0,
+              "strong": 0,
+              "ul": 0,
+              "li": 0,
+              "p": 1
+            },
+            "text": "Saturdays and Sundays before 7 a.m. and after 6:45 p.m."
+          }
+        ]
+      },
+      {
+        "type": "rule",
+        "buffer": [
+          {
+            "levels": {
+              "span": 2,
+              "underline": 0,
+              "strong": 1,
+              "ul": 0,
+              "li": 0,
+              "p": 1
+            },
+            "text": "Monday, May 27 through Friday, June 7"
+          }
+        ]
+      },
+      {
+        "type": "rule",
+        "buffer": [
+          {
+            "levels": {
+              "span": 1,
+              "underline": 0,
+              "strong": 0,
+              "ul": 0,
+              "li": 0,
+              "p": 1
+            },
+            "text": "The Cycle Track will remain open - Polo Fields Closed&nbsp;"
+          }
+        ]
+      },
+      {
+        "type": "rule",
+        "buffer": []
+      },
+      {
+        "type": "rule",
+        "buffer": [
+          {
+            "levels": {
+              "span": 2,
+              "underline": 0,
+              "strong": 1,
+              "ul": 0,
+              "li": 0,
+              "p": 1
+            },
+            "text": "Saturday, June 8 through Sunday, June 9"
+          }
+        ]
+      },
+      {
+        "type": "rule",
+        "buffer": [
+          {
+            "levels": {
+              "span": 1,
+              "underline": 0,
+              "strong": 0,
+              "ul": 0,
+              "li": 0,
+              "p": 1
+            },
+            "text": "The Cycle Track will be open after 7 p.m.&nbsp;"
+          }
+        ]
+      },
+      {
+        "type": "rule",
+        "buffer": [
+          {
+            "levels": {
+              "span": 2,
+              "underline": 0,
+              "strong": 1,
+              "ul": 0,
+              "li": 0,
+              "p": 1
+            },
+            "text": "Monday, June 10 through Sunday, July 28"
+          }
+        ]
+      },
+      {
+        "type": "rule",
+        "buffer": [
+          {
+            "levels": {
+              "span": 1,
+              "underline": 0,
+              "strong": 0,
+              "ul": 0,
+              "li": 0,
+              "p": 1
+            },
+            "text": "Summer Camps, Youth and Adult Sports Programs will take place on the field. The schedule is forthcoming.&nbsp;"
+          }
+        ]
+      },
+      {
+        "type": "rule",
+        "buffer": [
+          {
+            "levels": {
+              "span": 2,
+              "underline": 0,
+              "strong": 1,
+              "ul": 0,
+              "li": 0,
+              "p": 1
+            },
+            "text": "Monday, July 29 through Friday, August 23"
+          }
+        ]
+      },
+      {
+        "type": "rule",
+        "buffer": [
+          {
+            "levels": {
+              "span": 1,
+              "underline": 0,
+              "strong": 0,
+              "ul": 0,
+              "li": 0,
+              "p": 1
+            },
+            "text": "The Cycle Track will be closed for Outside Lands Load in, Event and Load Out and Polo Fields Concert Event and Load Out"
+          }
+        ]
+      },
+      {
+        "type": "rule",
+        "buffer": [
+          {
+            "levels": {
+              "span": 2,
+              "underline": 0,
+              "strong": 1,
+              "ul": 0,
+              "li": 0,
+              "p": 1
+            },
+            "text": "Saturday, August 24 through Monday, September 2"
+          }
+        ]
+      },
+      {
+        "type": "rule",
+        "buffer": [
+          {
+            "levels": {
+              "span": 1,
+              "underline": 0,
+              "strong": 0,
+              "ul": 0,
+              "li": 0,
+              "p": 1
+            },
+            "text": "The Cycle Track will&nbsp;remain open - Polo Fields Closed"
+          }
+        ]
+      },
+      {
+        "type": "rule",
+        "buffer": []
+      },
+      {
+        "type": "rule",
+        "buffer": [
+          {
+            "levels": {
+              "span": 2,
+              "underline": 0,
+              "strong": 1,
+              "ul": 0,
+              "li": 0,
+              "p": 1
+            },
+            "text": "Tuesday, September 3 through Wednesday, November 27"
+          }
+        ]
+      },
+      {
+        "type": "rule",
+        "buffer": [
+          {
+            "levels": {
+              "span": 1,
+              "underline": 0,
+              "strong": 0,
+              "ul": 0,
+              "li": 0,
+              "p": 1
+            },
+            "text": "Fall Youth and Adult Sports Programs Begin. The Cycle Track Will be Open:"
+          }
+        ]
+      },
+      {
+        "type": "rule",
+        "buffer": [
+          {
+            "levels": {
+              "span": 1,
+              "underline": 0,
+              "strong": 0,
+              "ul": 0,
+              "li": 0,
+              "p": 1
+            },
+            "text": "Mondays all day"
+          }
+        ]
+      },
+      {
+        "type": "rule",
+        "buffer": [
+          {
+            "levels": {
+              "span": 1,
+              "underline": 0,
+              "strong": 0,
+              "ul": 0,
+              "li": 0,
+              "p": 1
+            },
+            "text": "Tuesdays, Wednesdays, Thursdays and Fridays before 2 p.m. and after 6:45 p.m."
+          }
+        ]
+      },
+      {
+        "type": "rule",
+        "buffer": [
+          {
+            "levels": {
+              "span": 1,
+              "underline": 0,
+              "strong": 0,
+              "ul": 0,
+              "li": 0,
+              "p": 1
+            },
+            "text": "EXCEPT:"
+          }
+        ]
+      },
+      {
+        "type": "rule",
+        "buffer": [
+          {
+            "levels": {
+              "span": 1,
+              "underline": 0,
+              "strong": 0,
+              "ul": 0,
+              "li": 1,
+              "p": 0
+            },
+            "text": "Friday, September 13 when track is closed from 7:30 a.m. to 12:30 p.m. for Sacred Heart Walkathon"
+          }
+        ]
+      },
+      {
+        "type": "rule",
+        "buffer": [
+          {
+            "levels": {
+              "span": 1,
+              "underline": 0,
+              "strong": 0,
+              "ul": 0,
+              "li": 1,
+              "p": 0
+            },
+            "text": "Friday, October 4 when track is closed all day for Hardly Strictly Bluegrass"
+          }
+        ]
+      },
+      {
+        "type": "rule",
+        "buffer": [
+          {
+            "levels": {
+              "span": 1,
+              "underline": 0,
+              "strong": 0,
+              "ul": 0,
+              "li": 1,
+              "p": 0
+            },
+            "text": "Wednesday, November 20 when track is closed from noon to 6 p.m. for SFUSD Cross Country Finals"
+          }
+        ]
+      },
+      {
+        "type": "rule",
+        "buffer": []
+      },
+      {
+        "type": "rule",
+        "buffer": [
+          {
+            "levels": {
+              "span": 1,
+              "underline": 0,
+              "strong": 0,
+              "ul": 0,
+              "li": 0,
+              "p": 1
+            },
+            "text": "Saturdays and Sundays before 7 a.m. and after 6:15 p.m. EXCEPT:"
+          }
+        ]
+      },
+      {
+        "type": "rule",
+        "buffer": [
+          {
+            "levels": {
+              "span": 1,
+              "underline": 0,
+              "strong": 0,
+              "ul": 0,
+              "li": 1,
+              "p": 0
+            },
+            "text": "Saturday, October 5 and Sunday, October 6 when track is closed all day for Hardly Strictly Bluegrass"
+          }
+        ]
+      },
+      {
+        "type": "rule",
+        "buffer": [
+          {
+            "levels": {
+              "span": 2,
+              "underline": 0,
+              "strong": 1,
+              "ul": 0,
+              "li": 0,
+              "p": 1
+            },
+            "text": "Thursday, November 28"
+          }
+        ]
+      },
+      {
+        "type": "rule",
+        "buffer": [
+          {
+            "levels": {
+              "span": 1,
+              "underline": 0,
+              "strong": 0,
+              "ul": 0,
+              "li": 0,
+              "p": 1
+            },
+            "text": "The Cycle Track Closed for Turkey Trot from 7 a.m. to 11 a.m."
+          }
+        ]
+      },
+      {
+        "type": "rule",
+        "buffer": []
+      },
+      {
+        "type": "rule",
+        "buffer": [
+          {
+            "levels": {
+              "span": 2,
+              "underline": 0,
+              "strong": 1,
+              "ul": 0,
+              "li": 0,
+              "p": 1
+            },
+            "text": "Friday, November 29 through Tuesday, December 31"
+          }
+        ]
+      },
+      {
+        "type": "rule",
+        "buffer": [
+          {
+            "levels": {
+              "span": 1,
+              "underline": 0,
+              "strong": 0,
+              "ul": 0,
+              "li": 0,
+              "p": 1
+            },
+            "text": "The Cycle Track Will be Open Mondays through Sundays all day"
+          }
+        ]
+      }
+    ]
+  }
+]

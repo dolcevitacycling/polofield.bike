@@ -479,9 +479,10 @@ const dateRangeTimeSpanParser = ap(
 
 function parseWeekendExcept(comment?: string): Parser<DateRuleStep> {
   // - Saturdays and Sundays before 7 a.m. and after 6:15 p.m. EXCEPT:
+  // Saturdays and Sundays before 7 a.m. and after 6:15 p.m. EXCEPT:
   return mapParser(
     apSecond(
-      reParser(/- Saturdays and Sundays\s+/gi),
+      reParser(/(- )?Saturdays and Sundays\s+/gi),
       apFirst(timeSpanReParser, ensureEndParsed(reParser(/\s*EXCEPT:/gi))),
     ),
     ({ start_minute, end_minute }) =>
@@ -632,15 +633,15 @@ const fallPreludeRe = mapParser(
 
 function fallRecognizer(rule: UnknownRules): KnownRules | undefined {
   const { rules } = rule;
-  // "Fall Youth and Adult Sports Programs Begin. The Cycle Track Will be Open:",
-  // "Mondays all day",
-  // "Tuesdays, Wednesdays, Thursdays and Fridays before 2 p.m. and after 6:45 p.m.",
-  // "EXCEPT:",
-  // "Friday, September 15 when track is closed from 7:30 a.m. to 12:30 p.m. for Sacred Heart Walkathon",
-  // "Friday, September 29 when track is closed all day for Hardly Strictly Bluegrass",
-  // "Wednesday, November 15 when track is closed from noon to 6 p.m. for SFUSD Cross Country",
-  // "- Saturdays and Sundays before 7 a.m. and after 6:15 p.m. EXCEPT:",
-  // "Saturday, September 30 and Sunday, October 1 when track is closed all day for Hardly Strictly Bluegrass"
+  // Fall Youth and Adult Sports Programs Begin. The Cycle Track Will be Open:
+  // Mondays all day
+  // Tuesdays, Wednesdays, Thursdays and Fridays before 2 p.m. and after 6:45 p.m.
+  // EXCEPT:
+  // Friday, September 13 when track is closed from 7:30 a.m. to 12:30 p.m. for Sacred Heart Walkathon
+  // Friday, October 4 when track is closed all day for Hardly Strictly Bluegrass
+  // Wednesday, November 20 when track is closed from noon to 6 p.m. for SFUSD Cross Country Finals
+  // Saturdays and Sundays before 7 a.m. and after 6:15 p.m. EXCEPT:
+  // Saturday, October 5 and Sunday, October 6 when track is closed all day for Hardly Strictly Bluegrass
   if (rules.length === 0) {
     return undefined;
   }
