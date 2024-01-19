@@ -40,6 +40,38 @@
         "buffer": [
           {
             "levels": {
+              "span": 1,
+              "underline": 0,
+              "strong": 0,
+              "ul": 0,
+              "li": 0,
+              "p": 1
+            },
+            "text": "EXCEPT:"
+          }
+        ]
+      },
+      {
+        "type": "rule",
+        "buffer": [
+          {
+            "levels": {
+              "span": 1,
+              "underline": 0,
+              "strong": 0,
+              "ul": 0,
+              "li": 0,
+              "p": 1
+            },
+            "text": "Saturday, February 24 from 7:45 a.m. to 4:45 p.m. and Sunday, February from 7:45 a.m. to 3:45 p.m. when track will be closed for a sports tournament."
+          }
+        ]
+      },
+      {
+        "type": "rule",
+        "buffer": [
+          {
+            "levels": {
               "span": 2,
               "underline": 0,
               "strong": 1,
@@ -212,6 +244,38 @@
               "p": 1
             },
             "text": "Summer Camps, Youth and Adult Sports Programs will take place on the field. The schedule is forthcoming.&nbsp;"
+          }
+        ]
+      },
+      {
+        "type": "rule",
+        "buffer": [
+          {
+            "levels": {
+              "span": 1,
+              "underline": 0,
+              "strong": 0,
+              "ul": 0,
+              "li": 0,
+              "p": 1
+            },
+            "text": "EXCEPT:"
+          }
+        ]
+      },
+      {
+        "type": "rule",
+        "buffer": [
+          {
+            "levels": {
+              "span": 1,
+              "underline": 0,
+              "strong": 0,
+              "ul": 0,
+              "li": 0,
+              "p": 1
+            },
+            "text": "Saturday, July 6 and Sunday, July 7 from 7:45 a.m. to 4:45 p.m when track will be closed for a sports tournament."
           }
         ]
       },

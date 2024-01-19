@@ -719,7 +719,9 @@ const RECOGNIZERS = [
   recognizer(
     /^The Cycle Track (?:will be )?Closed for (?<comment>(?:\w+ )+)from (?<start>\d+) ((?<startampm>[ap])\.m\. )?to (?<end>\d+) (?<ampm>[ap])\.m\.$/i,
     (rule, m) => {
-      const ampmStart = /p/i.test(m.groups?.startampm ?? m.groups?.ampm ?? "") ? 12 : 0;
+      const ampmStart = /p/i.test(m.groups?.startampm ?? m.groups?.ampm ?? "")
+        ? 12
+        : 0;
       const ampmEnd = /p/i.test(m.groups?.ampm ?? "") ? 12 : 0;
       const start_hour = (parseInt(m.groups?.start ?? "", 10) % 12) + ampmStart;
       const end_hour = parseInt(m.groups?.end ?? "", 10) + ampmEnd;
@@ -733,12 +735,15 @@ const RECOGNIZERS = [
   recognizer(
     /^The Cycle Track will be open after (?<start>\d+) (?<startampm>[ap])\.m\.$/i,
     (rule, m) => {
-      const ampmStart = /p/i.test(m.groups?.startampm ?? m.groups?.ampm ?? "") ? 12 : 0;
+      const ampmStart = /p/i.test(m.groups?.startampm ?? m.groups?.ampm ?? "")
+        ? 12
+        : 0;
       const start_hour = (parseInt(m.groups?.start ?? "", 10) % 12) + ampmStart;
       return daily(rule.start_date, rule.end_date, (date) =>
         closedIntervals(date, 0, start_hour),
       );
-    }),
+    },
+  ),
   recognizer(
     /^The Cycle Track will be open after 5:30 p.m. on Saturday and after 7:30 p.m. on Sunday.$/i,
     (rule) =>
@@ -752,6 +757,31 @@ const RECOGNIZERS = [
           return [dateInterval(date, false)];
         }
       }),
+  ),
+  recognizer(
+    /^The Cycle Track will remain open - Polo Fields? Closed EXCEPT: Saturday, February 24 from 7:45 a\.?m\.? to 4:45 p\.?m\.? and Sunday, February (25 )?from 7:45 a\.?m\.? to 3:45 p\.?m\.? when track will be closed for a sports tournament\.$/i,
+    (rule) => {
+      return daily(rule.start_date, rule.end_date, (date) => {
+        const month = date.getMonth() + 1;
+        if (month === 2 && date.getDate() === 24) {
+          return closedMinuteIntervals(
+            date,
+            toMinute(7, 45),
+            toMinute(16, 45),
+            "sports tournament",
+          );
+        } else if (month === 2 && date.getDate() === 25) {
+          return closedMinuteIntervals(
+            date,
+            toMinute(7, 45),
+            toMinute(15, 45),
+            "sports tournament",
+          );
+        } else {
+          return [dateInterval(date, true)];
+        }
+      });
+    },
   ),
   recognizer(
     /^The Cycle Track will remain open - Polo Fields? Closed Except on Tuesdays and Thursdays from 6:30 p\.m\. to 8:45 p\.m\. for adult sports programming\.$/i,
@@ -787,12 +817,35 @@ const RECOGNIZERS = [
         const comment = "Youth and Adult Sports Programs";
         if (weekday === WEEKDAYS.Mon) {
           return [dateInterval(date, true)];
-        } else if ((weekday === WEEKDAYS.Tue && fmtDate >= march12) || (weekday === WEEKDAYS.Thu && fmtDate >= march14)) {
-          return closedMinuteIntervals(date, toMinute(14, 0), toMinute(20, 45), comment);
-        } else if (weekday === WEEKDAYS.Tue || weekday === WEEKDAYS.Wed || weekday === WEEKDAYS.Thu || weekday === WEEKDAYS.Fri) {
-          return closedMinuteIntervals(date, toMinute(14, 0), toMinute(18, 45), comment);
+        } else if (
+          (weekday === WEEKDAYS.Tue && fmtDate >= march12) ||
+          (weekday === WEEKDAYS.Thu && fmtDate >= march14)
+        ) {
+          return closedMinuteIntervals(
+            date,
+            toMinute(14, 0),
+            toMinute(20, 45),
+            comment,
+          );
+        } else if (
+          weekday === WEEKDAYS.Tue ||
+          weekday === WEEKDAYS.Wed ||
+          weekday === WEEKDAYS.Thu ||
+          weekday === WEEKDAYS.Fri
+        ) {
+          return closedMinuteIntervals(
+            date,
+            toMinute(14, 0),
+            toMinute(18, 45),
+            comment,
+          );
         } else if (weekday === WEEKDAYS.Sat || weekday === WEEKDAYS.Sun) {
-          return closedMinuteIntervals(date, toMinute(7, 0), toMinute(18, 45), comment);
+          return closedMinuteIntervals(
+            date,
+            toMinute(7, 0),
+            toMinute(18, 45),
+            comment,
+          );
         } else {
           throw new Error(`Unhandled case for weekday ${fmtDate} ${weekday}`);
         }
