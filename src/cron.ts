@@ -759,7 +759,7 @@ const RECOGNIZERS = [
       }),
   ),
   recognizer(
-    /^The Cycle Track will remain open - Polo Fields? Closed EXCEPT: Saturday, February 24 from 7:45 a\.?m\.? to 4:45 p\.?m\.? and Sunday, February (25 )?from 7:45 a\.?m\.? to 3:45 p\.?m\.? when track will be closed for a sports tournament\.$/i,
+    /^The Cycle Track will remain open - Polo Fields? Closed EXCEPT: Monday, January 22 and Tuesday, January 23 - Partial closures of the track in the morning for asphalt repairs. Saturday, February 24 from 7:45 a\.?m\.? to 4:45 p\.?m\.? and Sunday, February (25 )?from 7:45 a\.?m\.? to 3:45 p\.?m\.? when track will be closed for a sports tournament\.$/i,
     (rule) => {
       return daily(rule.start_date, rule.end_date, (date) => {
         const month = date.getMonth() + 1;
