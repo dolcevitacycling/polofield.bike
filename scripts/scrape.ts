@@ -3,6 +3,10 @@ import { ScheduleScraper, POLO_URL } from "../src/cron";
 import { HTMLRewriter } from "@miniflare/html-rewriter";
 import { Response } from "@miniflare/core";
 
+function regexpEscape(s: string) {
+  return s.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+}
+
 async function main() {
   const scraper = new ScheduleScraper();
   const fetchText = await (await fetch(POLO_URL)).text();
@@ -27,6 +31,7 @@ async function main() {
 ${rule.text}
 --
 ${rule.rules.join("\n")}\n`);
+        console.log(`\n/^${regexpEscape(rule.rules.join(" "))}$/i`);
       }
     }
   }

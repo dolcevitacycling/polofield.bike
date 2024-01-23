@@ -60,8 +60,24 @@
               "underline": 0,
               "strong": 0,
               "ul": 0,
-              "li": 0,
-              "p": 1
+              "li": 1,
+              "p": 0
+            },
+            "text": "Monday, January 22 and Tuesday, January 23 - Partial closures of the track in the morning for asphalt repairs."
+          }
+        ]
+      },
+      {
+        "type": "rule",
+        "buffer": [
+          {
+            "levels": {
+              "span": 1,
+              "underline": 0,
+              "strong": 0,
+              "ul": 0,
+              "li": 1,
+              "p": 0
             },
             "text": "Saturday, February 24 from 7:45 a.m. to 4:45 p.m. and Sunday, February from 7:45 a.m. to 3:45 p.m. when track will be closed for a sports tournament."
           }
@@ -143,7 +159,71 @@
               "li": 0,
               "p": 1
             },
-            "text": "Saturdays and Sundays before 7 a.m. and after 6:45 p.m."
+            "text": "Saturdays before 7 a.m. and after 6:45 p.m."
+          }
+        ]
+      },
+      {
+        "type": "rule",
+        "buffer": [
+          {
+            "levels": {
+              "span": 1,
+              "underline": 0,
+              "strong": 0,
+              "ul": 0,
+              "li": 0,
+              "p": 1
+            },
+            "text": "Sundays before 7 a.m. and after 6:45 p.m."
+          }
+        ]
+      },
+      {
+        "type": "rule",
+        "buffer": [
+          {
+            "levels": {
+              "span": 1,
+              "underline": 0,
+              "strong": 0,
+              "ul": 0,
+              "li": 0,
+              "p": 1
+            },
+            "text": "EXCEPT:"
+          }
+        ]
+      },
+      {
+        "type": "rule",
+        "buffer": [
+          {
+            "levels": {
+              "span": 1,
+              "underline": 0,
+              "strong": 0,
+              "ul": 0,
+              "li": 1,
+              "p": 0
+            },
+            "text": "Sundays, from March 3 thru May 12, when track will be open before 10 a.m. and after 6:45 p.m."
+          }
+        ]
+      },
+      {
+        "type": "rule",
+        "buffer": [
+          {
+            "levels": {
+              "span": 1,
+              "underline": 0,
+              "strong": 0,
+              "ul": 0,
+              "li": 1,
+              "p": 0
+            },
+            "text": "Sunday, May 19 when track will be open all day with the field closed due to the Bay to Breakers event"
           }
         ]
       },

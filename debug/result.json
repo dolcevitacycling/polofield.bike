@@ -11,6 +11,7 @@
         "rules": [
           "The Cycle Track will remain open - Polo Field Closed",
           "EXCEPT:",
+          "Monday, January 22 and Tuesday, January 23 - Partial closures of the track in the morning for asphalt repairs.",
           "Saturday, February 24 from 7:45 a.m. to 4:45 p.m. and Sunday, February from 7:45 a.m. to 3:45 p.m. when track will be closed for a sports tournament."
         ],
         "intervals": [
@@ -327,7 +328,11 @@
           "Youth and Adult Sports Programs Begin. The Cycle Track Will be Open:",
           "Mondays all day",
           "Tuesdays*, Wednesdays, Thursdays* and Fridays before 2 p.m. and after 6:45 p.m. (*On Tuesdays beginning March 12, the cycling track will be open after 8:45 p.m. On Thursdays beginning March 14, the track will be open after 8:45 p.m.)",
-          "Saturdays and Sundays before 7 a.m. and after 6:45 p.m."
+          "Saturdays before 7 a.m. and after 6:45 p.m.",
+          "Sundays before 7 a.m. and after 6:45 p.m.",
+          "EXCEPT:",
+          "Sundays, from March 3 thru May 12, when track will be open before 10 a.m. and after 6:45 p.m.",
+          "Sunday, May 19 when track will be open all day with the field closed due to the Bay to Breakers event"
         ],
         "intervals": [
           {
@@ -1527,20 +1532,9 @@
             "end_timestamp": "2024-05-18 23:59"
           },
           {
-            "open": true,
             "start_timestamp": "2024-05-19 00:00",
-            "end_timestamp": "2024-05-19 06:59"
-          },
-          {
-            "open": false,
-            "start_timestamp": "2024-05-19 07:00",
-            "end_timestamp": "2024-05-19 18:44",
-            "comment": "Youth and Adult Sports Programs"
-          },
-          {
-            "open": true,
-            "start_timestamp": "2024-05-19 18:45",
-            "end_timestamp": "2024-05-19 23:59"
+            "end_timestamp": "2024-05-19 23:59",
+            "open": true
           },
           {
             "start_timestamp": "2024-05-20 00:00",

@@ -801,24 +801,32 @@ const RECOGNIZERS = [
       }),
   ),
   recognizer(
-    /^Youth and Adult Sports Programs Begin\. The Cycle Track Will be Open: Mondays all day Tuesdays\*, Wednesdays, Thursdays\* and Fridays before 2 p\.m\. and after 6:45 p\.m\. \(\*On Tuesdays beginning March 12, the cycling track will be open after 8:45 p\.m\. On Thursdays beginning March 14, the track will be open after 8:45 p\.m\.\) Saturdays and Sundays before 7 a\.m\. and after 6:45 p\.m\.$/i,
+    /^Youth and Adult Sports Programs Begin\. The Cycle Track Will be Open: Mondays all day Tuesdays\*, Wednesdays, Thursdays\* and Fridays before 2 p\.m\. and after 6:45 p\.m\. \(\*On Tuesdays beginning March 12, the cycling track will be open after 8:45 p\.m\. On Thursdays beginning March 14, the track will be open after 8:45 p\.m\.\) Saturdays before 7 a\.m\. and after 6:45 p\.m\. Sundays before 7 a\.m\. and after 6:45 p\.m\. EXCEPT: Sundays, from March 3 thru May 12, when track will be open before 10 a\.m\. and after 6:45 p\.m\. Sunday, May 19 when track will be open all day with the field closed due to the Bay to Breakers event$/i,
     (rule) =>
       /*
-      Youth and Adult Sports Programs Begin. The Cycle Track Will be Open:
-      Mondays all day
-      Tuesdays*, Wednesdays, Thursdays* and Fridays before 2 p.m. and after 6:45 p.m. (*On Tuesdays beginning March 12, the cycling track will be open after 8:45 p.m. On Thursdays beginning March 14, the track will be open after 8:45 p.m.)
-      Saturdays and Sundays before 7 a.m. and after 6:45 p.m.
+Youth and Adult Sports Programs Begin. The Cycle Track Will be Open:
+Mondays all day
+Tuesdays*, Wednesdays, Thursdays* and Fridays before 2 p.m. and after 6:45 p.m. (*On Tuesdays beginning March 12, the cycling track will be open after 8:45 p.m. On Thursdays beginning March 14, the track will be open after 8:45 p.m.)
+Saturdays before 7 a.m. and after 6:45 p.m.
+Sundays before 7 a.m. and after 6:45 p.m.
+EXCEPT:
+Sundays, from March 3 thru May 12, when track will be open before 10 a.m. and after 6:45 p.m.
+Sunday, May 19 when track will be open all day with the field closed due to the Bay to Breakers event
       */
       daily(rule.start_date, rule.end_date, (date) => {
         const fmtDate = shortDateStyle.format(date);
         const weekday = date.getDay();
         const march12 = `${date.getFullYear()}-03-12`;
         const march14 = `${date.getFullYear()}-03-14`;
+        const may19 = `${date.getFullYear()}-05-19`;
         const comment = "Youth and Adult Sports Programs";
-        if (weekday === WEEKDAYS.Mon) {
+        if (weekday === WEEKDAYS.Mon || fmtDate === may19) {
+          // Mondays and Bay to Breakers
           return [dateInterval(date, true)];
         } else if (
+          // Tuesdays after March 12
           (weekday === WEEKDAYS.Tue && fmtDate >= march12) ||
+          // Thursdays after March 14
           (weekday === WEEKDAYS.Thu && fmtDate >= march14)
         ) {
           return closedMinuteIntervals(
