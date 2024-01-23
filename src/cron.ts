@@ -3,7 +3,6 @@ import {
   startOfDay,
   endOfDay,
   parseDate,
-  isSameDay,
   addDays,
   addMinutes,
   daily,
@@ -11,6 +10,7 @@ import {
   shortDateStyle,
   shortTimeStyle,
   getTodayPacific,
+  parseTimestamp,
 } from "./dates";
 import { discordReport, runDiscordWebhook } from "./discord";
 import {
@@ -189,47 +189,55 @@ function closedIntervals(
   );
 }
 
-function closedTimestampIntervals(
-  date: Date,
-  start_timestamp: Date,
-  end_timestamp: Date,
-  comment?: string,
-): RuleInterval[] {
-  if (
-    end_timestamp < date ||
-    start_timestamp >= addMinutes(date, toMinute(24, 0))
-  ) {
-    return [dateInterval(date, true)];
-  }
-  const start_minute = isSameDay(date, start_timestamp)
-    ? toMinute(start_timestamp.getHours(), start_timestamp.getMinutes())
-    : 0;
-  const end_minute =
-    (isSameDay(date, end_timestamp)
-      ? toMinute(end_timestamp.getHours(), end_timestamp.getMinutes())
-      : toMinute(24, 0)) - 1;
-  return closedMinuteIntervals(date, start_minute, end_minute, comment);
-}
-
 function toKnown(rule: UnknownRules, intervals: RuleInterval[]): KnownRules {
   return {
     ...rule,
     type: "known_rules",
-    intervals,
+    intervals: compressIntervals(intervals),
   };
 }
 
-type Recognizer = (rule: UnknownRules) => KnownRules | undefined;
+function adjacentTimestamps(a: string, b: string) {
+  const at = parseTimestamp(a);
+  const bt = parseTimestamp(b);
+  return addMinutes(at, 1).getTime() === bt.getTime();
+}
+
+function compressIntervals(arr: RuleInterval[]) {
+  const result: RuleInterval[] = [];
+  for (const v of arr) {
+    const prev: undefined | RuleInterval = result[result.length - 1];
+    if (
+      prev &&
+      prev.open === v.open &&
+      prev.comment === v.comment &&
+      adjacentTimestamps(prev.end_timestamp, v.start_timestamp)
+    ) {
+      result[result.length - 1] = { ...prev, end_timestamp: v.end_timestamp };
+    } else {
+      result.push(v);
+    }
+  }
+  return result;
+}
+
+export type Recognizer = {
+  (rule: UnknownRules): KnownRules | undefined;
+  name: string;
+};
 
 function recognizer(
+  name: string,
   regexp: RegExp,
   match: (rule: UnknownRules, m: RegExpMatchArray) => RuleInterval[],
 ): Recognizer {
-  return (rule) => {
+  const fn = (rule: UnknownRules): KnownRules | undefined => {
     const allRules = rule.rules.join(" ");
     const m = allRules.match(regexp);
     return m ? toKnown(rule, match(rule, m)) : undefined;
   };
+  Object.defineProperty(fn, "name", { value: name });
+  return fn;
 }
 
 interface DateInterval {
@@ -309,6 +317,9 @@ const parseExceptions: Parser<ExceptionRuleStep> = mapParser(
 );
 
 function reParser(regexp: RegExp): Parser<RegExpExecArray> {
+  if (regexp.flags.indexOf("g") === -1) {
+    throw new Error("Expected regexp to be global: " + regexp);
+  }
   return (s: Stream) => {
     regexp.lastIndex = s.cursor;
     const result = regexp.exec(s.input);
@@ -375,24 +386,24 @@ export const timeSpanReParser = parseFirst(
   }),
 );
 
+// Friday, September 15 -> "09-15"
+export const longDateParser = mapParser(
+  parseAll(
+    // "Friday, "
+    apFirst(weekdayReParser, parseSeparator),
+    // "September "
+    apFirst(parseMonth, optional(wsParser)),
+    // "15 "
+    parseDayNumber,
+  ),
+  ([_weekday, month, day]) => `${month}-${day}`,
+);
+
 // "Friday, September 15 when track is closed from 7:30 a.m. to 12:30 p.m. for Sacred Heart Walkathon"
 export const parseFallException = mapParser(
   ensureEndParsed(
     parseAll(
-      parseSepBy1(
-        mapParser(
-          parseAll(
-            // "Friday, "
-            apFirst(weekdayReParser, parseSeparator),
-            // "September "
-            apFirst(parseMonth, optional(wsParser)),
-            // "15 "
-            parseDayNumber,
-          ),
-          ([_weekday, month, day]) => `${month}-${day}`,
-        ),
-        parseSeparator,
-      ),
+      parseSepBy1(longDateParser, parseSeparator),
       apSecond(
         // "when track is closed "
         reParser(/\s*when track is closed\s*/gi),
@@ -631,6 +642,121 @@ const fallPreludeRe = mapParser(
   (m) => m[1].trim(),
 );
 
+const partialClosuresParser = mapParser(
+  parseAll(
+    parseAll(longDateParser, apSecond(reParser(/\s*and\s*/gi), longDateParser)),
+    reParser(/\s*-\s* (Partial closures.*)\./gi),
+  ),
+  ([dates, comment]): DateRuleStep =>
+    (date: Date): RuleInterval[] | undefined => {
+      const fmt = shortDateStyle.format(date);
+      for (const d of dates) {
+        if (fmt.endsWith(d)) {
+          return [dayInterval(fmt, fmt, true, comment[1])];
+        }
+      }
+    },
+);
+
+// Saturday, February 24 from 7:45 a.m. to 4:45 p.m. and Sunday, February from 7:45 a.m. to 3:45 p.m. when track will be closed for a sports tournament.
+const weekendTournamentParser = mapParser(
+  parseAll(
+    parseSepBy1(
+      parseAll(
+        // Saturday, February 24
+        // OR
+        // Sunday, February
+        parseFirst(
+          longDateParser,
+          mapParser(reParser(/Sunday, February( 25)?/gi), () => "02-25"),
+        ),
+        // from 7:45 a.m. to 4:45 p.m.
+        timeSpanReParser,
+      ),
+      reParser(/\s*and\s*/gi),
+    ),
+    mapParser(
+      reParser(/\s*when track will be closed for a sports tournament\./gi),
+      () => "Sports Tournament",
+    ),
+  ),
+  ([dateTimes, comment]): DateRuleStep =>
+    (date: Date): RuleInterval[] | undefined => {
+      const fmt = shortDateStyle.format(date);
+      for (const [d, t] of dateTimes) {
+        if (fmt.endsWith(d)) {
+          return closedMinuteIntervals(
+            date,
+            t.start_minute,
+            t.end_minute,
+            comment,
+          );
+        }
+      }
+    },
+);
+
+function janFebRecognizer(rule: UnknownRules): KnownRules | undefined {
+  const { rules } = rule;
+  // The Cycle Track will remain open - Polo Field Closed
+  // EXCEPT:
+  // Monday, January 22 and Tuesday, January 23 - Partial closures of the track in the morning for asphalt repairs.
+  // Saturday, February 24 from 7:45 a.m. to 4:45 p.m. and Sunday, February from 7:45 a.m. to 3:45 p.m. when track will be closed for a sports tournament.
+  if (rules.length === 0) {
+    return undefined;
+  }
+  let comment: string | undefined;
+  let state: "prelude" | "rules" | "exception" = "prelude";
+  const excParser = parseFirst(partialClosuresParser, weekendTournamentParser);
+  const predicates: DateRuleStep[] = [];
+  for (let i = 0; i < rules.length; i++) {
+    const r = rules[i];
+    let s = stream(r);
+    switch (state) {
+      case "prelude": {
+        const m = ensureEndParsed(
+          reParser(
+            /The Cycle Track will remain open - Polo Fields? Closed\s*/gi,
+          ),
+        )(s);
+        if (!m) {
+          return undefined;
+        }
+        state = "rules";
+        continue;
+      }
+      case "rules": {
+        const m = ensureEndParsed(reParser(/\s*EXCEPT:\s*/gi))(s);
+        if (!m) {
+          return undefined;
+        }
+        state = "exception";
+        continue;
+      }
+      case "exception": {
+        const m = excParser(s);
+        if (!m) {
+          return undefined;
+        }
+        predicates.push(m.result);
+        continue;
+      }
+    }
+  }
+  return toKnown(
+    rule,
+    daily(rule.start_date, rule.end_date, (date) => {
+      for (const p of predicates) {
+        const r = p(date);
+        if (r) {
+          return r;
+        }
+      }
+      return [dateInterval(date, true)];
+    }),
+  );
+}
+
 function fallRecognizer(rule: UnknownRules): KnownRules | undefined {
   const { rules } = rule;
   // Fall Youth and Adult Sports Programs Begin. The Cycle Track Will be Open:
@@ -705,18 +831,21 @@ function fallRecognizer(rule: UnknownRules): KnownRules | undefined {
   );
 }
 
-const RECOGNIZERS = [
+export const RECOGNIZERS = [
   recognizer(
+    "openAllDayEveryDay",
     /^(The Cycle Track will remain open - Polo Fields? Closed|The Cycle Track Will be Open Mondays through Sundays all day)$/i,
     (rule) => [dayInterval(rule.start_date, rule.end_date, true)],
   ),
   recognizer(
+    "closedForOutsideLands",
     /^The Cycle Track will be closed for Outside Lands Load in, Event and Load Out( and Polo Fields Concert Event and Load Out)?$/i,
     (rule) => [
       dayInterval(rule.start_date, rule.end_date, false, "Outside Lands"),
     ],
   ),
   recognizer(
+    "closedForOneEvent",
     /^The Cycle Track (?:will be )?Closed for (?<comment>(?:\w+ )+)from (?<start>\d+) ((?<startampm>[ap])\.m\. )?to (?<end>\d+) (?<ampm>[ap])\.m\.$/i,
     (rule, m) => {
       const ampmStart = /p/i.test(m.groups?.startampm ?? m.groups?.ampm ?? "")
@@ -733,6 +862,7 @@ const RECOGNIZERS = [
     },
   ),
   recognizer(
+    "openAfter",
     /^The Cycle Track will be open after (?<start>\d+) (?<startampm>[ap])\.m\.$/i,
     (rule, m) => {
       const ampmStart = /p/i.test(m.groups?.startampm ?? m.groups?.ampm ?? "")
@@ -745,62 +875,7 @@ const RECOGNIZERS = [
     },
   ),
   recognizer(
-    /^The Cycle Track will be open after 5:30 p.m. on Saturday and after 7:30 p.m. on Sunday.$/i,
-    (rule) =>
-      daily(rule.start_date, rule.end_date, (date) => {
-        const weekday = date.getDay();
-        if (weekday === WEEKDAYS.Sat) {
-          return closedMinuteIntervals(date, 0, toMinute(17, 30));
-        } else if (weekday === WEEKDAYS.Sun) {
-          return closedMinuteIntervals(date, 0, toMinute(19, 30));
-        } else {
-          return [dateInterval(date, false)];
-        }
-      }),
-  ),
-  recognizer(
-    /^The Cycle Track will remain open - Polo Fields? Closed EXCEPT: Monday, January 22 and Tuesday, January 23 - Partial closures of the track in the morning for asphalt repairs. Saturday, February 24 from 7:45 a\.?m\.? to 4:45 p\.?m\.? and Sunday, February (25 )?from 7:45 a\.?m\.? to 3:45 p\.?m\.? when track will be closed for a sports tournament\.$/i,
-    (rule) => {
-      return daily(rule.start_date, rule.end_date, (date) => {
-        const month = date.getMonth() + 1;
-        if (month === 2 && date.getDate() === 24) {
-          return closedMinuteIntervals(
-            date,
-            toMinute(7, 45),
-            toMinute(16, 45),
-            "sports tournament",
-          );
-        } else if (month === 2 && date.getDate() === 25) {
-          return closedMinuteIntervals(
-            date,
-            toMinute(7, 45),
-            toMinute(15, 45),
-            "sports tournament",
-          );
-        } else {
-          return [dateInterval(date, true)];
-        }
-      });
-    },
-  ),
-  recognizer(
-    /^The Cycle Track will remain open - Polo Fields? Closed Except on Tuesdays and Thursdays from 6:30 p\.m\. to 8:45 p\.m\. for adult sports programming\.$/i,
-    (rule) =>
-      daily(rule.start_date, rule.end_date, (date) => {
-        const weekday = date.getDay();
-        if (weekday === WEEKDAYS.Tue || weekday === WEEKDAYS.Thu) {
-          return closedMinuteIntervals(
-            date,
-            toMinute(18, 30),
-            toMinute(20, 45),
-            "adult sports programming",
-          );
-        } else {
-          return [dateInterval(date, true)];
-        }
-      }),
-  ),
-  recognizer(
+    "marchMayHack",
     /^Youth and Adult Sports Programs Begin\. The Cycle Track Will be Open: Mondays all day Tuesdays\*, Wednesdays, Thursdays\* and Fridays before 2 p\.m\. and after 6:45 p\.m\. \(\*On Tuesdays beginning March 12, the cycling track will be open after 8:45 p\.m\. On Thursdays beginning March 14, the track will be open after 8:45 p\.m\.\) Saturdays before 7 a\.m\. and after 6:45 p\.m\. Sundays before 7 a\.m\. and after 6:45 p\.m\. EXCEPT: Sundays, from March 3 thru May 12, when track will be open before 10 a\.m\. and after 6:45 p\.m\. Sunday, May 19 when track will be open all day with the field closed due to the Bay to Breakers event$/i,
     (rule) =>
       /*
@@ -859,18 +934,19 @@ Sunday, May 19 when track will be open all day with the field closed due to the 
         }
       }),
   ),
-  summerRecognizer,
+  janFebRecognizer,
+  summerRecognizer, // Currently unused
   fallRecognizer,
 ];
 
-export function nlpRule(rule: UnknownRules): UnknownRules | KnownRules {
+export function nlpDebugRule(rule: UnknownRules): RecognizerRules {
   for (const r of RECOGNIZERS) {
     const known = r(rule);
     if (known) {
-      return known;
+      return { recognizer: r, rules: known };
     }
   }
-  return rule;
+  return { recognizer: null, rules: rule };
 }
 
 function levelsEq(a: Levels, b: Levels): boolean {
@@ -965,8 +1041,12 @@ function reduceYearRules(year: number) {
   };
 }
 
-export type ScrapeResult = Year<UnknownRules | KnownRules>[];
+export type RecognizerRules =
+  | { readonly recognizer: null; readonly rules: UnknownRules }
+  | { readonly recognizer: Recognizer; readonly rules: KnownRules };
 
+export type ScrapeResult = Year<UnknownRules | KnownRules>[];
+export type ScrapeDebugResult = Year<RecognizerRules>[];
 export class ScheduleScraper implements HTMLRewriterElementContentHandlers {
   state: "initial" | "start" | "copy" | "done" = "initial";
   levels: Levels = {
@@ -980,10 +1060,16 @@ export class ScheduleScraper implements HTMLRewriterElementContentHandlers {
   years: Year<Rule>[] = [];
   inSpan: boolean = false;
   buffer: BufferEntry[] = [];
-  getResult(): ScrapeResult {
+  getDebugResult(): ScrapeDebugResult {
     return this.years.map((y) => ({
       ...y,
-      rules: y.rules.reduce(reduceYearRules(y.year), []).map(nlpRule),
+      rules: y.rules.reduce(reduceYearRules(y.year), []).map(nlpDebugRule),
+    }));
+  }
+  getResult(): ScrapeResult {
+    return this.getDebugResult().map((y) => ({
+      ...y,
+      rules: y.rules.map((r) => r.rules),
     }));
   }
   element(element: Element) {

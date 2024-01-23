@@ -3,6 +3,12 @@ export function parseDate(date: string): Date {
   return new Date(y, m - 1, d);
 }
 
+export function parseTimestamp(timestamp: string): Date {
+  const [d, hhmm] = timestamp.split(" ");
+  const [hh, mm] = hhmm.split(":");
+  return addMinutes(parseDate(d), toMinute(parseInt(hh, 10), parseInt(mm, 10)));
+}
+
 export function formatTime(date: string, hour: number, minute: number): string {
   return `${date} ${hour.toString().padStart(2, "0")}:${minute
     .toString()

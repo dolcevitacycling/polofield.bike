@@ -5,8 +5,8 @@ import {
   shortTimeStyle,
   addMinutes,
   parseDate,
-  toMinute,
   addDays,
+  parseTimestamp,
 } from "./dates";
 
 function prefix(filter: FeedParameters) {
@@ -135,12 +135,6 @@ END:VEVENT`;
 
 function sequence(event: Event) {
   return 0;
-}
-
-function parseTimestamp(timestamp: string): Date {
-  const [d, hhmm] = timestamp.split(" ");
-  const [hh, mm] = hhmm.split(":");
-  return addMinutes(parseDate(d), toMinute(parseInt(hh, 10), parseInt(mm, 10)));
 }
 
 function dayMinutes(d: Date): number {

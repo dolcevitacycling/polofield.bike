@@ -29,7 +29,6 @@
     "check": "tsc --noEmit --skipLibCheck",
     "check-updates": "npx npm-check-updates",
     "format": "prettier --write 'src/**/*.{js,ts,css,json,md}'",
-    "backup-db": "export NO_D1_WARNING=true && wrangler d1 backup download --output=./db/polofield.sqlite3 polofield $(mkdir -p ./db && wrangler d1 backup list polofield | grep -Eo '[0-9a-f-]{36}' | head -n1)",
     "scrape": "tsx scripts/scrape.ts"
   },
   "prettier": {}
