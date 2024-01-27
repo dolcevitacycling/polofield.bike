@@ -1,12 +1,25 @@
+import { describe, expect, it } from "vitest";
 import {
   parseFallException,
   timeSpanReParser,
   timeToMinuteParser,
   intervalsForDate,
   type ScrapeResult,
+  parseWeekdayTimes,
+  weekdayList,
+  onWeekdayExceptionData,
+  WEEKDAYS,
+  WEEKDAYS_TABLE,
+  parseWeekdayTimesData,
 } from "./cron";
-import { toMinute, shortDateStyle } from "./dates";
-import { stream, streamAtEnd } from "./parsing";
+import {
+  toMinute,
+  shortDateStyle,
+  timeToMinutes,
+  parseDate,
+  addDays,
+} from "./dates";
+import { ResultOfParser, stream, streamAtEnd } from "./parsing";
 
 describe("intervalsForDate", () => {
   it("Will make an assumption for January of maxYear+1", () => {
@@ -80,11 +93,27 @@ describe("timeSpanReParser", () => {
   [
     {
       input: "8:00 AM to 8:45 PM",
-      result: { start_minute: toMinute(8, 0), end_minute: toMinute(20, 45) },
+      result: {
+        start_minute: toMinute(8, 0),
+        end_minute: toMinute(20, 45),
+        open: false,
+      },
     },
     {
       input: "before 2 p.m. and after 6:45 p.m.",
-      result: { start_minute: toMinute(14, 0), end_minute: toMinute(18, 45) },
+      result: {
+        start_minute: toMinute(14, 0),
+        end_minute: toMinute(18, 45),
+        open: false,
+      },
+    },
+    {
+      input: "all day",
+      result: {
+        start_minute: toMinute(0, 0),
+        end_minute: toMinute(24, 0),
+        open: true,
+      },
     },
   ].forEach(({ input, result }) => {
     it(`should parse ${input}`, () => {
@@ -194,5 +223,226 @@ describe("parseFallException", () => {
       expect(r.result(new Date(2023, 8, 14))).toBe(undefined);
       expect(r.result(new Date(2023, 8, 16))).toBe(undefined);
     }
+  });
+});
+describe("weekdayList", () => {
+  const input = "Tuesdays*, Wednesdays, Thursdays* and Fridays";
+  it(`should parse ${input}`, () => {
+    const r = weekdayList(stream(input));
+    expect(r).toEqual({
+      result: [2, 3, 4, 5],
+      s: { cursor: input.length, input },
+    });
+  });
+});
+describe("onWeekdayExceptionData", () => {
+  const parses: {
+    input: string;
+    output: ResultOfParser<typeof onWeekdayExceptionData>;
+  }[] = [
+    {
+      input:
+        "*On Tuesdays beginning March 12, the cycling track will be open after 8:45 p.m.",
+      output: [
+        2,
+        { start_month: "03", start_day: "12" },
+        timeToMinutes("20:45"),
+      ],
+    },
+    {
+      input:
+        "On Thursdays beginning March 14, the track will be open after 8:45 p.m.",
+      output: [
+        4,
+        { start_month: "03", start_day: "14" },
+        timeToMinutes("20:45"),
+      ],
+    },
+  ];
+  parses.forEach(({ input, output }) => {
+    it(`should parse ${input}`, () => {
+      const r = onWeekdayExceptionData(stream(input));
+      expect(r).toBeDefined();
+      expect(r?.result).toEqual(output);
+    });
+  });
+});
+describe("parseWeekdayTimesData", () => {
+  // no exceptions
+  const input0 = `Tuesdays*, Wednesdays, Thursdays* and Fridays before 2 p.m. and after 6:45 p.m.`;
+  it(`parses ${input0}`, () =>
+    expect(parseWeekdayTimesData(stream(input0))).toEqual({
+      result: [
+        [WEEKDAYS.Tue, WEEKDAYS.Wed, WEEKDAYS.Thu, WEEKDAYS.Fri],
+        {
+          start_minute: toMinute(14, 0),
+          end_minute: toMinute(18, 45),
+          open: false,
+        },
+        undefined,
+      ],
+      s: { cursor: input0.length, input: input0 },
+    }));
+  const input = `Tuesdays*, Wednesdays, Thursdays* and Fridays before 2 p.m. and after 6:45 p.m. (*On Tuesdays beginning March 12, the cycling track will be open after 8:45 p.m. On Thursdays beginning March 14, the track will be open after 8:45 p.m.)`;
+  it(`parses ${input}`, () =>
+    expect(parseWeekdayTimesData(stream(input))).toEqual({
+      result: [
+        [WEEKDAYS.Tue, WEEKDAYS.Wed, WEEKDAYS.Thu, WEEKDAYS.Fri],
+        {
+          start_minute: toMinute(14, 0),
+          end_minute: toMinute(18, 45),
+          open: false,
+        },
+        [
+          [
+            WEEKDAYS.Tue,
+            { start_month: "03", start_day: "12" },
+            toMinute(20, 45),
+          ],
+          [
+            WEEKDAYS.Thu,
+            { start_month: "03", start_day: "14" },
+            toMinute(20, 45),
+          ],
+        ],
+      ],
+      s: { cursor: input.length, input: input },
+    }));
+});
+
+describe("parseWeekdayTimes", () => {
+  const rule = {
+    start_date: "2024-02-26",
+    end_date: "2024-05-26",
+    comment: "Youth and Adult Sports Programs",
+  };
+  // no exceptions
+  const input0 = `Tuesdays*, Wednesdays, Thursdays* and Fridays before 2 p.m. and after 6:45 p.m.`;
+  describe(`should parse without exceptions`, () => {
+    const r = parseWeekdayTimes(
+      { start_date: "2024-02-26", end_date: "2024-05-26" },
+      "Youth and Adult Sports Programs",
+    )(stream(input0));
+    it(`parses ${input0}`, () => expect(r).toBeDefined());
+    let date = parseDate(rule.start_date);
+    const endDate = parseDate(rule.end_date);
+    for (; date.getTime() <= endDate.getTime(); date = addDays(date, 1)) {
+      const day = date.getDay();
+      if (day >= 2 && day <= 5) {
+        it(
+          `is open before 2pm and after 6:45pm on ${
+            WEEKDAYS_TABLE[day]
+          } ${shortDateStyle.format(date)}`,
+          (
+            (date) => () =>
+              expect(r?.result(date)).toEqual([
+                {
+                  start_timestamp: `${shortDateStyle.format(date)} 00:00`,
+                  end_timestamp: `${shortDateStyle.format(date)} 13:59`,
+                  open: true,
+                },
+                {
+                  start_timestamp: `${shortDateStyle.format(date)} 14:00`,
+                  end_timestamp: `${shortDateStyle.format(date)} 18:44`,
+                  open: false,
+                  comment: rule.comment,
+                },
+                {
+                  start_timestamp: `${shortDateStyle.format(date)} 18:45`,
+                  end_timestamp: `${shortDateStyle.format(date)} 23:59`,
+                  open: true,
+                },
+              ])
+          )(date),
+        );
+      } else {
+        it(
+          `does not apply on ${shortDateStyle.format(date)}`,
+          (
+            (date) => () =>
+              expect(r?.result(date)).toBe(undefined)
+          )(date),
+        );
+      }
+    }
+  });
+  const input = `Tuesdays*, Wednesdays, Thursdays* and Fridays before 2 p.m. and after 6:45 p.m. (*On Tuesdays beginning March 12, the cycling track will be open after 8:45 p.m. On Thursdays beginning March 14, the track will be open after 8:45 p.m.)`;
+  describe(`should parse with exceptions`, () => {
+    const r = parseWeekdayTimes(rule, rule.comment)(stream(input));
+    let date = parseDate(rule.start_date);
+    const endDate = parseDate(rule.end_date);
+    const excDate = parseDate("2024-03-12");
+    for (; date.getTime() <= endDate.getTime(); date = addDays(date, 1)) {
+      const day = date.getDay();
+      if (day >= 2 && day <= 5) {
+        if ((day === 2 || day === 4) && date.getTime() >= excDate.getTime()) {
+          it(
+            `is open before 2pm and after 8:45pm on ${
+              WEEKDAYS_TABLE[day]
+            } ${shortDateStyle.format(date)}`,
+            (
+              (date) => () =>
+                expect(r?.result(date)).toEqual([
+                  {
+                    start_timestamp: `${shortDateStyle.format(date)} 00:00`,
+                    end_timestamp: `${shortDateStyle.format(date)} 13:59`,
+                    open: true,
+                  },
+                  {
+                    start_timestamp: `${shortDateStyle.format(date)} 14:00`,
+                    end_timestamp: `${shortDateStyle.format(date)} 20:44`,
+                    open: false,
+                    comment: rule.comment,
+                  },
+                  {
+                    start_timestamp: `${shortDateStyle.format(date)} 20:45`,
+                    end_timestamp: `${shortDateStyle.format(date)} 23:59`,
+                    open: true,
+                  },
+                ])
+            )(date),
+          );
+        } else {
+          it(
+            `is open before 2pm and after 6:45pm on ${
+              WEEKDAYS_TABLE[day]
+            } ${shortDateStyle.format(date)}`,
+            (
+              (date) => () =>
+                expect(r?.result(date)).toEqual([
+                  {
+                    start_timestamp: `${shortDateStyle.format(date)} 00:00`,
+                    end_timestamp: `${shortDateStyle.format(date)} 13:59`,
+                    open: true,
+                  },
+                  {
+                    start_timestamp: `${shortDateStyle.format(date)} 14:00`,
+                    end_timestamp: `${shortDateStyle.format(date)} 18:44`,
+                    open: false,
+                    comment: rule.comment,
+                  },
+                  {
+                    start_timestamp: `${shortDateStyle.format(date)} 18:45`,
+                    end_timestamp: `${shortDateStyle.format(date)} 23:59`,
+                    open: true,
+                  },
+                ])
+            )(date),
+          );
+        }
+      } else {
+        it(
+          `does not apply on ${shortDateStyle.format(date)}`,
+          (
+            (date) => () =>
+              expect(r?.result(date)).toBe(undefined)
+          )(date),
+        );
+      }
+    }
+    const f = (s: string) => r!.result(parseDate(s));
+    // Out of bounds checks
+    expect(f("2024-02-25")).toEqual(undefined);
+    expect(f("2024-05-27")).toEqual(undefined);
   });
 });

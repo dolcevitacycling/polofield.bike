@@ -141,6 +141,11 @@ export function clampEnd(date: string, timestamp: string): string {
   return date === tsDate ? tsTime : "23:59";
 }
 
+export function timestampToMinutes(timestamp: string): number {
+  const [_, time] = timestamp.split(" ");
+  return timeToMinutes(time);
+}
+
 export function timeToMinutes(time: string): number {
   const [h, m] = time.split(":");
   return parseInt(h, 10) * 60 + parseInt(m, 10);

@@ -11,6 +11,7 @@ import {
   shortTimeStyle,
   getTodayPacific,
   parseTimestamp,
+  timestampToMinutes,
 } from "./dates";
 import { discordReport, runDiscordWebhook } from "./discord";
 import {
@@ -82,7 +83,7 @@ const DATE_RULES_RE = new RegExp(
   "ig",
 );
 const DATE_RANGE_RE = new RegExp(
-  `${MONTHS.source}\\s+${DAY_NUMBER_RE.source}(?:\\s*-\\s*(?:${MONTHS.source}\\s+)?${DAY_NUMBER_RE.source})?`,
+  `${MONTHS.source}\\s+${DAY_NUMBER_RE.source}(?:\\s*(?:-|thru|through)\\s*(?:${MONTHS.source}\\s+)?${DAY_NUMBER_RE.source})?`,
   "ig",
 );
 const TIME_RE = /(\d{1,2})(?::(\d{2}))?\s*([ap](?:\.m\.|m))/gi;
@@ -99,7 +100,7 @@ const WEEKDAY_RE =
 //   .replace(/[^a-zA-Z|]/g, "")
 //   .split("|")
 //   .map((s) => s.substring(0, 3));
-const WEEKDAYS: Record<
+export const WEEKDAYS: Record<
   "Sun" | "Mon" | "Tue" | "Wed" | "Thu" | "Fri" | "Sat",
   number
 > = {
@@ -111,6 +112,9 @@ const WEEKDAYS: Record<
   Fri: 5,
   Sat: 6,
 };
+export const WEEKDAYS_TABLE = Object.keys(
+  WEEKDAYS,
+) as readonly (keyof typeof WEEKDAYS)[];
 
 function dateInterval(date: Date, open: boolean, comment?: string) {
   return {
@@ -245,22 +249,6 @@ interface DateInterval {
   readonly end_date: string;
 }
 
-function parseDateInterval(year: number) {
-  const fmt = (year: number, month: string, day: string): string =>
-    `${year}-${month}-${day.padStart(2, "0")}`;
-  return (s: string): DateInterval | undefined => {
-    const r = dateRangeParser(stream(s));
-    if (!r || !streamAtEnd(r.s)) {
-      return undefined;
-    }
-    const { start_month, start_day, end_month, end_day } = r.result;
-    return {
-      start_date: fmt(year, start_month, start_day),
-      end_date: fmt(year, end_month, end_day),
-    };
-  };
-}
-
 // January -> "01"
 const parseMonth = mapParser(reParser(MONTHS), (m) => parseMonthToISO(m[1]));
 // 1 -> "01"
@@ -277,45 +265,6 @@ type ExceptionRuleStep = (
   intervals: RuleInterval[] | undefined,
 ) => RuleInterval[] | undefined;
 
-const EXCEPTION_RE = new RegExp(
-  `\\(except on ${MONTHS.source}\\s+${DAY_NUMBER_RE.source}(?:\\s*-\\s*(?:${MONTHS.source}\\s+)?${DAY_NUMBER_RE.source})? when it will be open after ${TIME_RE.source}\\)`,
-  "gi",
-);
-const parseExceptions: Parser<ExceptionRuleStep> = mapParser(
-  reParser(EXCEPTION_RE),
-  (m) => {
-    const start_month = parseMonthToISO(m[1]);
-    const start_day = m[2];
-    const end_month = m[3] ? parseMonthToISO(m[3]) : start_month;
-    const end_day = m[4] || start_day;
-    if (!start_day || !end_day) {
-      throw new Error("Could not parse day");
-    }
-    const open_hour = parseInt(m[5], 10) + (/p/i.test(m[7]) ? 12 : 0);
-    const open_minute = parseInt(m[6], 10);
-    return (date: Date, intervals: RuleInterval[] | undefined) => {
-      if (!intervals) {
-        return intervals;
-      }
-      const fmt = (month: string, day: string): string =>
-        `${date.getFullYear()}-${month}-${day.padStart(2, "0")}`;
-      const dateStr = shortDateStyle.format(date);
-      const start_timestamp = shortTimeStyle.format(
-        addMinutes(date, toMinute(open_hour, open_minute)),
-      );
-      if (
-        dateStr >= fmt(start_month, start_day) &&
-        dateStr <= fmt(end_month, end_day)
-      ) {
-        return intervals.map((v, i) =>
-          v.open && i > 0 ? { ...v, start_timestamp } : v,
-        );
-      }
-      return intervals;
-    };
-  },
-);
-
 function reParser(regexp: RegExp): Parser<RegExpExecArray> {
   if (regexp.flags.indexOf("g") === -1) {
     throw new Error("Expected regexp to be global: " + regexp);
@@ -329,15 +278,21 @@ function reParser(regexp: RegExp): Parser<RegExpExecArray> {
   };
 }
 
+export interface DateRange {
+  readonly start_month: string;
+  readonly end_month: string;
+  readonly start_day: string;
+  readonly end_day: string;
+}
 const dateRangeParser = mapParser(reParser(DATE_RANGE_RE), (m) => {
   const start_month = parseMonthToISO(m[1]);
   const end_month = m[3] ? parseMonthToISO(m[3]) : start_month;
   return {
     start_month,
     end_month,
-    start_day: m[2],
-    end_day: m[4] || m[2],
-  } as const;
+    start_day: m[2].padStart(2, "0"),
+    end_day: (m[4] || m[2]).padStart(2, "0"),
+  } satisfies DateRange;
 });
 
 const weekdayReParser = mapParser(
@@ -367,7 +322,8 @@ export const timeSpanReParser = parseFirst(
         apFirst(timeToMinuteParser, optional(wsParser)),
       ),
     ),
-    ([start_minute, end_minute]) => ({ start_minute, end_minute }) as const,
+    ([start_minute, end_minute]) =>
+      ({ start_minute, end_minute, open: false }) as const,
   ),
   // "before 2 p.m. and after 6:45 p.m."
   mapParser(
@@ -378,11 +334,16 @@ export const timeSpanReParser = parseFirst(
         apFirst(timeToMinuteParser, optional(wsParser)),
       ),
     ),
-    ([start_minute, end_minute]) => ({ start_minute, end_minute }) as const,
+    ([start_minute, end_minute]) =>
+      ({ start_minute, end_minute, open: false }) as const,
   ),
   // "all day"
   mapParser(reParser(/\s*all day\s*/gi), () => {
-    return { start_minute: 0, end_minute: toMinute(24, 0) } as const;
+    return {
+      start_minute: 0,
+      end_minute: toMinute(24, 0),
+      open: true,
+    } as const;
   }),
 );
 
@@ -421,54 +382,189 @@ export const parseFallException = mapParser(
         : undefined,
 );
 
-function parseWeekdayTimes(
+// Sundays, from March 3 thru May 12, when track will be open before 10 a.m. and after 6:45 p.m.
+// Sunday, May 19 when track will be open all day with the field closed due to the Bay to Breakers event
+export const parseSpringException = mapParser(
+  ensureEndParsed(
+    parseAll(
+      // Sundays
+      mapParser(weekdayReParser, (w) => WEEKDAYS[w]),
+      apSecond(
+        // , from
+        reParser(/\s*(,\s*)?(from\s+)?/gi),
+        // March 3 thru May 12
+        dateRangeParser,
+      ),
+      // , when track will be open
+      apSecond(
+        reParser(/\s*(,\s*)?when track will be open\s*/gi),
+        // before 10 a.m. and after 6:45 p.m.
+        timeSpanReParser,
+      ),
+      optional(
+        mapParser(
+          reParser(
+            /\s*with the field closed due to the Bay to Breakers event\.?\s*/gi,
+          ),
+          () => "Bay to Breakers",
+        ),
+      ),
+    ),
+  ),
+  ([weekday, range, times, comment]) =>
+    (date: Date): RuleInterval[] | undefined =>
+      date.getDay() === weekday && isDateInRange(date, range)
+        ? minuteIntervals(
+            date,
+            times.start_minute,
+            times.end_minute,
+            times.open,
+            comment ?? "Youth and Adult Sports Programs",
+          )
+        : undefined,
+);
+
+// (*On Tuesdays beginning March 12, the cycling track will be open after 8:45 p.m. On Thursdays beginning March 14, the track will be open after 8:45 p.m.)
+
+export const onWeekdayExceptionData = parseAll(
+  apSecond(
+    reParser(/\s*\*?On\s+/gi),
+    mapParser(weekdayReParser, (d) => WEEKDAYS[d]),
+  ),
+  mapParser(
+    apSecond(reParser(/\s*beginning\s*/gi), dateRangeParser),
+    ({ start_month, start_day }) => ({ start_month, start_day }),
+  ),
+  apSecond(
+    reParser(/\s*,\s+the (cycling )?track will be open after\s*/gi),
+    timeToMinuteParser,
+  ),
+);
+
+const compileWeekdayException =
+  ([weekday, range, start_minute]: [
+    number,
+    Pick<DateRange, "start_month" | "start_day">,
+    number,
+  ]): ExceptionRuleStep =>
+  (date, intervals) => {
+    if (
+      intervals &&
+      date.getDay() === weekday &&
+      afterDateRangeStart(date, range)
+    ) {
+      if (intervals.length !== 3) {
+        throw new Error("Expecting 3 intervals");
+      }
+      if (!intervals[1].comment) {
+        throw new Error("Missing comment");
+      }
+      return closedMinuteIntervals(
+        date,
+        timestampToMinutes(intervals[1].start_timestamp),
+        start_minute,
+        intervals[1].comment,
+      );
+    }
+  };
+
+export const weekdayExceptionsData = apSecond(
+  reParser(/\s*\(\s*/gi),
+  apFirst(
+    parseSepBy1(onWeekdayExceptionData, reParser(/\s*\.?\s*/gi)),
+    reParser(/\s*\)\s*/gi),
+  ),
+);
+
+export function reducePredicates(predicates: readonly DateRuleStep[]) {
+  return (date: Date) => {
+    for (const p of predicates) {
+      const r = p(date);
+      if (r) {
+        return r;
+      }
+    }
+    return [dateInterval(date, true)];
+  };
+}
+
+function reduceExceptionRuleSteps(
+  exceptions: readonly ExceptionRuleStep[],
+): ExceptionRuleStep {
+  return (date, intervals) => {
+    for (const f of exceptions) {
+      const r = f(date, intervals);
+      if (r) {
+        return r;
+      }
+    }
+    return intervals;
+  };
+}
+
+export const weekdayList = apFirst(
+  parseSepBy1(
+    mapParser(
+      // Monday
+      // Monday*
+      apFirst(weekdayReParser, optional(reParser(/\*/gi))),
+      (d) => WEEKDAYS[d],
+    ),
+    parseSeparator,
+  ),
+  parseOptionalColon,
+);
+
+export const parseWeekdayTimesData = ensureEndParsed(
+  parseAll(
+    apFirst(
+      parseSepBy1(
+        mapParser(
+          // Monday
+          // Monday*
+          apFirst(weekdayReParser, optional(reParser(/\*/gi))),
+          (d) => WEEKDAYS[d],
+        ),
+        parseSeparator,
+      ),
+      parseOptionalColon,
+    ),
+    // "8:00 AM to 8:45 PM"
+    // "before 2 p.m. and after 6:45 p.m."
+    timeSpanReParser,
+    // Exceptions
+    optional(weekdayExceptionsData),
+  ),
+);
+
+export function parseWeekdayTimes(
   interval: DateInterval,
   comment?: string,
 ): Parser<DateRuleStep> {
   return mapParser(
-    ensureEndParsed(
-      parseAll(
-        apFirst(
-          parseSepBy1(
-            mapParser(weekdayReParser, (d) => WEEKDAYS[d]),
-            parseSeparator,
-          ),
-          parseOptionalColon,
-        ),
-        // "8:00 AM to 8:45 PM"
-        // "before 2 p.m. and after 6:45 p.m."
-        timeSpanReParser,
-        // Exceptions
-        parseFirst(
-          parseExceptions,
-          succeed<ExceptionRuleStep>((_, intervals) => intervals),
-        ),
-      ),
-    ),
-
-    ([days, { start_minute, end_minute }, exceptions]) => {
+    parseWeekdayTimesData,
+    ([days, { start_minute, end_minute, open }, exceptionsData]) => {
       const interval_start = parseDate(interval.start_date);
       const interval_end = addDays(parseDate(interval.end_date), 1);
-      // All day means open by default
-      const open = start_minute === 0 && end_minute === toMinute(24, 0);
+      const exceptions = reduceExceptionRuleSteps(
+        (exceptionsData ?? []).map(compileWeekdayException),
+      );
       return (date: Date): RuleInterval[] | undefined => {
         if (
-          date < interval_start ||
-          date >= interval_end ||
+          date.getTime() < interval_start.getTime() ||
+          date.getTime() >= interval_end.getTime() ||
           !days.includes(date.getDay())
         ) {
-          return;
+          return undefined;
         }
-        return exceptions(
+        const intervals = minuteIntervals(
           date,
-          minuteIntervals(
-            date,
-            start_minute,
-            end_minute,
-            open,
-            open ? undefined : comment,
-          ),
+          start_minute,
+          end_minute,
+          open,
+          open ? undefined : comment,
         );
+        return exceptions(date, intervals);
       };
     },
   );
@@ -494,7 +590,7 @@ function parseWeekendExcept(comment?: string): Parser<DateRuleStep> {
   return mapParser(
     apSecond(
       reParser(/(- )?Saturdays and Sundays\s+/gi),
-      apFirst(timeSpanReParser, ensureEndParsed(reParser(/\s*EXCEPT:/gi))),
+      apFirst(timeSpanReParser, exceptionPrelude),
     ),
     ({ start_minute, end_minute }) =>
       (date: Date): RuleInterval[] | undefined => {
@@ -503,6 +599,22 @@ function parseWeekendExcept(comment?: string): Parser<DateRuleStep> {
         }
         return closedMinuteIntervals(date, start_minute, end_minute, comment);
       },
+  );
+}
+
+function afterDateRangeStart(
+  date: Date,
+  range: Pick<DateRange, "start_day" | "start_month">,
+) {
+  const fmt = shortDateStyle.format(date);
+  return fmt >= `${date.getFullYear()}-${range.start_month}-${range.start_day}`;
+}
+
+function isDateInRange(date: Date, range: DateRange) {
+  const fmt = shortDateStyle.format(date);
+  return (
+    fmt >= `${date.getFullYear()}-${range.start_month}-${range.start_day}` &&
+    fmt <= `${date.getFullYear()}-${range.end_month}-${range.end_day}`
   );
 }
 
@@ -531,13 +643,8 @@ function parseWeekendTimes(
         } of exceptions) {
           const dateStr = shortDateStyle.format(date);
           if (
-            dateStr >=
-              `${date.getFullYear()}-${start_month}-${start_day.padStart(
-                2,
-                "0",
-              )}` &&
-            dateStr <=
-              `${date.getFullYear()}-${end_month}-${end_day.padStart(2, "0")}`
+            dateStr >= `${date.getFullYear()}-${start_month}-${start_day}` &&
+            dateStr <= `${date.getFullYear()}-${end_month}-${end_day}`
           ) {
             return closedMinuteIntervals(
               date,
@@ -549,91 +656,6 @@ function parseWeekendTimes(
         }
         return [dateInterval(date, true)];
       },
-  );
-}
-
-function summerRecognizer(rule: UnknownRules): KnownRules | undefined {
-  const { rules } = rule;
-  // "Summer Camps, Youth and Adult Sports Programs will take place on the field. The Cycle Track Will be Open EXCEPT:",
-  // "- During Weekday Summer Camps and Adults Sports Programming:",
-  // "June 20-23",
-  // "Tuesday and Thursday, 8:00 AM to 8:45 PM",
-  // "Wednesday and Friday, 8:00 AM to 3:30 PM",
-  // "June 27",
-  // "Tuesday, 6:00 PM to 8:45 PM",
-  // "July 3-7",
-  // "Monday and Wednesday: 7:00 AM to 2:30 PM",
-  // "Tuesday and Thursday, 7:00 AM to 8:45 PM (except on July 4 when it will be open after 2:30 PM)",
-  // "Friday: 7:00 AM to 3:30 PM",
-  // "July 10-14",
-  // "Monday, Wednesday, Friday: 8:00 AM to 3:30 PM",
-  // "Tuesday and Thursday, 8:00 AM to 8:45 PM",
-  // "July 17-21",
-  // "Monday, Wednesday, Friday: 8:00 AM to 4:30 PM",
-  // "Tuesday and Thursday, 8:00 AM to 8:45 PM",
-  // "- Saturdays and Sundays all day EXCEPT on July 8 (closed 7:30 AM to 5:30 PM) and July 9 (closed 7:30 AM to 4:30 PM)"
-  if (rules.length === 0) {
-    return undefined;
-  }
-  const dateIntervalParser = parseDateInterval(
-    parseDate(rule.start_date).getFullYear(),
-  );
-  let currentInterval: DateInterval | null = null;
-  let comment: string | undefined;
-  const predicates: DateRuleStep[] = [];
-  for (let i = 0; i < rules.length; i++) {
-    const r = rules[i];
-    if (i === 0) {
-      const m =
-        /^(.+?)will take place on the field\. The Cycle Track Will be Open EXCEPT:$/i.exec(
-          r,
-        );
-      if (!m) {
-        return undefined;
-      }
-      comment = m[1].trim();
-      continue;
-    } else if (i === 1) {
-      const m =
-        /^- During Weekday Summer Camps and Adults Sports Programming:$/i.exec(
-          r,
-        );
-      if (m) {
-        continue;
-      }
-    }
-    const range = dateIntervalParser(r);
-    if (range) {
-      currentInterval = range;
-      continue;
-    } else if (!currentInterval) {
-      console.log("Expected interval to be set", r);
-      return undefined;
-    }
-    const s = stream(r);
-    const m = parseFirst(
-      parseWeekdayTimes(currentInterval, comment),
-      parseWeekendTimes(currentInterval, comment),
-    )(s);
-    if (m) {
-      predicates.push(m.result);
-      continue;
-    }
-    if (!m) {
-      return undefined;
-    }
-  }
-  return toKnown(
-    rule,
-    daily(rule.start_date, rule.end_date, (date) => {
-      for (const p of predicates) {
-        const r = p(date);
-        if (r) {
-          return r;
-        }
-      }
-      return [dateInterval(date, true)];
-    }),
   );
 }
 
@@ -696,6 +718,8 @@ const weekendTournamentParser = mapParser(
     },
 );
 
+const exceptionPrelude = ensureEndParsed(reParser(/\s*EXCEPT:\s*/gi));
+
 function janFebRecognizer(rule: UnknownRules): KnownRules | undefined {
   const { rules } = rule;
   // The Cycle Track will remain open - Polo Field Closed
@@ -726,7 +750,7 @@ function janFebRecognizer(rule: UnknownRules): KnownRules | undefined {
         continue;
       }
       case "rules": {
-        const m = ensureEndParsed(reParser(/\s*EXCEPT:\s*/gi))(s);
+        const m = exceptionPrelude(s);
         if (!m) {
           return undefined;
         }
@@ -745,15 +769,68 @@ function janFebRecognizer(rule: UnknownRules): KnownRules | undefined {
   }
   return toKnown(
     rule,
-    daily(rule.start_date, rule.end_date, (date) => {
-      for (const p of predicates) {
-        const r = p(date);
-        if (r) {
-          return r;
+    daily(rule.start_date, rule.end_date, reducePredicates(predicates)),
+  );
+}
+
+const marchMayPreludeRe = mapParser(
+  reParser(/^(.*?)Begin. The Cycle Track Will be Open:\s*/gi),
+  (m) => m[1].trim(),
+);
+
+function marchMayRecognizer(rule: UnknownRules): KnownRules | undefined {
+  // Youth and Adult Sports Programs Begin. The Cycle Track Will be Open:
+  // Mondays all day
+  // Tuesdays*, Wednesdays, Thursdays* and Fridays before 2 p.m. and after 6:45 p.m. (*On Tuesdays beginning March 12, the cycling track will be open after 8:45 p.m. On Thursdays beginning March 14, the track will be open after 8:45 p.m.)
+  // Saturdays before 7 a.m. and after 6:45 p.m.
+  // Sundays before 7 a.m. and after 6:45 p.m.
+  // EXCEPT:
+  // Sundays, from March 3 thru May 12, when track will be open before 10 a.m. and after 6:45 p.m.
+  // Sunday, May 19 when track will be open all day with the field closed due to the Bay to Breakers event
+  const { rules } = rule;
+  if (rules.length === 0) {
+    return undefined;
+  }
+  let comment: string | undefined;
+  let state: "prelude" | "rules" | "exception" = "prelude";
+  const predicates: DateRuleStep[] = [];
+  for (let i = 0; i < rules.length; i++) {
+    const r = rules[i];
+    let s = stream(r);
+    switch (state) {
+      case "prelude": {
+        const m = marchMayPreludeRe(s);
+        if (!m) {
+          return undefined;
+        }
+        comment = m.result;
+        state = "rules";
+        continue;
+      }
+      case "rules": {
+        const m = parseWeekdayTimes(rule, comment)(s);
+        if (m) {
+          predicates.push(m.result);
+          continue;
+        } else if (exceptionPrelude(s)) {
+          state = "exception";
+          continue;
         }
       }
-      return [dateInterval(date, true)];
-    }),
+      case "exception": {
+        const m = parseSpringException(s);
+        if (m) {
+          predicates.unshift(m.result);
+          continue;
+        }
+      }
+    }
+    console.log(`Failed to parse marchMay times in state ${state}:`, r);
+    return undefined;
+  }
+  return toKnown(
+    rule,
+    daily(rule.start_date, rule.end_date, reducePredicates(predicates)),
   );
 }
 
@@ -781,7 +858,6 @@ function fallRecognizer(rule: UnknownRules): KnownRules | undefined {
       case "prelude": {
         const m = fallPreludeRe(s);
         if (!m) {
-          console.log("Failed to match Fall array prelude", r);
           return undefined;
         }
         comment = m.result;
@@ -796,7 +872,7 @@ function fallRecognizer(rule: UnknownRules): KnownRules | undefined {
         if (m) {
           predicates.push(m.result);
           continue;
-        } else if (reParser(/EXCEPT:/gi)(s)) {
+        } else if (exceptionPrelude(s)) {
           state = "exception";
           continue;
         }
@@ -819,15 +895,7 @@ function fallRecognizer(rule: UnknownRules): KnownRules | undefined {
   }
   return toKnown(
     rule,
-    daily(rule.start_date, rule.end_date, (date) => {
-      for (const p of predicates) {
-        const r = p(date);
-        if (r) {
-          return r;
-        }
-      }
-      return [dateInterval(date, true)];
-    }),
+    daily(rule.start_date, rule.end_date, reducePredicates(predicates)),
   );
 }
 
@@ -874,68 +942,8 @@ export const RECOGNIZERS = [
       );
     },
   ),
-  recognizer(
-    "marchMayHack",
-    /^Youth and Adult Sports Programs Begin\. The Cycle Track Will be Open: Mondays all day Tuesdays\*, Wednesdays, Thursdays\* and Fridays before 2 p\.m\. and after 6:45 p\.m\. \(\*On Tuesdays beginning March 12, the cycling track will be open after 8:45 p\.m\. On Thursdays beginning March 14, the track will be open after 8:45 p\.m\.\) Saturdays before 7 a\.m\. and after 6:45 p\.m\. Sundays before 7 a\.m\. and after 6:45 p\.m\. EXCEPT: Sundays, from March 3 thru May 12, when track will be open before 10 a\.m\. and after 6:45 p\.m\. Sunday, May 19 when track will be open all day with the field closed due to the Bay to Breakers event$/i,
-    (rule) =>
-      /*
-Youth and Adult Sports Programs Begin. The Cycle Track Will be Open:
-Mondays all day
-Tuesdays*, Wednesdays, Thursdays* and Fridays before 2 p.m. and after 6:45 p.m. (*On Tuesdays beginning March 12, the cycling track will be open after 8:45 p.m. On Thursdays beginning March 14, the track will be open after 8:45 p.m.)
-Saturdays before 7 a.m. and after 6:45 p.m.
-Sundays before 7 a.m. and after 6:45 p.m.
-EXCEPT:
-Sundays, from March 3 thru May 12, when track will be open before 10 a.m. and after 6:45 p.m.
-Sunday, May 19 when track will be open all day with the field closed due to the Bay to Breakers event
-      */
-      daily(rule.start_date, rule.end_date, (date) => {
-        const fmtDate = shortDateStyle.format(date);
-        const weekday = date.getDay();
-        const march12 = `${date.getFullYear()}-03-12`;
-        const march14 = `${date.getFullYear()}-03-14`;
-        const may19 = `${date.getFullYear()}-05-19`;
-        const comment = "Youth and Adult Sports Programs";
-        if (weekday === WEEKDAYS.Mon || fmtDate === may19) {
-          // Mondays and Bay to Breakers
-          return [dateInterval(date, true)];
-        } else if (
-          // Tuesdays after March 12
-          (weekday === WEEKDAYS.Tue && fmtDate >= march12) ||
-          // Thursdays after March 14
-          (weekday === WEEKDAYS.Thu && fmtDate >= march14)
-        ) {
-          return closedMinuteIntervals(
-            date,
-            toMinute(14, 0),
-            toMinute(20, 45),
-            comment,
-          );
-        } else if (
-          weekday === WEEKDAYS.Tue ||
-          weekday === WEEKDAYS.Wed ||
-          weekday === WEEKDAYS.Thu ||
-          weekday === WEEKDAYS.Fri
-        ) {
-          return closedMinuteIntervals(
-            date,
-            toMinute(14, 0),
-            toMinute(18, 45),
-            comment,
-          );
-        } else if (weekday === WEEKDAYS.Sat || weekday === WEEKDAYS.Sun) {
-          return closedMinuteIntervals(
-            date,
-            toMinute(7, 0),
-            toMinute(18, 45),
-            comment,
-          );
-        } else {
-          throw new Error(`Unhandled case for weekday ${fmtDate} ${weekday}`);
-        }
-      }),
-  ),
+  marchMayRecognizer,
   janFebRecognizer,
-  summerRecognizer, // Currently unused
   fallRecognizer,
 ];
 

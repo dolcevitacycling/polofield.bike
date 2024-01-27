@@ -11,13 +11,13 @@
     "@types/suncalc": "^1.9.2",
     "discord-api-types": "^0.37.67",
     "hono": "^3.11.12",
-    "jest": "^29.7.0",
     "prettier": "^3.1.1",
     "serverless-cloudflare-workers": "^1.2.0",
     "suncalc": "^1.9.0",
     "ts-jest": "^29.1.1",
     "tsx": "^4.7.0",
     "typescript": "^5.3.3",
+    "vitest": "^1.2.2",
     "wrangler": "^3.22.2"
   },
   "private": true,
@@ -25,11 +25,12 @@
     "start": "export NO_D1_WARNING=true && wrangler dev",
     "deploy": "export NO_D1_WARNING=true && wrangler deploy",
     "wrangler": "export NO_D1_WARNING=true && wrangler",
-    "jest": "jest",
+    "test": "vitest --run",
+    "vitest": "vitest",
     "check": "tsc --noEmit --skipLibCheck",
     "check-updates": "npx npm-check-updates",
     "format": "prettier --write 'src/**/*.{js,ts,css,json,md}'",
-    "scrape": "tsx scripts/scrape.ts"
+    "scrape": "NODE_OPTIONS=--no-warnings=ExperimentalWarning tsx scripts/scrape.ts"
   },
   "prettier": {}
 }
