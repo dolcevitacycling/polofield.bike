@@ -369,6 +369,7 @@ describe("parseWeekdayTimes", () => {
   const input = `Tuesdays*, Wednesdays, Thursdays* and Fridays before 2 p.m. and after 6:45 p.m. (*On Tuesdays beginning March 12, the cycling track will be open after 8:45 p.m. On Thursdays beginning March 14, the track will be open after 8:45 p.m.)`;
   describe(`should parse with exceptions`, () => {
     const r = parseWeekdayTimes(rule, rule.comment)(stream(input));
+    it(`parses ${input}`, () => expect(r).toBeDefined());
     let date = parseDate(rule.start_date);
     const endDate = parseDate(rule.end_date);
     const excDate = parseDate("2024-03-12");
@@ -440,9 +441,10 @@ describe("parseWeekdayTimes", () => {
         );
       }
     }
-    const f = (s: string) => r!.result(parseDate(s));
+    const f = (s: string) =>
+      it(`does not apply on ${s} (out of bounds)`, () =>
+        expect(r!.result(parseDate(s))).toEqual(undefined));
     // Out of bounds checks
-    expect(f("2024-02-25")).toEqual(undefined);
-    expect(f("2024-05-27")).toEqual(undefined);
+    ["2024-02-25", "2024-05-27"].forEach(f);
   });
 });
