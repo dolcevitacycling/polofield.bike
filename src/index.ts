@@ -8,7 +8,7 @@ import {
 import { Bindings, PoloFieldMessage } from "./types";
 import { Hono } from "hono";
 import { serveStatic } from "hono/cloudflare-workers";
-import view, { viewHex, viewWeek } from "./view";
+import view, { etiquette, viewHex, viewWeek } from "./view";
 import icalFeed, { calendarView } from "./icalFeed";
 import { getTodayPacific, parseDate, shortDateStyle } from "./dates";
 import { slackActionEndpoint, slackPolo } from "./slack";
@@ -49,6 +49,7 @@ app.get("/", async (c) =>
     ),
   ),
 );
+app.get("/howto", etiquette);
 app.get("/calendar", calendarView({ open: false }));
 app.get("/calendar.ics", icalFeed({ open: false }));
 app.get("/calendar/closed", calendarView({ open: false }));

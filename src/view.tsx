@@ -34,6 +34,7 @@ import { SunProps, getSunProps } from "./sun";
 
 interface Props {
   date: string;
+  title?: string;
   children?: unknown;
   titlePrefix?: string;
   created_at: string;
@@ -53,7 +54,10 @@ function Layout(props: Props) {
   return html`<!doctype html>
     <html>
       <head>
-        <title>Polo Field Schedule for ${friendlyDate(props.date)}</title>
+        <title>
+          ${props.title ??
+          `Polo Field Schedule for ${friendlyDate(props.date)}`}
+        </title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         ${linkRelIcon(props.titlePrefix)}
       </head>
@@ -444,6 +448,12 @@ function Layout(props: Props) {
                       >
                     </li>
                     <li>
+                      <a href="/howto" class="no-underline"
+                        ><span class="base">${randomCyclist()}</span> How To
+                        Ride / Etiquette</a
+                      >
+                    </li>
+                    <li>
                       <a
                         href="/calendar/open"
                         class="no-underline"
@@ -497,9 +507,7 @@ function Layout(props: Props) {
                         target="_blank"
                         rel="noopener noreferrer"
                         class="no-underline"
-                        ><span class="base"
-                          >⌚</span>
-                        Garmin app</a
+                        ><span class="base">⌚</span> Garmin app</a
                       >
                     </li>
                   </ul>
@@ -540,6 +548,43 @@ function DayPage(props: {
       titlePrefix={titlePrefix(props.ruleIntervals)}
     >
       <Rules {...props} />
+    </Layout>
+  );
+}
+
+function EtiquettePage() {
+  return (
+    <Layout
+      date={new Date().toISOString()}
+      created_at={new Date().toISOString()}
+      title="How To Ride the Polo Fields"
+    >
+      <style>{`
+        .nav-back { font-size: 1rem; }
+        ol { font-size: 1rem; margin-block-start: 0.5rem; margin-block-end: 0.5rem; padding-inline-start: 20px; }
+      `}</style>
+      <div>
+        <a href="/" class="nav-back">← Back to schedule</a>
+      </div>
+      <h1>How To Ride / Etiquette</h1>
+      <div>
+        <ol>
+          <li>Ride counterclockwise.</li>
+          <li>Ride in the right lane; the left lane is for passing only.</li>
+          <li>
+            If in a pack/side-by-side, you must still ride within the right lane.
+          </li>
+          <li>
+            Drafting strangers without announcing yourself/asking first is not
+            recommended.
+          </li>
+          <li>
+            Hold your line, even if on a curve or taking your hands off your
+            bars or reaching for a bottle. Otherwise, you risk crashing out
+            someone who is safely passing you in the left lane.
+          </li>
+        </ol>
+      </div>
     </Layout>
   );
 }
@@ -790,6 +835,10 @@ export async function viewHex(
     ),
     200,
   );
+}
+
+export async function etiquette(c: Context<{ Bindings: Bindings }>) {
+  return c.html(EtiquettePage(), 200);
 }
 
 export default async function view(
