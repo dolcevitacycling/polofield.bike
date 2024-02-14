@@ -707,6 +707,22 @@ const partialClosuresParser = mapParser(
     },
 );
 
+const repairsParser = mapParser(
+  parseAll(
+    apFirst(longDateParser,
+    reParser(/\s*when track will be closed beginning at\s*/gi)),
+    timeToMinuteParser,
+    reParser(/\s*for (.*?).?\s*$/gi),
+  ),
+  ([d, start, comment]): DateRuleStep =>
+    (date: Date): RuleInterval[] | undefined => {
+      const fmt = shortDateStyle.format(date);
+      if (fmt.endsWith(d)) {
+        return minuteIntervals(date, start, toMinute(24, 0), false, comment[1]);
+      }
+    },
+);
+
 // Saturday, February 24 from 7:45 a.m. to 4:45 p.m. and Sunday, February from 7:45 a.m. to 3:45 p.m. when track will be closed for a sports tournament.
 const weekendTournamentParser = mapParser(
   parseAll(
@@ -751,6 +767,7 @@ function janFebRecognizer(rule: UnknownRules): KnownRules | undefined {
   const { rules } = rule;
   // The Cycle Track will remain open - Polo Field Closed
   // EXCEPT:
+  // Wednesday, February 14 when track will be closed beginning at 2:00 p.m. for pavement repairs
   // Monday, January 22 thru Friday, January 26 - Partial closures of the track in the morning for asphalt repairs.
   // Saturday, February 24 from 7:45 a.m. to 4:45 p.m. and Sunday, February from 7:45 a.m. to 3:45 p.m. when track will be closed for a sports tournament.
   if (rules.length === 0) {
@@ -758,7 +775,7 @@ function janFebRecognizer(rule: UnknownRules): KnownRules | undefined {
   }
   let comment: string | undefined;
   let state: "prelude" | "rules" | "exception" = "prelude";
-  const excParser = parseFirst(partialClosuresParser, weekendTournamentParser);
+  const excParser = parseFirst(partialClosuresParser, repairsParser, weekendTournamentParser);
   const predicates: DateRuleStep[] = [];
   for (let i = 0; i < rules.length; i++) {
     const r = rules[i];
@@ -1076,6 +1093,19 @@ function reduceYearRules(year: number) {
   };
 }
 
+function fixupBadRules(rules: UnknownRules[]): UnknownRules[] {
+  const targetRules = rules.find((rule) => rule.start_date === "2024-01-01" && rule.end_date === "2024-02-25");
+  const sourceRules = rules.find((rule) => rule.start_date === "2024-02-26" && rule.end_date === "2024-05-26");
+  if (targetRules && sourceRules) {
+    const targetIndex = targetRules.rules.indexOf("Monday, January 22 thru Friday, January 26 - Partial closures of the track in the morning for asphalt repairs.");
+    const sourceIndex = sourceRules.rules.indexOf("Wednesday, February 14 when track will be closed beginning at 2:00 p.m. for pavement repairs");
+    if (targetIndex !== -1 && sourceIndex !== -1) {
+      targetRules.rules.splice(targetIndex, 0, ...sourceRules.rules.splice(sourceIndex, 1));
+    }
+  }
+  return rules;
+}
+
 export type RecognizerRules =
   | { readonly recognizer: null; readonly rules: UnknownRules }
   | { readonly recognizer: Recognizer; readonly rules: KnownRules };
@@ -1098,7 +1128,7 @@ export class ScheduleScraper implements HTMLRewriterElementContentHandlers {
   getDebugResult(): ScrapeDebugResult {
     return this.years.map((y) => ({
       ...y,
-      rules: y.rules.reduce(reduceYearRules(y.year), []).map(nlpDebugRule),
+      rules: fixupBadRules(y.rules.reduce(reduceYearRules(y.year), [])).map(nlpDebugRule),
     }));
   }
   getResult(): ScrapeResult {
