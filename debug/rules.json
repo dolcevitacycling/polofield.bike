@@ -63,7 +63,7 @@
               "li": 1,
               "p": 0
             },
-            "text": "Monday, January 22 and Tuesday, January 23 - Partial closures of the track in the morning for asphalt repairs."
+            "text": "Monday, January 22 thru Friday, January 26 - Partial closures of the track in the morning for asphalt repairs."
           }
         ]
       },
@@ -192,6 +192,22 @@
               "p": 1
             },
             "text": "EXCEPT:"
+          }
+        ]
+      },
+      {
+        "type": "rule",
+        "buffer": [
+          {
+            "levels": {
+              "span": 1,
+              "underline": 0,
+              "strong": 0,
+              "ul": 0,
+              "li": 1,
+              "p": 0
+            },
+            "text": "Wednesday, February 14 when track will be closed beginning at 2:00 p.m. for pavement repairs"
           }
         ]
       },

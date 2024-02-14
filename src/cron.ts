@@ -666,7 +666,34 @@ const fallPreludeRe = mapParser(
 
 const partialClosuresParser = mapParser(
   parseAll(
-    parseAll(longDateParser, apSecond(reParser(/\s*and\s*/gi), longDateParser)),
+    parseFirst(
+      parseAll(
+        longDateParser,
+        apSecond(reParser(/\s*and\s*/gi), longDateParser),
+      ),
+      mapParser(
+        parseAll(
+          longDateParser,
+          apSecond(reParser(/\s*thru\s*/gi), longDateParser),
+        ),
+        ([start, end]) => {
+          let [month, day] = start.split("-").map(parseFloat);
+          const [endMonth, endDay] = end.split("-").map(parseFloat);
+          const dates = [start];
+          while (month < endMonth || day < endDay) {
+            day += 1;
+            if (day > 31) {
+              month += 1;
+              day = 1;
+            }
+            dates.push(
+              `${month.toString().padStart(2, "0")}-${day.toString().padStart(2, "0")}`,
+            );
+          }
+          return dates;
+        },
+      ),
+    ),
     reParser(/\s*-\s* (Partial closures.*)\./gi),
   ),
   ([dates, comment]): DateRuleStep =>
@@ -724,7 +751,7 @@ function janFebRecognizer(rule: UnknownRules): KnownRules | undefined {
   const { rules } = rule;
   // The Cycle Track will remain open - Polo Field Closed
   // EXCEPT:
-  // Monday, January 22 and Tuesday, January 23 - Partial closures of the track in the morning for asphalt repairs.
+  // Monday, January 22 thru Friday, January 26 - Partial closures of the track in the morning for asphalt repairs.
   // Saturday, February 24 from 7:45 a.m. to 4:45 p.m. and Sunday, February from 7:45 a.m. to 3:45 p.m. when track will be closed for a sports tournament.
   if (rules.length === 0) {
     return undefined;
