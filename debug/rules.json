@@ -88,22 +88,6 @@
         "buffer": [
           {
             "levels": {
-              "span": 1,
-              "underline": 0,
-              "strong": 0,
-              "ul": 0,
-              "li": 1,
-              "p": 0
-            },
-            "text": "Saturday, February 24 from 7:45 a.m. to 4:45 p.m. and Sunday, February from 7:45 a.m. to 3:45 p.m. when track will be closed for a sports tournament."
-          }
-        ]
-      },
-      {
-        "type": "rule",
-        "buffer": [
-          {
-            "levels": {
               "span": 2,
               "underline": 0,
               "strong": 1,

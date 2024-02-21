@@ -14,8 +14,7 @@
             "The Cycle Track will remain open - Polo Field Closed",
             "EXCEPT:",
             "Monday, January 22 thru Friday, January 26 - Partial closures of the track in the morning for asphalt repairs.",
-            "Wednesday, February 14 when track will be closed beginning at 2:00 p.m. for pavement repairs",
-            "Saturday, February 24 from 7:45 a.m. to 4:45 p.m. and Sunday, February from 7:45 a.m. to 3:45 p.m. when track will be closed for a sports tournament."
+            "Wednesday, February 14 when track will be closed beginning at 2:00 p.m. for pavement repairs"
           ],
           "intervals": [
             {
@@ -42,30 +41,8 @@
             },
             {
               "start_timestamp": "2024-02-15 00:00",
-              "end_timestamp": "2024-02-24 07:44",
+              "end_timestamp": "2024-02-25 23:59",
               "open": true
-            },
-            {
-              "open": false,
-              "start_timestamp": "2024-02-24 07:45",
-              "end_timestamp": "2024-02-24 16:44",
-              "comment": "Sports Tournament"
-            },
-            {
-              "open": true,
-              "start_timestamp": "2024-02-24 16:45",
-              "end_timestamp": "2024-02-25 07:44"
-            },
-            {
-              "open": false,
-              "start_timestamp": "2024-02-25 07:45",
-              "end_timestamp": "2024-02-25 15:44",
-              "comment": "Sports Tournament"
-            },
-            {
-              "open": true,
-              "start_timestamp": "2024-02-25 15:45",
-              "end_timestamp": "2024-02-25 23:59"
             }
           ]
         }
