@@ -61,6 +61,7 @@
             "Saturdays before 7 a.m. and after 6:45 p.m.",
             "Sundays before 7 a.m. and after 6:45 p.m.",
             "EXCEPT:",
+            "Tuesday, February 27 when track will be open all day",
             "Saturday, March 2 when track will be open all day",
             "Sundays, from March 3 thru May 12, when track will be open before 10 a.m. and after 6:45 p.m.",
             "Sunday, May 19 when track will be open all day with the field closed due to the Bay to Breakers event"
@@ -69,17 +70,17 @@
             {
               "open": true,
               "start_timestamp": "2024-02-26 00:00",
-              "end_timestamp": "2024-02-27 13:59"
+              "end_timestamp": "2024-02-26 23:59"
             },
             {
-              "open": false,
-              "start_timestamp": "2024-02-27 14:00",
-              "end_timestamp": "2024-02-27 18:44",
+              "open": true,
+              "start_timestamp": "2024-02-27 00:00",
+              "end_timestamp": "2024-02-27 23:59",
               "comment": "Youth and Adult Sports Programs"
             },
             {
               "open": true,
-              "start_timestamp": "2024-02-27 18:45",
+              "start_timestamp": "2024-02-28 00:00",
               "end_timestamp": "2024-02-28 13:59"
             },
             {

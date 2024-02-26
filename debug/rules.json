@@ -207,6 +207,22 @@
               "li": 1,
               "p": 0
             },
+            "text": "Tuesday, February 27 when track will be open all day"
+          }
+        ]
+      },
+      {
+        "type": "rule",
+        "buffer": [
+          {
+            "levels": {
+              "span": 1,
+              "underline": 0,
+              "strong": 0,
+              "ul": 0,
+              "li": 1,
+              "p": 0
+            },
             "text": "Saturday, March 2 when track will be open all day"
           }
         ]
