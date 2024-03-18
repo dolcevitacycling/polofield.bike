@@ -169,3 +169,16 @@ export function logFailure<T>(p: Parser<T>, message: string): Parser<T> {
     return r;
   });
 }
+
+export function reParser(regexp: RegExp): Parser<RegExpExecArray> {
+  if (regexp.flags.indexOf("g") === -1) {
+    throw new Error("Expected regexp to be global: " + regexp);
+  }
+  return (s: Stream) => {
+    regexp.lastIndex = s.cursor;
+    const result = regexp.exec(s.input);
+    return result && result.index === s.cursor
+      ? { s: setCursor(s, regexp.lastIndex), result }
+      : undefined;
+  };
+}

@@ -4,690 +4,4012 @@
     "year": 2024,
     "rules": [
       {
-        "type": "rule",
-        "buffer": [
+        "date": "2024-01-10",
+        "entries": [
           {
-            "levels": {
-              "span": 2,
-              "underline": 0,
-              "strong": 1,
-              "ul": 0,
-              "li": 0,
-              "p": 1
-            },
-            "text": "Monday, January 1 through Sunday, February 25"
+            "name": "Cycling Track Closed 2-6:45 p.m.",
+            "startDate": "2024-01-10T14:00:00",
+            "description": "",
+            "subHeaderDate": "January 10, 2024, 2:00 PM - 6:45 PM"
           }
         ]
       },
       {
-        "type": "rule",
-        "buffer": [
+        "date": "2024-01-15",
+        "entries": [
           {
-            "levels": {
-              "span": 1,
-              "underline": 0,
-              "strong": 0,
-              "ul": 0,
-              "li": 0,
-              "p": 1
-            },
-            "text": "The Cycle Track will remain open - Polo Field Closed"
+            "name": "Cycling Track Closed 2-6:45 p.m.",
+            "startDate": "2024-01-15T14:00:00",
+            "description": "",
+            "subHeaderDate": "January 15, 2024, 2:00 PM - 6:45 PM"
           }
         ]
       },
       {
-        "type": "rule",
-        "buffer": [
+        "date": "2024-01-16",
+        "entries": [
           {
-            "levels": {
-              "span": 1,
-              "underline": 0,
-              "strong": 0,
-              "ul": 0,
-              "li": 0,
-              "p": 1
-            },
-            "text": "EXCEPT:"
+            "name": "Cycling Track Closed 2-6:45 p.m.",
+            "startDate": "2024-01-16T14:00:00",
+            "description": "",
+            "subHeaderDate": "January 16, 2024, 2:00 PM - 6:45 PM"
           }
         ]
       },
       {
-        "type": "rule",
-        "buffer": [
+        "date": "2024-01-17",
+        "entries": [
           {
-            "levels": {
-              "span": 1,
-              "underline": 0,
-              "strong": 0,
-              "ul": 0,
-              "li": 1,
-              "p": 0
-            },
-            "text": "Monday, January 22 thru Friday, January 26 - Partial closures of the track in the morning for asphalt repairs."
+            "name": "Cycling Track Closed 2-6:45 p.m.",
+            "startDate": "2024-01-17T14:00:00",
+            "description": "",
+            "subHeaderDate": "January 17, 2024, 2:00 PM - 6:45 PM"
           }
         ]
       },
       {
-        "type": "rule",
-        "buffer": [
+        "date": "2024-01-22",
+        "entries": [
           {
-            "levels": {
-              "span": 1,
-              "underline": 0,
-              "strong": 0,
-              "ul": 0,
-              "li": 1,
-              "p": 0
-            },
-            "text": "Wednesday, February 14 when track will be closed beginning at 2:00 p.m. for pavement repairs"
+            "name": "Cycling Track Closed 2-6:45 p.m.",
+            "startDate": "2024-01-22T14:00:00",
+            "description": "",
+            "subHeaderDate": "January 22, 2024, 2:00 PM - 6:45 PM"
           }
         ]
       },
       {
-        "type": "rule",
-        "buffer": [
+        "date": "2024-01-23",
+        "entries": [
           {
-            "levels": {
-              "span": 2,
-              "underline": 0,
-              "strong": 1,
-              "ul": 0,
-              "li": 0,
-              "p": 1
-            },
-            "text": "Monday, February 26 through Sunday, May 26"
+            "name": "Cycling Track Closed",
+            "startDate": "2024-01-23T14:00:00",
+            "description": "",
+            "subHeaderDate": "January 23, 2024, 2:00 PM - 8:45 PM"
           }
         ]
       },
       {
-        "type": "rule",
-        "buffer": [
+        "date": "2024-01-24",
+        "entries": [
           {
-            "levels": {
-              "span": 1,
-              "underline": 0,
-              "strong": 0,
-              "ul": 0,
-              "li": 0,
-              "p": 1
-            },
-            "text": "Youth and Adult Sports Programs Begin. The Cycle Track Will be Open:"
+            "name": "Cycling Track Closed 2-6:45 p.m.",
+            "startDate": "2024-01-24T14:00:00",
+            "description": "",
+            "subHeaderDate": "January 24, 2024, 2:00 PM - 6:45 PM"
           }
         ]
       },
       {
-        "type": "rule",
-        "buffer": [
+        "date": "2024-01-29",
+        "entries": [
           {
-            "levels": {
-              "span": 1,
-              "underline": 0,
-              "strong": 0,
-              "ul": 0,
-              "li": 0,
-              "p": 1
-            },
-            "text": "Mondays all day"
+            "name": "Cycling Track Closed 2-6:45 p.m.",
+            "startDate": "2024-01-29T14:00:00",
+            "description": "",
+            "subHeaderDate": "January 29, 2024, 2:00 PM - 6:45 PM"
           }
         ]
       },
       {
-        "type": "rule",
-        "buffer": [
+        "date": "2024-01-30",
+        "entries": [
           {
-            "levels": {
-              "span": 1,
-              "underline": 0,
-              "strong": 0,
-              "ul": 0,
-              "li": 0,
-              "p": 1
-            },
-            "text": "Tuesdays*, Wednesdays, Thursdays* and Fridays before 2 p.m. and after 6:45 p.m. (*On Tuesdays beginning March 12, the cycling track will be open after 8:45 p.m. On Thursdays beginning March 14, the track will be open after 8:45 p.m.)&nbsp;"
+            "name": "Cycling Track Closed 2-6:45 p.m.",
+            "startDate": "2024-01-30T14:00:00",
+            "description": "",
+            "subHeaderDate": "January 30, 2024, 2:00 PM - 6:45 PM"
           }
         ]
       },
       {
-        "type": "rule",
-        "buffer": [
+        "date": "2024-01-31",
+        "entries": [
           {
-            "levels": {
-              "span": 1,
-              "underline": 0,
-              "strong": 0,
-              "ul": 0,
-              "li": 0,
-              "p": 1
-            },
-            "text": "Saturdays before 7 a.m. and after 6:45 p.m."
+            "name": "Cycling Track Closed 2-6:45 p.m.",
+            "startDate": "2024-01-31T14:00:00",
+            "description": "",
+            "subHeaderDate": "January 31, 2024, 2:00 PM - 6:45 PM"
           }
         ]
       },
       {
-        "type": "rule",
-        "buffer": [
+        "date": "2024-02-05",
+        "entries": [
           {
-            "levels": {
-              "span": 1,
-              "underline": 0,
-              "strong": 0,
-              "ul": 0,
-              "li": 0,
-              "p": 1
-            },
-            "text": "Sundays before 7 a.m. and after 6:45 p.m."
+            "name": "Cycling Track Closed 2-6:45 p.m.",
+            "startDate": "2024-02-05T14:00:00",
+            "description": "",
+            "subHeaderDate": "February 5, 2024, 2:00 PM - 6:45 PM"
           }
         ]
       },
       {
-        "type": "rule",
-        "buffer": [
+        "date": "2024-02-06",
+        "entries": [
           {
-            "levels": {
-              "span": 1,
-              "underline": 0,
-              "strong": 0,
-              "ul": 0,
-              "li": 0,
-              "p": 1
-            },
-            "text": "EXCEPT:"
+            "name": "Cycling Track Closed 2-6:45 p.m.",
+            "startDate": "2024-02-06T14:00:00",
+            "description": "",
+            "subHeaderDate": "February 6, 2024, 2:00 PM - 6:45 PM"
           }
         ]
       },
       {
-        "type": "rule",
-        "buffer": [
+        "date": "2024-02-07",
+        "entries": [
           {
-            "levels": {
-              "span": 1,
-              "underline": 0,
-              "strong": 0,
-              "ul": 0,
-              "li": 1,
-              "p": 0
-            },
-            "text": "Tuesday, February 27 when track will be open all day"
+            "name": "Cycling Track Closed 2-6:45 p.m.",
+            "startDate": "2024-02-07T14:00:00",
+            "description": "",
+            "subHeaderDate": "February 7, 2024, 2:00 PM - 6:45 PM"
           }
         ]
       },
       {
-        "type": "rule",
-        "buffer": [
+        "date": "2024-02-12",
+        "entries": [
           {
-            "levels": {
-              "span": 1,
-              "underline": 0,
-              "strong": 0,
-              "ul": 0,
-              "li": 1,
-              "p": 0
-            },
-            "text": "Saturday, March 2 when track will be open all day"
+            "name": "Cycling Track Closed 2-6:45 p.m.",
+            "startDate": "2024-02-12T14:00:00",
+            "description": "",
+            "subHeaderDate": "February 12, 2024, 2:00 PM - 6:45 PM"
           }
         ]
       },
       {
-        "type": "rule",
-        "buffer": [
+        "date": "2024-02-13",
+        "entries": [
           {
-            "levels": {
-              "span": 1,
-              "underline": 0,
-              "strong": 0,
-              "ul": 0,
-              "li": 1,
-              "p": 0
-            },
-            "text": "Sundays, from March 3 thru May 12, when track will be open before 10 a.m. and after 6:45 p.m."
+            "name": "Cycling Track Closed 2-6:45 p.m.",
+            "startDate": "2024-02-13T14:00:00",
+            "description": "",
+            "subHeaderDate": "February 13, 2024, 2:00 PM - 6:45 PM"
           }
         ]
       },
       {
-        "type": "rule",
-        "buffer": [
+        "date": "2024-02-14",
+        "entries": [
           {
-            "levels": {
-              "span": 1,
-              "underline": 0,
-              "strong": 0,
-              "ul": 0,
-              "li": 1,
-              "p": 0
-            },
-            "text": "Sunday, May 19 when track will be open all day with the field closed due to the Bay to Breakers event"
+            "name": "Cycling Track Closed 2-6:45 p.m.",
+            "startDate": "2024-02-14T14:00:00",
+            "description": "",
+            "subHeaderDate": "February 14, 2024, 2:00 PM - 6:45 PM"
           }
         ]
       },
       {
-        "type": "rule",
-        "buffer": [
+        "date": "2024-02-19",
+        "entries": [
           {
-            "levels": {
-              "span": 2,
-              "underline": 0,
-              "strong": 1,
-              "ul": 0,
-              "li": 0,
-              "p": 1
-            },
-            "text": "Monday, May 27 through Friday, June 7"
+            "name": "Cycling Track Closed 2-6:45 p.m.",
+            "startDate": "2024-02-19T14:00:00",
+            "description": "",
+            "subHeaderDate": "February 19, 2024, 2:00 PM - 6:45 PM"
           }
         ]
       },
       {
-        "type": "rule",
-        "buffer": [
+        "date": "2024-02-20",
+        "entries": [
           {
-            "levels": {
-              "span": 1,
-              "underline": 0,
-              "strong": 0,
-              "ul": 0,
-              "li": 0,
-              "p": 1
-            },
-            "text": "The Cycle Track will remain open - Polo Fields Closed&nbsp;"
+            "name": "Cycling Track Closed 2-6:45 p.m.",
+            "startDate": "2024-02-20T14:00:00",
+            "description": "",
+            "subHeaderDate": "February 20, 2024, 2:00 PM - 6:45 PM"
           }
         ]
       },
       {
-        "type": "rule",
-        "buffer": []
-      },
-      {
-        "type": "rule",
-        "buffer": [
+        "date": "2024-02-21",
+        "entries": [
           {
-            "levels": {
-              "span": 2,
-              "underline": 0,
-              "strong": 1,
-              "ul": 0,
-              "li": 0,
-              "p": 1
-            },
-            "text": "Saturday, June 8 through Sunday, June 9"
+            "name": "Cycling Track Closed 2-6:45 p.m.",
+            "startDate": "2024-02-21T14:00:00",
+            "description": "",
+            "subHeaderDate": "February 21, 2024, 2:00 PM - 6:45 PM"
           }
         ]
       },
       {
-        "type": "rule",
-        "buffer": [
+        "date": "2024-02-26",
+        "entries": [
           {
-            "levels": {
-              "span": 1,
-              "underline": 0,
-              "strong": 0,
-              "ul": 0,
-              "li": 0,
-              "p": 1
-            },
-            "text": "The Cycle Track will be open after 7 p.m.&nbsp;"
+            "name": "Cycle Track Open All Day",
+            "startDate": "2024-02-26T05:00:00",
+            "description": "",
+            "subHeaderDate": "February 26, 2024, 5:00 AM"
+          },
+          {
+            "name": "Cycling Track Closed 2-6:45 p.m.",
+            "startDate": "2024-02-26T14:00:00",
+            "description": "",
+            "subHeaderDate": "February 26, 2024, 2:00 PM - 6:45 PM"
           }
         ]
       },
       {
-        "type": "rule",
-        "buffer": [
+        "date": "2024-02-27",
+        "entries": [
           {
-            "levels": {
-              "span": 2,
-              "underline": 0,
-              "strong": 1,
-              "ul": 0,
-              "li": 0,
-              "p": 1
-            },
-            "text": "Monday, June 10 through Sunday, July 28"
+            "name": "Cycle Track Open 5 a.m. to 2 p.m.",
+            "startDate": "2024-02-27T05:00:00",
+            "description": "",
+            "subHeaderDate": "February 27, 2024, 5:00 AM - 2:00 PM"
+          },
+          {
+            "name": "Cycling Track Closed 2-6:45 p.m.",
+            "startDate": "2024-02-27T14:00:00",
+            "description": "",
+            "subHeaderDate": "February 27, 2024, 2:00 PM - 6:45 PM"
+          },
+          {
+            "name": "Cycle Track Open After 8:45 p.m.",
+            "startDate": "2024-02-27T20:45:00",
+            "description": "",
+            "subHeaderDate": "February 27, 2024, 8:45 PM"
           }
         ]
       },
       {
-        "type": "rule",
-        "buffer": [
+        "date": "2024-02-28",
+        "entries": [
           {
-            "levels": {
-              "span": 1,
-              "underline": 0,
-              "strong": 0,
-              "ul": 0,
-              "li": 0,
-              "p": 1
-            },
-            "text": "Summer Camps, Youth and Adult Sports Programs will take place on the field. The schedule is forthcoming.&nbsp;"
+            "name": "Cycle Track Open 5 a.m. to 2 p.m.",
+            "startDate": "2024-02-28T05:00:00",
+            "description": "",
+            "subHeaderDate": "February 28, 2024, 5:00 AM - 2:00 PM"
+          },
+          {
+            "name": "Cycling Track Closed 2-6:45 p.m.",
+            "startDate": "2024-02-28T14:00:00",
+            "description": "",
+            "subHeaderDate": "February 28, 2024, 2:00 PM - 6:45 PM"
+          },
+          {
+            "name": "Cycle Track Open After 6:45 p.m.",
+            "startDate": "2024-02-28T18:45:00",
+            "description": "",
+            "subHeaderDate": "February 28, 2024, 6:45 PM"
           }
         ]
       },
       {
-        "type": "rule",
-        "buffer": [
+        "date": "2024-02-29",
+        "entries": [
           {
-            "levels": {
-              "span": 1,
-              "underline": 0,
-              "strong": 0,
-              "ul": 0,
-              "li": 0,
-              "p": 1
-            },
-            "text": "EXCEPT:"
+            "name": "Cycle Track Open 5 a.m. to 2 p.m.",
+            "startDate": "2024-02-29T05:00:00",
+            "description": "",
+            "subHeaderDate": "February 29, 2024, 5:00 AM - 2:00 PM"
+          },
+          {
+            "name": "Cycle Track Open After 8:45 p.m.",
+            "startDate": "2024-02-29T20:45:00",
+            "description": "",
+            "subHeaderDate": "February 29, 2024, 8:45 PM"
           }
         ]
       },
       {
-        "type": "rule",
-        "buffer": [
+        "date": "2024-03-01",
+        "entries": [
           {
-            "levels": {
-              "span": 1,
-              "underline": 0,
-              "strong": 0,
-              "ul": 0,
-              "li": 0,
-              "p": 1
-            },
-            "text": "Saturday, July 6 and Sunday, July 7 from 7:45 a.m. to 4:45 p.m when track will be closed for a sports tournament."
+            "name": "Cycle Track Open 5 a.m. to 2 p.m.",
+            "startDate": "2024-03-01T05:00:00",
+            "description": "",
+            "subHeaderDate": "March 1, 2024, 5:00 AM - 2:00 PM"
+          },
+          {
+            "name": "Cycle Track Open After 6:45 p.m.",
+            "startDate": "2024-03-01T18:45:00",
+            "description": "",
+            "subHeaderDate": "March 1, 2024, 6:45 PM"
           }
         ]
       },
       {
-        "type": "rule",
-        "buffer": [
+        "date": "2024-03-02",
+        "entries": [
           {
-            "levels": {
-              "span": 2,
-              "underline": 0,
-              "strong": 1,
-              "ul": 0,
-              "li": 0,
-              "p": 1
-            },
-            "text": "Monday, July 29 through Friday, August 23"
+            "name": "Cycle Track Open Until 7 a.m.",
+            "startDate": "2024-03-02T05:00:00",
+            "description": "",
+            "subHeaderDate": "March 2, 2024, 5:00 AM - 7:00 AM"
+          },
+          {
+            "name": "Cycle Track Open After 6:45 p.m.",
+            "startDate": "2024-03-02T18:45:00",
+            "description": "",
+            "subHeaderDate": "March 2, 2024, 6:45 PM"
           }
         ]
       },
       {
-        "type": "rule",
-        "buffer": [
+        "date": "2024-03-03",
+        "entries": [
           {
-            "levels": {
-              "span": 1,
-              "underline": 0,
-              "strong": 0,
-              "ul": 0,
-              "li": 0,
-              "p": 1
-            },
-            "text": "The Cycle Track will be closed for Outside Lands Load in, Event and Load Out and Polo Fields Concert Event and Load Out"
+            "name": "Cycle Track Open Until 10 a.m.",
+            "startDate": "2024-03-03T05:00:00",
+            "description": "",
+            "subHeaderDate": "March 3, 2024, 5:00 AM - 10:00 AM"
           }
         ]
       },
       {
-        "type": "rule",
-        "buffer": [
+        "date": "2024-03-04",
+        "entries": [
           {
-            "levels": {
-              "span": 2,
-              "underline": 0,
-              "strong": 1,
-              "ul": 0,
-              "li": 0,
-              "p": 1
-            },
-            "text": "Saturday, August 24 through Monday, September 2"
+            "name": "Cycle Track Open All Day",
+            "startDate": "2024-03-04T05:00:00",
+            "description": "",
+            "subHeaderDate": "March 4, 2024, 5:00 AM"
+          },
+          {
+            "name": "Cycling Track Closed 2-6:45 p.m.",
+            "startDate": "2024-03-04T14:00:00",
+            "description": "",
+            "subHeaderDate": "March 4, 2024, 2:00 PM - 6:45 PM"
           }
         ]
       },
       {
-        "type": "rule",
-        "buffer": [
+        "date": "2024-03-05",
+        "entries": [
           {
-            "levels": {
-              "span": 1,
-              "underline": 0,
-              "strong": 0,
-              "ul": 0,
-              "li": 0,
-              "p": 1
-            },
-            "text": "The Cycle Track will&nbsp;remain open - Polo Fields Closed"
+            "name": "Cycle Track Open 5 a.m. to 2 p.m.",
+            "startDate": "2024-03-05T05:00:00",
+            "description": "",
+            "subHeaderDate": "March 5, 2024, 5:00 AM - 2:00 PM"
+          },
+          {
+            "name": "Cycling Track Closed 2-6:45 p.m.",
+            "startDate": "2024-03-05T14:00:00",
+            "description": "",
+            "subHeaderDate": "March 5, 2024, 2:00 PM - 6:45 PM"
+          },
+          {
+            "name": "Cycle Track Open After 8:45 p.m.",
+            "startDate": "2024-03-05T20:45:00",
+            "description": "",
+            "subHeaderDate": "March 5, 2024, 8:45 PM"
           }
         ]
       },
       {
-        "type": "rule",
-        "buffer": []
-      },
-      {
-        "type": "rule",
-        "buffer": [
+        "date": "2024-03-06",
+        "entries": [
           {
-            "levels": {
-              "span": 2,
-              "underline": 0,
-              "strong": 1,
-              "ul": 0,
-              "li": 0,
-              "p": 1
-            },
-            "text": "Tuesday, September 3 through Wednesday, November 27"
+            "name": "Cycle Track Open 5 a.m. to 2 p.m.",
+            "startDate": "2024-03-06T05:00:00",
+            "description": "",
+            "subHeaderDate": "March 6, 2024, 5:00 AM - 2:00 PM"
+          },
+          {
+            "name": "Cycling Track Closed 2-6:45 p.m.",
+            "startDate": "2024-03-06T14:00:00",
+            "description": "",
+            "subHeaderDate": "March 6, 2024, 2:00 PM - 6:45 PM"
+          },
+          {
+            "name": "Cycle Track Open After 6:45 p.m.",
+            "startDate": "2024-03-06T18:45:00",
+            "description": "",
+            "subHeaderDate": "March 6, 2024, 6:45 PM"
           }
         ]
       },
       {
-        "type": "rule",
-        "buffer": [
+        "date": "2024-03-07",
+        "entries": [
           {
-            "levels": {
-              "span": 1,
-              "underline": 0,
-              "strong": 0,
-              "ul": 0,
-              "li": 0,
-              "p": 1
-            },
-            "text": "Fall Youth and Adult Sports Programs Begin. The Cycle Track Will be Open:"
+            "name": "Cycle Track Open 5 a.m. to 2 p.m.",
+            "startDate": "2024-03-07T05:00:00",
+            "description": "",
+            "subHeaderDate": "March 7, 2024, 5:00 AM - 2:00 PM"
+          },
+          {
+            "name": "Cycle Track Open After 8:45 p.m.",
+            "startDate": "2024-03-07T20:45:00",
+            "description": "",
+            "subHeaderDate": "March 7, 2024, 8:45 PM"
           }
         ]
       },
       {
-        "type": "rule",
-        "buffer": [
+        "date": "2024-03-08",
+        "entries": [
           {
-            "levels": {
-              "span": 1,
-              "underline": 0,
-              "strong": 0,
-              "ul": 0,
-              "li": 0,
-              "p": 1
-            },
-            "text": "Mondays all day"
+            "name": "Cycle Track Open 5 a.m. to 2 p.m.",
+            "startDate": "2024-03-08T05:00:00",
+            "description": "",
+            "subHeaderDate": "March 8, 2024, 5:00 AM - 2:00 PM"
+          },
+          {
+            "name": "Cycle Track Open After 6:45 p.m.",
+            "startDate": "2024-03-08T18:45:00",
+            "description": "",
+            "subHeaderDate": "March 8, 2024, 6:45 PM"
           }
         ]
       },
       {
-        "type": "rule",
-        "buffer": [
+        "date": "2024-03-09",
+        "entries": [
           {
-            "levels": {
-              "span": 1,
-              "underline": 0,
-              "strong": 0,
-              "ul": 0,
-              "li": 0,
-              "p": 1
-            },
-            "text": "Tuesdays, Wednesdays, Thursdays and Fridays before 2 p.m. and after 6:45 p.m."
+            "name": "Cycle Track Open Until 7 a.m.",
+            "startDate": "2024-03-09T05:00:00",
+            "description": "",
+            "subHeaderDate": "March 9, 2024, 5:00 AM - 7:00 AM"
+          },
+          {
+            "name": "Cycle Track Open After 6:45 p.m.",
+            "startDate": "2024-03-09T18:45:00",
+            "description": "",
+            "subHeaderDate": "March 9, 2024, 6:45 PM"
           }
         ]
       },
       {
-        "type": "rule",
-        "buffer": [
+        "date": "2024-03-10",
+        "entries": [
           {
-            "levels": {
-              "span": 1,
-              "underline": 0,
-              "strong": 0,
-              "ul": 0,
-              "li": 0,
-              "p": 1
-            },
-            "text": "EXCEPT:"
+            "name": "Cycle Track Open Until 10 a.m.",
+            "startDate": "2024-03-10T05:00:00",
+            "description": "",
+            "subHeaderDate": "March 10, 2024, 5:00 AM - 10:00 AM"
           }
         ]
       },
       {
-        "type": "rule",
-        "buffer": [
+        "date": "2024-03-11",
+        "entries": [
           {
-            "levels": {
-              "span": 1,
-              "underline": 0,
-              "strong": 0,
-              "ul": 0,
-              "li": 1,
-              "p": 0
-            },
-            "text": "Friday, September 13 when track is closed from 7:30 a.m. to 12:30 p.m. for Sacred Heart Walkathon"
+            "name": "Cycle Track Open All Day",
+            "startDate": "2024-03-11T05:00:00",
+            "description": "",
+            "subHeaderDate": "March 11, 2024, 5:00 AM"
+          },
+          {
+            "name": "Cycling Track Closed 2-6:45 p.m.",
+            "startDate": "2024-03-11T14:00:00",
+            "description": "",
+            "subHeaderDate": "March 11, 2024, 2:00 PM - 6:45 PM"
           }
         ]
       },
       {
-        "type": "rule",
-        "buffer": [
+        "date": "2024-03-12",
+        "entries": [
           {
-            "levels": {
-              "span": 1,
-              "underline": 0,
-              "strong": 0,
-              "ul": 0,
-              "li": 1,
-              "p": 0
-            },
-            "text": "Friday, October 4 when track is closed all day for Hardly Strictly Bluegrass"
+            "name": "Cycle Track Open 5 a.m. to 2 p.m.",
+            "startDate": "2024-03-12T05:00:00",
+            "description": "",
+            "subHeaderDate": "March 12, 2024, 5:00 AM - 2:00 PM"
+          },
+          {
+            "name": "Cycling Track Closed 2-6:45 p.m.",
+            "startDate": "2024-03-12T14:00:00",
+            "description": "",
+            "subHeaderDate": "March 12, 2024, 2:00 PM - 6:45 PM"
+          },
+          {
+            "name": "Cycle Track Open After 8:45 p.m.",
+            "startDate": "2024-03-12T20:45:00",
+            "description": "",
+            "subHeaderDate": "March 12, 2024, 8:45 PM"
           }
         ]
       },
       {
-        "type": "rule",
-        "buffer": [
+        "date": "2024-03-13",
+        "entries": [
           {
-            "levels": {
-              "span": 1,
-              "underline": 0,
-              "strong": 0,
-              "ul": 0,
-              "li": 1,
-              "p": 0
-            },
-            "text": "Wednesday, November 20 when track is closed from noon to 6 p.m. for SFUSD Cross Country Finals"
+            "name": "Cycle Track Open 5 a.m. to 2 p.m.",
+            "startDate": "2024-03-13T05:00:00",
+            "description": "",
+            "subHeaderDate": "March 13, 2024, 5:00 AM - 2:00 PM"
+          },
+          {
+            "name": "Cycling Track Closed 2-6:45 p.m.",
+            "startDate": "2024-03-13T14:00:00",
+            "description": "",
+            "subHeaderDate": "March 13, 2024, 2:00 PM - 6:45 PM"
+          },
+          {
+            "name": "Cycle Track Open After 6:45 p.m.",
+            "startDate": "2024-03-13T18:45:00",
+            "description": "",
+            "subHeaderDate": "March 13, 2024, 6:45 PM"
           }
         ]
       },
       {
-        "type": "rule",
-        "buffer": []
-      },
-      {
-        "type": "rule",
-        "buffer": [
+        "date": "2024-03-14",
+        "entries": [
           {
-            "levels": {
-              "span": 1,
-              "underline": 0,
-              "strong": 0,
-              "ul": 0,
-              "li": 0,
-              "p": 1
-            },
-            "text": "Saturdays and Sundays before 7 a.m. and after 6:15 p.m. EXCEPT:"
+            "name": "Cycle Track Open 5 a.m. to 2 p.m.",
+            "startDate": "2024-03-14T05:00:00",
+            "description": "",
+            "subHeaderDate": "March 14, 2024, 5:00 AM - 2:00 PM"
+          },
+          {
+            "name": "Cycle Track Open After 8:45 p.m.",
+            "startDate": "2024-03-14T20:45:00",
+            "description": "",
+            "subHeaderDate": "March 14, 2024, 8:45 PM"
           }
         ]
       },
       {
-        "type": "rule",
-        "buffer": [
+        "date": "2024-03-15",
+        "entries": [
           {
-            "levels": {
-              "span": 1,
-              "underline": 0,
-              "strong": 0,
-              "ul": 0,
-              "li": 1,
-              "p": 0
-            },
-            "text": "Saturday, October 5 and Sunday, October 6 when track is closed all day for Hardly Strictly Bluegrass"
+            "name": "Cycle Track Open 5 a.m. to 2 p.m.",
+            "startDate": "2024-03-15T05:00:00",
+            "description": "",
+            "subHeaderDate": "March 15, 2024, 5:00 AM - 2:00 PM"
+          },
+          {
+            "name": "Cycle Track Open After 6:45 p.m.",
+            "startDate": "2024-03-15T18:45:00",
+            "description": "",
+            "subHeaderDate": "March 15, 2024, 6:45 PM"
           }
         ]
       },
       {
-        "type": "rule",
-        "buffer": [
+        "date": "2024-03-16",
+        "entries": [
           {
-            "levels": {
-              "span": 2,
-              "underline": 0,
-              "strong": 1,
-              "ul": 0,
-              "li": 0,
-              "p": 1
-            },
-            "text": "Thursday, November 28"
+            "name": "Cycle Track Open Until 7 a.m.",
+            "startDate": "2024-03-16T05:00:00",
+            "description": "",
+            "subHeaderDate": "March 16, 2024, 5:00 AM - 7:00 AM"
+          },
+          {
+            "name": "Cycle Track Open After 6:45 p.m.",
+            "startDate": "2024-03-16T18:45:00",
+            "description": "",
+            "subHeaderDate": "March 16, 2024, 6:45 PM"
           }
         ]
       },
       {
-        "type": "rule",
-        "buffer": [
+        "date": "2024-03-17",
+        "entries": [
           {
-            "levels": {
-              "span": 1,
-              "underline": 0,
-              "strong": 0,
-              "ul": 0,
-              "li": 0,
-              "p": 1
-            },
-            "text": "The Cycle Track Closed for Turkey Trot from 7 a.m. to 11 a.m."
+            "name": "Cycle Track Open Until 10 a.m.",
+            "startDate": "2024-03-17T05:00:00",
+            "description": "",
+            "subHeaderDate": "March 17, 2024, 5:00 AM - 10:00 AM"
           }
         ]
       },
       {
-        "type": "rule",
-        "buffer": []
-      },
-      {
-        "type": "rule",
-        "buffer": [
+        "date": "2024-03-18",
+        "entries": [
           {
-            "levels": {
-              "span": 2,
-              "underline": 0,
-              "strong": 1,
-              "ul": 0,
-              "li": 0,
-              "p": 1
-            },
-            "text": "Friday, November 29 through Tuesday, December 31"
+            "name": "Cycle Track Open All Day",
+            "startDate": "2024-03-18T05:00:00",
+            "description": "",
+            "subHeaderDate": "March 18, 2024, 5:00 AM"
           }
         ]
       },
       {
-        "type": "rule",
-        "buffer": [
+        "date": "2024-03-19",
+        "entries": [
           {
-            "levels": {
-              "span": 1,
-              "underline": 0,
-              "strong": 0,
-              "ul": 0,
-              "li": 0,
-              "p": 1
-            },
-            "text": "The Cycle Track Will be Open Mondays through Sundays all day"
+            "name": "Cycle Track Open Until 2 p.m.",
+            "startDate": "2024-03-19T05:00:00",
+            "description": "",
+            "subHeaderDate": "March 19, 2024, 5:00 AM - 2:00 PM"
+          },
+          {
+            "name": "Cycle Track Open After 8:45 p.m.",
+            "startDate": "2024-03-19T20:45:00",
+            "description": "",
+            "subHeaderDate": "March 19, 2024, 8:45 PM"
+          }
+        ]
+      },
+      {
+        "date": "2024-03-20",
+        "entries": [
+          {
+            "name": "Cycle Track Open Until 2 p.m.",
+            "startDate": "2024-03-20T05:00:00",
+            "description": "",
+            "subHeaderDate": "March 20, 2024, 5:00 AM - 2:00 PM"
+          },
+          {
+            "name": "Cycle Track Open After 6:45 p.m.",
+            "startDate": "2024-03-20T18:45:00",
+            "description": "",
+            "subHeaderDate": "March 20, 2024, 6:45 PM"
+          }
+        ]
+      },
+      {
+        "date": "2024-03-21",
+        "entries": [
+          {
+            "name": "Cycle Track Open Until 2 p.m.",
+            "startDate": "2024-03-21T05:00:00",
+            "description": "",
+            "subHeaderDate": "March 21, 2024, 5:00 AM - 2:00 PM"
+          },
+          {
+            "name": "Cycle Track Open After 8:45 p.m.",
+            "startDate": "2024-03-21T20:45:00",
+            "description": "",
+            "subHeaderDate": "March 21, 2024, 8:45 PM"
+          }
+        ]
+      },
+      {
+        "date": "2024-03-22",
+        "entries": [
+          {
+            "name": "Cycle Track Open Until 2 p.m.",
+            "startDate": "2024-03-22T05:00:00",
+            "description": "",
+            "subHeaderDate": "March 22, 2024, 5:00 AM - 2:00 PM"
+          },
+          {
+            "name": "Cycle Track Open After 6:45 p.m.",
+            "startDate": "2024-03-22T18:45:00",
+            "description": "",
+            "subHeaderDate": "March 22, 2024, 6:45 PM"
+          }
+        ]
+      },
+      {
+        "date": "2024-03-23",
+        "entries": [
+          {
+            "name": "Cycle Track Open Until 7 a.m.",
+            "startDate": "2024-03-23T05:00:00",
+            "description": "",
+            "subHeaderDate": "March 23, 2024, 5:00 AM - 7:00 AM"
+          },
+          {
+            "name": "Cycle Track Open After 6:45 p.m.",
+            "startDate": "2024-03-23T18:45:00",
+            "description": "",
+            "subHeaderDate": "March 23, 2024, 6:45 PM"
+          }
+        ]
+      },
+      {
+        "date": "2024-03-24",
+        "entries": [
+          {
+            "name": "Cycle Track Open Until 10 a.m.",
+            "startDate": "2024-03-24T05:00:00",
+            "description": "",
+            "subHeaderDate": "March 24, 2024, 5:00 AM - 10:00 AM"
+          },
+          {
+            "name": "Cycle Track Open After 6:45 p.m.",
+            "startDate": "2024-03-24T18:45:00",
+            "description": "",
+            "subHeaderDate": "March 24, 2024, 6:45 PM"
+          }
+        ]
+      },
+      {
+        "date": "2024-03-25",
+        "entries": [
+          {
+            "name": "Cycle Track Open All Day",
+            "startDate": "2024-03-25T05:00:00",
+            "description": "",
+            "subHeaderDate": "March 25, 2024, 5:00 AM"
+          }
+        ]
+      },
+      {
+        "date": "2024-03-26",
+        "entries": [
+          {
+            "name": "Cycle Track Open Until 2 p.m.",
+            "startDate": "2024-03-26T05:00:00",
+            "description": "",
+            "subHeaderDate": "March 26, 2024, 5:00 AM - 2:00 PM"
+          },
+          {
+            "name": "Cycle Track Open After 8:45 p.m.",
+            "startDate": "2024-03-26T20:45:00",
+            "description": "",
+            "subHeaderDate": "March 26, 2024, 8:45 PM"
+          }
+        ]
+      },
+      {
+        "date": "2024-03-27",
+        "entries": [
+          {
+            "name": "Cycle Track Open Until 2 p.m.",
+            "startDate": "2024-03-27T05:00:00",
+            "description": "",
+            "subHeaderDate": "March 27, 2024, 5:00 AM - 2:00 PM"
+          },
+          {
+            "name": "Cycle Track Open After 6:45 p.m.",
+            "startDate": "2024-03-27T18:45:00",
+            "description": "",
+            "subHeaderDate": "March 27, 2024, 6:45 PM"
+          }
+        ]
+      },
+      {
+        "date": "2024-03-28",
+        "entries": [
+          {
+            "name": "Cycle Track Open Until 2 p.m.",
+            "startDate": "2024-03-28T05:00:00",
+            "description": "",
+            "subHeaderDate": "March 28, 2024, 5:00 AM - 2:00 PM"
+          },
+          {
+            "name": "Cycle Track Open After 8:45 p.m.",
+            "startDate": "2024-03-28T20:45:00",
+            "description": "",
+            "subHeaderDate": "March 28, 2024, 8:45 PM"
+          }
+        ]
+      },
+      {
+        "date": "2024-03-29",
+        "entries": [
+          {
+            "name": "Cycle Track Open Until 2 p.m.",
+            "startDate": "2024-03-29T05:00:00",
+            "description": "",
+            "subHeaderDate": "March 29, 2024, 5:00 AM - 2:00 PM"
+          },
+          {
+            "name": "Cycle Track Open After 6:45 p.m.",
+            "startDate": "2024-03-29T18:45:00",
+            "description": "",
+            "subHeaderDate": "March 29, 2024, 6:45 PM"
+          }
+        ]
+      },
+      {
+        "date": "2024-03-30",
+        "entries": [
+          {
+            "name": "Cycle Track Open Until 7 a.m.",
+            "startDate": "2024-03-30T05:00:00",
+            "description": "",
+            "subHeaderDate": "March 30, 2024, 5:00 AM - 7:00 AM"
+          },
+          {
+            "name": "Cycle Track Open After 6:45 p.m.",
+            "startDate": "2024-03-30T18:45:00",
+            "description": "",
+            "subHeaderDate": "March 30, 2024, 6:45 PM"
+          }
+        ]
+      },
+      {
+        "date": "2024-03-31",
+        "entries": [
+          {
+            "name": "Cycle Track Open Until 10 a.m.",
+            "startDate": "2024-03-31T05:00:00",
+            "description": "",
+            "subHeaderDate": "March 31, 2024, 5:00 AM - 10:00 AM"
+          },
+          {
+            "name": "Cycle Track Open After 6:45 p.m.",
+            "startDate": "2024-03-31T18:45:00",
+            "description": "",
+            "subHeaderDate": "March 31, 2024, 6:45 PM"
+          }
+        ]
+      },
+      {
+        "date": "2024-04-01",
+        "entries": [
+          {
+            "name": "Cycle Track Open All Day",
+            "startDate": "2024-04-01T05:00:00",
+            "description": "",
+            "subHeaderDate": "April 1, 2024, 5:00 AM"
+          }
+        ]
+      },
+      {
+        "date": "2024-04-02",
+        "entries": [
+          {
+            "name": "Cycle Track Open Until 2 p.m.",
+            "startDate": "2024-04-02T05:00:00",
+            "description": "",
+            "subHeaderDate": "April 2, 2024, 5:00 AM - 2:00 PM"
+          },
+          {
+            "name": "Cycle Track Open After 8:45 p.m.",
+            "startDate": "2024-04-02T20:45:00",
+            "description": "",
+            "subHeaderDate": "April 2, 2024, 8:45 PM"
+          }
+        ]
+      },
+      {
+        "date": "2024-04-03",
+        "entries": [
+          {
+            "name": "Cycle Track Open Until 2 p.m.",
+            "startDate": "2024-04-03T05:00:00",
+            "description": "",
+            "subHeaderDate": "April 3, 2024, 5:00 AM - 2:00 PM"
+          },
+          {
+            "name": "Cycle Track Open After 6:45 p.m.",
+            "startDate": "2024-04-03T18:45:00",
+            "description": "",
+            "subHeaderDate": "April 3, 2024, 6:45 PM"
+          }
+        ]
+      },
+      {
+        "date": "2024-04-04",
+        "entries": [
+          {
+            "name": "Cycle Track Open Until 2 p.m.",
+            "startDate": "2024-04-04T05:00:00",
+            "description": "",
+            "subHeaderDate": "April 4, 2024, 5:00 AM - 2:00 PM"
+          },
+          {
+            "name": "Cycle Track Open After 8:45 p.m.",
+            "startDate": "2024-04-04T20:45:00",
+            "description": "",
+            "subHeaderDate": "April 4, 2024, 8:45 PM"
+          }
+        ]
+      },
+      {
+        "date": "2024-04-05",
+        "entries": [
+          {
+            "name": "Cycle Track Open Until 2 p.m.",
+            "startDate": "2024-04-05T05:00:00",
+            "description": "",
+            "subHeaderDate": "April 5, 2024, 5:00 AM - 2:00 PM"
+          },
+          {
+            "name": "Cycle Track Open After 6:45 p.m.",
+            "startDate": "2024-04-05T18:45:00",
+            "description": "",
+            "subHeaderDate": "April 5, 2024, 6:45 PM"
+          }
+        ]
+      },
+      {
+        "date": "2024-04-06",
+        "entries": [
+          {
+            "name": "Cycle Track Open Until 7 a.m.",
+            "startDate": "2024-04-06T05:00:00",
+            "description": "",
+            "subHeaderDate": "April 6, 2024, 5:00 AM - 7:00 AM"
+          },
+          {
+            "name": "Cycle Track Open After 6:45 p.m.",
+            "startDate": "2024-04-06T18:45:00",
+            "description": "",
+            "subHeaderDate": "April 6, 2024, 6:45 PM"
+          }
+        ]
+      },
+      {
+        "date": "2024-04-07",
+        "entries": [
+          {
+            "name": "Cycle Track Open Until 10 a.m.",
+            "startDate": "2024-04-07T05:00:00",
+            "description": "",
+            "subHeaderDate": "April 7, 2024, 5:00 AM - 10:00 AM"
+          },
+          {
+            "name": "Cycle Track Open After 6:45 p.m.",
+            "startDate": "2024-04-07T18:45:00",
+            "description": "",
+            "subHeaderDate": "April 7, 2024, 6:45 PM"
+          }
+        ]
+      },
+      {
+        "date": "2024-04-08",
+        "entries": [
+          {
+            "name": "Cycle Track Open All Day",
+            "startDate": "2024-04-08T05:00:00",
+            "description": "",
+            "subHeaderDate": "April 8, 2024, 5:00 AM"
+          }
+        ]
+      },
+      {
+        "date": "2024-04-09",
+        "entries": [
+          {
+            "name": "Cycle Track Open Until 2 p.m.",
+            "startDate": "2024-04-09T05:00:00",
+            "description": "",
+            "subHeaderDate": "April 9, 2024, 5:00 AM - 2:00 PM"
+          },
+          {
+            "name": "Cycle Track Open After 8:45 p.m.",
+            "startDate": "2024-04-09T20:45:00",
+            "description": "",
+            "subHeaderDate": "April 9, 2024, 8:45 PM"
+          }
+        ]
+      },
+      {
+        "date": "2024-04-10",
+        "entries": [
+          {
+            "name": "Cycle Track Open Until 2 p.m.",
+            "startDate": "2024-04-10T05:00:00",
+            "description": "",
+            "subHeaderDate": "April 10, 2024, 5:00 AM - 2:00 PM"
+          },
+          {
+            "name": "Cycle Track Open After 6:45 p.m.",
+            "startDate": "2024-04-10T18:45:00",
+            "description": "",
+            "subHeaderDate": "April 10, 2024, 6:45 PM"
+          }
+        ]
+      },
+      {
+        "date": "2024-04-11",
+        "entries": [
+          {
+            "name": "Cycle Track Open Until 2 p.m.",
+            "startDate": "2024-04-11T05:00:00",
+            "description": "",
+            "subHeaderDate": "April 11, 2024, 5:00 AM - 2:00 PM"
+          },
+          {
+            "name": "Cycle Track Open After 8:45 p.m.",
+            "startDate": "2024-04-11T20:45:00",
+            "description": "",
+            "subHeaderDate": "April 11, 2024, 8:45 PM"
+          }
+        ]
+      },
+      {
+        "date": "2024-04-12",
+        "entries": [
+          {
+            "name": "Cycle Track Open Until 2 p.m.",
+            "startDate": "2024-04-12T05:00:00",
+            "description": "",
+            "subHeaderDate": "April 12, 2024, 5:00 AM - 2:00 PM"
+          },
+          {
+            "name": "Cycle Track Open After 6:45 p.m.",
+            "startDate": "2024-04-12T18:45:00",
+            "description": "",
+            "subHeaderDate": "April 12, 2024, 6:45 PM"
+          }
+        ]
+      },
+      {
+        "date": "2024-04-13",
+        "entries": [
+          {
+            "name": "Cycle Track Open Until 7 a.m.",
+            "startDate": "2024-04-13T05:00:00",
+            "description": "",
+            "subHeaderDate": "April 13, 2024, 5:00 AM - 7:00 AM"
+          },
+          {
+            "name": "Cycle Track Open After 6:45 p.m.",
+            "startDate": "2024-04-13T18:45:00",
+            "description": "",
+            "subHeaderDate": "April 13, 2024, 6:45 PM"
+          }
+        ]
+      },
+      {
+        "date": "2024-04-14",
+        "entries": [
+          {
+            "name": "Cycle Track Open Until 10 a.m.",
+            "startDate": "2024-04-14T05:00:00",
+            "description": "",
+            "subHeaderDate": "April 14, 2024, 5:00 AM - 10:00 AM"
+          },
+          {
+            "name": "Cycle Track Open After 6:45 p.m.",
+            "startDate": "2024-04-14T18:45:00",
+            "description": "",
+            "subHeaderDate": "April 14, 2024, 6:45 PM"
+          }
+        ]
+      },
+      {
+        "date": "2024-04-15",
+        "entries": [
+          {
+            "name": "Cycle Track Open All Day",
+            "startDate": "2024-04-15T05:00:00",
+            "description": "",
+            "subHeaderDate": "April 15, 2024, 5:00 AM"
+          }
+        ]
+      },
+      {
+        "date": "2024-04-16",
+        "entries": [
+          {
+            "name": "Cycle Track Open Until 2 p.m.",
+            "startDate": "2024-04-16T05:00:00",
+            "description": "",
+            "subHeaderDate": "April 16, 2024, 5:00 AM - 2:00 PM"
+          },
+          {
+            "name": "Cycle Track Open After 8:45 p.m.",
+            "startDate": "2024-04-16T20:45:00",
+            "description": "",
+            "subHeaderDate": "April 16, 2024, 8:45 PM"
+          }
+        ]
+      },
+      {
+        "date": "2024-04-17",
+        "entries": [
+          {
+            "name": "Cycle Track Open Until 2 p.m.",
+            "startDate": "2024-04-17T05:00:00",
+            "description": "",
+            "subHeaderDate": "April 17, 2024, 5:00 AM - 2:00 PM"
+          },
+          {
+            "name": "Cycle Track Open After 6:45 p.m.",
+            "startDate": "2024-04-17T18:45:00",
+            "description": "",
+            "subHeaderDate": "April 17, 2024, 6:45 PM"
+          }
+        ]
+      },
+      {
+        "date": "2024-04-18",
+        "entries": [
+          {
+            "name": "Cycle Track Open Until 2 p.m.",
+            "startDate": "2024-04-18T05:00:00",
+            "description": "",
+            "subHeaderDate": "April 18, 2024, 5:00 AM - 2:00 PM"
+          },
+          {
+            "name": "Cycle Track Open After 8:45 p.m.",
+            "startDate": "2024-04-18T20:45:00",
+            "description": "",
+            "subHeaderDate": "April 18, 2024, 8:45 PM"
+          }
+        ]
+      },
+      {
+        "date": "2024-04-19",
+        "entries": [
+          {
+            "name": "Cycle Track Open Until 2 p.m.",
+            "startDate": "2024-04-19T05:00:00",
+            "description": "",
+            "subHeaderDate": "April 19, 2024, 5:00 AM - 2:00 PM"
+          },
+          {
+            "name": "Cycle Track Open After 6:45 p.m.",
+            "startDate": "2024-04-19T18:45:00",
+            "description": "",
+            "subHeaderDate": "April 19, 2024, 6:45 PM"
+          }
+        ]
+      },
+      {
+        "date": "2024-04-20",
+        "entries": [
+          {
+            "name": "Cycle Track Open Until 7 a.m.",
+            "startDate": "2024-04-20T05:00:00",
+            "description": "",
+            "subHeaderDate": "April 20, 2024, 5:00 AM - 7:00 AM"
+          },
+          {
+            "name": "Cycle Track Open After 6:45 p.m.",
+            "startDate": "2024-04-20T18:45:00",
+            "description": "",
+            "subHeaderDate": "April 20, 2024, 6:45 PM"
+          }
+        ]
+      },
+      {
+        "date": "2024-04-21",
+        "entries": [
+          {
+            "name": "Cycle Track Open Until 10 a.m.",
+            "startDate": "2024-04-21T05:00:00",
+            "description": "",
+            "subHeaderDate": "April 21, 2024, 5:00 AM - 10:00 AM"
+          },
+          {
+            "name": "Cycle Track Open After 6:45 p.m.",
+            "startDate": "2024-04-21T18:45:00",
+            "description": "",
+            "subHeaderDate": "April 21, 2024, 6:45 PM"
+          }
+        ]
+      },
+      {
+        "date": "2024-04-22",
+        "entries": [
+          {
+            "name": "Cycle Track Open All Day",
+            "startDate": "2024-04-22T05:00:00",
+            "description": "",
+            "subHeaderDate": "April 22, 2024, 5:00 AM"
+          }
+        ]
+      },
+      {
+        "date": "2024-04-23",
+        "entries": [
+          {
+            "name": "Cycle Track Open Until 2 p.m.",
+            "startDate": "2024-04-23T05:00:00",
+            "description": "",
+            "subHeaderDate": "April 23, 2024, 5:00 AM - 2:00 PM"
+          },
+          {
+            "name": "Cycle Track Open After 8:45 p.m.",
+            "startDate": "2024-04-23T20:45:00",
+            "description": "",
+            "subHeaderDate": "April 23, 2024, 8:45 PM"
+          }
+        ]
+      },
+      {
+        "date": "2024-04-24",
+        "entries": [
+          {
+            "name": "Cycle Track Open Until 2 p.m.",
+            "startDate": "2024-04-24T05:00:00",
+            "description": "",
+            "subHeaderDate": "April 24, 2024, 5:00 AM - 2:00 PM"
+          },
+          {
+            "name": "Cycle Track Open After 6:45 p.m.",
+            "startDate": "2024-04-24T18:45:00",
+            "description": "",
+            "subHeaderDate": "April 24, 2024, 6:45 PM"
+          }
+        ]
+      },
+      {
+        "date": "2024-04-25",
+        "entries": [
+          {
+            "name": "Cycle Track Open Until 2 p.m.",
+            "startDate": "2024-04-25T05:00:00",
+            "description": "",
+            "subHeaderDate": "April 25, 2024, 5:00 AM - 2:00 PM"
+          },
+          {
+            "name": "Cycle Track Open After 8:45 p.m.",
+            "startDate": "2024-04-25T20:45:00",
+            "description": "",
+            "subHeaderDate": "April 25, 2024, 8:45 PM"
+          }
+        ]
+      },
+      {
+        "date": "2024-04-26",
+        "entries": [
+          {
+            "name": "Cycle Track Open Until 2 p.m.",
+            "startDate": "2024-04-26T05:00:00",
+            "description": "",
+            "subHeaderDate": "April 26, 2024, 5:00 AM - 2:00 PM"
+          },
+          {
+            "name": "Cycle Track Open After 6:45 p.m.",
+            "startDate": "2024-04-26T18:45:00",
+            "description": "",
+            "subHeaderDate": "April 26, 2024, 6:45 PM"
+          }
+        ]
+      },
+      {
+        "date": "2024-04-27",
+        "entries": [
+          {
+            "name": "Cycle Track Open Until 7 a.m.",
+            "startDate": "2024-04-27T05:00:00",
+            "description": "",
+            "subHeaderDate": "April 27, 2024, 5:00 AM - 7:00 AM"
+          },
+          {
+            "name": "Cycle Track Open After 6:45 p.m.",
+            "startDate": "2024-04-27T18:45:00",
+            "description": "",
+            "subHeaderDate": "April 27, 2024, 6:45 PM"
+          }
+        ]
+      },
+      {
+        "date": "2024-04-28",
+        "entries": [
+          {
+            "name": "Cycle Track Open Until 10 a.m.",
+            "startDate": "2024-04-28T05:00:00",
+            "description": "",
+            "subHeaderDate": "April 28, 2024, 5:00 AM - 10:00 AM"
+          },
+          {
+            "name": "Cycle Track Open After 6:45 p.m.",
+            "startDate": "2024-04-28T18:45:00",
+            "description": "",
+            "subHeaderDate": "April 28, 2024, 6:45 PM"
+          }
+        ]
+      },
+      {
+        "date": "2024-04-29",
+        "entries": [
+          {
+            "name": "Cycle Track Open All Day",
+            "startDate": "2024-04-29T05:00:00",
+            "description": "",
+            "subHeaderDate": "April 29, 2024, 5:00 AM"
+          }
+        ]
+      },
+      {
+        "date": "2024-04-30",
+        "entries": [
+          {
+            "name": "Cycle Track Open Until 2 p.m.",
+            "startDate": "2024-04-30T05:00:00",
+            "description": "",
+            "subHeaderDate": "April 30, 2024, 5:00 AM - 2:00 PM"
+          },
+          {
+            "name": "Cycle Track Open After 8:45 p.m.",
+            "startDate": "2024-04-30T20:45:00",
+            "description": "",
+            "subHeaderDate": "April 30, 2024, 8:45 PM"
+          }
+        ]
+      },
+      {
+        "date": "2024-05-01",
+        "entries": [
+          {
+            "name": "Cycle Track Open Until 2 p.m.",
+            "startDate": "2024-05-01T05:00:00",
+            "description": "",
+            "subHeaderDate": "May 1, 2024, 5:00 AM - 2:00 PM"
+          },
+          {
+            "name": "Cycle Track Open After 6:45 p.m.",
+            "startDate": "2024-05-01T18:45:00",
+            "description": "",
+            "subHeaderDate": "May 1, 2024, 6:45 PM"
+          }
+        ]
+      },
+      {
+        "date": "2024-05-02",
+        "entries": [
+          {
+            "name": "Cycle Track Open Until 2 p.m.",
+            "startDate": "2024-05-02T05:00:00",
+            "description": "",
+            "subHeaderDate": "May 2, 2024, 5:00 AM - 2:00 PM"
+          },
+          {
+            "name": "Cycle Track Open After 8:45 p.m.",
+            "startDate": "2024-05-02T20:45:00",
+            "description": "",
+            "subHeaderDate": "May 2, 2024, 8:45 PM"
+          }
+        ]
+      },
+      {
+        "date": "2024-05-03",
+        "entries": [
+          {
+            "name": "Cycle Track Open Until 2 p.m.",
+            "startDate": "2024-05-03T05:00:00",
+            "description": "",
+            "subHeaderDate": "May 3, 2024, 5:00 AM - 2:00 PM"
+          },
+          {
+            "name": "Cycle Track Open After 6:45 p.m.",
+            "startDate": "2024-05-03T18:45:00",
+            "description": "",
+            "subHeaderDate": "May 3, 2024, 6:45 PM"
+          }
+        ]
+      },
+      {
+        "date": "2024-05-04",
+        "entries": [
+          {
+            "name": "Cycle Track Open Until 7 a.m.",
+            "startDate": "2024-05-04T05:00:00",
+            "description": "",
+            "subHeaderDate": "May 4, 2024, 5:00 AM - 7:00 AM"
+          },
+          {
+            "name": "Cycle Track Open After 6:45 p.m.",
+            "startDate": "2024-05-04T18:45:00",
+            "description": "",
+            "subHeaderDate": "May 4, 2024, 6:45 PM"
+          }
+        ]
+      },
+      {
+        "date": "2024-05-05",
+        "entries": [
+          {
+            "name": "Cycle Track Open Until 10 a.m.",
+            "startDate": "2024-05-05T05:00:00",
+            "description": "",
+            "subHeaderDate": "May 5, 2024, 5:00 AM - 10:00 AM"
+          },
+          {
+            "name": "Cycle Track Open After 6:45 p.m.",
+            "startDate": "2024-05-05T18:45:00",
+            "description": "",
+            "subHeaderDate": "May 5, 2024, 6:45 PM"
+          }
+        ]
+      },
+      {
+        "date": "2024-05-06",
+        "entries": [
+          {
+            "name": "Cycle Track Open All Day",
+            "startDate": "2024-05-06T05:00:00",
+            "description": "",
+            "subHeaderDate": "May 6, 2024, 5:00 AM"
+          }
+        ]
+      },
+      {
+        "date": "2024-05-07",
+        "entries": [
+          {
+            "name": "Cycle Track Open Until 2 p.m.",
+            "startDate": "2024-05-07T05:00:00",
+            "description": "",
+            "subHeaderDate": "May 7, 2024, 5:00 AM - 2:00 PM"
+          },
+          {
+            "name": "Cycle Track Open After 8:45 p.m.",
+            "startDate": "2024-05-07T20:45:00",
+            "description": "",
+            "subHeaderDate": "May 7, 2024, 8:45 PM"
+          }
+        ]
+      },
+      {
+        "date": "2024-05-08",
+        "entries": [
+          {
+            "name": "Cycle Track Open Until 2 p.m.",
+            "startDate": "2024-05-08T05:00:00",
+            "description": "",
+            "subHeaderDate": "May 8, 2024, 5:00 AM - 2:00 PM"
+          },
+          {
+            "name": "Cycle Track Open After 6:45 p.m.",
+            "startDate": "2024-05-08T18:45:00",
+            "description": "",
+            "subHeaderDate": "May 8, 2024, 6:45 PM"
+          }
+        ]
+      },
+      {
+        "date": "2024-05-09",
+        "entries": [
+          {
+            "name": "Cycle Track Open Until 2 p.m.",
+            "startDate": "2024-05-09T05:00:00",
+            "description": "",
+            "subHeaderDate": "May 9, 2024, 5:00 AM - 2:00 PM"
+          },
+          {
+            "name": "Cycle Track Open After 8:45 p.m.",
+            "startDate": "2024-05-09T20:45:00",
+            "description": "",
+            "subHeaderDate": "May 9, 2024, 8:45 PM"
+          }
+        ]
+      },
+      {
+        "date": "2024-05-10",
+        "entries": [
+          {
+            "name": "Cycle Track Open Until 2 p.m.",
+            "startDate": "2024-05-10T05:00:00",
+            "description": "",
+            "subHeaderDate": "May 10, 2024, 5:00 AM - 2:00 PM"
+          },
+          {
+            "name": "Cycle Track Open After 6:45 p.m.",
+            "startDate": "2024-05-10T18:45:00",
+            "description": "",
+            "subHeaderDate": "May 10, 2024, 6:45 PM"
+          }
+        ]
+      },
+      {
+        "date": "2024-05-11",
+        "entries": [
+          {
+            "name": "Cycle Track Open Until 7 a.m.",
+            "startDate": "2024-05-11T05:00:00",
+            "description": "",
+            "subHeaderDate": "May 11, 2024, 5:00 AM - 7:00 AM"
+          },
+          {
+            "name": "Cycle Track Open After 6:45 p.m.",
+            "startDate": "2024-05-11T18:45:00",
+            "description": "",
+            "subHeaderDate": "May 11, 2024, 6:45 PM"
+          }
+        ]
+      },
+      {
+        "date": "2024-05-12",
+        "entries": [
+          {
+            "name": "Cycle Track Open Until 10 a.m.",
+            "startDate": "2024-05-12T05:00:00",
+            "description": "",
+            "subHeaderDate": "May 12, 2024, 5:00 AM - 10:00 AM"
+          },
+          {
+            "name": "Cycle Track Open After 6:45 p.m.",
+            "startDate": "2024-05-12T18:45:00",
+            "description": "",
+            "subHeaderDate": "May 12, 2024, 6:45 PM"
+          }
+        ]
+      },
+      {
+        "date": "2024-05-13",
+        "entries": [
+          {
+            "name": "Cycle Track Open All Day",
+            "startDate": "2024-05-13T05:00:00",
+            "description": "",
+            "subHeaderDate": "May 13, 2024, 5:00 AM"
+          }
+        ]
+      },
+      {
+        "date": "2024-05-14",
+        "entries": [
+          {
+            "name": "Cycle Track Open Until 2 p.m.",
+            "startDate": "2024-05-14T05:00:00",
+            "description": "",
+            "subHeaderDate": "May 14, 2024, 5:00 AM - 2:00 PM"
+          },
+          {
+            "name": "Cycle Track Open After 8:45 p.m.",
+            "startDate": "2024-05-14T20:45:00",
+            "description": "",
+            "subHeaderDate": "May 14, 2024, 8:45 PM"
+          }
+        ]
+      },
+      {
+        "date": "2024-05-15",
+        "entries": [
+          {
+            "name": "Cycle Track Open Until 2 p.m.",
+            "startDate": "2024-05-15T05:00:00",
+            "description": "",
+            "subHeaderDate": "May 15, 2024, 5:00 AM - 2:00 PM"
+          },
+          {
+            "name": "Cycle Track Open After 6:45 p.m.",
+            "startDate": "2024-05-15T18:45:00",
+            "description": "",
+            "subHeaderDate": "May 15, 2024, 6:45 PM"
+          }
+        ]
+      },
+      {
+        "date": "2024-05-16",
+        "entries": [
+          {
+            "name": "Cycle Track Open Until 2 p.m.",
+            "startDate": "2024-05-16T05:00:00",
+            "description": "",
+            "subHeaderDate": "May 16, 2024, 5:00 AM - 2:00 PM"
+          },
+          {
+            "name": "Cycle Track Open After 8:45 p.m.",
+            "startDate": "2024-05-16T20:45:00",
+            "description": "",
+            "subHeaderDate": "May 16, 2024, 8:45 PM"
+          }
+        ]
+      },
+      {
+        "date": "2024-05-17",
+        "entries": [
+          {
+            "name": "Cycle Track Open Until 2 p.m.",
+            "startDate": "2024-05-17T05:00:00",
+            "description": "",
+            "subHeaderDate": "May 17, 2024, 5:00 AM - 2:00 PM"
+          },
+          {
+            "name": "Cycle Track Open After 6:45 p.m.",
+            "startDate": "2024-05-17T18:45:00",
+            "description": "",
+            "subHeaderDate": "May 17, 2024, 6:45 PM"
+          }
+        ]
+      },
+      {
+        "date": "2024-05-18",
+        "entries": [
+          {
+            "name": "Cycle Track Open Until 7 a.m.",
+            "startDate": "2024-05-18T05:00:00",
+            "description": "",
+            "subHeaderDate": "May 18, 2024, 5:00 AM - 7:00 AM"
+          },
+          {
+            "name": "Cycle Track Open After 6:45 p.m.",
+            "startDate": "2024-05-18T18:45:00",
+            "description": "",
+            "subHeaderDate": "May 18, 2024, 6:45 PM"
+          }
+        ]
+      },
+      {
+        "date": "2024-05-19",
+        "entries": [
+          {
+            "name": "Cycle Track Open All Day",
+            "startDate": "2024-05-19T05:00:00",
+            "description": "",
+            "subHeaderDate": "May 19, 2024, 5:00 AM"
+          }
+        ]
+      },
+      {
+        "date": "2024-05-20",
+        "entries": [
+          {
+            "name": "Cycle Track Open All Day",
+            "startDate": "2024-05-20T05:00:00",
+            "description": "",
+            "subHeaderDate": "May 20, 2024, 5:00 AM"
+          }
+        ]
+      },
+      {
+        "date": "2024-05-21",
+        "entries": [
+          {
+            "name": "Cycle Track Open Until 2 p.m.",
+            "startDate": "2024-05-21T05:00:00",
+            "description": "",
+            "subHeaderDate": "May 21, 2024, 5:00 AM - 2:00 PM"
+          },
+          {
+            "name": "Cycle Track Open After 8:45 p.m.",
+            "startDate": "2024-05-21T20:45:00",
+            "description": "",
+            "subHeaderDate": "May 21, 2024, 8:45 PM"
+          }
+        ]
+      },
+      {
+        "date": "2024-05-22",
+        "entries": [
+          {
+            "name": "Cycle Track Open Until 2 p.m.",
+            "startDate": "2024-05-22T05:00:00",
+            "description": "",
+            "subHeaderDate": "May 22, 2024, 5:00 AM - 2:00 PM"
+          },
+          {
+            "name": "Cycle Track Open After 6:45 p.m.",
+            "startDate": "2024-05-22T18:45:00",
+            "description": "",
+            "subHeaderDate": "May 22, 2024, 6:45 PM"
+          }
+        ]
+      },
+      {
+        "date": "2024-05-23",
+        "entries": [
+          {
+            "name": "Cycle Track Open Until 2 p.m.",
+            "startDate": "2024-05-23T05:00:00",
+            "description": "",
+            "subHeaderDate": "May 23, 2024, 5:00 AM - 2:00 PM"
+          },
+          {
+            "name": "Cycle Track Open After 8:45 p.m.",
+            "startDate": "2024-05-23T20:45:00",
+            "description": "",
+            "subHeaderDate": "May 23, 2024, 8:45 PM"
+          }
+        ]
+      },
+      {
+        "date": "2024-05-24",
+        "entries": [
+          {
+            "name": "Cycle Track Open Until 2 p.m.",
+            "startDate": "2024-05-24T05:00:00",
+            "description": "",
+            "subHeaderDate": "May 24, 2024, 5:00 AM - 2:00 PM"
+          },
+          {
+            "name": "Cycle Track Open After 6:45 p.m.",
+            "startDate": "2024-05-24T18:45:00",
+            "description": "",
+            "subHeaderDate": "May 24, 2024, 6:45 PM"
+          }
+        ]
+      },
+      {
+        "date": "2024-05-25",
+        "entries": [
+          {
+            "name": "Cycle Track Open Until 7 a.m.",
+            "startDate": "2024-05-25T05:00:00",
+            "description": "",
+            "subHeaderDate": "May 25, 2024, 5:00 AM - 7:00 AM"
+          },
+          {
+            "name": "Cycle Track Open After 6:45 p.m.",
+            "startDate": "2024-05-25T18:45:00",
+            "description": "",
+            "subHeaderDate": "May 25, 2024, 6:45 PM"
+          }
+        ]
+      },
+      {
+        "date": "2024-05-26",
+        "entries": [
+          {
+            "name": "Cycle Track Open Until 7 a.m.",
+            "startDate": "2024-05-26T05:00:00",
+            "description": "",
+            "subHeaderDate": "May 26, 2024, 5:00 AM - 7:00 AM"
+          },
+          {
+            "name": "Cycle Track Open After 6:45 p.m.",
+            "startDate": "2024-05-26T18:45:00",
+            "description": "",
+            "subHeaderDate": "May 26, 2024, 6:45 PM"
+          }
+        ]
+      },
+      {
+        "date": "2024-05-27",
+        "entries": [
+          {
+            "name": "Cycle Track Open All Day",
+            "startDate": "2024-05-27T05:00:00",
+            "description": "",
+            "subHeaderDate": "May 27, 2024, 5:00 AM"
+          }
+        ]
+      },
+      {
+        "date": "2024-05-28",
+        "entries": [
+          {
+            "name": "Cycle Track Open All Day",
+            "startDate": "2024-05-28T05:00:00",
+            "description": "",
+            "subHeaderDate": "May 28, 2024, 5:00 AM"
+          }
+        ]
+      },
+      {
+        "date": "2024-05-29",
+        "entries": [
+          {
+            "name": "Cycle Track Open All Day",
+            "startDate": "2024-05-29T05:00:00",
+            "description": "",
+            "subHeaderDate": "May 29, 2024, 5:00 AM"
+          }
+        ]
+      },
+      {
+        "date": "2024-05-30",
+        "entries": [
+          {
+            "name": "Cycle Track Open All Day",
+            "startDate": "2024-05-30T05:00:00",
+            "description": "",
+            "subHeaderDate": "May 30, 2024, 5:00 AM"
+          }
+        ]
+      },
+      {
+        "date": "2024-05-31",
+        "entries": [
+          {
+            "name": "Cycle Track Open All Day",
+            "startDate": "2024-05-31T05:00:00",
+            "description": "",
+            "subHeaderDate": "May 31, 2024, 5:00 AM"
+          }
+        ]
+      },
+      {
+        "date": "2024-06-01",
+        "entries": [
+          {
+            "name": "Cycle Track Open All Day",
+            "startDate": "2024-06-01T05:00:00",
+            "description": "",
+            "subHeaderDate": "June 1, 2024, 5:00 AM"
+          }
+        ]
+      },
+      {
+        "date": "2024-06-02",
+        "entries": [
+          {
+            "name": "Cycle Track Open All Day",
+            "startDate": "2024-06-02T05:00:00",
+            "description": "",
+            "subHeaderDate": "June 2, 2024, 5:00 AM"
+          }
+        ]
+      },
+      {
+        "date": "2024-06-03",
+        "entries": [
+          {
+            "name": "Cycle Track Open All Day",
+            "startDate": "2024-06-03T05:00:00",
+            "description": "",
+            "subHeaderDate": "June 3, 2024, 5:00 AM"
+          }
+        ]
+      },
+      {
+        "date": "2024-06-04",
+        "entries": [
+          {
+            "name": "Cycle Track Open All Day",
+            "startDate": "2024-06-04T05:00:00",
+            "description": "",
+            "subHeaderDate": "June 4, 2024, 5:00 AM"
+          }
+        ]
+      },
+      {
+        "date": "2024-06-05",
+        "entries": [
+          {
+            "name": "Cycle Track Open All Day",
+            "startDate": "2024-06-05T05:00:00",
+            "description": "",
+            "subHeaderDate": "June 5, 2024, 5:00 AM"
+          }
+        ]
+      },
+      {
+        "date": "2024-06-06",
+        "entries": [
+          {
+            "name": "Cycle Track Open All Day",
+            "startDate": "2024-06-06T05:00:00",
+            "description": "",
+            "subHeaderDate": "June 6, 2024, 5:00 AM"
+          }
+        ]
+      },
+      {
+        "date": "2024-06-07",
+        "entries": [
+          {
+            "name": "Cycle Track Open All Day",
+            "startDate": "2024-06-07T05:00:00",
+            "description": "",
+            "subHeaderDate": "June 7, 2024, 5:00 AM"
+          }
+        ]
+      },
+      {
+        "date": "2024-06-08",
+        "entries": [
+          {
+            "name": "Cycle Track Open After 7 p.m.",
+            "startDate": "2024-06-08T19:00:00",
+            "description": "",
+            "subHeaderDate": "June 8, 2024, 7:00 PM"
+          }
+        ]
+      },
+      {
+        "date": "2024-06-09",
+        "entries": [
+          {
+            "name": "Cycle Track Open After 7 p.m.",
+            "startDate": "2024-06-09T19:00:00",
+            "description": "",
+            "subHeaderDate": "June 9, 2024, 7:00 PM"
+          }
+        ]
+      },
+      {
+        "date": "2024-07-29",
+        "entries": [
+          {
+            "name": "Cycle Track CLOSED ALL DAY",
+            "startDate": "2024-07-29T05:00:00",
+            "description": "",
+            "subHeaderDate": "July 29, 2024, 5:00 AM"
+          }
+        ]
+      },
+      {
+        "date": "2024-07-30",
+        "entries": [
+          {
+            "name": "Cycle Track CLOSED ALL DAY",
+            "startDate": "2024-07-30T05:00:00",
+            "description": "",
+            "subHeaderDate": "July 30, 2024, 5:00 AM"
+          }
+        ]
+      },
+      {
+        "date": "2024-07-31",
+        "entries": [
+          {
+            "name": "Cycle Track CLOSED ALL DAY",
+            "startDate": "2024-07-31T05:00:00",
+            "description": "",
+            "subHeaderDate": "July 31, 2024, 5:00 AM"
+          }
+        ]
+      },
+      {
+        "date": "2024-08-01",
+        "entries": [
+          {
+            "name": "Cycle Track CLOSED ALL DAY",
+            "startDate": "2024-08-01T05:00:00",
+            "description": "",
+            "subHeaderDate": "August 1, 2024, 5:00 AM"
+          }
+        ]
+      },
+      {
+        "date": "2024-08-02",
+        "entries": [
+          {
+            "name": "Cycle Track CLOSED ALL DAY",
+            "startDate": "2024-08-02T05:00:00",
+            "description": "",
+            "subHeaderDate": "August 2, 2024, 5:00 AM"
+          }
+        ]
+      },
+      {
+        "date": "2024-08-03",
+        "entries": [
+          {
+            "name": "Cycle Track CLOSED ALL DAY",
+            "startDate": "2024-08-03T05:00:00",
+            "description": "",
+            "subHeaderDate": "August 3, 2024, 5:00 AM"
+          }
+        ]
+      },
+      {
+        "date": "2024-08-04",
+        "entries": [
+          {
+            "name": "Cycle Track CLOSED ALL DAY",
+            "startDate": "2024-08-04T05:00:00",
+            "description": "",
+            "subHeaderDate": "August 4, 2024, 5:00 AM"
+          }
+        ]
+      },
+      {
+        "date": "2024-08-05",
+        "entries": [
+          {
+            "name": "Cycle Track CLOSED ALL DAY",
+            "startDate": "2024-08-05T05:00:00",
+            "description": "",
+            "subHeaderDate": "August 5, 2024, 5:00 AM"
+          }
+        ]
+      },
+      {
+        "date": "2024-08-06",
+        "entries": [
+          {
+            "name": "Cycle Track CLOSED ALL DAY",
+            "startDate": "2024-08-06T05:00:00",
+            "description": "",
+            "subHeaderDate": "August 6, 2024, 5:00 AM"
+          }
+        ]
+      },
+      {
+        "date": "2024-08-07",
+        "entries": [
+          {
+            "name": "Cycle Track CLOSED ALL DAY",
+            "startDate": "2024-08-07T05:00:00",
+            "description": "",
+            "subHeaderDate": "August 7, 2024, 5:00 AM"
+          }
+        ]
+      },
+      {
+        "date": "2024-08-08",
+        "entries": [
+          {
+            "name": "Cycle Track CLOSED ALL DAY",
+            "startDate": "2024-08-08T05:00:00",
+            "description": "",
+            "subHeaderDate": "August 8, 2024, 5:00 AM"
+          }
+        ]
+      },
+      {
+        "date": "2024-08-09",
+        "entries": [
+          {
+            "name": "Cycle Track CLOSED ALL DAY",
+            "startDate": "2024-08-09T05:00:00",
+            "description": "",
+            "subHeaderDate": "August 9, 2024, 5:00 AM"
+          }
+        ]
+      },
+      {
+        "date": "2024-08-10",
+        "entries": [
+          {
+            "name": "Cycle Track CLOSED ALL DAY",
+            "startDate": "2024-08-10T05:00:00",
+            "description": "",
+            "subHeaderDate": "August 10, 2024, 5:00 AM"
+          }
+        ]
+      },
+      {
+        "date": "2024-08-11",
+        "entries": [
+          {
+            "name": "Cycle Track CLOSED ALL DAY",
+            "startDate": "2024-08-11T05:00:00",
+            "description": "",
+            "subHeaderDate": "August 11, 2024, 5:00 AM"
+          }
+        ]
+      },
+      {
+        "date": "2024-08-12",
+        "entries": [
+          {
+            "name": "Cycle Track CLOSED ALL DAY",
+            "startDate": "2024-08-12T05:00:00",
+            "description": "",
+            "subHeaderDate": "August 12, 2024, 5:00 AM"
+          }
+        ]
+      },
+      {
+        "date": "2024-08-13",
+        "entries": [
+          {
+            "name": "Cycle Track CLOSED ALL DAY",
+            "startDate": "2024-08-13T05:00:00",
+            "description": "",
+            "subHeaderDate": "August 13, 2024, 5:00 AM"
+          }
+        ]
+      },
+      {
+        "date": "2024-08-14",
+        "entries": [
+          {
+            "name": "Cycle Track CLOSED ALL DAY",
+            "startDate": "2024-08-14T05:00:00",
+            "description": "",
+            "subHeaderDate": "August 14, 2024, 5:00 AM"
+          }
+        ]
+      },
+      {
+        "date": "2024-08-15",
+        "entries": [
+          {
+            "name": "Cycle Track CLOSED ALL DAY",
+            "startDate": "2024-08-15T05:00:00",
+            "description": "",
+            "subHeaderDate": "August 15, 2024, 5:00 AM"
+          }
+        ]
+      },
+      {
+        "date": "2024-08-16",
+        "entries": [
+          {
+            "name": "Cycle Track CLOSED ALL DAY",
+            "startDate": "2024-08-16T05:00:00",
+            "description": "",
+            "subHeaderDate": "August 16, 2024, 5:00 AM"
+          }
+        ]
+      },
+      {
+        "date": "2024-08-17",
+        "entries": [
+          {
+            "name": "Cycle Track CLOSED ALL DAY",
+            "startDate": "2024-08-17T05:00:00",
+            "description": "",
+            "subHeaderDate": "August 17, 2024, 5:00 AM"
+          }
+        ]
+      },
+      {
+        "date": "2024-08-18",
+        "entries": [
+          {
+            "name": "Cycle Track CLOSED ALL DAY",
+            "startDate": "2024-08-18T05:00:00",
+            "description": "",
+            "subHeaderDate": "August 18, 2024, 5:00 AM"
+          }
+        ]
+      },
+      {
+        "date": "2024-08-19",
+        "entries": [
+          {
+            "name": "Cycle Track CLOSED ALL DAY",
+            "startDate": "2024-08-19T05:00:00",
+            "description": "",
+            "subHeaderDate": "August 19, 2024, 5:00 AM"
+          }
+        ]
+      },
+      {
+        "date": "2024-08-20",
+        "entries": [
+          {
+            "name": "Cycle Track CLOSED ALL DAY",
+            "startDate": "2024-08-20T05:00:00",
+            "description": "",
+            "subHeaderDate": "August 20, 2024, 5:00 AM"
+          }
+        ]
+      },
+      {
+        "date": "2024-08-21",
+        "entries": [
+          {
+            "name": "Cycle Track CLOSED ALL DAY",
+            "startDate": "2024-08-21T05:00:00",
+            "description": "",
+            "subHeaderDate": "August 21, 2024, 5:00 AM"
+          }
+        ]
+      },
+      {
+        "date": "2024-08-22",
+        "entries": [
+          {
+            "name": "Cycle Track CLOSED ALL DAY",
+            "startDate": "2024-08-22T05:00:00",
+            "description": "",
+            "subHeaderDate": "August 22, 2024, 5:00 AM"
+          }
+        ]
+      },
+      {
+        "date": "2024-08-23",
+        "entries": [
+          {
+            "name": "Cycle Track CLOSED ALL DAY",
+            "startDate": "2024-08-23T05:00:00",
+            "description": "",
+            "subHeaderDate": "August 23, 2024, 5:00 AM"
+          }
+        ]
+      },
+      {
+        "date": "2024-08-24",
+        "entries": [
+          {
+            "name": "Cycle Track Open All Day",
+            "startDate": "2024-08-24T05:00:00",
+            "description": "",
+            "subHeaderDate": "August 24, 2024, 5:00 AM"
+          }
+        ]
+      },
+      {
+        "date": "2024-08-25",
+        "entries": [
+          {
+            "name": "Cycle Track Open All Day",
+            "startDate": "2024-08-25T05:00:00",
+            "description": "",
+            "subHeaderDate": "August 25, 2024, 5:00 AM"
+          }
+        ]
+      },
+      {
+        "date": "2024-08-26",
+        "entries": [
+          {
+            "name": "Cycle Track Open All Day",
+            "startDate": "2024-08-26T05:00:00",
+            "description": "",
+            "subHeaderDate": "August 26, 2024, 5:00 AM"
+          }
+        ]
+      },
+      {
+        "date": "2024-08-27",
+        "entries": [
+          {
+            "name": "Cycle Track Open All Day",
+            "startDate": "2024-08-27T05:00:00",
+            "description": "",
+            "subHeaderDate": "August 27, 2024, 5:00 AM"
+          }
+        ]
+      },
+      {
+        "date": "2024-08-28",
+        "entries": [
+          {
+            "name": "Cycle Track Open All Day",
+            "startDate": "2024-08-28T05:00:00",
+            "description": "",
+            "subHeaderDate": "August 28, 2024, 5:00 AM"
+          }
+        ]
+      },
+      {
+        "date": "2024-08-29",
+        "entries": [
+          {
+            "name": "Cycle Track Open All Day",
+            "startDate": "2024-08-29T05:00:00",
+            "description": "",
+            "subHeaderDate": "August 29, 2024, 5:00 AM"
+          }
+        ]
+      },
+      {
+        "date": "2024-08-30",
+        "entries": [
+          {
+            "name": "Cycle Track Open All Day",
+            "startDate": "2024-08-30T05:00:00",
+            "description": "",
+            "subHeaderDate": "August 30, 2024, 5:00 AM"
+          }
+        ]
+      },
+      {
+        "date": "2024-08-31",
+        "entries": [
+          {
+            "name": "Cycle Track Open All Day",
+            "startDate": "2024-08-31T05:00:00",
+            "description": "",
+            "subHeaderDate": "August 31, 2024, 5:00 AM"
+          }
+        ]
+      },
+      {
+        "date": "2024-09-01",
+        "entries": [
+          {
+            "name": "Cycle Track Open All Day",
+            "startDate": "2024-09-01T05:00:00",
+            "description": "",
+            "subHeaderDate": "September 1, 2024, 5:00 AM"
+          }
+        ]
+      },
+      {
+        "date": "2024-09-02",
+        "entries": [
+          {
+            "name": "Cycle Track Open All Day",
+            "startDate": "2024-09-02T05:00:00",
+            "description": "",
+            "subHeaderDate": "September 2, 2024, 5:00 AM"
+          }
+        ]
+      },
+      {
+        "date": "2024-09-03",
+        "entries": [
+          {
+            "name": "Cycle Track Open Until 2 p.m.",
+            "startDate": "2024-09-03T05:00:00",
+            "description": "",
+            "subHeaderDate": "September 3, 2024, 5:00 AM - 2:00 PM"
+          },
+          {
+            "name": "Cycle Track Open After 6:45 p.m.",
+            "startDate": "2024-09-03T18:45:00",
+            "description": "",
+            "subHeaderDate": "September 3, 2024, 6:45 PM"
+          }
+        ]
+      },
+      {
+        "date": "2024-09-04",
+        "entries": [
+          {
+            "name": "Cycle Track Open Until 2 p.m.",
+            "startDate": "2024-09-04T05:00:00",
+            "description": "",
+            "subHeaderDate": "September 4, 2024, 5:00 AM - 2:00 PM"
+          },
+          {
+            "name": "Cycle Track Open After 6:45 p.m.",
+            "startDate": "2024-09-04T18:45:00",
+            "description": "",
+            "subHeaderDate": "September 4, 2024, 6:45 PM"
+          }
+        ]
+      },
+      {
+        "date": "2024-09-05",
+        "entries": [
+          {
+            "name": "Cycle Track Open Until 2 p.m.",
+            "startDate": "2024-09-05T05:00:00",
+            "description": "",
+            "subHeaderDate": "September 5, 2024, 5:00 AM - 2:00 PM"
+          },
+          {
+            "name": "Cycle Track Open After 6:45 p.m.",
+            "startDate": "2024-09-05T18:45:00",
+            "description": "",
+            "subHeaderDate": "September 5, 2024, 6:45 PM"
+          }
+        ]
+      },
+      {
+        "date": "2024-09-06",
+        "entries": [
+          {
+            "name": "Cycle Track Open Until 2 p.m.",
+            "startDate": "2024-09-06T05:00:00",
+            "description": "",
+            "subHeaderDate": "September 6, 2024, 5:00 AM - 2:00 PM"
+          },
+          {
+            "name": "Cycle Track Open After 6:45 p.m.",
+            "startDate": "2024-09-06T18:45:00",
+            "description": "",
+            "subHeaderDate": "September 6, 2024, 6:45 PM"
+          }
+        ]
+      },
+      {
+        "date": "2024-09-07",
+        "entries": [
+          {
+            "name": "Cycle Track Open Until 7 a.m.",
+            "startDate": "2024-09-07T05:00:00",
+            "description": "",
+            "subHeaderDate": "September 7, 2024, 5:00 AM - 7:00 AM"
+          },
+          {
+            "name": "Cycle Track Open After 6:15 p.m.",
+            "startDate": "2024-09-07T18:15:00",
+            "description": "",
+            "subHeaderDate": "September 7, 2024, 6:15 PM"
+          }
+        ]
+      },
+      {
+        "date": "2024-09-08",
+        "entries": [
+          {
+            "name": "Cycle Track Open Until 7 a.m.",
+            "startDate": "2024-09-08T05:00:00",
+            "description": "",
+            "subHeaderDate": "September 8, 2024, 5:00 AM - 7:00 AM"
+          },
+          {
+            "name": "Cycle Track Open After 6:15 p.m.",
+            "startDate": "2024-09-08T18:15:00",
+            "description": "",
+            "subHeaderDate": "September 8, 2024, 6:15 PM"
+          }
+        ]
+      },
+      {
+        "date": "2024-09-09",
+        "entries": [
+          {
+            "name": "Cycle Track Open All Day",
+            "startDate": "2024-09-09T05:00:00",
+            "description": "",
+            "subHeaderDate": "September 9, 2024, 5:00 AM"
+          }
+        ]
+      },
+      {
+        "date": "2024-09-10",
+        "entries": [
+          {
+            "name": "Cycle Track Open Until 2 p.m.",
+            "startDate": "2024-09-10T05:00:00",
+            "description": "",
+            "subHeaderDate": "September 10, 2024, 5:00 AM - 2:00 PM"
+          },
+          {
+            "name": "Cycle Track Open After 6:45 p.m.",
+            "startDate": "2024-09-10T18:45:00",
+            "description": "",
+            "subHeaderDate": "September 10, 2024, 6:45 PM"
+          }
+        ]
+      },
+      {
+        "date": "2024-09-11",
+        "entries": [
+          {
+            "name": "Cycle Track Open Until 2 p.m.",
+            "startDate": "2024-09-11T05:00:00",
+            "description": "",
+            "subHeaderDate": "September 11, 2024, 5:00 AM - 2:00 PM"
+          },
+          {
+            "name": "Cycle Track Open After 6:45 p.m.",
+            "startDate": "2024-09-11T18:45:00",
+            "description": "",
+            "subHeaderDate": "September 11, 2024, 6:45 PM"
+          }
+        ]
+      },
+      {
+        "date": "2024-09-12",
+        "entries": [
+          {
+            "name": "Cycle Track Open Until 2 p.m.",
+            "startDate": "2024-09-12T05:00:00",
+            "description": "",
+            "subHeaderDate": "September 12, 2024, 5:00 AM - 2:00 PM"
+          },
+          {
+            "name": "Cycle Track Open After 6:45 p.m.",
+            "startDate": "2024-09-12T18:45:00",
+            "description": "",
+            "subHeaderDate": "September 12, 2024, 6:45 PM"
+          }
+        ]
+      },
+      {
+        "date": "2024-09-13",
+        "entries": [
+          {
+            "name": "Cycle Track Open Until 7:30 a.m.",
+            "startDate": "2024-09-13T05:00:00",
+            "description": "",
+            "subHeaderDate": "September 13, 2024, 5:00 AM - 7:30 AM"
+          },
+          {
+            "name": "Cycle Track Open After 6:45 p.m.",
+            "startDate": "2024-09-13T18:45:00",
+            "description": "",
+            "subHeaderDate": "September 13, 2024, 6:45 PM"
+          }
+        ]
+      },
+      {
+        "date": "2024-09-14",
+        "entries": [
+          {
+            "name": "Cycle Track Open Until 7 a.m.",
+            "startDate": "2024-09-14T05:00:00",
+            "description": "",
+            "subHeaderDate": "September 14, 2024, 5:00 AM - 7:00 AM"
+          },
+          {
+            "name": "Cycle Track Open After 6:15 p.m.",
+            "startDate": "2024-09-14T18:15:00",
+            "description": "",
+            "subHeaderDate": "September 14, 2024, 6:15 PM"
+          }
+        ]
+      },
+      {
+        "date": "2024-09-15",
+        "entries": [
+          {
+            "name": "Cycle Track Open Until 7 a.m.",
+            "startDate": "2024-09-15T05:00:00",
+            "description": "",
+            "subHeaderDate": "September 15, 2024, 5:00 AM - 7:00 AM"
+          },
+          {
+            "name": "Cycle Track Open After 6:15 p.m.",
+            "startDate": "2024-09-15T18:15:00",
+            "description": "",
+            "subHeaderDate": "September 15, 2024, 6:15 PM"
+          }
+        ]
+      },
+      {
+        "date": "2024-09-16",
+        "entries": [
+          {
+            "name": "Cycle Track Open All Day",
+            "startDate": "2024-09-16T05:00:00",
+            "description": "",
+            "subHeaderDate": "September 16, 2024, 5:00 AM"
+          }
+        ]
+      },
+      {
+        "date": "2024-09-17",
+        "entries": [
+          {
+            "name": "Cycle Track Open Until 2 p.m.",
+            "startDate": "2024-09-17T05:00:00",
+            "description": "",
+            "subHeaderDate": "September 17, 2024, 5:00 AM - 2:00 PM"
+          },
+          {
+            "name": "Cycle Track Open After 6:45 p.m.",
+            "startDate": "2024-09-17T18:45:00",
+            "description": "",
+            "subHeaderDate": "September 17, 2024, 6:45 PM"
+          }
+        ]
+      },
+      {
+        "date": "2024-09-18",
+        "entries": [
+          {
+            "name": "Cycle Track Open Until 2 p.m.",
+            "startDate": "2024-09-18T05:00:00",
+            "description": "",
+            "subHeaderDate": "September 18, 2024, 5:00 AM - 2:00 PM"
+          },
+          {
+            "name": "Cycle Track Open After 6:45 p.m.",
+            "startDate": "2024-09-18T18:45:00",
+            "description": "",
+            "subHeaderDate": "September 18, 2024, 6:45 PM"
+          }
+        ]
+      },
+      {
+        "date": "2024-09-19",
+        "entries": [
+          {
+            "name": "Cycle Track Open Until 2 p.m.",
+            "startDate": "2024-09-19T05:00:00",
+            "description": "",
+            "subHeaderDate": "September 19, 2024, 5:00 AM - 2:00 PM"
+          },
+          {
+            "name": "Cycle Track Open After 6:45 p.m.",
+            "startDate": "2024-09-19T18:45:00",
+            "description": "",
+            "subHeaderDate": "September 19, 2024, 6:45 PM"
+          }
+        ]
+      },
+      {
+        "date": "2024-09-20",
+        "entries": [
+          {
+            "name": "Cycle Track Open Until 2 p.m.",
+            "startDate": "2024-09-20T05:00:00",
+            "description": "",
+            "subHeaderDate": "September 20, 2024, 5:00 AM - 2:00 PM"
+          },
+          {
+            "name": "Cycle Track Open After 6:45 p.m.",
+            "startDate": "2024-09-20T18:45:00",
+            "description": "",
+            "subHeaderDate": "September 20, 2024, 6:45 PM"
+          }
+        ]
+      },
+      {
+        "date": "2024-09-21",
+        "entries": [
+          {
+            "name": "Cycle Track Open Until 7 a.m.",
+            "startDate": "2024-09-21T05:00:00",
+            "description": "",
+            "subHeaderDate": "September 21, 2024, 5:00 AM - 7:00 AM"
+          },
+          {
+            "name": "Cycle Track Open After 6:15 p.m.",
+            "startDate": "2024-09-21T18:15:00",
+            "description": "",
+            "subHeaderDate": "September 21, 2024, 6:15 PM"
+          }
+        ]
+      },
+      {
+        "date": "2024-09-22",
+        "entries": [
+          {
+            "name": "Cycle Track Open Until 7 a.m.",
+            "startDate": "2024-09-22T05:00:00",
+            "description": "",
+            "subHeaderDate": "September 22, 2024, 5:00 AM - 7:00 AM"
+          },
+          {
+            "name": "Cycle Track Open After 6:15 p.m.",
+            "startDate": "2024-09-22T18:15:00",
+            "description": "",
+            "subHeaderDate": "September 22, 2024, 6:15 PM"
+          }
+        ]
+      },
+      {
+        "date": "2024-09-23",
+        "entries": [
+          {
+            "name": "Cycle Track Open All Day",
+            "startDate": "2024-09-23T05:00:00",
+            "description": "",
+            "subHeaderDate": "September 23, 2024, 5:00 AM"
+          }
+        ]
+      },
+      {
+        "date": "2024-09-24",
+        "entries": [
+          {
+            "name": "Cycle Track Open Until 2 p.m.",
+            "startDate": "2024-09-24T05:00:00",
+            "description": "",
+            "subHeaderDate": "September 24, 2024, 5:00 AM - 2:00 PM"
+          },
+          {
+            "name": "Cycle Track Open After 6:45 p.m.",
+            "startDate": "2024-09-24T18:45:00",
+            "description": "",
+            "subHeaderDate": "September 24, 2024, 6:45 PM"
+          }
+        ]
+      },
+      {
+        "date": "2024-09-25",
+        "entries": [
+          {
+            "name": "Cycle Track Open Until 2 p.m.",
+            "startDate": "2024-09-25T05:00:00",
+            "description": "",
+            "subHeaderDate": "September 25, 2024, 5:00 AM - 2:00 PM"
+          },
+          {
+            "name": "Cycle Track Open After 6:45 p.m.",
+            "startDate": "2024-09-25T18:45:00",
+            "description": "",
+            "subHeaderDate": "September 25, 2024, 6:45 PM"
+          }
+        ]
+      },
+      {
+        "date": "2024-09-26",
+        "entries": [
+          {
+            "name": "Cycle Track Open Until 2 p.m.",
+            "startDate": "2024-09-26T05:00:00",
+            "description": "",
+            "subHeaderDate": "September 26, 2024, 5:00 AM - 2:00 PM"
+          },
+          {
+            "name": "Cycle Track Open After 6:45 p.m.",
+            "startDate": "2024-09-26T18:45:00",
+            "description": "",
+            "subHeaderDate": "September 26, 2024, 6:45 PM"
+          }
+        ]
+      },
+      {
+        "date": "2024-09-27",
+        "entries": [
+          {
+            "name": "Cycle Track Open Until 2 p.m.",
+            "startDate": "2024-09-27T05:00:00",
+            "description": "",
+            "subHeaderDate": "September 27, 2024, 5:00 AM - 2:00 PM"
+          },
+          {
+            "name": "Cycle Track Open After 6:45 p.m.",
+            "startDate": "2024-09-27T18:45:00",
+            "description": "",
+            "subHeaderDate": "September 27, 2024, 6:45 PM"
+          }
+        ]
+      },
+      {
+        "date": "2024-09-28",
+        "entries": [
+          {
+            "name": "Cycle Track Open Until 7 a.m.",
+            "startDate": "2024-09-28T05:00:00",
+            "description": "",
+            "subHeaderDate": "September 28, 2024, 5:00 AM - 7:00 AM"
+          },
+          {
+            "name": "Cycle Track Open After 6:15 p.m.",
+            "startDate": "2024-09-28T18:15:00",
+            "description": "",
+            "subHeaderDate": "September 28, 2024, 6:15 PM"
+          }
+        ]
+      },
+      {
+        "date": "2024-09-29",
+        "entries": [
+          {
+            "name": "Cycle Track Open Until 7 a.m.",
+            "startDate": "2024-09-29T05:00:00",
+            "description": "",
+            "subHeaderDate": "September 29, 2024, 5:00 AM - 7:00 AM"
+          },
+          {
+            "name": "Cycle Track Open After 6:15 p.m.",
+            "startDate": "2024-09-29T18:15:00",
+            "description": "",
+            "subHeaderDate": "September 29, 2024, 6:15 PM"
+          }
+        ]
+      },
+      {
+        "date": "2024-09-30",
+        "entries": [
+          {
+            "name": "Cycle Track Open All Day",
+            "startDate": "2024-09-30T05:00:00",
+            "description": "",
+            "subHeaderDate": "September 30, 2024, 5:00 AM"
+          }
+        ]
+      },
+      {
+        "date": "2024-10-01",
+        "entries": [
+          {
+            "name": "Cycle Track Open Until 2 p.m.",
+            "startDate": "2024-10-01T05:00:00",
+            "description": "",
+            "subHeaderDate": "October 1, 2024, 5:00 AM - 2:00 PM"
+          },
+          {
+            "name": "Cycle Track Open After 6:45 p.m.",
+            "startDate": "2024-10-01T18:45:00",
+            "description": "",
+            "subHeaderDate": "October 1, 2024, 6:45 PM"
+          }
+        ]
+      },
+      {
+        "date": "2024-10-02",
+        "entries": [
+          {
+            "name": "Cycle Track Open Until 2 p.m.",
+            "startDate": "2024-10-02T05:00:00",
+            "description": "",
+            "subHeaderDate": "October 2, 2024, 5:00 AM - 2:00 PM"
+          },
+          {
+            "name": "Cycle Track Open After 6:45 p.m.",
+            "startDate": "2024-10-02T18:45:00",
+            "description": "",
+            "subHeaderDate": "October 2, 2024, 6:45 PM"
+          }
+        ]
+      },
+      {
+        "date": "2024-10-03",
+        "entries": [
+          {
+            "name": "Cycle Track Open Until 2 p.m.",
+            "startDate": "2024-10-03T05:00:00",
+            "description": "",
+            "subHeaderDate": "October 3, 2024, 5:00 AM - 2:00 PM"
+          },
+          {
+            "name": "Cycle Track Open After 6:45 p.m.",
+            "startDate": "2024-10-03T18:45:00",
+            "description": "",
+            "subHeaderDate": "October 3, 2024, 6:45 PM"
+          }
+        ]
+      },
+      {
+        "date": "2024-10-04",
+        "entries": [
+          {
+            "name": "Cycle Track CLOSED ALL DAY",
+            "startDate": "2024-10-04T05:00:00",
+            "description": "",
+            "subHeaderDate": "October 4, 2024, 5:00 AM"
+          }
+        ]
+      },
+      {
+        "date": "2024-10-05",
+        "entries": [
+          {
+            "name": "Cycle Track CLOSED ALL DAY",
+            "startDate": "2024-10-05T05:00:00",
+            "description": "",
+            "subHeaderDate": "October 5, 2024, 5:00 AM"
+          }
+        ]
+      },
+      {
+        "date": "2024-10-06",
+        "entries": [
+          {
+            "name": "Cycle Track CLOSED ALL DAY",
+            "startDate": "2024-10-06T05:00:00",
+            "description": "",
+            "subHeaderDate": "October 6, 2024, 5:00 AM"
+          }
+        ]
+      },
+      {
+        "date": "2024-10-07",
+        "entries": [
+          {
+            "name": "Cycle Track Open All Day",
+            "startDate": "2024-10-07T05:00:00",
+            "description": "",
+            "subHeaderDate": "October 7, 2024, 5:00 AM"
+          }
+        ]
+      },
+      {
+        "date": "2024-10-08",
+        "entries": [
+          {
+            "name": "Cycle Track Open Until 2 p.m.",
+            "startDate": "2024-10-08T05:00:00",
+            "description": "",
+            "subHeaderDate": "October 8, 2024, 5:00 AM - 2:00 PM"
+          },
+          {
+            "name": "Cycle Track Open After 6:45 p.m.",
+            "startDate": "2024-10-08T18:45:00",
+            "description": "",
+            "subHeaderDate": "October 8, 2024, 6:45 PM"
+          }
+        ]
+      },
+      {
+        "date": "2024-10-09",
+        "entries": [
+          {
+            "name": "Cycle Track Open Until 2 p.m.",
+            "startDate": "2024-10-09T05:00:00",
+            "description": "",
+            "subHeaderDate": "October 9, 2024, 5:00 AM - 2:00 PM"
+          },
+          {
+            "name": "Cycle Track Open After 6:45 p.m.",
+            "startDate": "2024-10-09T18:45:00",
+            "description": "",
+            "subHeaderDate": "October 9, 2024, 6:45 PM"
+          }
+        ]
+      },
+      {
+        "date": "2024-10-10",
+        "entries": [
+          {
+            "name": "Cycle Track Open Until 2 p.m.",
+            "startDate": "2024-10-10T05:00:00",
+            "description": "",
+            "subHeaderDate": "October 10, 2024, 5:00 AM - 2:00 PM"
+          },
+          {
+            "name": "Cycle Track Open After 6:45 p.m.",
+            "startDate": "2024-10-10T18:45:00",
+            "description": "",
+            "subHeaderDate": "October 10, 2024, 6:45 PM"
+          }
+        ]
+      },
+      {
+        "date": "2024-10-11",
+        "entries": [
+          {
+            "name": "Cycle Track Open Until 2 p.m.",
+            "startDate": "2024-10-11T05:00:00",
+            "description": "",
+            "subHeaderDate": "October 11, 2024, 5:00 AM - 2:00 PM"
+          },
+          {
+            "name": "Cycle Track Open After 6:45 p.m.",
+            "startDate": "2024-10-11T18:45:00",
+            "description": "",
+            "subHeaderDate": "October 11, 2024, 6:45 PM"
+          }
+        ]
+      },
+      {
+        "date": "2024-10-12",
+        "entries": [
+          {
+            "name": "Cycle Track Open Until 7 a.m.",
+            "startDate": "2024-10-12T05:00:00",
+            "description": "",
+            "subHeaderDate": "October 12, 2024, 5:00 AM - 7:00 AM"
+          },
+          {
+            "name": "Cycle Track Open After 6:15 p.m.",
+            "startDate": "2024-10-12T18:15:00",
+            "description": "",
+            "subHeaderDate": "October 12, 2024, 6:15 PM"
+          }
+        ]
+      },
+      {
+        "date": "2024-10-13",
+        "entries": [
+          {
+            "name": "Cycle Track Open Until 7 a.m.",
+            "startDate": "2024-10-13T05:00:00",
+            "description": "",
+            "subHeaderDate": "October 13, 2024, 5:00 AM - 7:00 AM"
+          },
+          {
+            "name": "Cycle Track Open After 6:15 p.m.",
+            "startDate": "2024-10-13T18:15:00",
+            "description": "",
+            "subHeaderDate": "October 13, 2024, 6:15 PM"
+          }
+        ]
+      },
+      {
+        "date": "2024-10-14",
+        "entries": [
+          {
+            "name": "Cycle Track Open All Day",
+            "startDate": "2024-10-14T05:00:00",
+            "description": "",
+            "subHeaderDate": "October 14, 2024, 5:00 AM"
+          }
+        ]
+      },
+      {
+        "date": "2024-10-15",
+        "entries": [
+          {
+            "name": "Cycle Track Open Until 2 p.m.",
+            "startDate": "2024-10-15T05:00:00",
+            "description": "",
+            "subHeaderDate": "October 15, 2024, 5:00 AM - 2:00 PM"
+          },
+          {
+            "name": "Cycle Track Open After 6:45 p.m.",
+            "startDate": "2024-10-15T18:45:00",
+            "description": "",
+            "subHeaderDate": "October 15, 2024, 6:45 PM"
+          }
+        ]
+      },
+      {
+        "date": "2024-10-16",
+        "entries": [
+          {
+            "name": "Cycle Track Open Until 2 p.m.",
+            "startDate": "2024-10-16T05:00:00",
+            "description": "",
+            "subHeaderDate": "October 16, 2024, 5:00 AM - 2:00 PM"
+          },
+          {
+            "name": "Cycle Track Open After 6:45 p.m.",
+            "startDate": "2024-10-16T18:45:00",
+            "description": "",
+            "subHeaderDate": "October 16, 2024, 6:45 PM"
+          }
+        ]
+      },
+      {
+        "date": "2024-10-17",
+        "entries": [
+          {
+            "name": "Cycle Track Open Until 2 p.m.",
+            "startDate": "2024-10-17T05:00:00",
+            "description": "",
+            "subHeaderDate": "October 17, 2024, 5:00 AM - 2:00 PM"
+          },
+          {
+            "name": "Cycle Track Open After 6:45 p.m.",
+            "startDate": "2024-10-17T18:45:00",
+            "description": "",
+            "subHeaderDate": "October 17, 2024, 6:45 PM"
+          }
+        ]
+      },
+      {
+        "date": "2024-10-18",
+        "entries": [
+          {
+            "name": "Cycle Track Open Until 2 p.m.",
+            "startDate": "2024-10-18T05:00:00",
+            "description": "",
+            "subHeaderDate": "October 18, 2024, 5:00 AM - 2:00 PM"
+          },
+          {
+            "name": "Cycle Track Open After 6:45 p.m.",
+            "startDate": "2024-10-18T18:45:00",
+            "description": "",
+            "subHeaderDate": "October 18, 2024, 6:45 PM"
+          }
+        ]
+      },
+      {
+        "date": "2024-10-19",
+        "entries": [
+          {
+            "name": "Cycle Track Open Until 7 a.m.",
+            "startDate": "2024-10-19T05:00:00",
+            "description": "",
+            "subHeaderDate": "October 19, 2024, 5:00 AM - 7:00 AM"
+          },
+          {
+            "name": "Cycle Track Open After 6:15 p.m.",
+            "startDate": "2024-10-19T18:15:00",
+            "description": "",
+            "subHeaderDate": "October 19, 2024, 6:15 PM"
+          }
+        ]
+      },
+      {
+        "date": "2024-10-20",
+        "entries": [
+          {
+            "name": "Cycle Track Open Until 7 a.m.",
+            "startDate": "2024-10-20T05:00:00",
+            "description": "",
+            "subHeaderDate": "October 20, 2024, 5:00 AM - 7:00 AM"
+          },
+          {
+            "name": "Cycle Track Open After 6:15 p.m.",
+            "startDate": "2024-10-20T18:15:00",
+            "description": "",
+            "subHeaderDate": "October 20, 2024, 6:15 PM"
+          }
+        ]
+      },
+      {
+        "date": "2024-10-21",
+        "entries": [
+          {
+            "name": "Cycle Track Open All Day",
+            "startDate": "2024-10-21T05:00:00",
+            "description": "",
+            "subHeaderDate": "October 21, 2024, 5:00 AM"
+          }
+        ]
+      },
+      {
+        "date": "2024-10-22",
+        "entries": [
+          {
+            "name": "Cycle Track Open Until 2 p.m.",
+            "startDate": "2024-10-22T05:00:00",
+            "description": "",
+            "subHeaderDate": "October 22, 2024, 5:00 AM - 2:00 PM"
+          },
+          {
+            "name": "Cycle Track Open After 6:45 p.m.",
+            "startDate": "2024-10-22T18:45:00",
+            "description": "",
+            "subHeaderDate": "October 22, 2024, 6:45 PM"
+          }
+        ]
+      },
+      {
+        "date": "2024-10-23",
+        "entries": [
+          {
+            "name": "Cycle Track Open Until 2 p.m.",
+            "startDate": "2024-10-23T05:00:00",
+            "description": "",
+            "subHeaderDate": "October 23, 2024, 5:00 AM - 2:00 PM"
+          },
+          {
+            "name": "Cycle Track Open After 6:45 p.m.",
+            "startDate": "2024-10-23T18:45:00",
+            "description": "",
+            "subHeaderDate": "October 23, 2024, 6:45 PM"
+          }
+        ]
+      },
+      {
+        "date": "2024-10-24",
+        "entries": [
+          {
+            "name": "Cycle Track Open Until 2 p.m.",
+            "startDate": "2024-10-24T05:00:00",
+            "description": "",
+            "subHeaderDate": "October 24, 2024, 5:00 AM - 2:00 PM"
+          },
+          {
+            "name": "Cycle Track Open After 6:45 p.m.",
+            "startDate": "2024-10-24T18:45:00",
+            "description": "",
+            "subHeaderDate": "October 24, 2024, 6:45 PM"
+          }
+        ]
+      },
+      {
+        "date": "2024-10-25",
+        "entries": [
+          {
+            "name": "Cycle Track Open Until 2 p.m.",
+            "startDate": "2024-10-25T05:00:00",
+            "description": "",
+            "subHeaderDate": "October 25, 2024, 5:00 AM - 2:00 PM"
+          },
+          {
+            "name": "Cycle Track Open After 6:45 p.m.",
+            "startDate": "2024-10-25T18:45:00",
+            "description": "",
+            "subHeaderDate": "October 25, 2024, 6:45 PM"
+          }
+        ]
+      },
+      {
+        "date": "2024-10-26",
+        "entries": [
+          {
+            "name": "Cycle Track Open Until 7 a.m.",
+            "startDate": "2024-10-26T05:00:00",
+            "description": "",
+            "subHeaderDate": "October 26, 2024, 5:00 AM - 7:00 AM"
+          },
+          {
+            "name": "Cycle Track Open After 6:15 p.m.",
+            "startDate": "2024-10-26T18:15:00",
+            "description": "",
+            "subHeaderDate": "October 26, 2024, 6:15 PM"
+          }
+        ]
+      },
+      {
+        "date": "2024-10-27",
+        "entries": [
+          {
+            "name": "Cycle Track Open Until 7 a.m.",
+            "startDate": "2024-10-27T05:00:00",
+            "description": "",
+            "subHeaderDate": "October 27, 2024, 5:00 AM - 7:00 AM"
+          },
+          {
+            "name": "Cycle Track Open After 6:15 p.m.",
+            "startDate": "2024-10-27T18:15:00",
+            "description": "",
+            "subHeaderDate": "October 27, 2024, 6:15 PM"
+          }
+        ]
+      },
+      {
+        "date": "2024-10-28",
+        "entries": [
+          {
+            "name": "Cycle Track Open All Day",
+            "startDate": "2024-10-28T05:00:00",
+            "description": "",
+            "subHeaderDate": "October 28, 2024, 5:00 AM"
+          }
+        ]
+      },
+      {
+        "date": "2024-10-29",
+        "entries": [
+          {
+            "name": "Cycle Track Open Until 2 p.m.",
+            "startDate": "2024-10-29T05:00:00",
+            "description": "",
+            "subHeaderDate": "October 29, 2024, 5:00 AM - 2:00 PM"
+          },
+          {
+            "name": "Cycle Track Open After 6:45 p.m.",
+            "startDate": "2024-10-29T18:45:00",
+            "description": "",
+            "subHeaderDate": "October 29, 2024, 6:45 PM"
+          }
+        ]
+      },
+      {
+        "date": "2024-10-30",
+        "entries": [
+          {
+            "name": "Cycle Track Open Until 2 p.m.",
+            "startDate": "2024-10-30T05:00:00",
+            "description": "",
+            "subHeaderDate": "October 30, 2024, 5:00 AM - 2:00 PM"
+          },
+          {
+            "name": "Cycle Track Open After 6:45 p.m.",
+            "startDate": "2024-10-30T18:45:00",
+            "description": "",
+            "subHeaderDate": "October 30, 2024, 6:45 PM"
+          }
+        ]
+      },
+      {
+        "date": "2024-10-31",
+        "entries": [
+          {
+            "name": "Cycle Track Open Until 2 p.m.",
+            "startDate": "2024-10-31T05:00:00",
+            "description": "",
+            "subHeaderDate": "October 31, 2024, 5:00 AM - 2:00 PM"
+          },
+          {
+            "name": "Cycle Track Open After 6:45 p.m.",
+            "startDate": "2024-10-31T18:45:00",
+            "description": "",
+            "subHeaderDate": "October 31, 2024, 6:45 PM"
+          }
+        ]
+      },
+      {
+        "date": "2024-11-01",
+        "entries": [
+          {
+            "name": "Cycle Track Open Until 2 p.m.",
+            "startDate": "2024-11-01T05:00:00",
+            "description": "",
+            "subHeaderDate": "November 1, 2024, 5:00 AM - 2:00 PM"
+          },
+          {
+            "name": "Cycle Track Open After 6:45 p.m.",
+            "startDate": "2024-11-01T18:45:00",
+            "description": "",
+            "subHeaderDate": "November 1, 2024, 6:45 PM"
+          }
+        ]
+      },
+      {
+        "date": "2024-11-02",
+        "entries": [
+          {
+            "name": "Cycle Track Open Until 7 a.m.",
+            "startDate": "2024-11-02T05:00:00",
+            "description": "",
+            "subHeaderDate": "November 2, 2024, 5:00 AM - 7:00 AM"
+          },
+          {
+            "name": "Cycle Track Open After 6:15 p.m.",
+            "startDate": "2024-11-02T18:15:00",
+            "description": "",
+            "subHeaderDate": "November 2, 2024, 6:15 PM"
+          }
+        ]
+      },
+      {
+        "date": "2024-11-03",
+        "entries": [
+          {
+            "name": "Cycle Track Open Until 7 a.m.",
+            "startDate": "2024-11-03T05:00:00",
+            "description": "",
+            "subHeaderDate": "November 3, 2024, 5:00 AM - 7:00 AM"
+          },
+          {
+            "name": "Cycle Track Open After 6:15 p.m.",
+            "startDate": "2024-11-03T18:15:00",
+            "description": "",
+            "subHeaderDate": "November 3, 2024, 6:15 PM"
+          }
+        ]
+      },
+      {
+        "date": "2024-11-04",
+        "entries": [
+          {
+            "name": "Cycle Track Open All Day",
+            "startDate": "2024-11-04T05:00:00",
+            "description": "",
+            "subHeaderDate": "November 4, 2024, 5:00 AM"
+          }
+        ]
+      },
+      {
+        "date": "2024-11-05",
+        "entries": [
+          {
+            "name": "Cycle Track Open Until 2 p.m.",
+            "startDate": "2024-11-05T05:00:00",
+            "description": "",
+            "subHeaderDate": "November 5, 2024, 5:00 AM - 2:00 PM"
+          },
+          {
+            "name": "Cycle Track Open After 6:45 p.m.",
+            "startDate": "2024-11-05T18:45:00",
+            "description": "",
+            "subHeaderDate": "November 5, 2024, 6:45 PM"
+          }
+        ]
+      },
+      {
+        "date": "2024-11-06",
+        "entries": [
+          {
+            "name": "Cycle Track Open Until 2 p.m.",
+            "startDate": "2024-11-06T05:00:00",
+            "description": "",
+            "subHeaderDate": "November 6, 2024, 5:00 AM - 2:00 PM"
+          },
+          {
+            "name": "Cycle Track Open After 6:45 p.m.",
+            "startDate": "2024-11-06T18:45:00",
+            "description": "",
+            "subHeaderDate": "November 6, 2024, 6:45 PM"
+          }
+        ]
+      },
+      {
+        "date": "2024-11-07",
+        "entries": [
+          {
+            "name": "Cycle Track Open Until 2 p.m.",
+            "startDate": "2024-11-07T05:00:00",
+            "description": "",
+            "subHeaderDate": "November 7, 2024, 5:00 AM - 2:00 PM"
+          },
+          {
+            "name": "Cycle Track Open After 6:45 p.m.",
+            "startDate": "2024-11-07T18:45:00",
+            "description": "",
+            "subHeaderDate": "November 7, 2024, 6:45 PM"
+          }
+        ]
+      },
+      {
+        "date": "2024-11-08",
+        "entries": [
+          {
+            "name": "Cycle Track Open Until 2 p.m.",
+            "startDate": "2024-11-08T05:00:00",
+            "description": "",
+            "subHeaderDate": "November 8, 2024, 5:00 AM - 2:00 PM"
+          },
+          {
+            "name": "Cycle Track Open After 6:45 p.m.",
+            "startDate": "2024-11-08T18:45:00",
+            "description": "",
+            "subHeaderDate": "November 8, 2024, 6:45 PM"
+          }
+        ]
+      },
+      {
+        "date": "2024-11-09",
+        "entries": [
+          {
+            "name": "Cycle Track Open Until 7 a.m.",
+            "startDate": "2024-11-09T05:00:00",
+            "description": "",
+            "subHeaderDate": "November 9, 2024, 5:00 AM - 7:00 AM"
+          },
+          {
+            "name": "Cycle Track Open After 6:15 p.m.",
+            "startDate": "2024-11-09T18:15:00",
+            "description": "",
+            "subHeaderDate": "November 9, 2024, 6:15 PM"
+          }
+        ]
+      },
+      {
+        "date": "2024-11-10",
+        "entries": [
+          {
+            "name": "Cycle Track Open Until 7 a.m.",
+            "startDate": "2024-11-10T05:00:00",
+            "description": "",
+            "subHeaderDate": "November 10, 2024, 5:00 AM - 7:00 AM"
+          },
+          {
+            "name": "Cycle Track Open After 6:15 p.m.",
+            "startDate": "2024-11-10T18:15:00",
+            "description": "",
+            "subHeaderDate": "November 10, 2024, 6:15 PM"
+          }
+        ]
+      },
+      {
+        "date": "2024-11-11",
+        "entries": [
+          {
+            "name": "Cycle Track Open All Day",
+            "startDate": "2024-11-11T05:00:00",
+            "description": "",
+            "subHeaderDate": "November 11, 2024, 5:00 AM"
+          }
+        ]
+      },
+      {
+        "date": "2024-11-12",
+        "entries": [
+          {
+            "name": "Cycle Track Open Until 2 p.m.",
+            "startDate": "2024-11-12T05:00:00",
+            "description": "",
+            "subHeaderDate": "November 12, 2024, 5:00 AM - 2:00 PM"
+          },
+          {
+            "name": "Cycle Track Open After 6:45 p.m.",
+            "startDate": "2024-11-12T18:45:00",
+            "description": "",
+            "subHeaderDate": "November 12, 2024, 6:45 PM"
+          }
+        ]
+      },
+      {
+        "date": "2024-11-13",
+        "entries": [
+          {
+            "name": "Cycle Track Open Until 2 p.m.",
+            "startDate": "2024-11-13T05:00:00",
+            "description": "",
+            "subHeaderDate": "November 13, 2024, 5:00 AM - 2:00 PM"
+          },
+          {
+            "name": "Cycle Track Open After 6:45 p.m.",
+            "startDate": "2024-11-13T18:45:00",
+            "description": "",
+            "subHeaderDate": "November 13, 2024, 6:45 PM"
+          }
+        ]
+      },
+      {
+        "date": "2024-11-14",
+        "entries": [
+          {
+            "name": "Cycle Track Open Until 2 p.m.",
+            "startDate": "2024-11-14T05:00:00",
+            "description": "",
+            "subHeaderDate": "November 14, 2024, 5:00 AM - 2:00 PM"
+          },
+          {
+            "name": "Cycle Track Open After 6:45 p.m.",
+            "startDate": "2024-11-14T18:45:00",
+            "description": "",
+            "subHeaderDate": "November 14, 2024, 6:45 PM"
+          }
+        ]
+      },
+      {
+        "date": "2024-11-15",
+        "entries": [
+          {
+            "name": "Cycle Track Open Until 2 p.m.",
+            "startDate": "2024-11-15T05:00:00",
+            "description": "",
+            "subHeaderDate": "November 15, 2024, 5:00 AM - 2:00 PM"
+          },
+          {
+            "name": "Cycle Track Open After 6:45 p.m.",
+            "startDate": "2024-11-15T18:45:00",
+            "description": "",
+            "subHeaderDate": "November 15, 2024, 6:45 PM"
+          }
+        ]
+      },
+      {
+        "date": "2024-11-16",
+        "entries": [
+          {
+            "name": "Cycle Track Open Until 7 a.m.",
+            "startDate": "2024-11-16T05:00:00",
+            "description": "",
+            "subHeaderDate": "November 16, 2024, 5:00 AM - 7:00 AM"
+          },
+          {
+            "name": "Cycle Track Open After 6:15 p.m.",
+            "startDate": "2024-11-16T18:15:00",
+            "description": "",
+            "subHeaderDate": "November 16, 2024, 6:15 PM"
+          }
+        ]
+      },
+      {
+        "date": "2024-11-17",
+        "entries": [
+          {
+            "name": "Cycle Track Open Until 7 a.m.",
+            "startDate": "2024-11-17T05:00:00",
+            "description": "",
+            "subHeaderDate": "November 17, 2024, 5:00 AM - 7:00 AM"
+          },
+          {
+            "name": "Cycle Track Open After 6:15 p.m.",
+            "startDate": "2024-11-17T18:15:00",
+            "description": "",
+            "subHeaderDate": "November 17, 2024, 6:15 PM"
+          }
+        ]
+      },
+      {
+        "date": "2024-11-18",
+        "entries": [
+          {
+            "name": "Cycle Track Open All Day",
+            "startDate": "2024-11-18T05:00:00",
+            "description": "",
+            "subHeaderDate": "November 18, 2024, 5:00 AM"
+          }
+        ]
+      },
+      {
+        "date": "2024-11-19",
+        "entries": [
+          {
+            "name": "Cycle Track Open Until 2 p.m.",
+            "startDate": "2024-11-19T05:00:00",
+            "description": "",
+            "subHeaderDate": "November 19, 2024, 5:00 AM - 2:00 PM"
+          },
+          {
+            "name": "Cycle Track Open After 6:45 p.m.",
+            "startDate": "2024-11-19T18:45:00",
+            "description": "",
+            "subHeaderDate": "November 19, 2024, 6:45 PM"
+          }
+        ]
+      },
+      {
+        "date": "2024-11-20",
+        "entries": [
+          {
+            "name": "Cycle Track Open Until 12 p.m.",
+            "startDate": "2024-11-20T05:00:00",
+            "description": "",
+            "subHeaderDate": "November 20, 2024, 5:00 AM - 12:00 PM"
+          },
+          {
+            "name": "Cycle Track Open After 6:45 p.m.",
+            "startDate": "2024-11-20T18:45:00",
+            "description": "",
+            "subHeaderDate": "November 20, 2024, 6:45 PM"
+          }
+        ]
+      },
+      {
+        "date": "2024-11-21",
+        "entries": [
+          {
+            "name": "Cycle Track Open Until 2 p.m.",
+            "startDate": "2024-11-21T05:00:00",
+            "description": "",
+            "subHeaderDate": "November 21, 2024, 5:00 AM - 2:00 PM"
+          },
+          {
+            "name": "Cycle Track Open After 6:45 p.m.",
+            "startDate": "2024-11-21T18:45:00",
+            "description": "",
+            "subHeaderDate": "November 21, 2024, 6:45 PM"
+          }
+        ]
+      },
+      {
+        "date": "2024-11-22",
+        "entries": [
+          {
+            "name": "Cycle Track Open Until 2 p.m.",
+            "startDate": "2024-11-22T05:00:00",
+            "description": "",
+            "subHeaderDate": "November 22, 2024, 5:00 AM - 2:00 PM"
+          },
+          {
+            "name": "Cycle Track Open After 6:45 p.m.",
+            "startDate": "2024-11-22T18:45:00",
+            "description": "",
+            "subHeaderDate": "November 22, 2024, 6:45 PM"
+          }
+        ]
+      },
+      {
+        "date": "2024-11-23",
+        "entries": [
+          {
+            "name": "Cycle Track Open Until 7 a.m.",
+            "startDate": "2024-11-23T05:00:00",
+            "description": "",
+            "subHeaderDate": "November 23, 2024, 5:00 AM - 7:00 AM"
+          },
+          {
+            "name": "Cycle Track Open After 6:15 p.m.",
+            "startDate": "2024-11-23T18:15:00",
+            "description": "",
+            "subHeaderDate": "November 23, 2024, 6:15 PM"
+          }
+        ]
+      },
+      {
+        "date": "2024-11-24",
+        "entries": [
+          {
+            "name": "Cycle Track Open Until 7 a.m.",
+            "startDate": "2024-11-24T05:00:00",
+            "description": "",
+            "subHeaderDate": "November 24, 2024, 5:00 AM - 7:00 AM"
+          },
+          {
+            "name": "Cycle Track Open After 6:15 p.m.",
+            "startDate": "2024-11-24T18:15:00",
+            "description": "",
+            "subHeaderDate": "November 24, 2024, 6:15 PM"
+          }
+        ]
+      },
+      {
+        "date": "2024-11-25",
+        "entries": [
+          {
+            "name": "Cycle Track Open All Day",
+            "startDate": "2024-11-25T05:00:00",
+            "description": "",
+            "subHeaderDate": "November 25, 2024, 5:00 AM"
+          }
+        ]
+      },
+      {
+        "date": "2024-11-26",
+        "entries": [
+          {
+            "name": "Cycle Track Open Until 2 p.m.",
+            "startDate": "2024-11-26T05:00:00",
+            "description": "",
+            "subHeaderDate": "November 26, 2024, 5:00 AM - 2:00 PM"
+          },
+          {
+            "name": "Cycle Track Open After 6:45 p.m.",
+            "startDate": "2024-11-26T18:45:00",
+            "description": "",
+            "subHeaderDate": "November 26, 2024, 6:45 PM"
+          }
+        ]
+      },
+      {
+        "date": "2024-11-27",
+        "entries": [
+          {
+            "name": "Cycle Track Open Until 2 p.m.",
+            "startDate": "2024-11-27T05:00:00",
+            "description": "",
+            "subHeaderDate": "November 27, 2024, 5:00 AM - 2:00 PM"
+          },
+          {
+            "name": "Cycle Track Open After 6:45 p.m.",
+            "startDate": "2024-11-27T18:45:00",
+            "description": "",
+            "subHeaderDate": "November 27, 2024, 6:45 PM"
+          }
+        ]
+      },
+      {
+        "date": "2024-11-28",
+        "entries": [
+          {
+            "name": "Cycle Track Open Until 7 a.m.",
+            "startDate": "2024-11-28T05:00:00",
+            "description": "",
+            "subHeaderDate": "November 28, 2024, 5:00 AM - 7:00 AM"
+          },
+          {
+            "name": "Cycle Track Open After 11 a.m.",
+            "startDate": "2024-11-28T11:00:00",
+            "description": "",
+            "subHeaderDate": "November 28, 2024, 11:00 AM"
+          }
+        ]
+      },
+      {
+        "date": "2024-11-29",
+        "entries": [
+          {
+            "name": "Cycle Track Open All Day",
+            "startDate": "2024-11-29T05:00:00",
+            "description": "",
+            "subHeaderDate": "November 29, 2024, 5:00 AM"
+          }
+        ]
+      },
+      {
+        "date": "2024-11-30",
+        "entries": [
+          {
+            "name": "Cycle Track Open All Day",
+            "startDate": "2024-11-30T05:00:00",
+            "description": "",
+            "subHeaderDate": "November 30, 2024, 5:00 AM"
+          }
+        ]
+      },
+      {
+        "date": "2024-12-01",
+        "entries": [
+          {
+            "name": "Cycle Track Open All Day",
+            "startDate": "2024-12-01T05:00:00",
+            "description": "",
+            "subHeaderDate": "December 1, 2024, 5:00 AM"
+          }
+        ]
+      },
+      {
+        "date": "2024-12-02",
+        "entries": [
+          {
+            "name": "Cycle Track Open All Day",
+            "startDate": "2024-12-02T05:00:00",
+            "description": "",
+            "subHeaderDate": "December 2, 2024, 5:00 AM"
+          }
+        ]
+      },
+      {
+        "date": "2024-12-03",
+        "entries": [
+          {
+            "name": "Cycle Track Open All Day",
+            "startDate": "2024-12-03T05:00:00",
+            "description": "",
+            "subHeaderDate": "December 3, 2024, 5:00 AM"
+          }
+        ]
+      },
+      {
+        "date": "2024-12-04",
+        "entries": [
+          {
+            "name": "Cycle Track Open All Day",
+            "startDate": "2024-12-04T05:00:00",
+            "description": "",
+            "subHeaderDate": "December 4, 2024, 5:00 AM"
+          }
+        ]
+      },
+      {
+        "date": "2024-12-05",
+        "entries": [
+          {
+            "name": "Cycle Track Open All Day",
+            "startDate": "2024-12-05T05:00:00",
+            "description": "",
+            "subHeaderDate": "December 5, 2024, 5:00 AM"
+          }
+        ]
+      },
+      {
+        "date": "2024-12-06",
+        "entries": [
+          {
+            "name": "Cycle Track Open All Day",
+            "startDate": "2024-12-06T05:00:00",
+            "description": "",
+            "subHeaderDate": "December 6, 2024, 5:00 AM"
+          }
+        ]
+      },
+      {
+        "date": "2024-12-07",
+        "entries": [
+          {
+            "name": "Cycle Track Open All Day",
+            "startDate": "2024-12-07T05:00:00",
+            "description": "",
+            "subHeaderDate": "December 7, 2024, 5:00 AM"
+          }
+        ]
+      },
+      {
+        "date": "2024-12-08",
+        "entries": [
+          {
+            "name": "Cycle Track Open All Day",
+            "startDate": "2024-12-08T05:00:00",
+            "description": "",
+            "subHeaderDate": "December 8, 2024, 5:00 AM"
+          }
+        ]
+      },
+      {
+        "date": "2024-12-09",
+        "entries": [
+          {
+            "name": "Cycle Track Open All Day",
+            "startDate": "2024-12-09T05:00:00",
+            "description": "",
+            "subHeaderDate": "December 9, 2024, 5:00 AM"
+          }
+        ]
+      },
+      {
+        "date": "2024-12-10",
+        "entries": [
+          {
+            "name": "Cycle Track Open All Day",
+            "startDate": "2024-12-10T05:00:00",
+            "description": "",
+            "subHeaderDate": "December 10, 2024, 5:00 AM"
+          }
+        ]
+      },
+      {
+        "date": "2024-12-11",
+        "entries": [
+          {
+            "name": "Cycle Track Open All Day",
+            "startDate": "2024-12-11T05:00:00",
+            "description": "",
+            "subHeaderDate": "December 11, 2024, 5:00 AM"
+          }
+        ]
+      },
+      {
+        "date": "2024-12-12",
+        "entries": [
+          {
+            "name": "Cycle Track Open All Day",
+            "startDate": "2024-12-12T05:00:00",
+            "description": "",
+            "subHeaderDate": "December 12, 2024, 5:00 AM"
+          }
+        ]
+      },
+      {
+        "date": "2024-12-13",
+        "entries": [
+          {
+            "name": "Cycle Track Open All Day",
+            "startDate": "2024-12-13T05:00:00",
+            "description": "",
+            "subHeaderDate": "December 13, 2024, 5:00 AM"
+          }
+        ]
+      },
+      {
+        "date": "2024-12-14",
+        "entries": [
+          {
+            "name": "Cycle Track Open All Day",
+            "startDate": "2024-12-14T05:00:00",
+            "description": "",
+            "subHeaderDate": "December 14, 2024, 5:00 AM"
+          }
+        ]
+      },
+      {
+        "date": "2024-12-15",
+        "entries": [
+          {
+            "name": "Cycle Track Open All Day",
+            "startDate": "2024-12-15T05:00:00",
+            "description": "",
+            "subHeaderDate": "December 15, 2024, 5:00 AM"
+          }
+        ]
+      },
+      {
+        "date": "2024-12-16",
+        "entries": [
+          {
+            "name": "Cycle Track Open All Day",
+            "startDate": "2024-12-16T05:00:00",
+            "description": "",
+            "subHeaderDate": "December 16, 2024, 5:00 AM"
+          }
+        ]
+      },
+      {
+        "date": "2024-12-17",
+        "entries": [
+          {
+            "name": "Cycle Track Open All Day",
+            "startDate": "2024-12-17T05:00:00",
+            "description": "",
+            "subHeaderDate": "December 17, 2024, 5:00 AM"
+          }
+        ]
+      },
+      {
+        "date": "2024-12-18",
+        "entries": [
+          {
+            "name": "Cycle Track Open All Day",
+            "startDate": "2024-12-18T05:00:00",
+            "description": "",
+            "subHeaderDate": "December 18, 2024, 5:00 AM"
+          }
+        ]
+      },
+      {
+        "date": "2024-12-19",
+        "entries": [
+          {
+            "name": "Cycle Track Open All Day",
+            "startDate": "2024-12-19T05:00:00",
+            "description": "",
+            "subHeaderDate": "December 19, 2024, 5:00 AM"
+          }
+        ]
+      },
+      {
+        "date": "2024-12-20",
+        "entries": [
+          {
+            "name": "Cycle Track Open All Day",
+            "startDate": "2024-12-20T05:00:00",
+            "description": "",
+            "subHeaderDate": "December 20, 2024, 5:00 AM"
+          }
+        ]
+      },
+      {
+        "date": "2024-12-21",
+        "entries": [
+          {
+            "name": "Cycle Track Open All Day",
+            "startDate": "2024-12-21T05:00:00",
+            "description": "",
+            "subHeaderDate": "December 21, 2024, 5:00 AM"
+          }
+        ]
+      },
+      {
+        "date": "2024-12-22",
+        "entries": [
+          {
+            "name": "Cycle Track Open All Day",
+            "startDate": "2024-12-22T05:00:00",
+            "description": "",
+            "subHeaderDate": "December 22, 2024, 5:00 AM"
+          }
+        ]
+      },
+      {
+        "date": "2024-12-23",
+        "entries": [
+          {
+            "name": "Cycle Track Open All Day",
+            "startDate": "2024-12-23T05:00:00",
+            "description": "",
+            "subHeaderDate": "December 23, 2024, 5:00 AM"
+          }
+        ]
+      },
+      {
+        "date": "2024-12-24",
+        "entries": [
+          {
+            "name": "Cycle Track Open All Day",
+            "startDate": "2024-12-24T05:00:00",
+            "description": "",
+            "subHeaderDate": "December 24, 2024, 5:00 AM"
+          }
+        ]
+      },
+      {
+        "date": "2024-12-25",
+        "entries": [
+          {
+            "name": "Cycle Track Open All Day",
+            "startDate": "2024-12-25T05:00:00",
+            "description": "",
+            "subHeaderDate": "December 25, 2024, 5:00 AM"
+          }
+        ]
+      },
+      {
+        "date": "2024-12-26",
+        "entries": [
+          {
+            "name": "Cycle Track Open All Day",
+            "startDate": "2024-12-26T05:00:00",
+            "description": "",
+            "subHeaderDate": "December 26, 2024, 5:00 AM"
+          }
+        ]
+      },
+      {
+        "date": "2024-12-27",
+        "entries": [
+          {
+            "name": "Cycle Track Open All Day",
+            "startDate": "2024-12-27T05:00:00",
+            "description": "",
+            "subHeaderDate": "December 27, 2024, 5:00 AM"
+          }
+        ]
+      },
+      {
+        "date": "2024-12-28",
+        "entries": [
+          {
+            "name": "Cycle Track Open All Day",
+            "startDate": "2024-12-28T05:00:00",
+            "description": "",
+            "subHeaderDate": "December 28, 2024, 5:00 AM"
+          }
+        ]
+      },
+      {
+        "date": "2024-12-29",
+        "entries": [
+          {
+            "name": "Cycle Track Open All Day",
+            "startDate": "2024-12-29T05:00:00",
+            "description": "",
+            "subHeaderDate": "December 29, 2024, 5:00 AM"
+          }
+        ]
+      },
+      {
+        "date": "2024-12-30",
+        "entries": [
+          {
+            "name": "Cycle Track Open All Day",
+            "startDate": "2024-12-30T05:00:00",
+            "description": "",
+            "subHeaderDate": "December 30, 2024, 5:00 AM"
+          }
+        ]
+      },
+      {
+        "date": "2024-12-31",
+        "entries": [
+          {
+            "name": "Cycle Track Open All Day",
+            "startDate": "2024-12-31T05:00:00",
+            "description": "",
+            "subHeaderDate": "December 31, 2024, 5:00 AM"
           }
         ]
       }

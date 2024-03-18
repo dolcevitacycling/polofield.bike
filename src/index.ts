@@ -3,7 +3,6 @@ import {
   cronBody,
   handleCron,
   recentScrapedResults,
-  refreshScrapeResult,
 } from "./cron";
 import { Bindings, PoloFieldMessage } from "./types";
 import { Hono } from "hono";
