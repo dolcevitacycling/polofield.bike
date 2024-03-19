@@ -16,7 +16,6 @@ import {
   stream,
   reParser
 } from "./parsing";
-import { decodeHTML } from "entities";
 
 const CALENDAR_ID = 41;
 
@@ -351,7 +350,7 @@ export class CalendarScraper implements HTMLRewriterElementContentHandlers {
   }
   text(element: Text) {
     if (Array.isArray(this.state)) {
-      this.state[0](decodeHTML(element.text.replaceAll(/&(nbsp|thinsp);/gi, " ")).replaceAll(/\s+/gi, " "), this.state[1]);
+      this.state[0](element.text.replaceAll(/&(nbsp|thinsp);/gi, " ").replaceAll(/\s+/gi, " "), this.state[1]);
     }
     element.remove();
   }
