@@ -14,7 +14,7 @@ import {
   parseAll,
   parseFirst,
   stream,
-  reParser
+  reParser,
 } from "./parsing";
 
 const CALENDAR_ID = 41;
@@ -178,6 +178,26 @@ export const subheaderDateParser = ensureEndParsed(
   apSecond(reParser(/\w+\s+\d+,\s+\d+,\s+/gi), ctxMinuteRangeParser),
 );
 
+function fixEvent({
+  name,
+  startDate,
+  description,
+  subHeaderDate,
+}: CalendarEntry) {
+  const after = subHeaderDate
+    .replaceAll(/&nbsp;|&thinsp;/gi, " ")
+    .replaceAll(/\s+/g, " ");
+  if (/&/gi.test(after)) {
+    console.error(`Invalid subHeaderDate: ${JSON.stringify(subHeaderDate)} -> ${JSON.stringify(after)}`);
+  }
+  return {
+    name,
+    startDate,
+    description,
+    subHeaderDate: after,
+  };
+}
+
 function nameParser(entry: CalendarEntry) {
   const s = stream(entry.name);
   const result = cycleTrackParser(s)?.result;
@@ -304,7 +324,7 @@ export class CalendarScraper implements HTMLRewriterElementContentHandlers {
             if (!Array.isArray(this.state)) {
               throw new Error(`Invalid state: ${JSON.stringify(this.state)}`);
             }
-            this.addEvent(this.state[1]);
+            this.addEvent(fixEvent(this.state[1]));
             this.state = "ol";
           });
         }
@@ -350,7 +370,7 @@ export class CalendarScraper implements HTMLRewriterElementContentHandlers {
   }
   text(element: Text) {
     if (Array.isArray(this.state)) {
-      this.state[0](element.text.replaceAll(/&(nbsp|thinsp);/gi, " ").replaceAll(/\s+/gi, " "), this.state[1]);
+      this.state[0](element.text, this.state[1]);
     }
     element.remove();
   }
