@@ -351,7 +351,7 @@ export class CalendarScraper implements HTMLRewriterElementContentHandlers {
   }
   text(element: Text) {
     if (Array.isArray(this.state)) {
-      this.state[0](decodeHTML(element.text), this.state[1]);
+      this.state[0](decodeHTML(element.text.replaceAll(/&nbsp;/gi, " ")).replaceAll(/\s+/gi, " "), this.state[1]);
     }
     element.remove();
   }
