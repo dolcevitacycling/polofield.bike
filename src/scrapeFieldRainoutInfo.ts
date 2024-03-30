@@ -1,8 +1,5 @@
 import xlsx from "node-xlsx";
 import fs from "fs";
-import { HTMLRewriter } from "@miniflare/html-rewriter";
-import { Response } from "@miniflare/core";
-import { CalendarScraper, currentCalendarUrl } from "../src/scrapeCalendar";
 import { Readable } from "stream";
 import { ReadableStream } from "stream/web";
 import { finished } from "stream/promises";
@@ -31,16 +28,10 @@ enum OpenFieldStatus {
   OPEN_FIELDS = "open fields",
 }
 
-enum OtherFieldStatus {
-  OTHER = "other see below",
-}
-
-type FieldStatus = ClosedFieldStatus | OpenFieldStatus | OtherFieldStatus;
-
 const CLOSED_STATUSES = Object.values(ClosedFieldStatus);
 const OPEN_STATUSES = Object.values(OpenFieldStatus);
 
-const downloadFieldRainoutInfo = async () => {
+export const downloadFieldRainoutInfo = async () => {
   /**
    * Fetch the field rainout info as an XLSX.
    *
@@ -70,7 +61,10 @@ const downloadFieldRainoutInfo = async () => {
   await finished(Readable.fromWeb(body as ReadableStream).pipe(stream));
 };
 
-const transformRainoutInfo = (rainoutInfo: string[][], limit: number = 200) => {
+export const parseFieldRainoutInfo = (
+  rainoutInfo: string[][],
+  limit: number = 200,
+): { [key: string]: boolean } => {
   /**
    * Parse the rainout info with the oldest entries first.
    *
@@ -88,9 +82,11 @@ const transformRainoutInfo = (rainoutInfo: string[][], limit: number = 200) => {
    * This schedule goes back to 2015, so we slice it because we really only care about
    * the most recent entries.
    *
+   * This should cover most of the common cases. It's not really possible to do much with the "check back later" ones.
+   *
    * If the value for the date is true, the field is rained out.
    */
-  rainoutInfo
+  return rainoutInfo
     .slice(0, limit)
     .reverse()
     .reduce(
@@ -153,8 +149,6 @@ const transformRainoutInfo = (rainoutInfo: string[][], limit: number = 200) => {
               acc[date] = true;
             }
           }
-        } else {
-          console.log(row);
         }
 
         return acc;
@@ -163,8 +157,10 @@ const transformRainoutInfo = (rainoutInfo: string[][], limit: number = 200) => {
     );
 };
 
-export const fetchFieldRainoutInfo = async (limit: number = 200) => {
-  // await downloadFieldRainoutInfo();
+export const fetchFieldRainoutInfo = async (
+  limit: number = 20,
+): Promise<{ [key: string]: boolean }> => {
+  await downloadFieldRainoutInfo();
   const worksheets = xlsx.parse(fs.readFileSync(FIELD_RAINOUT_FILENAME), {
     raw: false,
   });
@@ -176,6 +172,5 @@ export const fetchFieldRainoutInfo = async (limit: number = 200) => {
   const schedule = worksheets[0];
   const contents = schedule.data;
   contents.shift(); // pop headers
-  transformRainoutInfo(contents, limit);
-  // console.log(Array.from(new Set(contents.map((row) => row[2]))));
+  return parseFieldRainoutInfo(contents, limit);
 };
