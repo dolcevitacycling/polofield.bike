@@ -1,8 +1,4 @@
 import xlsx from "node-xlsx";
-import fs from "fs";
-import { Readable } from "stream";
-import { ReadableStream } from "stream/web";
-import { finished } from "stream/promises";
 
 const FIELD_RAINOUT_INFO_URL =
   "https://fs18.formsite.com/res/resultsReportTable?EParam=B6fiTn%2BRcO5gxPxCLTtif%2FTBZfQjAcbzwCi9jw02kUQSq0hsyAedVkhBtIa3wGQcGW07E1SN8yI%3D";
@@ -48,17 +44,15 @@ export const downloadFieldRainoutInfo = async () => {
     return acc;
   }, [] as string[]);
 
-  const stream = fs.createWriteStream(FIELD_RAINOUT_FILENAME);
   const headers = new Headers();
   headers.append("Cookie", cookies.join("; "));
 
-  const { body } = await fetch(FIELD_RAINOUT_EXPORT_URL, { headers });
+  const response = await fetch(FIELD_RAINOUT_EXPORT_URL, { headers });
+  const blob = await response.blob();
 
-  if (!body) {
-    throw Error("Unable to download field rainout info");
-  }
-
-  await finished(Readable.fromWeb(body as ReadableStream).pipe(stream));
+  return xlsx.parse(Buffer.from(await blob.arrayBuffer()), {
+    raw: false,
+  });
 };
 
 export const parseFieldRainoutInfo = (
@@ -160,10 +154,7 @@ export const parseFieldRainoutInfo = (
 export const fetchFieldRainoutInfo = async (
   limit: number = 20,
 ): Promise<{ [key: string]: boolean }> => {
-  await downloadFieldRainoutInfo();
-  const worksheets = xlsx.parse(fs.readFileSync(FIELD_RAINOUT_FILENAME), {
-    raw: false,
-  });
+  const worksheets = await downloadFieldRainoutInfo();
 
   if (!worksheets.length) {
     throw Error("Unable to parse field rainout info as sheet");
