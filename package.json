@@ -10,6 +10,7 @@
     "@types/suncalc": "^1.9.2",
     "discord-api-types": "^0.37.67",
     "hono": "^3.12.8",
+    "node-xlsx": "^0.23.0",
     "prettier": "^3.2.4",
     "serverless-cloudflare-workers": "^1.2.0",
     "suncalc": "^1.9.0",
