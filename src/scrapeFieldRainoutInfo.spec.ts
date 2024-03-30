@@ -23,7 +23,7 @@ describe("transformRainoutInfo", () => {
       fieldRainoutInfo: [
         ["12/10/2022", "Sat", "All Grass Fields & Diamonds", "Closed"],
       ],
-      result: true,
+      result: { "2022-12-10": true },
     },
     {
       fieldRainoutInfo: [
@@ -47,7 +47,7 @@ describe("transformRainoutInfo", () => {
             "Still waiting on a few more. Please check back soon.",
         ],
       ],
-      result: true,
+      result: { "2023-04-07": true },
     },
     {
       fieldRainoutInfo: [
@@ -71,7 +71,7 @@ describe("transformRainoutInfo", () => {
             "Crocker D1, D2, D3, D5",
         ],
       ],
-      result: false,
+      result: { "2023-03-23": false },
     },
     {
       fieldRainoutInfo: [
@@ -95,11 +95,13 @@ describe("transformRainoutInfo", () => {
             "Little Rec\n",
         ],
       ],
-      result: false,
+      result: { "2019-04-05": false },
     },
   ])("transformRainoutInfo", ({ fieldRainoutInfo, result }) => {
     const parsed = parseFieldRainoutInfo(fieldRainoutInfo);
-    expect(parsed[fieldRainoutInfo[0][0]]).toBe(result);
+    const res = Object.entries(result)[0];
+
+    expect(parsed[res[0]]).toBe(res[1]);
   });
 });
 

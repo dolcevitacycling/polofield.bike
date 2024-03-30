@@ -4,7 +4,6 @@ const FIELD_RAINOUT_INFO_URL =
   "https://fs18.formsite.com/res/resultsReportTable?EParam=B6fiTn%2BRcO5gxPxCLTtif%2FTBZfQjAcbzwCi9jw02kUQSq0hsyAedVkhBtIa3wGQcGW07E1SN8yI%3D";
 const FIELD_RAINOUT_EXPORT_URL =
   "https://fs18.formsite.com/res/resultsReportExport?EParam=B6fiTn-RcO5gxPxCLTtif_TBZfQjAcbzwCi9jw02kUQSq0hsyAedVkhBtIa3wGQcGW07E1SN8yI";
-const FIELD_RAINOUT_FILENAME = "fieldRainoutInfo.xlsx";
 
 enum FieldComplex {
   ALL_GRASS_FIELDS_AND_DIAMONDS = "all grass fields & diamonds",
@@ -50,7 +49,7 @@ export const downloadFieldRainoutInfo = async () => {
   const response = await fetch(FIELD_RAINOUT_EXPORT_URL, { headers });
   const blob = await response.blob();
 
-  return xlsx.parse(Buffer.from(await blob.arrayBuffer()), {
+  return xlsx.parse(await blob.arrayBuffer(), {
     raw: false,
   });
 };
@@ -85,7 +84,8 @@ export const parseFieldRainoutInfo = (
     .reverse()
     .reduce(
       (acc, row) => {
-        const date = row[0];
+        const splitDate = row[0].split("/");
+        const date = `${splitDate[2]}-${splitDate[0]}-${splitDate[1]}`;
 
         const fieldComplex = row[2].toLowerCase();
         const fieldStatus = row[3].toLowerCase();
