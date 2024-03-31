@@ -16,8 +16,10 @@ import {
   stream,
   reParser,
 } from "./parsing";
+import { format as formatDate } from "date-fns";
 
 const CALENDAR_ID = 41;
+const OPEN_ALL_DAY = "Cycle Track Open All Day";
 
 function getCalendarUrl(startYear: number, endYear: number) {
   return `https://www.sfrecpark.org/calendar.aspx?Keywords=&startDate=01/01/${startYear}&enddate=12/31/${endYear}&CID=${CALENDAR_ID}&showPastEvents=true`;
@@ -188,7 +190,9 @@ function fixEvent({
     .replaceAll(/&nbsp;|&thinsp;/gi, " ")
     .replaceAll(/\s+/g, " ");
   if (/&/gi.test(after)) {
-    console.error(`Invalid subHeaderDate: ${JSON.stringify(subHeaderDate)} -> ${JSON.stringify(after)}`);
+    console.error(
+      `Invalid subHeaderDate: ${JSON.stringify(subHeaderDate)} -> ${JSON.stringify(after)}`,
+    );
   }
   return {
     name,
@@ -232,11 +236,31 @@ function fillEntry(
   };
 }
 
-function recognizeCalendarDate(date: CalendarDate): RecognizerRules {
+function recognizeCalendarDate(
+  date: CalendarDate,
+  fieldRainoutInfo: { [key: string]: boolean },
+): RecognizerRules {
   const intervals: RuleInterval[] = [];
   let lastEntry: ParsedName | null = null;
+  const isFieldRainedOut = fieldRainoutInfo[date.date] || false;
+
+  if (isFieldRainedOut) {
+    // if the field is rained out, override the entries
+    const dateWithTime = `${date.date}T05:00:00`;
+    const parsedDate = new Date(dateWithTime);
+    date.entries = [
+      {
+        name: OPEN_ALL_DAY,
+        startDate: dateWithTime,
+        description: "",
+        subHeaderDate: formatDate(parsedDate, "MMMM d, yyyy K:mm aa"),
+      },
+    ];
+  }
+
   for (const entry of date.entries) {
     const p = fillEntry(nameParser(entry), lastEntry);
+
     if (!lastEntry) {
       if (p.startMinute > 0) {
         intervals.push({
@@ -276,16 +300,20 @@ function recognizeCalendarDate(date: CalendarDate): RecognizerRules {
       (e) => `${e.name}\t${e.startDate}\t${e.description}\t${e.subHeaderDate}`,
     ),
   };
+
   return { recognizer: calendarRecognizer, rules };
 }
 
 export class CalendarScraper implements HTMLRewriterElementContentHandlers {
+  fieldRainoutInfo: { [key: string]: boolean } = {};
   state: ScraperState = "initial";
   years: Year<CalendarDate>[] = [];
   getDebugResult(): ScrapeDebugResult {
     return this.years.map((y) => ({
       ...y,
-      rules: y.rules.map(recognizeCalendarDate),
+      rules: y.rules.map((r) =>
+        recognizeCalendarDate(r, this.fieldRainoutInfo),
+      ),
     }));
   }
   getResult(): ScrapeResult {
