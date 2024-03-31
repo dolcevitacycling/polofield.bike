@@ -31,5 +31,8 @@
     "format": "prettier --write 'src/**/*.{js,ts,css,json,md}'",
     "scrape": "NODE_OPTIONS=--no-warnings=ExperimentalWarning tsx scripts/scrape.ts"
   },
-  "prettier": {}
+  "prettier": {},
+  "dependencies": {
+    "date-fns": "^3.6.0"
+  }
 }
