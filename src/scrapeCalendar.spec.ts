@@ -1,12 +1,18 @@
 import { it, describe, expect } from "vitest";
 import { toMinute } from "./dates";
 import { stream, streamAtEnd } from "./parsing";
-import { ctxMinuteRangeParser, ctxTimeToMinuteParser, timeSpanReParser } from "./scrapeCalendar";
+import {
+  ctxMinuteRangeParser,
+  ctxTimeToMinuteParser,
+  timeSpanReParser,
+} from "./scrapeCalendar";
 
 describe("ctxMinuteRangeParser", () => {
   [
-    { input: "2:00 PM - 8:45 PM",
-      result: { startMinute: toMinute(14, 0), endMinute: toMinute(20, 45) },}
+    {
+      input: "2:00 PM - 8:45 PM",
+      result: { startMinute: toMinute(14, 0), endMinute: toMinute(20, 45) },
+    },
   ].forEach(({ input, result }) => {
     it(`should parse ${input}`, () => {
       const r = ctxMinuteRangeParser(stream(input));

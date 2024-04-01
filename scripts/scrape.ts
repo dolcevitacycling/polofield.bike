@@ -2,11 +2,32 @@ import fs from "fs";
 import { HTMLRewriter } from "@miniflare/html-rewriter";
 import { Response } from "@miniflare/core";
 import { CalendarScraper, currentCalendarUrl } from "../src/scrapeCalendar";
-import { fetchFieldRainoutInfo } from "../src/scrapeFieldRainoutInfo";
+import {
+  downloadFieldRainoutInfo,
+  downloadFieldRainoutInfoXLSX,
+  fetchFieldRainoutInfo,
+} from "../src/scrapeFieldRainoutInfo";
 
 async function main() {
   const scraper = new CalendarScraper();
-  scraper.fieldRainoutInfo = await fetchFieldRainoutInfo();
+  const xlsx = await downloadFieldRainoutInfoXLSX();
+  await fs.promises.writeFile(
+    "debug/fieldRainoutInfo.xlsx",
+    new DataView(xlsx),
+  );
+  const parsedXlsx = await downloadFieldRainoutInfo(xlsx);
+  await fs.promises.writeFile(
+    "debug/fieldRainoutInfo.parsed.json",
+    JSON.stringify(parsedXlsx, null, 2),
+  );
+  scraper.fieldRainoutInfo = await fetchFieldRainoutInfo(
+    undefined,
+    parsedXlsx,
+  );
+  await fs.promises.writeFile(
+    "debug/fieldRainoutInfo.result.json",
+    JSON.stringify(scraper.fieldRainoutInfo, null, 2),
+  );
   const fetchText = await (await fetch(currentCalendarUrl())).text();
   await fs.promises.writeFile("debug/scrape.html", fetchText);
   const res = new HTMLRewriter()

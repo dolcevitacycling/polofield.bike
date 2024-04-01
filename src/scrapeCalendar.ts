@@ -16,10 +16,9 @@ import {
   stream,
   reParser,
 } from "./parsing";
-import { format as formatDate } from "date-fns";
+import { FieldRainoutInfo } from "./scrapeFieldRainoutInfo";
 
 const CALENDAR_ID = 41;
-const OPEN_ALL_DAY = "Cycle Track Open All Day";
 
 function getCalendarUrl(startYear: number, endYear: number) {
   return `https://www.sfrecpark.org/calendar.aspx?Keywords=&startDate=01/01/${startYear}&enddate=12/31/${endYear}&CID=${CALENDAR_ID}&showPastEvents=true`;
@@ -236,76 +235,82 @@ function fillEntry(
   };
 }
 
-function recognizeCalendarDate(
-  date: CalendarDate,
-  fieldRainoutInfo: { [key: string]: boolean },
-): RecognizerRules {
+function getIntervals(date: CalendarDate, fieldRainedOut: boolean) {
   const intervals: RuleInterval[] = [];
-  let lastEntry: ParsedName | null = null;
-  const isFieldRainedOut = fieldRainoutInfo[date.date] || false;
+  if (fieldRainedOut) {
+    intervals.push({
+      open: true,
+      comment: "Field Rained Out, Cycle Track Open All Day",
+      start_timestamp: formatDateMinute(date.date, toMinute(0, 0)),
+      end_timestamp: formatDateMinute(date.date, toMinute(23, 59)),
+    });
+  } else {
+    let lastEntry: ParsedName | null = null;
+    for (const entry of date.entries) {
+      const p = fillEntry(nameParser(entry), lastEntry);
 
-  if (isFieldRainedOut) {
-    // if the field is rained out, override the entries
-    const dateWithTime = `${date.date}T05:00:00`;
-    const parsedDate = new Date(dateWithTime);
-    date.entries = [
-      {
-        name: OPEN_ALL_DAY,
-        startDate: dateWithTime,
-        description: "",
-        subHeaderDate: formatDate(parsedDate, "MMMM d, yyyy K:mm aa"),
-      },
-    ];
-  }
-
-  for (const entry of date.entries) {
-    const p = fillEntry(nameParser(entry), lastEntry);
-
-    if (!lastEntry) {
-      if (p.startMinute > 0) {
+      if (!lastEntry) {
+        if (p.startMinute > 0) {
+          intervals.push({
+            open: !p.open,
+            start_timestamp: formatDateMinute(date.date, 0),
+            end_timestamp: formatDateMinute(date.date, p.startMinute - 1),
+          });
+        }
+      } else if (p.open === lastEntry.open) {
         intervals.push({
           open: !p.open,
-          start_timestamp: formatDateMinute(date.date, 0),
+          start_timestamp: formatDateMinute(date.date, lastEntry.endMinute + 1),
           end_timestamp: formatDateMinute(date.date, p.startMinute - 1),
         });
       }
-    } else if (p.open === lastEntry.open) {
       intervals.push({
-        open: !p.open,
+        open: p.open,
+        start_timestamp: formatDateMinute(date.date, p.startMinute),
+        end_timestamp: formatDateMinute(date.date, p.endMinute),
+      });
+      lastEntry = p;
+    }
+    if (lastEntry && lastEntry.endMinute < toMinute(23, 59)) {
+      intervals.push({
+        open: !lastEntry.open,
         start_timestamp: formatDateMinute(date.date, lastEntry.endMinute + 1),
-        end_timestamp: formatDateMinute(date.date, p.startMinute - 1),
+        end_timestamp: formatDateMinute(date.date, toMinute(23, 59)),
       });
     }
-    intervals.push({
-      open: p.open,
-      start_timestamp: formatDateMinute(date.date, p.startMinute),
-      end_timestamp: formatDateMinute(date.date, p.endMinute),
-    });
-    lastEntry = p;
   }
-  if (lastEntry && lastEntry.endMinute < toMinute(23, 59)) {
-    intervals.push({
-      open: !lastEntry.open,
-      start_timestamp: formatDateMinute(date.date, lastEntry.endMinute + 1),
-      end_timestamp: formatDateMinute(date.date, toMinute(23, 59)),
-    });
+  return intervals;
+}
+
+function formatRules(date: CalendarDate, fieldRainedOut: boolean) {
+  const rules = date.entries.map(
+    (e) => `${e.name}\t${e.startDate}\t${e.description}\t${e.subHeaderDate}`,
+  );
+  if (fieldRainedOut) {
+    rules.push(`Field Rained Out\t${date.date}\t\t`);
   }
+  return rules;
+}
+
+function recognizeCalendarDate(
+  calendarDate: CalendarDate,
+  fieldRainoutInfo: FieldRainoutInfo,
+): RecognizerRules {
+  const { date } = calendarDate;
+  const fieldRainedOut = fieldRainoutInfo[date]?.trackOpen ?? false;
   const rules: KnownRules = {
     type: "known_rules",
-    text: date.date,
-    start_date: date.date,
-    end_date: date.date,
-    intervals,
-    rules: date.entries.map(
-      (e) => `${e.name}\t${e.startDate}\t${e.description}\t${e.subHeaderDate}`,
-    ),
+    text: date,
+    start_date: date,
+    end_date: date,
+    intervals: getIntervals(calendarDate, fieldRainedOut),
+    rules: formatRules(calendarDate, fieldRainedOut),
   };
-
   return { recognizer: calendarRecognizer, rules };
 }
 
 export class CalendarScraper implements HTMLRewriterElementContentHandlers {
-  fieldRainoutInfo: { [key: string]: boolean } = {};
+  fieldRainoutInfo: FieldRainoutInfo = {};
   state: ScraperState = "initial";
   years: Year<CalendarDate>[] = [];
   getDebugResult(): ScrapeDebugResult {

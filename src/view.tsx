@@ -148,6 +148,11 @@ function Layout(props: Props) {
             /* Green glow */ 0 0 42px #0fa,
             0 0 82px #0fa;
         }
+        .open.rained-out .copy:before {
+          position: absolute;
+          content: "🌧️";
+          transform: scale(0.5) translate(40%, -100%);
+        }
         .now .background:after {
           display: block;
           position: absolute;
@@ -564,7 +569,9 @@ function EtiquettePage() {
         ol { font-size: 1rem; margin-block-start: 0.5rem; margin-block-end: 0.5rem; padding-inline-start: 20px; }
       `}</style>
       <div>
-        <a href="/" class="nav-back">← Back to schedule</a>
+        <a href="/" class="nav-back">
+          ← Back to schedule
+        </a>
       </div>
       <h1>How To Ride / Etiquette</h1>
       <div>
@@ -572,7 +579,8 @@ function EtiquettePage() {
           <li>Ride counterclockwise.</li>
           <li>Ride in the right lane; the left lane is for passing only.</li>
           <li>
-            If in a pack/side-by-side, you must still ride within the right lane.
+            If in a pack/side-by-side, you must still ride within the right
+            lane.
           </li>
           <li>
             Drafting strangers without announcing yourself/asking first is not
@@ -678,7 +686,7 @@ function Interval(props: {
   const duration = intervalMinutes(hStart, hEnd) + 1;
   const percent = 100 * (duration / 1440);
 
-  const { open } = interval;
+  const { open, comment } = interval;
   const title = open
     ? `Open ${friendlyTimeSpan(hStart, hEnd)}\n${sunTimes({
         hStart,
@@ -691,7 +699,14 @@ function Interval(props: {
       }`;
   return (
     <li
-      class={open ? "open" : "closed"}
+      class={
+        (open
+          ? "open"
+          : "closed") +
+            (open && comment?.startsWith("Field Rained Out")
+              ? " rained-out"
+              : "")
+      }
       data-start={hStart}
       data-end={hEnd}
       data-minutes={duration}

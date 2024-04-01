@@ -12,3 +12,4 @@ node_modules
 /.wrangler
 .dev.vars
 *.code-workspace
+~$*.xlsx

@@ -9,6 +9,7 @@
     "@slack/bolt": "^3.17.1",
     "@types/suncalc": "^1.9.2",
     "discord-api-types": "^0.37.67",
+    "fetch-cookie": "^3.0.1",
     "hono": "^3.12.8",
     "node-xlsx": "^0.23.0",
     "prettier": "^3.2.4",
@@ -25,14 +26,12 @@
     "deploy": "export NO_D1_WARNING=true && wrangler deploy",
     "wrangler": "export NO_D1_WARNING=true && wrangler",
     "test": "vitest --run",
+    "test:network": "TEST_NETWORK=1 npm run test",
     "vitest": "vitest",
     "check": "tsc --noEmit --skipLibCheck",
     "check-updates": "npx npm-check-updates",
     "format": "prettier --write 'src/**/*.{js,ts,css,json,md}'",
     "scrape": "NODE_OPTIONS=--no-warnings=ExperimentalWarning tsx scripts/scrape.ts"
   },
-  "prettier": {},
-  "dependencies": {
-    "date-fns": "^3.6.0"
-  }
+  "prettier": {}
 }

@@ -1,12 +1,14 @@
 import { it, describe, expect } from "vitest";
+import * as fs from "fs";
 import {
   fetchFieldRainoutInfo,
   parseFieldRainoutInfo,
   downloadFieldRainoutInfo,
+  isTrackOpen,
 } from "./scrapeFieldRainoutInfo";
 
 describe("downloadFieldRainoutInfo", () => {
-  it(
+  it.skipIf(!process.env.TEST_NETWORK)(
     "should download field rainout info",
     async () => {
       await downloadFieldRainoutInfo();
@@ -17,8 +19,75 @@ describe("downloadFieldRainoutInfo", () => {
   );
 });
 
+const HEADER = [
+  "Date:",
+  "Day",
+  "Field/Complex",
+  "Field Is:",
+  "Additional Information:",
+];
+
 describe("transformRainoutInfo", () => {
   it.each([
+    {
+      fieldRainoutInfo: [
+        [
+          "03/31/2024",
+          "Sun",
+          "Other See Below",
+          "Open",
+          "OPEN fields are listed below. Note: If a field is not listed on either the closed or open lists, please use your judgment and avoid areas with puddles, mud, etc.\n\nGrattan\nHamilton\nMcCoppin\nMoscone D4\nPolo\nVisitation Valley\nWest Sunset",
+        ],
+        [
+          "03/31/2024",
+          "Sun",
+          "Other See Below",
+          "Closed",
+          "CLOSED fields are listed below. Note: If a field is not listed on either the closed or open lists, please use your judgment and avoid areas with puddles, mud, etc.\n\nBalboa (ALL)\nChristopher\nGlen Park\nLarsen\nLouis Sutter\nMoscone D1/D2/D3\nParkside\nPresidio Wall\nRolph\nSunset Rec",
+        ],
+      ],
+      result: { "2024-03-31": false },
+    },
+    // This one is hypothetical but requires information from an older row to determine the status correctly
+    {
+      fieldRainoutInfo: [
+        [
+          "03/31/2024",
+          "Sun",
+          "Other See Below",
+          "Open",
+          "OPEN fields are listed below. Note: If a field is not listed on either the closed or open lists, please use your judgment and avoid areas with puddles, mud, etc.\n\nGrattan\nHamilton\nMcCoppin\nMoscone D4\nVisitation Valley\nWest Sunset",
+        ],
+        [
+          "03/31/2024",
+          "Sun",
+          "Other See Below",
+          "Closed",
+          "CLOSED fields are listed below. Note: If a field is not listed on either the closed or open lists, please use your judgment and avoid areas with puddles, mud, etc.\n\nBalboa (ALL)\nChristopher\nGlen Park\nLarsen\nLouis Sutter\nMoscone D1/D2/D3\nParkside\nPolo\nPresidio Wall\nRolph\nSunset Rec",
+        ],
+      ],
+      result: { "2024-03-31": true },
+    },
+    // Check that it also works in the other order
+    {
+      fieldRainoutInfo: [
+        [
+          "03/31/2024",
+          "Sun",
+          "Other See Below",
+          "Closed",
+          "CLOSED fields are listed below. Note: If a field is not listed on either the closed or open lists, please use your judgment and avoid areas with puddles, mud, etc.\n\nBalboa (ALL)\nChristopher\nGlen Park\nLarsen\nLouis Sutter\nMoscone D1/D2/D3\nParkside\nPolo\nPresidio Wall\nRolph\nSunset Rec",
+        ],
+        [
+          "03/31/2024",
+          "Sun",
+          "Other See Below",
+          "Open",
+          "OPEN fields are listed below. Note: If a field is not listed on either the closed or open lists, please use your judgment and avoid areas with puddles, mud, etc.\n\nGrattan\nHamilton\nMcCoppin\nMoscone D4\nVisitation Valley\nWest Sunset",
+        ],
+      ],
+      result: { "2024-03-31": true },
+    },
     {
       fieldRainoutInfo: [
         ["12/10/2022", "Sat", "All Grass Fields & Diamonds", "Closed"],
@@ -98,15 +167,15 @@ describe("transformRainoutInfo", () => {
       result: { "2019-04-05": false },
     },
   ])("transformRainoutInfo", ({ fieldRainoutInfo, result }) => {
-    const parsed = parseFieldRainoutInfo(fieldRainoutInfo);
+    const parsed = parseFieldRainoutInfo([HEADER, ...fieldRainoutInfo]);
     const res = Object.entries(result)[0];
 
-    expect(parsed[res[0]]).toBe(res[1]);
+    expect(isTrackOpen(parsed[res[0]])).toBe(res[1]);
   });
 });
 
 describe("fetchFieldRainoutInfo", () => {
-  it(
+  it.skipIf(!process.env.TEST_NETWORK)(
     "should fetch and parse field rainout info",
     async () => {
       const parsed = await fetchFieldRainoutInfo(20);
@@ -116,4 +185,11 @@ describe("fetchFieldRainoutInfo", () => {
       timeout: 10000,
     },
   );
+  it("should fetch and parse field rainout info from ./debug/fieldRainoutInfo.xlsx", async () => {
+    const worksheets = await downloadFieldRainoutInfo(
+      fs.readFileSync("./debug/fieldRainoutInfo.xlsx"),
+    );
+    const parsed = await fetchFieldRainoutInfo(20, worksheets);
+    expect(Object.keys(parsed).length).toBeLessThanOrEqual(20);
+  });
 });
