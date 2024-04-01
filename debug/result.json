@@ -1045,30 +1045,13 @@
           "end_date": "2024-03-12",
           "intervals": [
             {
-              "open": false,
+              "open": true,
               "start_timestamp": "2024-03-12 00:00",
-              "end_timestamp": "2024-03-12 04:59"
-            },
-            {
-              "open": true,
-              "start_timestamp": "2024-03-12 05:00",
-              "end_timestamp": "2024-03-12 13:59"
-            },
-            {
-              "open": false,
-              "start_timestamp": "2024-03-12 14:00",
-              "end_timestamp": "2024-03-12 18:44"
-            },
-            {
-              "open": true,
-              "start_timestamp": "2024-03-12 20:45",
               "end_timestamp": "2024-03-12 23:59"
             }
           ],
           "rules": [
-            "Cycle Track Open 5 a.m. to 2 p.m.\t2024-03-12T05:00:00\t\tMarch 12, 2024, 5:00 AM - 2:00 PM",
-            "Cycling Track Closed 2-6:45 p.m.\t2024-03-12T14:00:00\t\tMarch 12, 2024, 2:00 PM - 6:45 PM",
-            "Cycle Track Open After 8:45 p.m.\t2024-03-12T20:45:00\t\tMarch 12, 2024, 8:45 PM"
+            "Cycle Track Open All Day\t2024-03-12T05:00:00\t\tMarch 12, 2024 5:00 AM"
           ]
         }
       },
@@ -1551,22 +1534,11 @@
             {
               "open": true,
               "start_timestamp": "2024-03-29 00:00",
-              "end_timestamp": "2024-03-29 13:59"
-            },
-            {
-              "open": false,
-              "start_timestamp": "2024-03-29 14:00",
-              "end_timestamp": "2024-03-29 18:44"
-            },
-            {
-              "open": true,
-              "start_timestamp": "2024-03-29 18:45",
               "end_timestamp": "2024-03-29 23:59"
             }
           ],
           "rules": [
-            "Cycle Track Open Until 2 p.m.\t2024-03-29T05:00:00\t\tMarch 29, 2024, 5:00 AM - 2:00 PM",
-            "Cycle Track Open After 6:45 p.m.\t2024-03-29T18:45:00\t\tMarch 29, 2024, 6:45 PM"
+            "Cycle Track Open All Day\t2024-03-29T05:00:00\t\tMarch 29, 2024 5:00 AM"
           ]
         }
       },
@@ -1581,22 +1553,11 @@
             {
               "open": true,
               "start_timestamp": "2024-03-30 00:00",
-              "end_timestamp": "2024-03-30 06:59"
-            },
-            {
-              "open": false,
-              "start_timestamp": "2024-03-30 07:00",
-              "end_timestamp": "2024-03-30 18:44"
-            },
-            {
-              "open": true,
-              "start_timestamp": "2024-03-30 18:45",
               "end_timestamp": "2024-03-30 23:59"
             }
           ],
           "rules": [
-            "Cycle Track Open Until 7 a.m.\t2024-03-30T05:00:00\t\tMarch 30, 2024, 5:00 AM - 7:00 AM",
-            "Cycle Track Open After 6:45 p.m.\t2024-03-30T18:45:00\t\tMarch 30, 2024, 6:45 PM"
+            "Cycle Track Open All Day\t2024-03-30T05:00:00\t\tMarch 30, 2024 5:00 AM"
           ]
         }
       },

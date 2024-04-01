@@ -3,6 +3,7 @@ import { discordReport, runDiscordWebhook } from "./discord";
 import { CalendarScraper, currentCalendarUrl } from "./scrapeCalendar";
 import { runSlackWebhook } from "./slack";
 import { Bindings } from "./types";
+import { fetchFieldRainoutInfo } from "./scrapeFieldRainoutInfo";
 
 export const POLO_URL = "https://www.sfrecpark.org/526/Polo-Field-Usage";
 
@@ -108,6 +109,7 @@ export function intervalsForDate(
 
 export async function scrapePoloURL(): Promise<ScrapeResult> {
   const scraper = new CalendarScraper();
+  scraper.fieldRainoutInfo = await fetchFieldRainoutInfo();
   const res = new HTMLRewriter()
     .on("*", scraper)
     .transform(await fetch(currentCalendarUrl()));
