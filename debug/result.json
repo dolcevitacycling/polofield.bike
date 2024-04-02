@@ -129,22 +129,14 @@
           "intervals": [
             {
               "open": true,
+              "comment": "Field Rained Out, Cycle Track Open All Day",
               "start_timestamp": "2024-01-22 00:00",
-              "end_timestamp": "2024-01-22 13:59"
-            },
-            {
-              "open": false,
-              "start_timestamp": "2024-01-22 14:00",
-              "end_timestamp": "2024-01-22 18:44"
-            },
-            {
-              "open": true,
-              "start_timestamp": "2024-01-22 18:45",
               "end_timestamp": "2024-01-22 23:59"
             }
           ],
           "rules": [
-            "Cycling Track Closed 2-6:45 p.m.\t2024-01-22T14:00:00\t\tJanuary 22, 2024, 2:00 PM - 6:45 PM"
+            "Cycling Track Closed 2-6:45 p.m.\t2024-01-22T14:00:00\t\tJanuary 22, 2024, 2:00 PM - 6:45 PM",
+            "Field Rained Out\t2024-01-22\t\t"
           ]
         }
       },
@@ -158,22 +150,14 @@
           "intervals": [
             {
               "open": true,
+              "comment": "Field Rained Out, Cycle Track Open All Day",
               "start_timestamp": "2024-01-23 00:00",
-              "end_timestamp": "2024-01-23 13:59"
-            },
-            {
-              "open": false,
-              "start_timestamp": "2024-01-23 14:00",
-              "end_timestamp": "2024-01-23 20:44"
-            },
-            {
-              "open": true,
-              "start_timestamp": "2024-01-23 20:45",
               "end_timestamp": "2024-01-23 23:59"
             }
           ],
           "rules": [
-            "Cycling Track Closed\t2024-01-23T14:00:00\t\tJanuary 23, 2024, 2:00 PM - 8:45 PM"
+            "Cycling Track Closed\t2024-01-23T14:00:00\t\tJanuary 23, 2024, 2:00 PM - 8:45 PM",
+            "Field Rained Out\t2024-01-23\t\t"
           ]
         }
       },
@@ -187,22 +171,14 @@
           "intervals": [
             {
               "open": true,
+              "comment": "Field Rained Out, Cycle Track Open All Day",
               "start_timestamp": "2024-01-24 00:00",
-              "end_timestamp": "2024-01-24 13:59"
-            },
-            {
-              "open": false,
-              "start_timestamp": "2024-01-24 14:00",
-              "end_timestamp": "2024-01-24 18:44"
-            },
-            {
-              "open": true,
-              "start_timestamp": "2024-01-24 18:45",
               "end_timestamp": "2024-01-24 23:59"
             }
           ],
           "rules": [
-            "Cycling Track Closed 2-6:45 p.m.\t2024-01-24T14:00:00\t\tJanuary 24, 2024, 2:00 PM - 6:45 PM"
+            "Cycling Track Closed 2-6:45 p.m.\t2024-01-24T14:00:00\t\tJanuary 24, 2024, 2:00 PM - 6:45 PM",
+            "Field Rained Out\t2024-01-24\t\t"
           ]
         }
       },
@@ -274,22 +250,14 @@
           "intervals": [
             {
               "open": true,
+              "comment": "Field Rained Out, Cycle Track Open All Day",
               "start_timestamp": "2024-01-31 00:00",
-              "end_timestamp": "2024-01-31 13:59"
-            },
-            {
-              "open": false,
-              "start_timestamp": "2024-01-31 14:00",
-              "end_timestamp": "2024-01-31 18:44"
-            },
-            {
-              "open": true,
-              "start_timestamp": "2024-01-31 18:45",
               "end_timestamp": "2024-01-31 23:59"
             }
           ],
           "rules": [
-            "Cycling Track Closed 2-6:45 p.m.\t2024-01-31T14:00:00\t\tJanuary 31, 2024, 2:00 PM - 6:45 PM"
+            "Cycling Track Closed 2-6:45 p.m.\t2024-01-31T14:00:00\t\tJanuary 31, 2024, 2:00 PM - 6:45 PM",
+            "Field Rained Out\t2024-01-31\t\t"
           ]
         }
       },
@@ -303,22 +271,14 @@
           "intervals": [
             {
               "open": true,
+              "comment": "Field Rained Out, Cycle Track Open All Day",
               "start_timestamp": "2024-02-05 00:00",
-              "end_timestamp": "2024-02-05 13:59"
-            },
-            {
-              "open": false,
-              "start_timestamp": "2024-02-05 14:00",
-              "end_timestamp": "2024-02-05 18:44"
-            },
-            {
-              "open": true,
-              "start_timestamp": "2024-02-05 18:45",
               "end_timestamp": "2024-02-05 23:59"
             }
           ],
           "rules": [
-            "Cycling Track Closed 2-6:45 p.m.\t2024-02-05T14:00:00\t\tFebruary 5, 2024, 2:00 PM - 6:45 PM"
+            "Cycling Track Closed 2-6:45 p.m.\t2024-02-05T14:00:00\t\tFebruary 5, 2024, 2:00 PM - 6:45 PM",
+            "Field Rained Out\t2024-02-05\t\t"
           ]
         }
       },
@@ -332,22 +292,14 @@
           "intervals": [
             {
               "open": true,
+              "comment": "Field Rained Out, Cycle Track Open All Day",
               "start_timestamp": "2024-02-06 00:00",
-              "end_timestamp": "2024-02-06 13:59"
-            },
-            {
-              "open": false,
-              "start_timestamp": "2024-02-06 14:00",
-              "end_timestamp": "2024-02-06 18:44"
-            },
-            {
-              "open": true,
-              "start_timestamp": "2024-02-06 18:45",
               "end_timestamp": "2024-02-06 23:59"
             }
           ],
           "rules": [
-            "Cycling Track Closed 2-6:45 p.m.\t2024-02-06T14:00:00\t\tFebruary 6, 2024, 2:00 PM - 6:45 PM"
+            "Cycling Track Closed 2-6:45 p.m.\t2024-02-06T14:00:00\t\tFebruary 6, 2024, 2:00 PM - 6:45 PM",
+            "Field Rained Out\t2024-02-06\t\t"
           ]
         }
       },
@@ -361,22 +313,14 @@
           "intervals": [
             {
               "open": true,
+              "comment": "Field Rained Out, Cycle Track Open All Day",
               "start_timestamp": "2024-02-07 00:00",
-              "end_timestamp": "2024-02-07 13:59"
-            },
-            {
-              "open": false,
-              "start_timestamp": "2024-02-07 14:00",
-              "end_timestamp": "2024-02-07 18:44"
-            },
-            {
-              "open": true,
-              "start_timestamp": "2024-02-07 18:45",
               "end_timestamp": "2024-02-07 23:59"
             }
           ],
           "rules": [
-            "Cycling Track Closed 2-6:45 p.m.\t2024-02-07T14:00:00\t\tFebruary 7, 2024, 2:00 PM - 6:45 PM"
+            "Cycling Track Closed 2-6:45 p.m.\t2024-02-07T14:00:00\t\tFebruary 7, 2024, 2:00 PM - 6:45 PM",
+            "Field Rained Out\t2024-02-07\t\t"
           ]
         }
       },
@@ -448,22 +392,14 @@
           "intervals": [
             {
               "open": true,
+              "comment": "Field Rained Out, Cycle Track Open All Day",
               "start_timestamp": "2024-02-14 00:00",
-              "end_timestamp": "2024-02-14 13:59"
-            },
-            {
-              "open": false,
-              "start_timestamp": "2024-02-14 14:00",
-              "end_timestamp": "2024-02-14 18:44"
-            },
-            {
-              "open": true,
-              "start_timestamp": "2024-02-14 18:45",
               "end_timestamp": "2024-02-14 23:59"
             }
           ],
           "rules": [
-            "Cycling Track Closed 2-6:45 p.m.\t2024-02-14T14:00:00\t\tFebruary 14, 2024, 2:00 PM - 6:45 PM"
+            "Cycling Track Closed 2-6:45 p.m.\t2024-02-14T14:00:00\t\tFebruary 14, 2024, 2:00 PM - 6:45 PM",
+            "Field Rained Out\t2024-02-14\t\t"
           ]
         }
       },
@@ -477,22 +413,14 @@
           "intervals": [
             {
               "open": true,
+              "comment": "Field Rained Out, Cycle Track Open All Day",
               "start_timestamp": "2024-02-19 00:00",
-              "end_timestamp": "2024-02-19 13:59"
-            },
-            {
-              "open": false,
-              "start_timestamp": "2024-02-19 14:00",
-              "end_timestamp": "2024-02-19 18:44"
-            },
-            {
-              "open": true,
-              "start_timestamp": "2024-02-19 18:45",
               "end_timestamp": "2024-02-19 23:59"
             }
           ],
           "rules": [
-            "Cycling Track Closed 2-6:45 p.m.\t2024-02-19T14:00:00\t\tFebruary 19, 2024, 2:00 PM - 6:45 PM"
+            "Cycling Track Closed 2-6:45 p.m.\t2024-02-19T14:00:00\t\tFebruary 19, 2024, 2:00 PM - 6:45 PM",
+            "Field Rained Out\t2024-02-19\t\t"
           ]
         }
       },
@@ -506,22 +434,14 @@
           "intervals": [
             {
               "open": true,
+              "comment": "Field Rained Out, Cycle Track Open All Day",
               "start_timestamp": "2024-02-20 00:00",
-              "end_timestamp": "2024-02-20 13:59"
-            },
-            {
-              "open": false,
-              "start_timestamp": "2024-02-20 14:00",
-              "end_timestamp": "2024-02-20 18:44"
-            },
-            {
-              "open": true,
-              "start_timestamp": "2024-02-20 18:45",
               "end_timestamp": "2024-02-20 23:59"
             }
           ],
           "rules": [
-            "Cycling Track Closed 2-6:45 p.m.\t2024-02-20T14:00:00\t\tFebruary 20, 2024, 2:00 PM - 6:45 PM"
+            "Cycling Track Closed 2-6:45 p.m.\t2024-02-20T14:00:00\t\tFebruary 20, 2024, 2:00 PM - 6:45 PM",
+            "Field Rained Out\t2024-02-20\t\t"
           ]
         }
       },
@@ -736,23 +656,15 @@
           "intervals": [
             {
               "open": true,
+              "comment": "Field Rained Out, Cycle Track Open All Day",
               "start_timestamp": "2024-03-02 00:00",
-              "end_timestamp": "2024-03-02 06:59"
-            },
-            {
-              "open": false,
-              "start_timestamp": "2024-03-02 07:00",
-              "end_timestamp": "2024-03-02 18:44"
-            },
-            {
-              "open": true,
-              "start_timestamp": "2024-03-02 18:45",
               "end_timestamp": "2024-03-02 23:59"
             }
           ],
           "rules": [
             "Cycle Track Open Until 7 a.m.\t2024-03-02T05:00:00\t\tMarch 2, 2024, 5:00 AM - 7:00 AM",
-            "Cycle Track Open After 6:45 p.m.\t2024-03-02T18:45:00\t\tMarch 2, 2024, 6:45 PM"
+            "Cycle Track Open After 6:45 p.m.\t2024-03-02T18:45:00\t\tMarch 2, 2024, 6:45 PM",
+            "Field Rained Out\t2024-03-02\t\t"
           ]
         }
       },
@@ -766,17 +678,14 @@
           "intervals": [
             {
               "open": true,
+              "comment": "Field Rained Out, Cycle Track Open All Day",
               "start_timestamp": "2024-03-03 00:00",
-              "end_timestamp": "2024-03-03 09:59"
-            },
-            {
-              "open": false,
-              "start_timestamp": "2024-03-03 10:00",
               "end_timestamp": "2024-03-03 23:59"
             }
           ],
           "rules": [
-            "Cycle Track Open Until 10 a.m.\t2024-03-03T05:00:00\t\tMarch 3, 2024, 5:00 AM - 10:00 AM"
+            "Cycle Track Open Until 10 a.m.\t2024-03-03T05:00:00\t\tMarch 3, 2024, 5:00 AM - 10:00 AM",
+            "Field Rained Out\t2024-03-03\t\t"
           ]
         }
       },
@@ -855,30 +764,17 @@
           "end_date": "2024-03-06",
           "intervals": [
             {
-              "open": false,
+              "open": true,
+              "comment": "Field Rained Out, Cycle Track Open All Day",
               "start_timestamp": "2024-03-06 00:00",
-              "end_timestamp": "2024-03-06 04:59"
-            },
-            {
-              "open": true,
-              "start_timestamp": "2024-03-06 05:00",
-              "end_timestamp": "2024-03-06 13:59"
-            },
-            {
-              "open": false,
-              "start_timestamp": "2024-03-06 14:00",
-              "end_timestamp": "2024-03-06 18:44"
-            },
-            {
-              "open": true,
-              "start_timestamp": "2024-03-06 18:45",
               "end_timestamp": "2024-03-06 23:59"
             }
           ],
           "rules": [
             "Cycle Track Open 5 a.m. to 2 p.m.\t2024-03-06T05:00:00\t\tMarch 6, 2024, 5:00 AM - 2:00 PM",
             "Cycling Track Closed 2-6:45 p.m.\t2024-03-06T14:00:00\t\tMarch 6, 2024, 2:00 PM - 6:45 PM",
-            "Cycle Track Open After 6:45 p.m.\t2024-03-06T18:45:00\t\tMarch 6, 2024, 6:45 PM"
+            "Cycle Track Open After 6:45 p.m.\t2024-03-06T18:45:00\t\tMarch 6, 2024, 6:45 PM",
+            "Field Rained Out\t2024-03-06\t\t"
           ]
         }
       },

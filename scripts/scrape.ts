@@ -20,10 +20,6 @@ async function main() {
     "debug/fieldRainoutInfo.parsed.json",
     JSON.stringify(parsedXlsx, null, 2),
   );
-  scraper.fieldRainoutInfo = await fetchFieldRainoutInfo(
-    undefined,
-    parsedXlsx,
-  );
   await fs.promises.writeFile(
     "debug/fieldRainoutInfo.result.json",
     JSON.stringify(scraper.fieldRainoutInfo, null, 2),
@@ -34,6 +30,11 @@ async function main() {
     .on("*", scraper)
     .transform(new Response(fetchText));
   await res.text();
+  const oldestYear = Math.min(...scraper.years.map((y) => y.year));
+  scraper.fieldRainoutInfo = await fetchFieldRainoutInfo(
+    oldestYear,
+    parsedXlsx,
+  );
   await fs.promises.writeFile(
     "debug/rules.json",
     JSON.stringify(scraper.years, null, 2),

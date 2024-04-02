@@ -109,11 +109,13 @@ export function intervalsForDate(
 
 export async function scrapePoloURL(): Promise<ScrapeResult> {
   const scraper = new CalendarScraper();
-  scraper.fieldRainoutInfo = await fetchFieldRainoutInfo();
   const res = new HTMLRewriter()
     .on("*", scraper)
     .transform(await fetch(currentCalendarUrl()));
   await res.text();
+  const oldestYear =
+    Math.min(...scraper.years.map((y) => y.year)) || new Date().getFullYear();
+  scraper.fieldRainoutInfo = await fetchFieldRainoutInfo(oldestYear);
   return scraper.getResult();
 }
 

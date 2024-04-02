@@ -160,7 +160,7 @@ export interface FieldRainoutInfo {
 
 export const parseFieldRainoutInfo = (
   rainoutInfo: string[][],
-  limit: number = 200,
+  oldestYear?: number,
 ): FieldRainoutInfo => {
   /**
    * Parse the rainout info with the oldest entries first.
@@ -183,22 +183,23 @@ export const parseFieldRainoutInfo = (
    *
    * If the value for the date is true, the field is rained out (and the cycle track should be open).
    */
-  return (
-    rainoutInfo
-      // Skip the headers
-      .slice(1, limit + 1)
-      .reduce((acc, row) => {
-        const date = parseFieldRainoutRowDate(row);
-        const newer = acc[date];
-        const older = parseFieldRainoutRow(row);
-        acc[date] = newer ? choosePoloFieldStatus(newer, older) : older;
-        return acc;
-      }, {} as FieldRainoutInfo)
-  );
+  const acc: FieldRainoutInfo = {};
+  const prefix = `${oldestYear || 2015}-`;
+  for (let i = 1; i < rainoutInfo.length; i++) {
+    const row = rainoutInfo[i];
+    const date = parseFieldRainoutRowDate(row);
+    if (date < prefix) {
+      break;
+    }
+    const newer = acc[date];
+    const older = parseFieldRainoutRow(row);
+    acc[date] = newer ? choosePoloFieldStatus(newer, older) : older;
+  }
+  return acc;
 };
 
 export const fetchFieldRainoutInfo = async (
-  limit: number = 20,
+  oldestYear: number,
   worksheets?: { name: string; data: any[][] }[],
 ): Promise<FieldRainoutInfo> => {
   worksheets ||= await downloadFieldRainoutInfo();
@@ -209,5 +210,5 @@ export const fetchFieldRainoutInfo = async (
 
   const schedule = worksheets[0];
   const contents = schedule.data;
-  return parseFieldRainoutInfo(contents, limit);
+  return parseFieldRainoutInfo(contents, oldestYear);
 };

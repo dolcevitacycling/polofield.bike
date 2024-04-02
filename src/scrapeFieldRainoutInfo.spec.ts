@@ -178,18 +178,22 @@ describe("fetchFieldRainoutInfo", () => {
   it.skipIf(!process.env.TEST_NETWORK)(
     "should fetch and parse field rainout info",
     async () => {
-      const parsed = await fetchFieldRainoutInfo(20);
-      expect(Object.keys(parsed).length).toBeLessThanOrEqual(20);
+      const year = 2024;
+      const jan1 = `${year}-01-01`;
+      const parsed = await fetchFieldRainoutInfo(year);
+      expect(Object.keys(parsed).every((k) => k >= jan1)).toBe(true);
     },
     {
       timeout: 10000,
     },
   );
   it("should fetch and parse field rainout info from ./debug/fieldRainoutInfo.xlsx", async () => {
+    const year = 2024;
+    const jan1 = `${year}-01-01`;
     const worksheets = await downloadFieldRainoutInfo(
       fs.readFileSync("./debug/fieldRainoutInfo.xlsx"),
     );
-    const parsed = await fetchFieldRainoutInfo(20, worksheets);
-    expect(Object.keys(parsed).length).toBeLessThanOrEqual(20);
+    const parsed = await fetchFieldRainoutInfo(year, worksheets);
+    expect(Object.keys(parsed).every((k) => k >= jan1)).toBe(true);
   });
 });
