@@ -176,7 +176,7 @@ export const parseFieldRainoutInfo = (
    * with newer entries appearing earlier in the list. Reducing from the right
    * allows the newer entries to override the older ones.
    *
-   * This schedule goes back to 2015, so we slice it because we really only care about
+   * This schedule goes back to 2015, so we filter by date because we really only care about
    * the most recent entries.
    *
    * This should cover most of the common cases. It's not really possible to do much with the "check back later" ones.
