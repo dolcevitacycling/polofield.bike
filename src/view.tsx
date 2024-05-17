@@ -127,7 +127,8 @@ function Layout(props: Props) {
         .time {
           position: absolute;
           top: -0.1em;
-          left: 0;
+          right: 0;
+          min-width: 100%;
           transform: translate(0, -100%);
         }
         .today > li:first-of-type .time {
