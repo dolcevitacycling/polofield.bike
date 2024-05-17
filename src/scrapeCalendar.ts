@@ -283,6 +283,17 @@ function fillEntry(
   };
 }
 
+function parseAndReorderEntries(date: CalendarDate): ReturnType<typeof nameParser>[] {
+  const names = date.entries.map(nameParser);
+  if (names.length === 2) {
+    const [a, b] = names;
+    if (a.open === b.open && 'startMinute' in a && 'endMinute' in b && a.startMinute > b.endMinute) {
+      return [b, a];
+    }
+  }
+  return names;
+}
+
 function getIntervals(date: CalendarDate, fieldRainedOut: boolean) {
   const intervals: RuleInterval[] = [];
   if (fieldRainedOut) {
@@ -294,8 +305,8 @@ function getIntervals(date: CalendarDate, fieldRainedOut: boolean) {
     });
   } else {
     let lastEntry: ParsedName | null = null;
-    for (const entry of date.entries) {
-      const p = fillEntry(nameParser(entry), lastEntry);
+    for (const parsedEntry of parseAndReorderEntries(date)) {
+      const p = fillEntry(parsedEntry, lastEntry);
 
       if (!lastEntry) {
         if (p.startMinute > 0) {

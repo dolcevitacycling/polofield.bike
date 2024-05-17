@@ -3201,28 +3201,18 @@
           "end_date": "2024-06-04",
           "intervals": [
             {
-              "open": false,
+              "open": true,
               "start_timestamp": "2024-06-04 00:00",
-              "end_timestamp": "2024-06-04 20:44"
-            },
-            {
-              "open": true,
-              "start_timestamp": "2024-06-04 20:45",
-              "end_timestamp": "2024-06-04 23:59"
-            },
-            {
-              "open": false,
-              "start_timestamp": "2024-06-04 24:00",
-              "end_timestamp": "2024-06-04 23:57"
-            },
-            {
-              "open": true,
-              "start_timestamp": "2024-06-04 23:58",
               "end_timestamp": "2024-06-04 18:29"
             },
             {
               "open": false,
               "start_timestamp": "2024-06-04 18:30",
+              "end_timestamp": "2024-06-04 20:44"
+            },
+            {
+              "open": true,
+              "start_timestamp": "2024-06-04 20:45",
               "end_timestamp": "2024-06-04 23:59"
             }
           ],
@@ -3260,28 +3250,18 @@
           "end_date": "2024-06-06",
           "intervals": [
             {
-              "open": false,
+              "open": true,
               "start_timestamp": "2024-06-06 00:00",
-              "end_timestamp": "2024-06-06 20:44"
-            },
-            {
-              "open": true,
-              "start_timestamp": "2024-06-06 20:45",
-              "end_timestamp": "2024-06-06 23:59"
-            },
-            {
-              "open": false,
-              "start_timestamp": "2024-06-06 24:00",
-              "end_timestamp": "2024-06-06 23:57"
-            },
-            {
-              "open": true,
-              "start_timestamp": "2024-06-06 23:58",
               "end_timestamp": "2024-06-06 18:29"
             },
             {
               "open": false,
               "start_timestamp": "2024-06-06 18:30",
+              "end_timestamp": "2024-06-06 20:44"
+            },
+            {
+              "open": true,
+              "start_timestamp": "2024-06-06 20:45",
               "end_timestamp": "2024-06-06 23:59"
             }
           ],
@@ -4048,28 +4028,18 @@
           "end_date": "2024-07-06",
           "intervals": [
             {
-              "open": false,
+              "open": true,
               "start_timestamp": "2024-07-06 00:00",
-              "end_timestamp": "2024-07-06 17:29"
-            },
-            {
-              "open": true,
-              "start_timestamp": "2024-07-06 17:30",
-              "end_timestamp": "2024-07-06 23:59"
-            },
-            {
-              "open": false,
-              "start_timestamp": "2024-07-06 24:00",
-              "end_timestamp": "2024-07-06 23:57"
-            },
-            {
-              "open": true,
-              "start_timestamp": "2024-07-06 23:58",
               "end_timestamp": "2024-07-06 07:29"
             },
             {
               "open": false,
               "start_timestamp": "2024-07-06 07:30",
+              "end_timestamp": "2024-07-06 17:29"
+            },
+            {
+              "open": true,
+              "start_timestamp": "2024-07-06 17:30",
               "end_timestamp": "2024-07-06 23:59"
             }
           ],
