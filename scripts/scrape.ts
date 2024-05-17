@@ -24,7 +24,9 @@ async function main() {
     "debug/fieldRainoutInfo.result.json",
     JSON.stringify(scraper.fieldRainoutInfo, null, 2),
   );
-  const fetchText = await (await fetch(currentCalendarUrl())).text();
+  const url = currentCalendarUrl();
+  console.log(url);
+  const fetchText = await (await fetch(url)).text();
   await fs.promises.writeFile("debug/scrape.html", fetchText);
   const res = new HTMLRewriter()
     .on("*", scraper)

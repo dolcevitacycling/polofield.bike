@@ -43,6 +43,7 @@ export interface CalendarEntry {
   startDate: string;
   description: string;
   subHeaderDate: string;
+  headingName: string;
 }
 
 export interface CalendarDate {
@@ -62,6 +63,9 @@ const CalendarWriters = {
   },
   subHeaderDate(s: string, entry: CalendarEntry) {
     entry.subHeaderDate += s;
+  },
+  headingName(s: string, entry: CalendarEntry) {
+    entry.headingName += s;
   },
 };
 
@@ -179,11 +183,54 @@ export const subheaderDateParser = ensureEndParsed(
   apSecond(reParser(/\w+\s+\d+,\s+\d+,\s+/gi), ctxMinuteRangeParser),
 );
 
+const MONTHS = Object.fromEntries(
+  [
+    "January",
+    "February",
+    "March",
+    "April",
+    "May",
+    "June",
+    "July",
+    "August",
+    "September",
+    "October",
+    "November",
+    "December",
+  ].map((m, i) => [m, String(i + 1).padStart(2, "0")]),
+);
+export const subHeaderDateOnlyParser = mapParser(
+  reParser(
+    new RegExp(
+      `(${Object.keys(MONTHS).join("|")}) ${/(\d{1,2}), (\d{4}), (?:(All Day)|(\d{1,2}):(\d{2}) ([AP]M))/.source}`,
+      "gi",
+    ),
+  ),
+  (res) => {
+    const [, month, day, year, allDay, hour, min, ampm] = res;
+    return [
+      `${year.padStart(4, "0")}-${MONTHS[month]}-${day.padStart(2, "0")}`,
+      allDay
+        ? "00:00"
+        : `${String(parseInt(hour, 10) + (ampm === "PM" ? 12 : 0)).padStart(2, "0")}:${min.padStart(2, "0")}`,
+    ].join("T");
+  },
+);
+
+function transformedSubHeaderDate(date: string): string {
+  const d2 = subHeaderDateOnlyParser(stream(date));
+  if (!d2) {
+    throw new Error("Invalid subHeaderDate " + date);
+  }
+  return d2.result;
+}
+
 function fixEvent({
   name,
   startDate,
   description,
   subHeaderDate,
+  headingName,
 }: CalendarEntry) {
   const after = subHeaderDate
     .replaceAll(/&nbsp;|&thinsp;/gi, " ")
@@ -194,10 +241,11 @@ function fixEvent({
     );
   }
   return {
-    name,
-    startDate,
+    name: name || headingName,
+    startDate: startDate || transformedSubHeaderDate(after),
     description,
     subHeaderDate: after,
+    headingName,
   };
 }
 
@@ -351,13 +399,24 @@ export class CalendarScraper implements HTMLRewriterElementContentHandlers {
         if (element.tagName === "li") {
           this.state = [
             nullWriter,
-            { name: "", startDate: "", description: "", subHeaderDate: "" },
+            {
+              name: "",
+              startDate: "",
+              description: "",
+              subHeaderDate: "",
+              headingName: "",
+            },
           ];
           element.onEndTag(() => {
             if (!Array.isArray(this.state)) {
               throw new Error(`Invalid state: ${JSON.stringify(this.state)}`);
             }
-            this.addEvent(fixEvent(this.state[1]));
+            const fixedEvent = fixEvent(this.state[1]);
+            if (fixedEvent.name === "") {
+              console.log(fixedEvent);
+              throw new Error(`Invalid state ${JSON.stringify(this.state)}`);
+            }
+            this.addEvent(fixedEvent);
             this.state = "ol";
           });
         }
@@ -395,6 +454,16 @@ export class CalendarScraper implements HTMLRewriterElementContentHandlers {
               this.state[0] = nullWriter;
             }
           });
+        } else if (
+          element.tagName === "a" &&
+          /^eventTitle_/.test(element.getAttribute("id") ?? "")
+        ) {
+          this.state[0] = CalendarWriters.headingName;
+          element.onEndTag(() => {
+            if (Array.isArray(this.state)) {
+              this.state[0] = nullWriter;
+            }
+          });
         }
         element.remove();
         break;
@@ -410,7 +479,7 @@ export class CalendarScraper implements HTMLRewriterElementContentHandlers {
   addEvent(event: CalendarEntry) {
     const m = /^(\d{4}-\d{2}-\d{2})/.exec(event.startDate);
     if (!m) {
-      throw new Error(`Invalid date: ${event.startDate}`);
+      throw new Error(`Invalid date: ${JSON.stringify(event, null, 2)}`);
     }
     const date = m[1];
     const year = +date.substring(0, 4);
