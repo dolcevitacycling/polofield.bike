@@ -494,6 +494,14 @@ function Layout(props: Props) {
                     </li>
                     <li>
                       <a
+                        href="tel:415-242-6390"
+                        class="no-underline"
+                        title="Call Park Rangers"
+                        ><span class="base">☎️</span> Call Park Rangers</a
+                      >
+                    </li>
+                    <li>
+                      <a
                         href="https://discord.gg/FYqedSVJ78"
                         target="_blank"
                         rel="noopener noreferrer"
