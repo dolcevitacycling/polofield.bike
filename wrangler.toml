@@ -1,6 +1,7 @@
 name = "polofield"
 main = "src/index.ts"
-compatibility_date = "2023-07-17"
+compatibility_flags = [ "nodejs_compat" ]
+compatibility_date = "2024-09-23"
 
 [triggers]
 crons = ["*/5 * * * *"]
