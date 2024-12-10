@@ -283,11 +283,18 @@ function fillEntry(
   };
 }
 
-function parseAndReorderEntries(date: CalendarDate): ReturnType<typeof nameParser>[] {
+function parseAndReorderEntries(
+  date: CalendarDate,
+): ReturnType<typeof nameParser>[] {
   const names = date.entries.map(nameParser);
   if (names.length === 2) {
     const [a, b] = names;
-    if (a.open === b.open && 'startMinute' in a && 'endMinute' in b && a.startMinute > b.endMinute) {
+    if (
+      a.open === b.open &&
+      "startMinute" in a &&
+      "endMinute" in b &&
+      a.startMinute > b.endMinute
+    ) {
       return [b, a];
     }
   }

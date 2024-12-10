@@ -2495,11 +2495,11 @@
             "headingName": "Cycle Track Open Until 8:30 AM"
           },
           {
-            "name": "Cycle Track Open After 3:30 PM",
-            "startDate": "2024-07-05T15:30",
+            "name": "Cycle Track Open After 4:15 PM",
+            "startDate": "2024-07-05T16:15",
             "description": "",
-            "subHeaderDate": "July 5, 2024, 3:30 PM",
-            "headingName": "Cycle Track Open After 3:30 PM"
+            "subHeaderDate": "July 5, 2024, 4:15 PM",
+            "headingName": "Cycle Track Open After 4:15 PM"
           }
         ]
       },
@@ -2552,11 +2552,11 @@
             "headingName": "Cycle Track Open Until 7:30 AM"
           },
           {
-            "name": "Cycle Track Open After 8:45 PM",
-            "startDate": "2024-07-08T20:45",
+            "name": "Cycle Track Open After 4:30 PM",
+            "startDate": "2024-07-08T16:30",
             "description": "",
-            "subHeaderDate": "July 8, 2024, 8:45 PM",
-            "headingName": "Cycle Track Open After 8:45 PM"
+            "subHeaderDate": "July 8, 2024, 4:30 PM",
+            "headingName": "Cycle Track Open After 4:30 PM"
           }
         ]
       },
@@ -2571,11 +2571,11 @@
             "headingName": "Cycle Track Open Until 7:30 AM"
           },
           {
-            "name": "Cycle Track Open After 4:30 PM",
-            "startDate": "2024-07-09T16:30",
+            "name": "Cycle Track Open After 8:45 PM",
+            "startDate": "2024-07-09T20:45",
             "description": "",
-            "subHeaderDate": "July 9, 2024, 4:30 PM",
-            "headingName": "Cycle Track Open After 4:30 PM"
+            "subHeaderDate": "July 9, 2024, 8:45 PM",
+            "headingName": "Cycle Track Open After 8:45 PM"
           }
         ]
       },
@@ -3181,11 +3181,11 @@
         "date": "2024-08-23",
         "entries": [
           {
-            "name": "Cycle Track CLOSED ALL DAY",
-            "startDate": "2024-08-23T05:00:00",
+            "name": "Cycle Track Open after 3:00 PM",
+            "startDate": "2024-08-23T15:00:00",
             "description": "",
-            "subHeaderDate": "August 23, 2024, 5:00 AM",
-            "headingName": "Cycle Track CLOSED ALL DAY"
+            "subHeaderDate": "August 23, 2024, 3:00 PM",
+            "headingName": "Cycle Track Open after 3:00 PM"
           }
         ]
       },
@@ -3389,11 +3389,11 @@
         "date": "2024-09-07",
         "entries": [
           {
-            "name": "Cycle Track Open Until 7 a.m.",
+            "name": "Cycle Track Open Until 7:30 a.m.",
             "startDate": "2024-09-07T05:00:00",
             "description": "",
-            "subHeaderDate": "September 7, 2024, 5:00 AM - 7:00 AM",
-            "headingName": "Cycle Track Open Until 7 a.m."
+            "subHeaderDate": "September 7, 2024, 5:00 AM - 7:30 AM",
+            "headingName": "Cycle Track Open Until 7:30 a.m."
           },
           {
             "name": "Cycle Track Open After 6:15 p.m.",
@@ -3408,11 +3408,11 @@
         "date": "2024-09-08",
         "entries": [
           {
-            "name": "Cycle Track Open Until 7 a.m.",
+            "name": "Cycle Track Open Until 12:30 p.m.",
             "startDate": "2024-09-08T05:00:00",
             "description": "",
-            "subHeaderDate": "September 8, 2024, 5:00 AM - 7:00 AM",
-            "headingName": "Cycle Track Open Until 7 a.m."
+            "subHeaderDate": "September 8, 2024, 5:00 AM - 12:30 PM",
+            "headingName": "Cycle Track Open Until 12:30 p.m."
           },
           {
             "name": "Cycle Track Open After 6:15 p.m.",
@@ -3515,11 +3515,11 @@
         "date": "2024-09-14",
         "entries": [
           {
-            "name": "Cycle Track Open Until 7 a.m.",
+            "name": "Cycle Track Open Until 7:30 a.m.",
             "startDate": "2024-09-14T05:00:00",
             "description": "",
-            "subHeaderDate": "September 14, 2024, 5:00 AM - 7:00 AM",
-            "headingName": "Cycle Track Open Until 7 a.m."
+            "subHeaderDate": "September 14, 2024, 5:00 AM - 7:30 AM",
+            "headingName": "Cycle Track Open Until 7:30 a.m."
           },
           {
             "name": "Cycle Track Open After 6:15 p.m.",
@@ -3534,11 +3534,11 @@
         "date": "2024-09-15",
         "entries": [
           {
-            "name": "Cycle Track Open Until 7 a.m.",
-            "startDate": "2024-09-15T05:00:00",
+            "name": "Cycle Track Open Until 10:30 a.m.",
+            "startDate": "2024-09-15T10:30:00",
             "description": "",
-            "subHeaderDate": "September 15, 2024, 5:00 AM - 7:00 AM",
-            "headingName": "Cycle Track Open Until 7 a.m."
+            "subHeaderDate": "September 15, 2024, 10:30 AM - 12:30 PM",
+            "headingName": "Cycle Track Open Until 10:30 a.m."
           },
           {
             "name": "Cycle Track Open After 6:15 p.m.",
@@ -3641,11 +3641,11 @@
         "date": "2024-09-21",
         "entries": [
           {
-            "name": "Cycle Track Open Until 7 a.m.",
+            "name": "Cycle Track Open Until 7:30 a.m.",
             "startDate": "2024-09-21T05:00:00",
             "description": "",
-            "subHeaderDate": "September 21, 2024, 5:00 AM - 7:00 AM",
-            "headingName": "Cycle Track Open Until 7 a.m."
+            "subHeaderDate": "September 21, 2024, 5:00 AM - 7:30 AM",
+            "headingName": "Cycle Track Open Until 7:30 a.m."
           },
           {
             "name": "Cycle Track Open After 6:15 p.m.",
@@ -3660,11 +3660,11 @@
         "date": "2024-09-22",
         "entries": [
           {
-            "name": "Cycle Track Open Until 7 a.m.",
+            "name": "Cycle Track Open Until 10:30 a.m.",
             "startDate": "2024-09-22T05:00:00",
             "description": "",
-            "subHeaderDate": "September 22, 2024, 5:00 AM - 7:00 AM",
-            "headingName": "Cycle Track Open Until 7 a.m."
+            "subHeaderDate": "September 22, 2024, 5:00 AM - 10:30 AM",
+            "headingName": "Cycle Track Open Until 10:30 a.m."
           },
           {
             "name": "Cycle Track Open After 6:15 p.m.",
@@ -3767,11 +3767,11 @@
         "date": "2024-09-28",
         "entries": [
           {
-            "name": "Cycle Track Open Until 7 a.m.",
+            "name": "Cycle Track Open Until 7:30 a.m.",
             "startDate": "2024-09-28T05:00:00",
             "description": "",
-            "subHeaderDate": "September 28, 2024, 5:00 AM - 7:00 AM",
-            "headingName": "Cycle Track Open Until 7 a.m."
+            "subHeaderDate": "September 28, 2024, 5:00 AM - 7:30 AM",
+            "headingName": "Cycle Track Open Until 7:30 a.m."
           },
           {
             "name": "Cycle Track Open After 6:15 p.m.",
@@ -3786,11 +3786,11 @@
         "date": "2024-09-29",
         "entries": [
           {
-            "name": "Cycle Track Open Until 7 a.m.",
+            "name": "Cycle Track Open Until 10:30 a.m.",
             "startDate": "2024-09-29T05:00:00",
             "description": "",
-            "subHeaderDate": "September 29, 2024, 5:00 AM - 7:00 AM",
-            "headingName": "Cycle Track Open Until 7 a.m."
+            "subHeaderDate": "September 29, 2024, 5:00 AM - 10:30 AM",
+            "headingName": "Cycle Track Open Until 10:30 a.m."
           },
           {
             "name": "Cycle Track Open After 6:15 p.m.",
@@ -3979,11 +3979,11 @@
         "date": "2024-10-11",
         "entries": [
           {
-            "name": "Cycle Track Open Until 2 p.m.",
+            "name": "Cycle Track Open Until 8:30 a.m.",
             "startDate": "2024-10-11T05:00:00",
             "description": "",
-            "subHeaderDate": "October 11, 2024, 5:00 AM - 2:00 PM",
-            "headingName": "Cycle Track Open Until 2 p.m."
+            "subHeaderDate": "October 11, 2024, 5:00 AM - 8:30 AM",
+            "headingName": "Cycle Track Open Until 8:30 a.m."
           },
           {
             "name": "Cycle Track Open After 6:45 p.m.",
@@ -3998,11 +3998,11 @@
         "date": "2024-10-12",
         "entries": [
           {
-            "name": "Cycle Track Open Until 7 a.m.",
+            "name": "Cycle Track Open Until 7:30 a.m.",
             "startDate": "2024-10-12T05:00:00",
             "description": "",
-            "subHeaderDate": "October 12, 2024, 5:00 AM - 7:00 AM",
-            "headingName": "Cycle Track Open Until 7 a.m."
+            "subHeaderDate": "October 12, 2024, 5:00 AM - 7:30 AM",
+            "headingName": "Cycle Track Open Until 7:30 a.m."
           },
           {
             "name": "Cycle Track Open After 6:15 p.m.",
@@ -4017,11 +4017,11 @@
         "date": "2024-10-13",
         "entries": [
           {
-            "name": "Cycle Track Open Until 7 a.m.",
-            "startDate": "2024-10-13T05:00:00",
+            "name": "Cycle Track Open Until 10:30 a.m.",
+            "startDate": "2024-10-13T10:30:00",
             "description": "",
-            "subHeaderDate": "October 13, 2024, 5:00 AM - 7:00 AM",
-            "headingName": "Cycle Track Open Until 7 a.m."
+            "subHeaderDate": "October 13, 2024, 10:30 AM - 12:30 PM",
+            "headingName": "Cycle Track Open Until 10:30 a.m."
           },
           {
             "name": "Cycle Track Open After 6:15 p.m.",
@@ -4124,11 +4124,11 @@
         "date": "2024-10-19",
         "entries": [
           {
-            "name": "Cycle Track Open Until 7 a.m.",
+            "name": "Cycle Track Open Until 7:30 a.m.",
             "startDate": "2024-10-19T05:00:00",
             "description": "",
-            "subHeaderDate": "October 19, 2024, 5:00 AM - 7:00 AM",
-            "headingName": "Cycle Track Open Until 7 a.m."
+            "subHeaderDate": "October 19, 2024, 5:00 AM - 7:30 AM",
+            "headingName": "Cycle Track Open Until 7:30 a.m."
           },
           {
             "name": "Cycle Track Open After 6:15 p.m.",
@@ -4143,11 +4143,11 @@
         "date": "2024-10-20",
         "entries": [
           {
-            "name": "Cycle Track Open Until 7 a.m.",
+            "name": "Cycle Track Open Until 10:30 a.m.",
             "startDate": "2024-10-20T05:00:00",
             "description": "",
-            "subHeaderDate": "October 20, 2024, 5:00 AM - 7:00 AM",
-            "headingName": "Cycle Track Open Until 7 a.m."
+            "subHeaderDate": "October 20, 2024, 5:00 AM - 10:30 AM",
+            "headingName": "Cycle Track Open Until 10:30 a.m."
           },
           {
             "name": "Cycle Track Open After 6:15 p.m.",
@@ -4250,11 +4250,11 @@
         "date": "2024-10-26",
         "entries": [
           {
-            "name": "Cycle Track Open Until 7 a.m.",
+            "name": "Cycle Track Open Until 7:30 a.m.",
             "startDate": "2024-10-26T05:00:00",
             "description": "",
-            "subHeaderDate": "October 26, 2024, 5:00 AM - 7:00 AM",
-            "headingName": "Cycle Track Open Until 7 a.m."
+            "subHeaderDate": "October 26, 2024, 5:00 AM - 7:30 AM",
+            "headingName": "Cycle Track Open Until 7:30 a.m."
           },
           {
             "name": "Cycle Track Open After 6:15 p.m.",
@@ -4269,11 +4269,11 @@
         "date": "2024-10-27",
         "entries": [
           {
-            "name": "Cycle Track Open Until 7 a.m.",
-            "startDate": "2024-10-27T05:00:00",
+            "name": "Cycle Track Open Until 10:30 a.m.",
+            "startDate": "2024-10-27T10:30:00",
             "description": "",
-            "subHeaderDate": "October 27, 2024, 5:00 AM - 7:00 AM",
-            "headingName": "Cycle Track Open Until 7 a.m."
+            "subHeaderDate": "October 27, 2024, 10:30 AM - 12:30 PM",
+            "headingName": "Cycle Track Open Until 10:30 a.m."
           },
           {
             "name": "Cycle Track Open After 6:15 p.m.",
@@ -4376,11 +4376,11 @@
         "date": "2024-11-02",
         "entries": [
           {
-            "name": "Cycle Track Open Until 7 a.m.",
+            "name": "Cycle Track Open Until 7:30 a.m.",
             "startDate": "2024-11-02T05:00:00",
             "description": "",
-            "subHeaderDate": "November 2, 2024, 5:00 AM - 7:00 AM",
-            "headingName": "Cycle Track Open Until 7 a.m."
+            "subHeaderDate": "November 2, 2024, 5:00 AM - 7:30 AM",
+            "headingName": "Cycle Track Open Until 7:30 a.m."
           },
           {
             "name": "Cycle Track Open After 6:15 p.m.",
@@ -4395,11 +4395,11 @@
         "date": "2024-11-03",
         "entries": [
           {
-            "name": "Cycle Track Open Until 7 a.m.",
-            "startDate": "2024-11-03T05:00:00",
+            "name": "Cycle Track Open Until 10:30 a.m.",
+            "startDate": "2024-11-03T10:30:00",
             "description": "",
-            "subHeaderDate": "November 3, 2024, 5:00 AM - 7:00 AM",
-            "headingName": "Cycle Track Open Until 7 a.m."
+            "subHeaderDate": "November 3, 2024, 10:30 AM - 12:30 PM",
+            "headingName": "Cycle Track Open Until 10:30 a.m."
           },
           {
             "name": "Cycle Track Open After 6:15 p.m.",
@@ -4502,11 +4502,11 @@
         "date": "2024-11-09",
         "entries": [
           {
-            "name": "Cycle Track Open Until 7 a.m.",
+            "name": "Cycle Track Open Until 7:30 a.m.",
             "startDate": "2024-11-09T05:00:00",
             "description": "",
-            "subHeaderDate": "November 9, 2024, 5:00 AM - 7:00 AM",
-            "headingName": "Cycle Track Open Until 7 a.m."
+            "subHeaderDate": "November 9, 2024, 5:00 AM - 7:30 AM",
+            "headingName": "Cycle Track Open Until 7:30 a.m."
           },
           {
             "name": "Cycle Track Open After 6:15 p.m.",
@@ -4521,11 +4521,11 @@
         "date": "2024-11-10",
         "entries": [
           {
-            "name": "Cycle Track Open Until 7 a.m.",
-            "startDate": "2024-11-10T05:00:00",
+            "name": "Cycle Track Open Until 10:30 a.m.",
+            "startDate": "2024-11-10T10:30:00",
             "description": "",
-            "subHeaderDate": "November 10, 2024, 5:00 AM - 7:00 AM",
-            "headingName": "Cycle Track Open Until 7 a.m."
+            "subHeaderDate": "November 10, 2024, 10:30 AM - 12:30 PM",
+            "headingName": "Cycle Track Open Until 10:30 a.m."
           },
           {
             "name": "Cycle Track Open After 6:15 p.m.",
@@ -4628,11 +4628,11 @@
         "date": "2024-11-16",
         "entries": [
           {
-            "name": "Cycle Track Open Until 7 a.m.",
+            "name": "Cycle Track Open Until 7:30 a.m.",
             "startDate": "2024-11-16T05:00:00",
             "description": "",
-            "subHeaderDate": "November 16, 2024, 5:00 AM - 7:00 AM",
-            "headingName": "Cycle Track Open Until 7 a.m."
+            "subHeaderDate": "November 16, 2024, 5:00 AM - 7:30 AM",
+            "headingName": "Cycle Track Open Until 7:30 a.m."
           },
           {
             "name": "Cycle Track Open After 6:15 p.m.",
@@ -4647,11 +4647,11 @@
         "date": "2024-11-17",
         "entries": [
           {
-            "name": "Cycle Track Open Until 7 a.m.",
-            "startDate": "2024-11-17T05:00:00",
+            "name": "Cycle Track Open Until 10:30 a.m.",
+            "startDate": "2024-11-17T10:30:00",
             "description": "",
-            "subHeaderDate": "November 17, 2024, 5:00 AM - 7:00 AM",
-            "headingName": "Cycle Track Open Until 7 a.m."
+            "subHeaderDate": "November 17, 2024, 10:30 AM - 12:30 PM",
+            "headingName": "Cycle Track Open Until 10:30 a.m."
           },
           {
             "name": "Cycle Track Open After 6:15 p.m.",
@@ -4704,11 +4704,11 @@
             "headingName": "Cycle Track Open Until 12 p.m."
           },
           {
-            "name": "Cycle Track Open After 6:45 p.m.",
-            "startDate": "2024-11-20T18:45:00",
+            "name": "Cycle Track Open After 7:30 p.m.",
+            "startDate": "2024-11-20T19:30:00",
             "description": "",
-            "subHeaderDate": "November 20, 2024, 6:45 PM",
-            "headingName": "Cycle Track Open After 6:45 p.m."
+            "subHeaderDate": "November 20, 2024, 7:30 PM",
+            "headingName": "Cycle Track Open After 7:30 p.m."
           }
         ]
       },
@@ -4754,11 +4754,11 @@
         "date": "2024-11-23",
         "entries": [
           {
-            "name": "Cycle Track Open Until 7 a.m.",
+            "name": "Cycle Track Open Until 7:30 a.m.",
             "startDate": "2024-11-23T05:00:00",
             "description": "",
-            "subHeaderDate": "November 23, 2024, 5:00 AM - 7:00 AM",
-            "headingName": "Cycle Track Open Until 7 a.m."
+            "subHeaderDate": "November 23, 2024, 5:00 AM - 7:30 AM",
+            "headingName": "Cycle Track Open Until 7:30 a.m."
           },
           {
             "name": "Cycle Track Open After 6:15 p.m.",
@@ -4773,11 +4773,11 @@
         "date": "2024-11-24",
         "entries": [
           {
-            "name": "Cycle Track Open Until 7 a.m.",
-            "startDate": "2024-11-24T05:00:00",
+            "name": "Cycle Track Open Until 10:30 a.m.",
+            "startDate": "2024-11-24T10:30:00",
             "description": "",
-            "subHeaderDate": "November 24, 2024, 5:00 AM - 7:00 AM",
-            "headingName": "Cycle Track Open Until 7 a.m."
+            "subHeaderDate": "November 24, 2024, 10:30 AM - 12:30 PM",
+            "headingName": "Cycle Track Open Until 10:30 a.m."
           },
           {
             "name": "Cycle Track Open After 6:15 p.m.",
@@ -4804,18 +4804,11 @@
         "date": "2024-11-26",
         "entries": [
           {
-            "name": "Cycle Track Open Until 2 p.m.",
+            "name": "Cycle Track Open All Day",
             "startDate": "2024-11-26T05:00:00",
             "description": "",
-            "subHeaderDate": "November 26, 2024, 5:00 AM - 2:00 PM",
-            "headingName": "Cycle Track Open Until 2 p.m."
-          },
-          {
-            "name": "Cycle Track Open After 6:45 p.m.",
-            "startDate": "2024-11-26T18:45:00",
-            "description": "",
-            "subHeaderDate": "November 26, 2024, 6:45 PM",
-            "headingName": "Cycle Track Open After 6:45 p.m."
+            "subHeaderDate": "November 26, 2024, 5:00 AM",
+            "headingName": "Cycle Track Open All Day"
           }
         ]
       },
@@ -4823,18 +4816,11 @@
         "date": "2024-11-27",
         "entries": [
           {
-            "name": "Cycle Track Open Until 2 p.m.",
+            "name": "Cycle Track Open All Day",
             "startDate": "2024-11-27T05:00:00",
             "description": "",
-            "subHeaderDate": "November 27, 2024, 5:00 AM - 2:00 PM",
-            "headingName": "Cycle Track Open Until 2 p.m."
-          },
-          {
-            "name": "Cycle Track Open After 6:45 p.m.",
-            "startDate": "2024-11-27T18:45:00",
-            "description": "",
-            "subHeaderDate": "November 27, 2024, 6:45 PM",
-            "headingName": "Cycle Track Open After 6:45 p.m."
+            "subHeaderDate": "November 27, 2024, 5:00 AM",
+            "headingName": "Cycle Track Open All Day"
           }
         ]
       },
