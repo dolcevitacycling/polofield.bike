@@ -1,5 +1,3 @@
-// @ts-ignore
-import manifest from "__STATIC_CONTENT_MANIFEST";
 import {
   cachedScrapeResult,
   cronBody,
@@ -8,7 +6,6 @@ import {
 } from "./cron";
 import { Bindings, PoloFieldMessage } from "./types";
 import { Hono } from "hono";
-import { serveStatic } from "hono/cloudflare-workers";
 import view, { etiquette, viewHex, viewWeek } from "./view";
 import icalFeed, { calendarView } from "./icalFeed";
 import { getTodayPacific, parseDate, shortDateStyle } from "./dates";
@@ -99,7 +96,6 @@ app.get("/api/hex", async (c) => viewHex(c, getTodayPacific()));
 app.get("/api/hex/:hexdate{[0-9]{4}-[0-9]{2}-[0-9]{2}|today}", async (c) =>
   viewHex(c, optionalDateParam(c.req.param().hexdate)),
 );
-app.get("/*", serveStatic({ root: "./", manifest }));
 
 app.post("/slack/polo", slackPolo);
 app.post("/slack/action-endpoint", slackActionEndpoint);

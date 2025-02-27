@@ -1,5 +1,8 @@
 export interface Bindings {
   DB: D1Database;
+  ASSETS: {
+    fetch: typeof fetch;
+  };
   SLACK_SIGNING_SECRET: string;
   SLACK_APP_ID: string;
   SLACK_CLIENT_ID: string;

@@ -7,17 +7,20 @@ import {
   isTrackOpen,
 } from "./scrapeFieldRainoutInfo";
 
-describe("downloadFieldRainoutInfo", () => {
-  it.skipIf(!process.env.TEST_NETWORK)(
-    "should download field rainout info",
-    async () => {
-      await downloadFieldRainoutInfo();
-    },
-    {
-      timeout: 10000,
-    },
-  );
-});
+describe(
+  "downloadFieldRainoutInfo",
+  {
+    timeout: 10000,
+  },
+  () => {
+    it.skipIf(!process.env.TEST_NETWORK)(
+      "should download field rainout info",
+      async () => {
+        await downloadFieldRainoutInfo();
+      },
+    );
+  },
+);
 
 const HEADER = [
   "Date:",
@@ -177,21 +180,21 @@ describe("transformRainoutInfo", () => {
 describe("fetchFieldRainoutInfo", () => {
   it.skipIf(!process.env.TEST_NETWORK)(
     "should fetch and parse field rainout info",
+    {
+      timeout: 10000,
+    },
     async () => {
       const year = 2024;
       const jan1 = `${year}-01-01`;
       const parsed = await fetchFieldRainoutInfo(year);
       expect(Object.keys(parsed).every((k) => k >= jan1)).toBe(true);
     },
-    {
-      timeout: 10000,
-    },
   );
   it("should fetch and parse field rainout info from ./debug/fieldRainoutInfo.xlsx", async () => {
     const year = 2024;
     const jan1 = `${year}-01-01`;
     const worksheets = await downloadFieldRainoutInfo(
-      fs.readFileSync("./debug/fieldRainoutInfo.xlsx"),
+      fs.readFileSync("./debug/fieldRainoutInfo.xlsx").buffer as ArrayBuffer,
     );
     const parsed = await fetchFieldRainoutInfo(year, worksheets);
     expect(Object.keys(parsed).every((k) => k >= jan1)).toBe(true);
