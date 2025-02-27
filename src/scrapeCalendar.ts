@@ -270,7 +270,6 @@ function nameParser(entry: CalendarEntry) {
     } else if (r2 && r2.result[1]) {
       return { open: r2.result[0], ...ALL_DAY };
     }
-    debugger;
     throw new Error(
       `Invalid name: ${JSON.stringify(entry)} r2=${r2?.result} d2=${d2?.result}`,
     );
