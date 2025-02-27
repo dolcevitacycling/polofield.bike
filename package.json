@@ -31,7 +31,7 @@
     "check": "tsc --noEmit --skipLibCheck",
     "check-updates": "npx npm-check-updates",
     "format": "prettier --write 'src/**/*.{js,ts,css,json,md}'",
-    "scrape": "NODE_OPTIONS=--no-warnings=ExperimentalWarning tsx scripts/scrape.ts"
+    "scrape": "tsx scripts/scrape.ts"
   },
   "prettier": {}
 }

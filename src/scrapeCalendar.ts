@@ -15,6 +15,7 @@ import {
   parseFirst,
   stream,
   reParser,
+  optional,
 } from "./parsing";
 import { FieldRainoutInfo } from "./scrapeFieldRainoutInfo";
 
@@ -139,14 +140,14 @@ export const timeToMinuteParser = mapParser(
   (result) => result.value,
 );
 
+const ALL_DAY = {
+  startMinute: 0,
+  endMinute: toMinute(24, 0),
+} as const;
+
 export const timeSpanReParser = parseFirst(
   // "all day"
-  mapParser(reParser(/\s*all day\s*/gi), () => {
-    return {
-      startMinute: 0,
-      endMinute: toMinute(24, 0),
-    } as const;
-  }),
+  mapParser(reParser(/\s*all day\s*/gi), () => ALL_DAY),
   // "until 2 p.m."
   mapParser(
     apSecond(reParser(/\s*until\s+/gi), timeToMinuteParser),
@@ -159,6 +160,10 @@ export const timeSpanReParser = parseFirst(
   ),
   // "2-10 p.m.", "5 a.m. to 2 p.m."
   ctxMinuteRangeParser,
+);
+
+export const reasonParser = optional(
+  mapParser(reParser(/\(([^)]+)\)\s*/gi), (result) => result[1]),
 );
 
 export const cycleTrackOpenParser = mapParser(
@@ -176,8 +181,6 @@ export const cycleTrackParser = ensureEndParsed(
       }) as const,
   ),
 );
-
-const onlyOpenParser = ensureEndParsed(cycleTrackOpenParser);
 
 export const subheaderDateParser = ensureEndParsed(
   apSecond(reParser(/\w+\s+\d+,\s+\d+,\s+/gi), ctxMinuteRangeParser),
@@ -249,15 +252,25 @@ function fixEvent({
   };
 }
 
+const openWithReasonParser = ensureEndParsed(
+  parseAll(
+    cycleTrackOpenParser,
+    optional(reParser(/\s*\([^)]*event[^)]*\)/gi)),
+  ),
+);
+
 function nameParser(entry: CalendarEntry) {
   const s = stream(entry.name);
   const result = cycleTrackParser(s)?.result;
   if (!result) {
-    const r2 = onlyOpenParser(s);
+    const r2 = openWithReasonParser(s);
     const d2 = subheaderDateParser(stream(entry.subHeaderDate));
     if (r2 && d2) {
-      return { open: r2.result, ...d2.result };
+      return { open: r2.result[0], ...d2.result };
+    } else if (r2 && r2.result[1]) {
+      return { open: r2.result[0], ...ALL_DAY };
     }
+    debugger;
     throw new Error(
       `Invalid name: ${JSON.stringify(entry)} r2=${r2?.result} d2=${d2?.result}`,
     );
