@@ -1486,23 +1486,15 @@
           "intervals": [
             {
               "open": true,
+              "comment": "Field Rained Out, Cycle Track Open All Day",
               "start_timestamp": "2025-03-12 00:00",
-              "end_timestamp": "2025-03-12 13:59"
-            },
-            {
-              "open": false,
-              "start_timestamp": "2025-03-12 14:00",
-              "end_timestamp": "2025-03-12 18:44"
-            },
-            {
-              "open": true,
-              "start_timestamp": "2025-03-12 18:45",
               "end_timestamp": "2025-03-12 23:59"
             }
           ],
           "rules": [
             "Cycle Track Open Until 2 p.m.\t2025-03-12T05:00:00\t\tMarch 12, 2025, 5:00 AM - 2:00 PM",
-            "Cycle Track Open After 6:45 p.m.\t2025-03-12T18:45:00\t\tMarch 12, 2025, 6:45 PM"
+            "Cycle Track Open After 6:45 p.m.\t2025-03-12T18:45:00\t\tMarch 12, 2025, 6:45 PM",
+            "Field Rained Out\t2025-03-12\t\t"
           ]
         }
       },
@@ -1516,23 +1508,15 @@
           "intervals": [
             {
               "open": true,
+              "comment": "Field Rained Out, Cycle Track Open All Day",
               "start_timestamp": "2025-03-13 00:00",
-              "end_timestamp": "2025-03-13 13:59"
-            },
-            {
-              "open": false,
-              "start_timestamp": "2025-03-13 14:00",
-              "end_timestamp": "2025-03-13 18:44"
-            },
-            {
-              "open": true,
-              "start_timestamp": "2025-03-13 18:45",
               "end_timestamp": "2025-03-13 23:59"
             }
           ],
           "rules": [
             "Cycle Track Open Until 2 p.m.\t2025-03-13T05:00:00\t\tMarch 13, 2025, 5:00 AM - 2:00 PM",
-            "Cycle Track Open After 6:45 p.m.\t2025-03-13T18:45:00\t\tMarch 13, 2025, 6:45 PM"
+            "Cycle Track Open After 6:45 p.m.\t2025-03-13T18:45:00\t\tMarch 13, 2025, 6:45 PM",
+            "Field Rained Out\t2025-03-13\t\t"
           ]
         }
       },
@@ -1546,23 +1530,15 @@
           "intervals": [
             {
               "open": true,
+              "comment": "Field Rained Out, Cycle Track Open All Day",
               "start_timestamp": "2025-03-14 00:00",
-              "end_timestamp": "2025-03-14 13:59"
-            },
-            {
-              "open": false,
-              "start_timestamp": "2025-03-14 14:00",
-              "end_timestamp": "2025-03-14 18:44"
-            },
-            {
-              "open": true,
-              "start_timestamp": "2025-03-14 18:45",
               "end_timestamp": "2025-03-14 23:59"
             }
           ],
           "rules": [
             "Cycle Track Open Until 2 p.m.\t2025-03-14T05:00:00\t\tMarch 14, 2025, 5:00 AM - 2:00 PM",
-            "Cycle Track Open After 6:45 p.m.\t2025-03-14T18:45:00\t\tMarch 14, 2025, 6:45 PM"
+            "Cycle Track Open After 6:45 p.m.\t2025-03-14T18:45:00\t\tMarch 14, 2025, 6:45 PM",
+            "Field Rained Out\t2025-03-14\t\t"
           ]
         }
       },
