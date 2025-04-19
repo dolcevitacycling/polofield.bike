@@ -24,3 +24,7 @@ crons = ["*/5 * * * *"]
 binding = "DB" # i.e. available in your Worker on env.DB
 database_name = "polofield"
 database_id = "2c697fd1-79d6-42b0-a924-4953f8d6aced"
+[[workflows]]
+name = "ScrapePoloWorkflow"
+binding = "SCRAPE_POLO_WORKFLOW"
+class_name = "ScrapePoloWorkflow"

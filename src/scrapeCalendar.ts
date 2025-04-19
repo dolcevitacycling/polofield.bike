@@ -387,23 +387,31 @@ function recognizeCalendarDate(
   return { recognizer: calendarRecognizer, rules };
 }
 
+export function getScrapeDebugResult(
+  data: Pick<CalendarScraper, "years" | "fieldRainoutInfo">,
+): ScrapeDebugResult {
+  const { years, fieldRainoutInfo } = data;
+  return years.map((y) => ({
+    ...y,
+    rules: y.rules.map((r) => recognizeCalendarDate(r, fieldRainoutInfo)),
+  }));
+}
+
+export function stripDebugResult(debugResult: ScrapeDebugResult): ScrapeResult {
+  return debugResult.map((y) => ({
+    ...y,
+    rules: y.rules.map((r) => r.rules),
+  }));
+}
 export class CalendarScraper implements HTMLRewriterElementContentHandlers {
   fieldRainoutInfo: FieldRainoutInfo = {};
   state: ScraperState = "initial";
   years: Year<CalendarDate>[] = [];
   getDebugResult(): ScrapeDebugResult {
-    return this.years.map((y) => ({
-      ...y,
-      rules: y.rules.map((r) =>
-        recognizeCalendarDate(r, this.fieldRainoutInfo),
-      ),
-    }));
+    return getScrapeDebugResult(this);
   }
   getResult(): ScrapeResult {
-    return this.getDebugResult().map((y) => ({
-      ...y,
-      rules: y.rules.map((r) => r.rules),
-    }));
+    return stripDebugResult(this.getDebugResult());
   }
   element(element: Element) {
     switch (this.state) {

@@ -12,6 +12,8 @@ import { getTodayPacific, parseDate, shortDateStyle } from "./dates";
 import { slackActionEndpoint, slackPolo } from "./slack";
 import { discordInteractions, discordRegisterCommands } from "./discord";
 
+export { ScrapePoloWorkflow } from "./workflows/ScrapePoloWorkflow";
+
 // API
 // Add weather? https://developer.apple.com/weatherkit/get-started/
 

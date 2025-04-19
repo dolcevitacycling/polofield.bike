@@ -119,7 +119,7 @@ export async function scrapePoloURL(): Promise<ScrapeResult> {
   return scraper.getResult();
 }
 
-interface ScrapeResultsRow {
+export interface ScrapeResultsRow {
   readonly created_at: string;
   readonly scrape_results_json: string;
 }
