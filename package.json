@@ -22,9 +22,9 @@
   },
   "private": true,
   "scripts": {
-    "start": "export NO_D1_WARNING=true && wrangler dev",
-    "deploy": "export NO_D1_WARNING=true && wrangler deploy",
-    "wrangler": "export NO_D1_WARNING=true && wrangler",
+    "start": "wrangler dev",
+    "deploy": "wrangler deploy",
+    "wrangler": "wrangler",
     "test": "vitest --run",
     "test:network": "TEST_NETWORK=1 npm run test",
     "vitest": "vitest",
