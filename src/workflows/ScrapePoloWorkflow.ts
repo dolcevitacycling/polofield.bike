@@ -55,31 +55,42 @@ export class ScrapePoloWorkflow extends WorkflowEntrypoint<Env, Params> {
         prev.results.length > 0 &&
         prev.results[0].scrape_results_json === scrape_results_json
       ) {
-        console.log(
-          `No change since ${prev.results[0].created_at}, skipping ${created_at}`,
-        );
-        return [];
+        return [
+          {
+            quiet: true,
+            message: `No change since ${prev.results[0].created_at}, skipping ${created_at}`,
+          },
+        ];
       } else if (result.length === 0 && prev.results.length > 0) {
-        const logMessage = `Error detected when scraping, skipping ${created_at}`;
-        console.log(logMessage);
-        return [logMessage];
+        return [
+          {
+            quiet: false,
+            message: `Error detected when scraping, skipping ${created_at}`,
+          },
+        ];
       } else {
         await this.env.DB.prepare(
           `INSERT INTO scrape_results (created_at, scrape_results_json) VALUES (?, ?)`,
         )
           .bind(created_at, scrape_results_json)
           .run();
-        const logMessage = `Error detected when scraping, skipping ${created_at}`;
-        console.log(logMessage);
-        return [logMessage];
+        return [
+          {
+            quiet: false,
+            message: `Error detected when scraping, skipping ${created_at}`,
+          },
+        ];
       }
     });
-    for (const logMessage of logMessages) {
-      if (log) {
-        await step.do(`discordReport ${logMessage}`, async () =>
-          discordReport(this.env, logMessage),
+
+    for (const { quiet, message } of logMessages) {
+      console.log(message);
+      if (log && !quiet) {
+        await step.do(`discordReport ${message}`, async () =>
+          discordReport(this.env, message),
         );
       }
     }
+    return logMessages.map((msg) => msg.message);
   }
 }
