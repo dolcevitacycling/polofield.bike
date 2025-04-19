@@ -291,7 +291,6 @@ export async function handleCron(
   env: Bindings,
 ): Promise<void> {
   // await cronBody(env);
-  const cronTimestamp = new Date().toISOString();
-  const workflow = await env.SCRAPE_POLO_WORKFLOW.create({ id: cronTimestamp });
+  const workflow = await env.SCRAPE_POLO_WORKFLOW.create();
   console.log(`Cron created workflow id ${workflow.id}`);
 }
