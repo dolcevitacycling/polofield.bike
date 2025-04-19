@@ -1,0 +1,43 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "compatibility_date": "2025-01-01",
+  "compatibility_flags": ["nodejs_compat"],
+  "main": "src/index.ts",
+  "name": "polofield",
+  "d1_databases": [
+    {
+      "binding": "DB",
+      "database_id": "2c697fd1-79d6-42b0-a924-4953f8d6aced",
+      "database_name": "polofield",
+    },
+  ],
+  "workflows": [
+    {
+      "binding": "SCRAPE_POLO_WORKFLOW",
+      "class_name": "ScrapePoloWorkflow",
+      "name": "ScrapePoloWorkflow",
+    },
+  ],
+  "assets": {
+    "binding": "ASSETS",
+    "directory": "./static",
+  },
+  "observability": {
+    "enabled": true,
+    "head_sampling_rate": 1,
+  },
+  "triggers": {
+    "crons": ["*/5 * * * *"],
+  },
+  "vars": {
+    // SLACK_APP_ID
+    // SLACK_CLIENT_ID
+    // SLACK_CLIENT_SECRET
+    // SLACK_SIGNING_SECRET
+    // DISCORD_PUBLIC_KEY
+    // DISCORD_CLIENT_ID
+    // DISCORD_CLIENT_SECRET
+    // DISCORD_INVITE_URL
+    // DISCORD_PERMISSIONS_INTEGER
+  },
+}

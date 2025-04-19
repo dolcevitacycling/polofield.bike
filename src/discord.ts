@@ -57,10 +57,13 @@ async function discordApiFetch(
   });
 }
 
+type DISCORD_WEBHOOK_URL = keyof Cloudflare.Env &
+  (`DISCORD_WEBHOOK_URL` | `DISCORD_DIAGNOSTICS_WEBHOOK_URL`);
+
 export async function discordReport(
   env: Bindings,
   content: string,
-  webhook_name = "DISCORD_DIAGNOSTICS_WEBHOOK_URL",
+  webhook_name: DISCORD_WEBHOOK_URL = "DISCORD_DIAGNOSTICS_WEBHOOK_URL",
 ): Promise<void> {
   const url = env[webhook_name];
   if (typeof url !== "string" || !url) {
@@ -84,11 +87,11 @@ export async function discordRegisterCommands(
     "PUT",
     COMMANDS,
   );
-  return c.text(
-    await res.text(),
-    res.status,
-    Object.fromEntries(res.headers.entries()),
-  );
+  const text = await res.text();
+  if (!res.ok) {
+    throw new Error(`discordRegisterCommands failure ${res.status}:\n${text}`);
+  }
+  return c.text(text, 200, Object.fromEntries(res.headers.entries()));
 }
 
 export interface RunDiscordWebhookParams {

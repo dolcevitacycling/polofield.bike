@@ -205,7 +205,7 @@ export async function refreshScrapeResult(
   }
 }
 
-async function bootstrapWebhooks(env: Bindings): Promise<void> {
+export async function bootstrapWebhooks(env: Bindings): Promise<void> {
   if (!env.DISCORD_WEBHOOK_URL) {
     console.log("no discord webhook url");
     return;
@@ -222,7 +222,44 @@ async function bootstrapWebhooks(env: Bindings): Promise<void> {
     .run();
 }
 
-async function runWebhooks(
+export type DailyWebhookStatusRow = Record<
+  "webhook_url" | "last_update_utc" | "params_json",
+  string
+>;
+
+export async function runWebhookRow(
+  env: Bindings,
+  today: string,
+  scrape_results: ScrapeResult,
+  row: DailyWebhookStatusRow,
+): Promise<void> {
+  const tomorrow = addDays(parseDate(today), 1);
+  const params = JSON.parse(row.params_json);
+  if (params.type === "discord") {
+    await runDiscordWebhook(env, {
+      webhook_url: row.webhook_url,
+      date: tomorrow,
+      params: params,
+      scrape_results,
+    });
+  } else if (params.type === "slack:chat.postMessage") {
+    await runSlackWebhook(env, {
+      webhook_url: row.webhook_url,
+      date: tomorrow,
+      params: params,
+      scrape_results,
+    });
+  } else {
+    throw new Error(`Unknown webhook type: ${params.type}`);
+  }
+  await env.DB.prepare(
+    `UPDATE daily_webhook_status SET last_update_utc = ? WHERE webhook_url = ?`,
+  )
+    .bind(today, row.webhook_url)
+    .run();
+}
+
+export async function runWebhooks(
   env: Bindings,
   { scrape_results }: CachedScrapeResult,
 ): Promise<void> {
@@ -234,34 +271,11 @@ async function runWebhooks(
     `SELECT webhook_url, params_json, last_update_utc FROM daily_webhook_status WHERE last_update_utc < ?`,
   )
     .bind(today)
-    .all<Record<"webhook_url" | "last_update_utc" | "params_json", string>>();
-  const tomorrow = addDays(parseDate(today), 1);
+    .all<DailyWebhookStatusRow>();
   await Promise.allSettled(
-    rows.results.map(async (row) => {
-      const params = JSON.parse(row.params_json);
-      if (params.type === "discord") {
-        await runDiscordWebhook(env, {
-          webhook_url: row.webhook_url,
-          date: tomorrow,
-          params: params,
-          scrape_results,
-        });
-      } else if (params.type === "slack:chat.postMessage") {
-        await runSlackWebhook(env, {
-          webhook_url: row.webhook_url,
-          date: tomorrow,
-          params: params,
-          scrape_results,
-        });
-      } else {
-        throw new Error(`Unknown webhook type: ${params.type}`);
-      }
-      await env.DB.prepare(
-        `UPDATE daily_webhook_status SET last_update_utc = ? WHERE webhook_url = ?`,
-      )
-        .bind(today, row.webhook_url)
-        .run();
-    }),
+    rows.results.map(async (row) =>
+      runWebhookRow(env, today, scrape_results, row),
+    ),
   );
 }
 
@@ -276,5 +290,8 @@ export async function handleCron(
   event: ScheduledController,
   env: Bindings,
 ): Promise<void> {
-  await cronBody(env);
+  // await cronBody(env);
+  const cronTimestamp = new Date().toISOString();
+  const workflow = await env.SCRAPE_POLO_WORKFLOW.create({ id: cronTimestamp });
+  console.log(`Cron created workflow id ${workflow.id}`);
 }

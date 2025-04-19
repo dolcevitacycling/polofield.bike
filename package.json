@@ -3,7 +3,6 @@
   "version": "0.0.0",
   "devDependencies": {
     "@cloudflare/kv-asset-handler": "^0.4.0",
-    "@cloudflare/workers-types": "^4.20250418.0",
     "@miniflare/core": "^2.14.4",
     "@miniflare/html-rewriter": "^2.14.4",
     "@slack/bolt": "^4.2.1",
@@ -32,7 +31,8 @@
     "check": "tsc --noEmit --skipLibCheck",
     "check-updates": "npx npm-check-updates",
     "format": "prettier --write 'src/**/*.{js,ts,css,json,md}'",
-    "scrape": "tsx scripts/scrape.ts"
+    "scrape": "tsx scripts/scrape.ts",
+    "tsc": "tsc"
   },
   "prettier": {}
 }

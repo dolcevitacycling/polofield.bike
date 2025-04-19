@@ -1,4 +1,5 @@
-import { ScrapeResult, ScrapeResultsRow } from "../cron";
+import { bootstrapWebhooks, runWebhookRow, ScrapeResultsRow } from "../cron";
+import { getTodayPacific } from "../dates";
 import { discordReport } from "../discord";
 import {
   CalendarScraper,
@@ -10,24 +11,17 @@ import { fetchFieldRainoutInfo } from "../scrapeFieldRainoutInfo";
 import type { WorkflowEvent, WorkflowStep } from "cloudflare:workers";
 import { WorkflowEntrypoint } from "cloudflare:workers";
 
-export async function scrapePoloURL(): Promise<ScrapeResult> {
-  const scraper = new CalendarScraper();
-  const res = new HTMLRewriter()
-    .on("*", scraper)
-    .transform(await fetch(currentCalendarUrl()));
-  await res.text();
-  const oldestYear =
-    Math.min(...scraper.years.map((y) => y.year)) || new Date().getFullYear();
-  scraper.fieldRainoutInfo = await fetchFieldRainoutInfo(oldestYear);
-  return scraper.getResult();
-}
-
 type Env = Cloudflare.Env;
-type Params = { log?: boolean };
+type Params = Record<never, never>;
 
 export class ScrapePoloWorkflow extends WorkflowEntrypoint<Env, Params> {
   async run(event: WorkflowEvent<Params>, step: WorkflowStep) {
-    const { log = false } = event.payload;
+    const today = await step.do("today", async () => {
+      // Shift to reporting the next day at 4pm instead of midnight
+      const now = new Date();
+      now.setHours(now.getHours() - 16);
+      return getTodayPacific(now);
+    });
     const years = await step.do("CalendarScraper", async () => {
       const scraper = new CalendarScraper();
       const res = new HTMLRewriter()
@@ -85,12 +79,34 @@ export class ScrapePoloWorkflow extends WorkflowEntrypoint<Env, Params> {
 
     for (const { quiet, message } of logMessages) {
       console.log(message);
-      if (log && !quiet) {
+      if (!quiet) {
         await step.do(`discordReport ${message}`, async () =>
           discordReport(this.env, message),
         );
       }
     }
+
+    await step.do("bootstrapWebhooks", async () => bootstrapWebhooks(this.env));
+
+    const webhooks = await step.do("webhooks", async () => {
+      const res = await this.env.DB.prepare(
+        `SELECT webhook_url, params_json, last_update_utc FROM daily_webhook_status WHERE last_update_utc < ?`,
+      )
+        .bind(today)
+        .all<
+          Record<"webhook_url" | "last_update_utc" | "params_json", string>
+        >();
+      return res.results;
+    });
+
+    await Promise.all(
+      webhooks.map(async (row, i) =>
+        step.do(`runWebhookRow ${i}`, async () =>
+          runWebhookRow(this.env, today, result, row),
+        ),
+      ),
+    );
+
     return logMessages.map((msg) => msg.message);
   }
 }

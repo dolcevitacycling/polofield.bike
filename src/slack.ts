@@ -19,11 +19,8 @@ import {
 } from "./cron";
 import { randomCyclist, NO_BIKES, SUNRISE, SUNSET } from "./emoji";
 import { getSunProps } from "./sun";
-import type {
-  SectionBlock,
-  EnvelopedEvent,
-  AppHomeOpenedEvent,
-} from "@slack/bolt";
+import type { EnvelopedEvent } from "@slack/bolt";
+import type { SectionBlock, AppHomeOpenedEvent } from "@slack/types";
 import hexToBuffer from "./hexToBuffer";
 
 async function verifySlackSignature(c: Context<{ Bindings: Bindings }>) {
