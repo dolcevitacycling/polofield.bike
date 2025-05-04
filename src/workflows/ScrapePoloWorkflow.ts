@@ -1,3 +1,4 @@
+import { NonRetryableError } from "cloudflare:workflows";
 import { bootstrapWebhooks, runWebhookRow, ScrapeResultsRow } from "../cron";
 import { getTodayPacific } from "../dates";
 import { discordReport } from "../discord";
@@ -22,17 +23,26 @@ export class ScrapePoloWorkflow extends WorkflowEntrypoint<Env, Params> {
       now.setHours(now.getHours() - 16);
       return getTodayPacific(now);
     });
-    const years = await step.do("CalendarScraper", async () => {
-      const scraper = new CalendarScraper();
-      const res = new HTMLRewriter()
-        .on("*", scraper)
-        .transform(await fetch(currentCalendarUrl()));
-      await res.text();
-      if (scraper.years.length === 0) {
-        throw new Error(`scraper.years.length === 0`);
-      }
-      return scraper.years;
-    });
+    const years = await step
+      .do("CalendarScraper", async () => {
+        const scraper = new CalendarScraper();
+        const res = new HTMLRewriter()
+          .on("*", scraper)
+          .transform(await fetch(currentCalendarUrl()));
+        await res.text();
+        if (scraper.years.length === 0) {
+          throw new Error(`scraper.years.length === 0`);
+        }
+        return scraper.years;
+      })
+      .catch(async () => {
+        await step.do("CalendarScraper:report", async () => {
+          const message = `Error detected when scraping, skipping ${new Date().toISOString()}`;
+          await discordReport(this.env, message);
+          throw new NonRetryableError(message);
+        });
+        throw new NonRetryableError("unreachable");
+      });
     const oldestYear =
       Math.min(...years.map((y) => y.year)) || new Date().getFullYear();
     const fieldRainoutInfo = await step.do(
