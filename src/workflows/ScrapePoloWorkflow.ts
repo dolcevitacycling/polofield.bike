@@ -28,6 +28,9 @@ export class ScrapePoloWorkflow extends WorkflowEntrypoint<Env, Params> {
         .on("*", scraper)
         .transform(await fetch(currentCalendarUrl()));
       await res.text();
+      if (scraper.years.length === 0) {
+        throw new Error(`scraper.years.length === 0`);
+      }
       return scraper.years;
     });
     const oldestYear =
