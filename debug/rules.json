@@ -1573,11 +1573,11 @@
         "date": "2025-04-17",
         "entries": [
           {
-            "name": "Cycle Track Open Until 2 p.m.",
+            "name": "Cycle Track Open Until 7 a.m.",
             "startDate": "2025-04-17T05:00:00",
             "description": "",
-            "subHeaderDate": "April 17, 2025, 5:00 AM - 2:00 PM",
-            "headingName": "Cycle Track Open Until 2 p.m."
+            "subHeaderDate": "April 17, 2025, 5:00 AM - 7:00 AM",
+            "headingName": "Cycle Track Open Until 7 a.m."
           },
           {
             "name": "Cycle Track Open After 8:30 p.m.",
@@ -1592,11 +1592,11 @@
         "date": "2025-04-18",
         "entries": [
           {
-            "name": "Cycle Track Open Until 2 p.m.",
+            "name": "Cycle Track Open Until 7 a.m.",
             "startDate": "2025-04-18T05:00:00",
             "description": "",
-            "subHeaderDate": "April 18, 2025, 5:00 AM - 2:00 PM",
-            "headingName": "Cycle Track Open Until 2 p.m."
+            "subHeaderDate": "April 18, 2025, 5:00 AM - 7:00 AM",
+            "headingName": "Cycle Track Open Until 7 a.m."
           },
           {
             "name": "Cycle Track Open After 6:45 p.m.",
@@ -1680,11 +1680,11 @@
         "date": "2025-04-23",
         "entries": [
           {
-            "name": "Cycle Track Open Until 2 p.m.",
+            "name": "Cycle Track Open Until 7 a.m.",
             "startDate": "2025-04-23T05:00:00",
             "description": "",
-            "subHeaderDate": "April 23, 2025, 5:00 AM - 2:00 PM",
-            "headingName": "Cycle Track Open Until 2 p.m."
+            "subHeaderDate": "April 23, 2025, 5:00 AM - 7:00 AM",
+            "headingName": "Cycle Track Open Until 7 a.m."
           },
           {
             "name": "Cycle Track Open After 6:45 p.m.",
@@ -2046,11 +2046,11 @@
             "headingName": "Cycle Track Open Until 2 p.m."
           },
           {
-            "name": "Cycle Track Open After 8:45 p.m.",
-            "startDate": "2025-05-13T20:45:00",
+            "name": "Cycle Track Open After 8:30 p.m.",
+            "startDate": "2025-05-13T20:30:00",
             "description": "",
-            "subHeaderDate": "May 13, 2025, 8:45 PM",
-            "headingName": "Cycle Track Open After 8:45 p.m."
+            "subHeaderDate": "May 13, 2025, 8:30 PM",
+            "headingName": "Cycle Track Open After 8:30 p.m."
           }
         ]
       },
@@ -2165,11 +2165,11 @@
             "headingName": "Cycle Track Open Until 6:00 PM"
           },
           {
-            "name": "Cycle Track Open After 8:45 PM",
-            "startDate": "2025-05-20T20:45",
+            "name": "Cycle Track Open After 8:30 PM",
+            "startDate": "2025-05-20T20:30",
             "description": "",
-            "subHeaderDate": "May 20, 2025, 8:45 PM",
-            "headingName": "Cycle Track Open After 8:45 PM"
+            "subHeaderDate": "May 20, 2025, 8:30 PM",
+            "headingName": "Cycle Track Open After 8:30 PM"
           }
         ]
       },
@@ -2347,11 +2347,18 @@
         "date": "2025-06-03",
         "entries": [
           {
-            "name": "Cycle Track Open All Day",
+            "name": "Cycle Track Open Until 6:30 PM",
             "startDate": "2025-06-03T05:00:00",
             "description": "",
-            "subHeaderDate": "June 3, 2025, 5:00 AM",
-            "headingName": "Cycle Track Open All Day"
+            "subHeaderDate": "June 3, 2025, 5:00 AM - 6:30 PM",
+            "headingName": "Cycle Track Open Until 6:30 PM"
+          },
+          {
+            "name": "Cycle Track Open After 8:45 PM",
+            "startDate": "2025-06-03T20:45",
+            "description": "",
+            "subHeaderDate": "June 3, 2025, 8:45 PM",
+            "headingName": "Cycle Track Open After 8:45 PM"
           }
         ]
       },
@@ -2395,11 +2402,18 @@
         "date": "2025-06-07",
         "entries": [
           {
-            "name": "Cycle Track Open All Day",
+            "name": "Cycle Track Open Until 7:00 AM",
             "startDate": "2025-06-07T05:00:00",
             "description": "",
-            "subHeaderDate": "June 7, 2025, 5:00 AM",
-            "headingName": "Cycle Track Open All Day"
+            "subHeaderDate": "June 7, 2025, 5:00 AM - 7:00 AM",
+            "headingName": "Cycle Track Open Until 7:00 AM"
+          },
+          {
+            "name": "Cycle Track Open After 5:30 PM",
+            "startDate": "2025-06-07T17:30",
+            "description": "",
+            "subHeaderDate": "June 7, 2025, 5:30 PM",
+            "headingName": "Cycle Track Open After 5:30 PM"
           }
         ]
       },
@@ -2407,11 +2421,18 @@
         "date": "2025-06-08",
         "entries": [
           {
-            "name": "Cycle Track Open All Day",
+            "name": "Cycle Track Open Until 7:00 AM",
             "startDate": "2025-06-08T05:00:00",
             "description": "",
-            "subHeaderDate": "June 8, 2025, 5:00 AM",
-            "headingName": "Cycle Track Open All Day"
+            "subHeaderDate": "June 8, 2025, 5:00 AM - 7:00 AM",
+            "headingName": "Cycle Track Open Until 7:00 AM"
+          },
+          {
+            "name": "Cycle Track Open After 5:30 PM",
+            "startDate": "2025-06-08T17:30",
+            "description": "",
+            "subHeaderDate": "June 8, 2025, 5:30 PM",
+            "headingName": "Cycle Track Open After 5:30 PM"
           }
         ]
       },
@@ -2431,11 +2452,18 @@
         "date": "2025-06-10",
         "entries": [
           {
-            "name": "Cycle Track Open All Day",
+            "name": "Cycle Track Open Until 6:30 PM",
             "startDate": "2025-06-10T05:00:00",
             "description": "",
-            "subHeaderDate": "June 10, 2025, 5:00 AM",
-            "headingName": "Cycle Track Open All Day"
+            "subHeaderDate": "June 10, 2025, 5:00 AM - 6:30 PM",
+            "headingName": "Cycle Track Open Until 6:30 PM"
+          },
+          {
+            "name": "Cycle Track Open After 8:45 PM",
+            "startDate": "2025-06-10T20:45",
+            "description": "",
+            "subHeaderDate": "June 10, 2025, 8:45 PM",
+            "headingName": "Cycle Track Open After 8:45 PM"
           }
         ]
       },
@@ -2455,11 +2483,18 @@
         "date": "2025-06-12",
         "entries": [
           {
-            "name": "Cycle Track Open All Day",
+            "name": "Cycle Track Open Until 6:30 PM",
             "startDate": "2025-06-12T05:00:00",
             "description": "",
-            "subHeaderDate": "June 12, 2025, 5:00 AM",
-            "headingName": "Cycle Track Open All Day"
+            "subHeaderDate": "June 12, 2025, 5:00 AM - 6:30 PM",
+            "headingName": "Cycle Track Open Until 6:30 PM"
+          },
+          {
+            "name": "Cycle Track Open After 8:45 PM",
+            "startDate": "2025-06-12T20:45",
+            "description": "",
+            "subHeaderDate": "June 12, 2025, 8:45 PM",
+            "headingName": "Cycle Track Open After 8:45 PM"
           }
         ]
       },
