@@ -27,6 +27,7 @@ export function randomShrug() {
 
 export const NO_BIKES = "🚳";
 export const WARNING = "⚠️";
+export const BOUQUET = "💐";
 
 export function randomCyclist() {
   return `${cyclist}${randomPersonType()}`;

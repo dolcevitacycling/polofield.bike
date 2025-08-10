@@ -287,6 +287,13 @@ export function nameParser(entry: CalendarEntry) {
     const r2 = openWithReasonParser(s);
     const d2 = subheaderDateParser(stream(entry.subHeaderDate));
     if (r2 && d2) {
+      if (
+        entry.startDate === "2025-09-07T08:30" &&
+        r2 &&
+        r2.result.comment === "Cycle Track in Use for Private Event"
+      ) {
+        r2.result.comment = "Colden Kimber Memorial Ride 💐";
+      }
       return { ...r2.result, ...d2.result };
     } else if (r2 && r2.result.comment) {
       return { ...r2.result, ...ALL_DAY };

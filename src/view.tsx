@@ -25,6 +25,7 @@ import {
 import {
   randomCyclist,
   NO_BIKES,
+  BOUQUET,
   randomShrug,
   WARNING,
   SUNRISE,
@@ -64,8 +65,9 @@ function Layout(props: Props) {
       <style>
         * {
           box-sizing: border-box;
-          font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
-            Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+          font-family:
+            -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
+            Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
         }
         :root {
           --open-color: #2dc937;
@@ -198,6 +200,10 @@ function Layout(props: Props) {
             #ffffff 10px,
             #ffffff 20px
           );
+        }
+        .closed[data-memorial=true] {
+          --closed-color: white;
+          border: 1px solid black;
         }
         .closed .copy {
           position: relative;
@@ -696,6 +702,7 @@ function Interval(props: {
   const percent = 100 * (duration / 1440);
 
   const { open, comment } = interval;
+  const memorial = comment === "Colden Kimber Memorial Ride 💐" || undefined;
   const title = open
     ? `Open ${friendlyTimeSpan(hStart, hEnd)}\n${sunTimes({
         hStart,
@@ -703,19 +710,20 @@ function Interval(props: {
         sunrise,
         sunsetStart,
       }).join("\n")}`
-    : `Closed ${friendlyTimeSpan(hStart, hEnd)}${
-        interval.comment ? `\n${interval.comment}` : ""
-      }`;
+    : memorial
+      ? `In use ${friendlyTimeSpan(hStart, hEnd)}${
+          interval.comment ? `\n${interval.comment}` : ""
+        }`
+      : `Closed ${friendlyTimeSpan(hStart, hEnd)}${
+          interval.comment ? `\n${interval.comment}` : ""
+        }`;
   return (
     <li
       class={
-        (open
-          ? "open"
-          : "closed") +
-            (open && comment?.startsWith("Field Rained Out")
-              ? " rained-out"
-              : "")
+        (open ? "open" : "closed") +
+        (open && comment?.startsWith("Field Rained Out") ? " rained-out" : "")
       }
+      data-memorial={memorial}
       data-start={hStart}
       data-end={hEnd}
       data-minutes={duration}
@@ -733,7 +741,9 @@ function Interval(props: {
         }
       ></div>
       <button aria-label={title}>
-        <span class="copy">{open ? randomCyclist() : NO_BIKES}</span>
+        <span class="copy">
+          {open ? randomCyclist() : memorial ? BOUQUET : NO_BIKES}
+        </span>
       </button>
     </li>
   );

@@ -84,7 +84,7 @@ describe("parseAndReorderEntries", () => {
         open: true,
       },
       {
-        comment: "Cycle Track in Use for Private Event",
+        comment: "Colden Kimber Memorial Ride 💐",
         endMinute: 690,
         open: false,
         startMinute: 510,
@@ -217,7 +217,7 @@ describe("getIntervals", () => {
         end_timestamp: "2025-09-07 11:29",
         open: false,
         start_timestamp: "2025-09-07 08:30",
-        comment: "Cycle Track in Use for Private Event",
+        comment: "Colden Kimber Memorial Ride 💐",
       },
       {
         end_timestamp: "2025-09-07 18:44",
