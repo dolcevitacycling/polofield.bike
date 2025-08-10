@@ -3798,22 +3798,22 @@
             {
               "open": true,
               "start_timestamp": "2025-06-07 00:00",
-              "end_timestamp": "2025-06-07 06:59"
+              "end_timestamp": "2025-06-07 07:29"
             },
             {
               "open": false,
-              "start_timestamp": "2025-06-07 07:00",
-              "end_timestamp": "2025-06-07 17:29"
+              "start_timestamp": "2025-06-07 07:30",
+              "end_timestamp": "2025-06-07 16:59"
             },
             {
               "open": true,
-              "start_timestamp": "2025-06-07 17:30",
+              "start_timestamp": "2025-06-07 17:00",
               "end_timestamp": "2025-06-07 23:59"
             }
           ],
           "rules": [
-            "Cycle Track Open Until 7:00 AM\t2025-06-07T05:00:00\t\tJune 7, 2025, 5:00 AM - 7:00 AM",
-            "Cycle Track Open After 5:30 PM\t2025-06-07T17:30\t\tJune 7, 2025, 5:30 PM"
+            "Cycle Track Open Until 7:30 AM\t2025-06-07T05:00:00\t\tJune 7, 2025, 5:00 AM - 7:30 AM",
+            "Cycle Track Open After 5:00 PM\t2025-06-07T17:00\t\tJune 7, 2025, 5:00 PM"
           ]
         }
       },
@@ -3828,22 +3828,22 @@
             {
               "open": true,
               "start_timestamp": "2025-06-08 00:00",
-              "end_timestamp": "2025-06-08 06:59"
+              "end_timestamp": "2025-06-08 07:29"
             },
             {
               "open": false,
-              "start_timestamp": "2025-06-08 07:00",
-              "end_timestamp": "2025-06-08 17:29"
+              "start_timestamp": "2025-06-08 07:30",
+              "end_timestamp": "2025-06-08 14:29"
             },
             {
               "open": true,
-              "start_timestamp": "2025-06-08 17:30",
+              "start_timestamp": "2025-06-08 14:30",
               "end_timestamp": "2025-06-08 23:59"
             }
           ],
           "rules": [
-            "Cycle Track Open Until 7:00 AM\t2025-06-08T05:00:00\t\tJune 8, 2025, 5:00 AM - 7:00 AM",
-            "Cycle Track Open After 5:30 PM\t2025-06-08T17:30\t\tJune 8, 2025, 5:30 PM"
+            "Cycle Track Open Until 7:30 AM\t2025-06-08T05:00:00\t\tJune 8, 2025, 5:00 AM - 7:30 AM",
+            "Cycle Track Open After 2:30 PM\t2025-06-08T14:30\t\tJune 8, 2025, 2:30 PM"
           ]
         }
       },
@@ -4006,6 +4006,1062 @@
         "recognizer": "calendarRecognizer",
         "rules": {
           "type": "known_rules",
+          "text": "2025-06-16",
+          "start_date": "2025-06-16",
+          "end_date": "2025-06-16",
+          "intervals": [
+            {
+              "open": true,
+              "start_timestamp": "2025-06-16 00:00",
+              "end_timestamp": "2025-06-16 07:59"
+            },
+            {
+              "open": false,
+              "start_timestamp": "2025-06-16 08:00",
+              "end_timestamp": "2025-06-16 16:29"
+            },
+            {
+              "open": true,
+              "start_timestamp": "2025-06-16 16:30",
+              "end_timestamp": "2025-06-16 23:59"
+            }
+          ],
+          "rules": [
+            "Cycle Track Open Until 8:00 AM\t2025-06-16T05:00\t\tJune 16, 2025, 5:00 AM - 8:00 AM",
+            "Cycle Track Open After 4:30 PM\t2025-06-16T16:30\t\tJune 16, 2025, 4:30 PM"
+          ]
+        }
+      },
+      {
+        "recognizer": "calendarRecognizer",
+        "rules": {
+          "type": "known_rules",
+          "text": "2025-06-17",
+          "start_date": "2025-06-17",
+          "end_date": "2025-06-17",
+          "intervals": [
+            {
+              "open": true,
+              "start_timestamp": "2025-06-17 00:00",
+              "end_timestamp": "2025-06-17 08:29"
+            },
+            {
+              "open": false,
+              "start_timestamp": "2025-06-17 08:30",
+              "end_timestamp": "2025-06-17 20:44"
+            },
+            {
+              "open": true,
+              "start_timestamp": "2025-06-17 20:45",
+              "end_timestamp": "2025-06-17 23:59"
+            }
+          ],
+          "rules": [
+            "Cycle Track Open Until 8:30 AM\t2025-06-17T05:00\t\tJune 17, 2025, 5:00 AM - 8:30 AM",
+            "Cycle Track Open After 8:45 PM\t2025-06-17T20:45\t\tJune 17, 2025, 8:45 PM"
+          ]
+        }
+      },
+      {
+        "recognizer": "calendarRecognizer",
+        "rules": {
+          "type": "known_rules",
+          "text": "2025-06-18",
+          "start_date": "2025-06-18",
+          "end_date": "2025-06-18",
+          "intervals": [
+            {
+              "open": true,
+              "start_timestamp": "2025-06-18 00:00",
+              "end_timestamp": "2025-06-18 08:29"
+            },
+            {
+              "open": false,
+              "start_timestamp": "2025-06-18 08:30",
+              "end_timestamp": "2025-06-18 15:29"
+            },
+            {
+              "open": true,
+              "start_timestamp": "2025-06-18 15:30",
+              "end_timestamp": "2025-06-18 23:59"
+            }
+          ],
+          "rules": [
+            "Cycle Track Open Until 8:30 AM\t2025-06-18T05:00\t\tJune 18, 2025, 5:00 AM - 8:30 AM",
+            "Cycle Track Open After 3:30 PM\t2025-06-18T15:30\t\tJune 18, 2025, 3:30 PM"
+          ]
+        }
+      },
+      {
+        "recognizer": "calendarRecognizer",
+        "rules": {
+          "type": "known_rules",
+          "text": "2025-06-19",
+          "start_date": "2025-06-19",
+          "end_date": "2025-06-19",
+          "intervals": [
+            {
+              "open": true,
+              "start_timestamp": "2025-06-19 00:00",
+              "end_timestamp": "2025-06-19 08:29"
+            },
+            {
+              "open": false,
+              "start_timestamp": "2025-06-19 08:30",
+              "end_timestamp": "2025-06-19 20:44"
+            },
+            {
+              "open": true,
+              "start_timestamp": "2025-06-19 20:45",
+              "end_timestamp": "2025-06-19 23:59"
+            }
+          ],
+          "rules": [
+            "Cycle Track Open Until 8:30 AM\t2025-06-19T05:00\t\tJune 19, 2025, 5:00 AM - 8:30 AM",
+            "Cycle Track Open After 8:45 PM\t2025-06-19T20:45\t\tJune 19, 2025, 8:45 PM"
+          ]
+        }
+      },
+      {
+        "recognizer": "calendarRecognizer",
+        "rules": {
+          "type": "known_rules",
+          "text": "2025-06-20",
+          "start_date": "2025-06-20",
+          "end_date": "2025-06-20",
+          "intervals": [
+            {
+              "open": true,
+              "start_timestamp": "2025-06-20 00:00",
+              "end_timestamp": "2025-06-20 08:29"
+            },
+            {
+              "open": false,
+              "start_timestamp": "2025-06-20 08:30",
+              "end_timestamp": "2025-06-20 15:29"
+            },
+            {
+              "open": true,
+              "start_timestamp": "2025-06-20 15:30",
+              "end_timestamp": "2025-06-20 23:59"
+            }
+          ],
+          "rules": [
+            "Cycle Track Open Until 8:30 AM\t2025-06-20T05:00\t\tJune 20, 2025, 5:00 AM - 8:30 AM",
+            "Cycle Track Open After 3:30 PM\t2025-06-20T15:30\t\tJune 20, 2025, 3:30 PM"
+          ]
+        }
+      },
+      {
+        "recognizer": "calendarRecognizer",
+        "rules": {
+          "type": "known_rules",
+          "text": "2025-06-21",
+          "start_date": "2025-06-21",
+          "end_date": "2025-06-21",
+          "intervals": [
+            {
+              "open": true,
+              "start_timestamp": "2025-06-21 00:00",
+              "end_timestamp": "2025-06-21 23:59"
+            }
+          ],
+          "rules": [
+            "Cycle Track Open All Day\t2025-06-21T05:00\t\tJune 21, 2025, 5:00 AM"
+          ]
+        }
+      },
+      {
+        "recognizer": "calendarRecognizer",
+        "rules": {
+          "type": "known_rules",
+          "text": "2025-06-22",
+          "start_date": "2025-06-22",
+          "end_date": "2025-06-22",
+          "intervals": [
+            {
+              "open": true,
+              "start_timestamp": "2025-06-22 00:00",
+              "end_timestamp": "2025-06-22 23:59"
+            }
+          ],
+          "rules": [
+            "Cycle Track Open All Day\t2025-06-22T05:00\t\tJune 22, 2025, 5:00 AM"
+          ]
+        }
+      },
+      {
+        "recognizer": "calendarRecognizer",
+        "rules": {
+          "type": "known_rules",
+          "text": "2025-06-23",
+          "start_date": "2025-06-23",
+          "end_date": "2025-06-23",
+          "intervals": [
+            {
+              "open": true,
+              "start_timestamp": "2025-06-23 00:00",
+              "end_timestamp": "2025-06-23 08:29"
+            },
+            {
+              "open": false,
+              "start_timestamp": "2025-06-23 08:30",
+              "end_timestamp": "2025-06-23 16:29"
+            },
+            {
+              "open": true,
+              "start_timestamp": "2025-06-23 16:30",
+              "end_timestamp": "2025-06-23 23:59"
+            }
+          ],
+          "rules": [
+            "Cycle Track Open Until 8:30 AM\t2025-06-23T05:00\t\tJune 23, 2025, 5:00 AM - 8:30 AM",
+            "Cycle Track Open After 4:30 PM\t2025-06-23T16:30\t\tJune 23, 2025, 4:30 PM"
+          ]
+        }
+      },
+      {
+        "recognizer": "calendarRecognizer",
+        "rules": {
+          "type": "known_rules",
+          "text": "2025-06-24",
+          "start_date": "2025-06-24",
+          "end_date": "2025-06-24",
+          "intervals": [
+            {
+              "open": true,
+              "start_timestamp": "2025-06-24 00:00",
+              "end_timestamp": "2025-06-24 08:29"
+            },
+            {
+              "open": false,
+              "start_timestamp": "2025-06-24 08:30",
+              "end_timestamp": "2025-06-24 20:44"
+            },
+            {
+              "open": true,
+              "start_timestamp": "2025-06-24 20:45",
+              "end_timestamp": "2025-06-24 23:59"
+            }
+          ],
+          "rules": [
+            "Cycle Track Open Until 8:30 AM\t2025-06-24T05:00\t\tJune 24, 2025, 5:00 AM - 8:30 AM",
+            "Cycle Track Open After 8:45 PM\t2025-06-24T20:45\t\tJune 24, 2025, 8:45 PM"
+          ]
+        }
+      },
+      {
+        "recognizer": "calendarRecognizer",
+        "rules": {
+          "type": "known_rules",
+          "text": "2025-06-25",
+          "start_date": "2025-06-25",
+          "end_date": "2025-06-25",
+          "intervals": [
+            {
+              "open": true,
+              "start_timestamp": "2025-06-25 00:00",
+              "end_timestamp": "2025-06-25 08:29"
+            },
+            {
+              "open": false,
+              "start_timestamp": "2025-06-25 08:30",
+              "end_timestamp": "2025-06-25 16:29"
+            },
+            {
+              "open": true,
+              "start_timestamp": "2025-06-25 16:30",
+              "end_timestamp": "2025-06-25 23:59"
+            }
+          ],
+          "rules": [
+            "Cycle Track Open Until 8:30 AM\t2025-06-25T05:00\t\tJune 25, 2025, 5:00 AM - 8:30 AM",
+            "Cycle Track Open After 4:30 PM\t2025-06-25T16:30\t\tJune 25, 2025, 4:30 PM"
+          ]
+        }
+      },
+      {
+        "recognizer": "calendarRecognizer",
+        "rules": {
+          "type": "known_rules",
+          "text": "2025-06-26",
+          "start_date": "2025-06-26",
+          "end_date": "2025-06-26",
+          "intervals": [
+            {
+              "open": true,
+              "start_timestamp": "2025-06-26 00:00",
+              "end_timestamp": "2025-06-26 08:29"
+            },
+            {
+              "open": false,
+              "start_timestamp": "2025-06-26 08:30",
+              "end_timestamp": "2025-06-26 20:44"
+            },
+            {
+              "open": true,
+              "start_timestamp": "2025-06-26 20:45",
+              "end_timestamp": "2025-06-26 23:59"
+            }
+          ],
+          "rules": [
+            "Cycle Track Open Until 8:30 AM\t2025-06-26T05:00\t\tJune 26, 2025, 5:00 AM - 8:30 AM",
+            "Cycle Track Open After 8:45 PM\t2025-06-26T20:45\t\tJune 26, 2025, 8:45 PM"
+          ]
+        }
+      },
+      {
+        "recognizer": "calendarRecognizer",
+        "rules": {
+          "type": "known_rules",
+          "text": "2025-06-27",
+          "start_date": "2025-06-27",
+          "end_date": "2025-06-27",
+          "intervals": [
+            {
+              "open": true,
+              "start_timestamp": "2025-06-27 00:00",
+              "end_timestamp": "2025-06-27 08:29"
+            },
+            {
+              "open": false,
+              "start_timestamp": "2025-06-27 08:30",
+              "end_timestamp": "2025-06-27 16:29"
+            },
+            {
+              "open": true,
+              "start_timestamp": "2025-06-27 16:30",
+              "end_timestamp": "2025-06-27 23:59"
+            }
+          ],
+          "rules": [
+            "Cycle Track Open Until 8:30 AM\t2025-06-27T05:00\t\tJune 27, 2025, 5:00 AM - 8:30 AM",
+            "Cycle Track Open After 4:30 PM\t2025-06-27T16:30\t\tJune 27, 2025, 4:30 PM"
+          ]
+        }
+      },
+      {
+        "recognizer": "calendarRecognizer",
+        "rules": {
+          "type": "known_rules",
+          "text": "2025-06-28",
+          "start_date": "2025-06-28",
+          "end_date": "2025-06-28",
+          "intervals": [
+            {
+              "open": true,
+              "start_timestamp": "2025-06-28 00:00",
+              "end_timestamp": "2025-06-28 23:59"
+            }
+          ],
+          "rules": [
+            "Cycle Track Open All Day\t2025-06-28T05:00\t\tJune 28, 2025, 5:00 AM"
+          ]
+        }
+      },
+      {
+        "recognizer": "calendarRecognizer",
+        "rules": {
+          "type": "known_rules",
+          "text": "2025-06-29",
+          "start_date": "2025-06-29",
+          "end_date": "2025-06-29",
+          "intervals": [
+            {
+              "open": true,
+              "start_timestamp": "2025-06-29 00:00",
+              "end_timestamp": "2025-06-29 23:59"
+            }
+          ],
+          "rules": [
+            "Cycle Track Open All Day\t2025-06-29T05:00\t\tJune 29, 2025, 5:00 AM"
+          ]
+        }
+      },
+      {
+        "recognizer": "calendarRecognizer",
+        "rules": {
+          "type": "known_rules",
+          "text": "2025-06-30",
+          "start_date": "2025-06-30",
+          "end_date": "2025-06-30",
+          "intervals": [
+            {
+              "open": true,
+              "start_timestamp": "2025-06-30 00:00",
+              "end_timestamp": "2025-06-30 23:59"
+            }
+          ],
+          "rules": [
+            "Cycle Track Open All Day\t2025-06-30T05:00\t\tJune 30, 2025, 5:00 AM"
+          ]
+        }
+      },
+      {
+        "recognizer": "calendarRecognizer",
+        "rules": {
+          "type": "known_rules",
+          "text": "2025-07-01",
+          "start_date": "2025-07-01",
+          "end_date": "2025-07-01",
+          "intervals": [
+            {
+              "open": true,
+              "start_timestamp": "2025-07-01 00:00",
+              "end_timestamp": "2025-07-01 23:59"
+            }
+          ],
+          "rules": [
+            "Cycle Track Open All Day\t2025-07-01T05:00\t\tJuly 1, 2025, 5:00 AM"
+          ]
+        }
+      },
+      {
+        "recognizer": "calendarRecognizer",
+        "rules": {
+          "type": "known_rules",
+          "text": "2025-07-02",
+          "start_date": "2025-07-02",
+          "end_date": "2025-07-02",
+          "intervals": [
+            {
+              "open": true,
+              "start_timestamp": "2025-07-02 00:00",
+              "end_timestamp": "2025-07-02 23:59"
+            }
+          ],
+          "rules": [
+            "Cycle Track Open All Day\t2025-07-02T05:00\t\tJuly 2, 2025, 5:00 AM"
+          ]
+        }
+      },
+      {
+        "recognizer": "calendarRecognizer",
+        "rules": {
+          "type": "known_rules",
+          "text": "2025-07-03",
+          "start_date": "2025-07-03",
+          "end_date": "2025-07-03",
+          "intervals": [
+            {
+              "open": true,
+              "start_timestamp": "2025-07-03 00:00",
+              "end_timestamp": "2025-07-03 23:59"
+            }
+          ],
+          "rules": [
+            "Cycle Track Open All Day\t2025-07-03T05:00\t\tJuly 3, 2025, 5:00 AM"
+          ]
+        }
+      },
+      {
+        "recognizer": "calendarRecognizer",
+        "rules": {
+          "type": "known_rules",
+          "text": "2025-07-04",
+          "start_date": "2025-07-04",
+          "end_date": "2025-07-04",
+          "intervals": [
+            {
+              "open": true,
+              "start_timestamp": "2025-07-04 00:00",
+              "end_timestamp": "2025-07-04 23:59"
+            }
+          ],
+          "rules": [
+            "Cycle Track Open All Day\t2025-07-04T05:00\t\tJuly 4, 2025, 5:00 AM"
+          ]
+        }
+      },
+      {
+        "recognizer": "calendarRecognizer",
+        "rules": {
+          "type": "known_rules",
+          "text": "2025-07-05",
+          "start_date": "2025-07-05",
+          "end_date": "2025-07-05",
+          "intervals": [
+            {
+              "open": true,
+              "start_timestamp": "2025-07-05 00:00",
+              "end_timestamp": "2025-07-05 23:59"
+            }
+          ],
+          "rules": [
+            "Cycle Track Open All Day\t2025-07-05T05:00\t\tJuly 5, 2025, 5:00 AM"
+          ]
+        }
+      },
+      {
+        "recognizer": "calendarRecognizer",
+        "rules": {
+          "type": "known_rules",
+          "text": "2025-07-06",
+          "start_date": "2025-07-06",
+          "end_date": "2025-07-06",
+          "intervals": [
+            {
+              "open": true,
+              "start_timestamp": "2025-07-06 00:00",
+              "end_timestamp": "2025-07-06 23:59"
+            }
+          ],
+          "rules": [
+            "Cycle Track Open All Day\t2025-07-06T05:00\t\tJuly 6, 2025, 5:00 AM"
+          ]
+        }
+      },
+      {
+        "recognizer": "calendarRecognizer",
+        "rules": {
+          "type": "known_rules",
+          "text": "2025-07-07",
+          "start_date": "2025-07-07",
+          "end_date": "2025-07-07",
+          "intervals": [
+            {
+              "open": true,
+              "start_timestamp": "2025-07-07 00:00",
+              "end_timestamp": "2025-07-07 07:29"
+            },
+            {
+              "open": false,
+              "start_timestamp": "2025-07-07 07:30",
+              "end_timestamp": "2025-07-07 16:29"
+            },
+            {
+              "open": true,
+              "start_timestamp": "2025-07-07 16:30",
+              "end_timestamp": "2025-07-07 23:59"
+            }
+          ],
+          "rules": [
+            "Cycle Track Open Until 7:30 AM\t2025-07-07T05:00\t\tJuly 7, 2025, 5:00 AM - 7:30 AM",
+            "Cycle Track Open After 4:30 PM\t2025-07-07T16:30\t\tJuly 7, 2025, 4:30 PM"
+          ]
+        }
+      },
+      {
+        "recognizer": "calendarRecognizer",
+        "rules": {
+          "type": "known_rules",
+          "text": "2025-07-08",
+          "start_date": "2025-07-08",
+          "end_date": "2025-07-08",
+          "intervals": [
+            {
+              "open": true,
+              "start_timestamp": "2025-07-08 00:00",
+              "end_timestamp": "2025-07-08 07:29"
+            },
+            {
+              "open": false,
+              "start_timestamp": "2025-07-08 07:30",
+              "end_timestamp": "2025-07-08 20:44"
+            },
+            {
+              "open": true,
+              "start_timestamp": "2025-07-08 20:45",
+              "end_timestamp": "2025-07-08 23:59"
+            }
+          ],
+          "rules": [
+            "Cycle Track Open Until 7:30 AM\t2025-07-08T05:00\t\tJuly 8, 2025, 5:00 AM - 7:30 AM",
+            "Cycle Track Open After 8:45 PM\t2025-07-08T20:45\t\tJuly 8, 2025, 8:45 PM"
+          ]
+        }
+      },
+      {
+        "recognizer": "calendarRecognizer",
+        "rules": {
+          "type": "known_rules",
+          "text": "2025-07-09",
+          "start_date": "2025-07-09",
+          "end_date": "2025-07-09",
+          "intervals": [
+            {
+              "open": true,
+              "start_timestamp": "2025-07-09 00:00",
+              "end_timestamp": "2025-07-09 07:29"
+            },
+            {
+              "open": false,
+              "start_timestamp": "2025-07-09 07:30",
+              "end_timestamp": "2025-07-09 16:29"
+            },
+            {
+              "open": true,
+              "start_timestamp": "2025-07-09 16:30",
+              "end_timestamp": "2025-07-09 23:59"
+            }
+          ],
+          "rules": [
+            "Cycle Track Open Until 7:30 AM\t2025-07-09T05:00\t\tJuly 9, 2025, 5:00 AM - 7:30 AM",
+            "Cycle Track Open After 4:30 PM\t2025-07-09T16:30\t\tJuly 9, 2025, 4:30 PM"
+          ]
+        }
+      },
+      {
+        "recognizer": "calendarRecognizer",
+        "rules": {
+          "type": "known_rules",
+          "text": "2025-07-10",
+          "start_date": "2025-07-10",
+          "end_date": "2025-07-10",
+          "intervals": [
+            {
+              "open": true,
+              "start_timestamp": "2025-07-10 00:00",
+              "end_timestamp": "2025-07-10 07:29"
+            },
+            {
+              "open": false,
+              "start_timestamp": "2025-07-10 07:30",
+              "end_timestamp": "2025-07-10 20:44"
+            },
+            {
+              "open": true,
+              "start_timestamp": "2025-07-10 20:45",
+              "end_timestamp": "2025-07-10 23:59"
+            }
+          ],
+          "rules": [
+            "Cycle Track Open Until 7:30 AM\t2025-07-10T05:00\t\tJuly 10, 2025, 5:00 AM - 7:30 AM",
+            "Cycle Track Open After 8:45 PM\t2025-07-10T20:45\t\tJuly 10, 2025, 8:45 PM"
+          ]
+        }
+      },
+      {
+        "recognizer": "calendarRecognizer",
+        "rules": {
+          "type": "known_rules",
+          "text": "2025-07-11",
+          "start_date": "2025-07-11",
+          "end_date": "2025-07-11",
+          "intervals": [
+            {
+              "open": true,
+              "start_timestamp": "2025-07-11 00:00",
+              "end_timestamp": "2025-07-11 07:29"
+            },
+            {
+              "open": false,
+              "start_timestamp": "2025-07-11 07:30",
+              "end_timestamp": "2025-07-11 16:29"
+            },
+            {
+              "open": true,
+              "start_timestamp": "2025-07-11 16:30",
+              "end_timestamp": "2025-07-11 23:59"
+            }
+          ],
+          "rules": [
+            "Cycle Track Open Until 7:30 AM\t2025-07-11T05:00\t\tJuly 11, 2025, 5:00 AM - 7:30 AM",
+            "Cycle Track Open After 4:30 PM\t2025-07-11T16:30\t\tJuly 11, 2025, 4:30 PM"
+          ]
+        }
+      },
+      {
+        "recognizer": "calendarRecognizer",
+        "rules": {
+          "type": "known_rules",
+          "text": "2025-07-12",
+          "start_date": "2025-07-12",
+          "end_date": "2025-07-12",
+          "intervals": [
+            {
+              "open": true,
+              "start_timestamp": "2025-07-12 00:00",
+              "end_timestamp": "2025-07-12 07:29"
+            },
+            {
+              "open": false,
+              "start_timestamp": "2025-07-12 07:30",
+              "end_timestamp": "2025-07-12 17:29"
+            },
+            {
+              "open": true,
+              "start_timestamp": "2025-07-12 17:30",
+              "end_timestamp": "2025-07-12 23:59"
+            }
+          ],
+          "rules": [
+            "Cycle Track Open Until 7:30 AM\t2025-07-12T05:00\t\tJuly 12, 2025, 5:00 AM - 7:30 AM",
+            "Cycle Track Open After 5:30 PM\t2025-07-12T17:30\t\tJuly 12, 2025, 5:30 PM"
+          ]
+        }
+      },
+      {
+        "recognizer": "calendarRecognizer",
+        "rules": {
+          "type": "known_rules",
+          "text": "2025-07-13",
+          "start_date": "2025-07-13",
+          "end_date": "2025-07-13",
+          "intervals": [
+            {
+              "open": true,
+              "start_timestamp": "2025-07-13 00:00",
+              "end_timestamp": "2025-07-13 07:29"
+            },
+            {
+              "open": false,
+              "start_timestamp": "2025-07-13 07:30",
+              "end_timestamp": "2025-07-13 16:59"
+            },
+            {
+              "open": true,
+              "start_timestamp": "2025-07-13 17:00",
+              "end_timestamp": "2025-07-13 23:59"
+            }
+          ],
+          "rules": [
+            "Cycle Track Open Until 7:30 AM\t2025-07-13T05:00\t\tJuly 13, 2025, 5:00 AM - 7:30 AM",
+            "Cycle Track Open After 5:00 PM\t2025-07-13T17:00\t\tJuly 13, 2025, 5:00 PM"
+          ]
+        }
+      },
+      {
+        "recognizer": "calendarRecognizer",
+        "rules": {
+          "type": "known_rules",
+          "text": "2025-07-14",
+          "start_date": "2025-07-14",
+          "end_date": "2025-07-14",
+          "intervals": [
+            {
+              "open": true,
+              "start_timestamp": "2025-07-14 00:00",
+              "end_timestamp": "2025-07-14 07:29"
+            },
+            {
+              "open": false,
+              "start_timestamp": "2025-07-14 07:30",
+              "end_timestamp": "2025-07-14 16:29"
+            },
+            {
+              "open": true,
+              "start_timestamp": "2025-07-14 16:30",
+              "end_timestamp": "2025-07-14 23:59"
+            }
+          ],
+          "rules": [
+            "Cycle Track Open Until 7:30 AM\t2025-07-14T05:00\t\tJuly 14, 2025, 5:00 AM - 7:30 AM",
+            "Cycle Track Open After 4:30 PM\t2025-07-14T16:30\t\tJuly 14, 2025, 4:30 PM"
+          ]
+        }
+      },
+      {
+        "recognizer": "calendarRecognizer",
+        "rules": {
+          "type": "known_rules",
+          "text": "2025-07-15",
+          "start_date": "2025-07-15",
+          "end_date": "2025-07-15",
+          "intervals": [
+            {
+              "open": true,
+              "start_timestamp": "2025-07-15 00:00",
+              "end_timestamp": "2025-07-15 07:29"
+            },
+            {
+              "open": false,
+              "start_timestamp": "2025-07-15 07:30",
+              "end_timestamp": "2025-07-15 20:44"
+            },
+            {
+              "open": true,
+              "start_timestamp": "2025-07-15 20:45",
+              "end_timestamp": "2025-07-15 23:59"
+            }
+          ],
+          "rules": [
+            "Cycle Track Open Until 7:30 AM\t2025-07-15T05:00\t\tJuly 15, 2025, 5:00 AM - 7:30 AM",
+            "Cycle Track Open After 8:45 PM\t2025-07-15T20:45\t\tJuly 15, 2025, 8:45 PM"
+          ]
+        }
+      },
+      {
+        "recognizer": "calendarRecognizer",
+        "rules": {
+          "type": "known_rules",
+          "text": "2025-07-16",
+          "start_date": "2025-07-16",
+          "end_date": "2025-07-16",
+          "intervals": [
+            {
+              "open": true,
+              "start_timestamp": "2025-07-16 00:00",
+              "end_timestamp": "2025-07-16 07:29"
+            },
+            {
+              "open": false,
+              "start_timestamp": "2025-07-16 07:30",
+              "end_timestamp": "2025-07-16 16:29"
+            },
+            {
+              "open": true,
+              "start_timestamp": "2025-07-16 16:30",
+              "end_timestamp": "2025-07-16 23:59"
+            }
+          ],
+          "rules": [
+            "Cycle Track Open Until 7:30 AM\t2025-07-16T05:00\t\tJuly 16, 2025, 5:00 AM - 7:30 AM",
+            "Cycle Track Open After 4:30 PM\t2025-07-16T16:30\t\tJuly 16, 2025, 4:30 PM"
+          ]
+        }
+      },
+      {
+        "recognizer": "calendarRecognizer",
+        "rules": {
+          "type": "known_rules",
+          "text": "2025-07-17",
+          "start_date": "2025-07-17",
+          "end_date": "2025-07-17",
+          "intervals": [
+            {
+              "open": true,
+              "start_timestamp": "2025-07-17 00:00",
+              "end_timestamp": "2025-07-17 07:29"
+            },
+            {
+              "open": false,
+              "start_timestamp": "2025-07-17 07:30",
+              "end_timestamp": "2025-07-17 20:44"
+            },
+            {
+              "open": true,
+              "start_timestamp": "2025-07-17 20:45",
+              "end_timestamp": "2025-07-17 23:59"
+            }
+          ],
+          "rules": [
+            "Cycle Track Open Until 7:30 AM\t2025-07-17T05:00\t\tJuly 17, 2025, 5:00 AM - 7:30 AM",
+            "Cycle Track Open After 8:45 PM\t2025-07-17T20:45\t\tJuly 17, 2025, 8:45 PM"
+          ]
+        }
+      },
+      {
+        "recognizer": "calendarRecognizer",
+        "rules": {
+          "type": "known_rules",
+          "text": "2025-07-18",
+          "start_date": "2025-07-18",
+          "end_date": "2025-07-18",
+          "intervals": [
+            {
+              "open": true,
+              "start_timestamp": "2025-07-18 00:00",
+              "end_timestamp": "2025-07-18 07:29"
+            },
+            {
+              "open": false,
+              "start_timestamp": "2025-07-18 07:30",
+              "end_timestamp": "2025-07-18 16:29"
+            },
+            {
+              "open": true,
+              "start_timestamp": "2025-07-18 16:30",
+              "end_timestamp": "2025-07-18 23:59"
+            }
+          ],
+          "rules": [
+            "Cycle Track Open Until 7:30 AM\t2025-07-18T05:00\t\tJuly 18, 2025, 5:00 AM - 7:30 AM",
+            "Cycle Track Open After 4:30 PM\t2025-07-18T16:30\t\tJuly 18, 2025, 4:30 PM"
+          ]
+        }
+      },
+      {
+        "recognizer": "calendarRecognizer",
+        "rules": {
+          "type": "known_rules",
+          "text": "2025-07-19",
+          "start_date": "2025-07-19",
+          "end_date": "2025-07-19",
+          "intervals": [
+            {
+              "open": true,
+              "start_timestamp": "2025-07-19 00:00",
+              "end_timestamp": "2025-07-19 23:59"
+            }
+          ],
+          "rules": [
+            "Cycle Track Open All Day\t2025-07-19T05:00\t\tJuly 19, 2025, 5:00 AM"
+          ]
+        }
+      },
+      {
+        "recognizer": "calendarRecognizer",
+        "rules": {
+          "type": "known_rules",
+          "text": "2025-07-20",
+          "start_date": "2025-07-20",
+          "end_date": "2025-07-20",
+          "intervals": [
+            {
+              "open": true,
+              "start_timestamp": "2025-07-20 00:00",
+              "end_timestamp": "2025-07-20 23:59"
+            }
+          ],
+          "rules": [
+            "Cycle Track Open All Day\t2025-07-20T05:00\t\tJuly 20, 2025, 5:00 AM"
+          ]
+        }
+      },
+      {
+        "recognizer": "calendarRecognizer",
+        "rules": {
+          "type": "known_rules",
+          "text": "2025-07-21",
+          "start_date": "2025-07-21",
+          "end_date": "2025-07-21",
+          "intervals": [
+            {
+              "open": true,
+              "start_timestamp": "2025-07-21 00:00",
+              "end_timestamp": "2025-07-21 23:59"
+            }
+          ],
+          "rules": [
+            "Cycle Track Open All Day\t2025-07-21T05:00\t\tJuly 21, 2025, 5:00 AM"
+          ]
+        }
+      },
+      {
+        "recognizer": "calendarRecognizer",
+        "rules": {
+          "type": "known_rules",
+          "text": "2025-07-22",
+          "start_date": "2025-07-22",
+          "end_date": "2025-07-22",
+          "intervals": [
+            {
+              "open": true,
+              "start_timestamp": "2025-07-22 00:00",
+              "end_timestamp": "2025-07-22 18:29"
+            },
+            {
+              "open": false,
+              "start_timestamp": "2025-07-22 18:30",
+              "end_timestamp": "2025-07-22 20:44"
+            },
+            {
+              "open": true,
+              "start_timestamp": "2025-07-22 20:45",
+              "end_timestamp": "2025-07-22 23:59"
+            }
+          ],
+          "rules": [
+            "Cycle Track Open Until 6:30 PM\t2025-07-22T05:00\t\tJuly 22, 2025, 5:00 AM - 6:30 PM",
+            "Cycle Track Open After 8:45 PM\t2025-07-22T20:45\t\tJuly 22, 2025, 8:45 PM"
+          ]
+        }
+      },
+      {
+        "recognizer": "calendarRecognizer",
+        "rules": {
+          "type": "known_rules",
+          "text": "2025-07-23",
+          "start_date": "2025-07-23",
+          "end_date": "2025-07-23",
+          "intervals": [
+            {
+              "open": false,
+              "start_timestamp": "2025-07-23 00:00",
+              "end_timestamp": "2025-07-23 23:59",
+              "comment": "Event Preparation"
+            }
+          ],
+          "rules": [
+            "Cycle Track Closed (Event Preparation)\t2025-07-23T06:00\t\tJuly 23, 2025, 6:00 AM"
+          ]
+        }
+      },
+      {
+        "recognizer": "calendarRecognizer",
+        "rules": {
+          "type": "known_rules",
+          "text": "2025-07-24",
+          "start_date": "2025-07-24",
+          "end_date": "2025-07-24",
+          "intervals": [
+            {
+              "open": false,
+              "start_timestamp": "2025-07-24 00:00",
+              "end_timestamp": "2025-07-24 23:59",
+              "comment": "Event Preparation"
+            }
+          ],
+          "rules": [
+            "Cycle Track Closed (Event Preparation)\t2025-07-24T05:00\t\tJuly 24, 2025, 5:00 AM"
+          ]
+        }
+      },
+      {
+        "recognizer": "calendarRecognizer",
+        "rules": {
+          "type": "known_rules",
+          "text": "2025-07-25",
+          "start_date": "2025-07-25",
+          "end_date": "2025-07-25",
+          "intervals": [
+            {
+              "open": false,
+              "start_timestamp": "2025-07-25 00:00",
+              "end_timestamp": "2025-07-25 23:59",
+              "comment": "Event Preparation"
+            }
+          ],
+          "rules": [
+            "Cycle Track Closed (Event Preparation)\t2025-07-25T05:00\t\tJuly 25, 2025, 5:00 AM"
+          ]
+        }
+      },
+      {
+        "recognizer": "calendarRecognizer",
+        "rules": {
+          "type": "known_rules",
+          "text": "2025-07-26",
+          "start_date": "2025-07-26",
+          "end_date": "2025-07-26",
+          "intervals": [
+            {
+              "open": false,
+              "start_timestamp": "2025-07-26 00:00",
+              "end_timestamp": "2025-07-26 23:59",
+              "comment": "Event Preparation"
+            }
+          ],
+          "rules": [
+            "Cycle Track Closed (Event Preparation)\t2025-07-26T05:00\t\tJuly 26, 2025, 5:00 AM"
+          ]
+        }
+      },
+      {
+        "recognizer": "calendarRecognizer",
+        "rules": {
+          "type": "known_rules",
+          "text": "2025-07-27",
+          "start_date": "2025-07-27",
+          "end_date": "2025-07-27",
+          "intervals": [
+            {
+              "open": false,
+              "start_timestamp": "2025-07-27 00:00",
+              "end_timestamp": "2025-07-27 23:59",
+              "comment": "Event Preparation"
+            }
+          ],
+          "rules": [
+            "Cycle Track Closed (Event Preparation)\t2025-07-27T05:00\t\tJuly 27, 2025, 5:00 AM"
+          ]
+        }
+      },
+      {
+        "recognizer": "calendarRecognizer",
+        "rules": {
+          "type": "known_rules",
           "text": "2025-07-28",
           "start_date": "2025-07-28",
           "end_date": "2025-07-28",
@@ -4013,7 +5069,8 @@
             {
               "open": false,
               "start_timestamp": "2025-07-28 00:00",
-              "end_timestamp": "2025-07-28 23:59"
+              "end_timestamp": "2025-07-28 23:59",
+              "comment": "Event Preparation"
             }
           ],
           "rules": [
@@ -4032,7 +5089,8 @@
             {
               "open": false,
               "start_timestamp": "2025-07-29 00:00",
-              "end_timestamp": "2025-07-29 23:59"
+              "end_timestamp": "2025-07-29 23:59",
+              "comment": "Event Preparation"
             }
           ],
           "rules": [
@@ -4051,7 +5109,8 @@
             {
               "open": false,
               "start_timestamp": "2025-07-30 00:00",
-              "end_timestamp": "2025-07-30 23:59"
+              "end_timestamp": "2025-07-30 23:59",
+              "comment": "Event Preparation"
             }
           ],
           "rules": [
@@ -4070,7 +5129,8 @@
             {
               "open": false,
               "start_timestamp": "2025-07-31 00:00",
-              "end_timestamp": "2025-07-31 23:59"
+              "end_timestamp": "2025-07-31 23:59",
+              "comment": "Event Preparation"
             }
           ],
           "rules": [
@@ -4089,7 +5149,8 @@
             {
               "open": false,
               "start_timestamp": "2025-08-01 00:00",
-              "end_timestamp": "2025-08-01 23:59"
+              "end_timestamp": "2025-08-01 23:59",
+              "comment": "Event Preparation"
             }
           ],
           "rules": [
@@ -4108,7 +5169,8 @@
             {
               "open": false,
               "start_timestamp": "2025-08-02 00:00",
-              "end_timestamp": "2025-08-02 23:59"
+              "end_timestamp": "2025-08-02 23:59",
+              "comment": "Event Preparation"
             }
           ],
           "rules": [
@@ -4127,7 +5189,8 @@
             {
               "open": false,
               "start_timestamp": "2025-08-03 00:00",
-              "end_timestamp": "2025-08-03 23:59"
+              "end_timestamp": "2025-08-03 23:59",
+              "comment": "Event Preparation"
             }
           ],
           "rules": [
@@ -4146,7 +5209,8 @@
             {
               "open": false,
               "start_timestamp": "2025-08-04 00:00",
-              "end_timestamp": "2025-08-04 23:59"
+              "end_timestamp": "2025-08-04 23:59",
+              "comment": "Event Preparation"
             }
           ],
           "rules": [
@@ -4165,7 +5229,8 @@
             {
               "open": false,
               "start_timestamp": "2025-08-05 00:00",
-              "end_timestamp": "2025-08-05 23:59"
+              "end_timestamp": "2025-08-05 23:59",
+              "comment": "Event Preparation"
             }
           ],
           "rules": [
@@ -4184,7 +5249,8 @@
             {
               "open": false,
               "start_timestamp": "2025-08-06 00:00",
-              "end_timestamp": "2025-08-06 23:59"
+              "end_timestamp": "2025-08-06 23:59",
+              "comment": "Event Preparation"
             }
           ],
           "rules": [
@@ -4203,7 +5269,8 @@
             {
               "open": false,
               "start_timestamp": "2025-08-07 00:00",
-              "end_timestamp": "2025-08-07 23:59"
+              "end_timestamp": "2025-08-07 23:59",
+              "comment": "Event Preparation"
             }
           ],
           "rules": [
@@ -4222,7 +5289,8 @@
             {
               "open": false,
               "start_timestamp": "2025-08-08 00:00",
-              "end_timestamp": "2025-08-08 23:59"
+              "end_timestamp": "2025-08-08 23:59",
+              "comment": "Event Preparation"
             }
           ],
           "rules": [
@@ -4241,7 +5309,8 @@
             {
               "open": false,
               "start_timestamp": "2025-08-09 00:00",
-              "end_timestamp": "2025-08-09 23:59"
+              "end_timestamp": "2025-08-09 23:59",
+              "comment": "Event Preparation"
             }
           ],
           "rules": [
@@ -4260,7 +5329,8 @@
             {
               "open": false,
               "start_timestamp": "2025-08-10 00:00",
-              "end_timestamp": "2025-08-10 23:59"
+              "end_timestamp": "2025-08-10 23:59",
+              "comment": "Event Preparation"
             }
           ],
           "rules": [
@@ -4279,7 +5349,8 @@
             {
               "open": false,
               "start_timestamp": "2025-08-11 00:00",
-              "end_timestamp": "2025-08-11 23:59"
+              "end_timestamp": "2025-08-11 23:59",
+              "comment": "Event Preparation"
             }
           ],
           "rules": [
@@ -4298,7 +5369,8 @@
             {
               "open": false,
               "start_timestamp": "2025-08-12 00:00",
-              "end_timestamp": "2025-08-12 23:59"
+              "end_timestamp": "2025-08-12 23:59",
+              "comment": "Event Preparation"
             }
           ],
           "rules": [
@@ -4317,7 +5389,8 @@
             {
               "open": false,
               "start_timestamp": "2025-08-13 00:00",
-              "end_timestamp": "2025-08-13 23:59"
+              "end_timestamp": "2025-08-13 23:59",
+              "comment": "Event Preparation"
             }
           ],
           "rules": [
@@ -4336,7 +5409,8 @@
             {
               "open": false,
               "start_timestamp": "2025-08-14 00:00",
-              "end_timestamp": "2025-08-14 23:59"
+              "end_timestamp": "2025-08-14 23:59",
+              "comment": "Event Preparation"
             }
           ],
           "rules": [
@@ -4355,7 +5429,8 @@
             {
               "open": false,
               "start_timestamp": "2025-08-15 00:00",
-              "end_timestamp": "2025-08-15 23:59"
+              "end_timestamp": "2025-08-15 23:59",
+              "comment": "Event Preparation"
             }
           ],
           "rules": [
@@ -4374,7 +5449,8 @@
             {
               "open": false,
               "start_timestamp": "2025-08-16 00:00",
-              "end_timestamp": "2025-08-16 23:59"
+              "end_timestamp": "2025-08-16 23:59",
+              "comment": "Event Preparation"
             }
           ],
           "rules": [
@@ -4393,7 +5469,8 @@
             {
               "open": false,
               "start_timestamp": "2025-08-17 00:00",
-              "end_timestamp": "2025-08-17 23:59"
+              "end_timestamp": "2025-08-17 23:59",
+              "comment": "Event Preparation"
             }
           ],
           "rules": [
@@ -4412,7 +5489,8 @@
             {
               "open": false,
               "start_timestamp": "2025-08-18 00:00",
-              "end_timestamp": "2025-08-18 23:59"
+              "end_timestamp": "2025-08-18 23:59",
+              "comment": "Event Preparation"
             }
           ],
           "rules": [
@@ -4431,7 +5509,8 @@
             {
               "open": false,
               "start_timestamp": "2025-08-19 00:00",
-              "end_timestamp": "2025-08-19 23:59"
+              "end_timestamp": "2025-08-19 23:59",
+              "comment": "Event Preparation"
             }
           ],
           "rules": [
@@ -4450,7 +5529,8 @@
             {
               "open": false,
               "start_timestamp": "2025-08-20 00:00",
-              "end_timestamp": "2025-08-20 23:59"
+              "end_timestamp": "2025-08-20 23:59",
+              "comment": "Event Preparation"
             }
           ],
           "rules": [
@@ -4469,7 +5549,8 @@
             {
               "open": false,
               "start_timestamp": "2025-08-21 00:00",
-              "end_timestamp": "2025-08-21 23:59"
+              "end_timestamp": "2025-08-21 23:59",
+              "comment": "Event Preparation"
             }
           ],
           "rules": [
@@ -4488,7 +5569,8 @@
             {
               "open": false,
               "start_timestamp": "2025-08-22 00:00",
-              "end_timestamp": "2025-08-22 23:59"
+              "end_timestamp": "2025-08-22 23:59",
+              "comment": "Event Preparation"
             }
           ],
           "rules": [
@@ -4822,17 +5904,17 @@
             {
               "open": false,
               "start_timestamp": "2025-09-06 07:30",
-              "end_timestamp": "2025-09-06 18:14"
+              "end_timestamp": "2025-09-06 17:59"
             },
             {
               "open": true,
-              "start_timestamp": "2025-09-06 18:15",
+              "start_timestamp": "2025-09-06 18:00",
               "end_timestamp": "2025-09-06 23:59"
             }
           ],
           "rules": [
             "Cycle Track Open Until 7:30 a.m.\t2025-09-06T00:00:00\t\tSeptember 6, 2025, All Day",
-            "Cycle Track Open After 6:15 p.m.\t2025-09-06T18:15:00\t\tSeptember 6, 2025, 6:15 PM"
+            "Cycle Track Open After 6:00 p.m.\t2025-09-06T18:00:00\t\tSeptember 6, 2025, 6:00 PM"
           ]
         }
       },
@@ -4847,22 +5929,29 @@
             {
               "open": true,
               "start_timestamp": "2025-09-07 00:00",
-              "end_timestamp": "2025-09-07 12:29"
+              "end_timestamp": "2025-09-07 08:29"
             },
             {
               "open": false,
-              "start_timestamp": "2025-09-07 12:30",
-              "end_timestamp": "2025-09-07 16:14"
+              "start_timestamp": "2025-09-07 08:30",
+              "end_timestamp": "2025-09-07 11:29",
+              "comment": "Cycle Track in Use for Private Event"
+            },
+            {
+              "open": false,
+              "start_timestamp": "2025-09-07 11:30",
+              "end_timestamp": "2025-09-07 18:44"
             },
             {
               "open": true,
-              "start_timestamp": "2025-09-07 16:15",
+              "start_timestamp": "2025-09-07 18:45",
               "end_timestamp": "2025-09-07 23:59"
             }
           ],
           "rules": [
-            "Cycle Track Open Until 12:30 p.m.\t2025-09-07T05:00:00\t\tSeptember 7, 2025, 5:00 AM - 12:30 PM",
-            "Cycle Track Open After 4:15 p.m.\t2025-09-07T16:15:00\t\tSeptember 7, 2025, 4:15 PM"
+            "Cycle Track Open for Public Use Until 8:30 a.m.\t2025-09-07T05:00:00\t\tSeptember 7, 2025, 5:00 AM - 8:30 AM",
+            "Cycle Track in Use for Private Event\t2025-09-07T08:30\t\tSeptember 7, 2025, 8:30 AM - 11:30 AM",
+            "Cycle Track Open for Public Use After 6:45 p.m.\t2025-09-07T18:45:00\t\tSeptember 7, 2025, 6:45 PM"
           ]
         }
       },
@@ -4986,11 +6075,11 @@
             {
               "open": true,
               "start_timestamp": "2025-09-12 00:00",
-              "end_timestamp": "2025-09-12 13:59"
+              "end_timestamp": "2025-09-12 07:29"
             },
             {
               "open": false,
-              "start_timestamp": "2025-09-12 14:00",
+              "start_timestamp": "2025-09-12 07:30",
               "end_timestamp": "2025-09-12 18:44"
             },
             {
@@ -5000,7 +6089,7 @@
             }
           ],
           "rules": [
-            "Cycle Track Open Until 2 p.m.\t2025-09-12T05:00:00\t\tSeptember 12, 2025, 5:00 AM - 2:00 PM",
+            "Cycle Track Open Until 7:30 a.m.\t2025-09-12T05:00:00\t\tSeptember 12, 2025, 5:00 AM - 7:30 AM",
             "Cycle Track Open After 6:45 p.m.\t2025-09-12T18:45:00\t\tSeptember 12, 2025, 6:45 PM"
           ]
         }
@@ -5021,17 +6110,17 @@
             {
               "open": false,
               "start_timestamp": "2025-09-13 07:30",
-              "end_timestamp": "2025-09-13 18:14"
+              "end_timestamp": "2025-09-13 17:59"
             },
             {
               "open": true,
-              "start_timestamp": "2025-09-13 18:15",
+              "start_timestamp": "2025-09-13 18:00",
               "end_timestamp": "2025-09-13 23:59"
             }
           ],
           "rules": [
             "Cycle Track Open Until 7:30 a.m.\t2025-09-13T00:00:00\t\tSeptember 13, 2025, All Day",
-            "Cycle Track Open After 6:15 p.m.\t2025-09-13T18:15:00\t\tSeptember 13, 2025, 6:15 PM"
+            "Cycle Track Open After 6:00 p.m.\t2025-09-13T18:00:00\t\tSeptember 13, 2025, 6:00 PM"
           ]
         }
       },
@@ -5046,22 +6135,22 @@
             {
               "open": true,
               "start_timestamp": "2025-09-14 00:00",
-              "end_timestamp": "2025-09-14 12:29"
+              "end_timestamp": "2025-09-14 09:59"
             },
             {
               "open": false,
-              "start_timestamp": "2025-09-14 12:30",
-              "end_timestamp": "2025-09-14 16:14"
+              "start_timestamp": "2025-09-14 10:00",
+              "end_timestamp": "2025-09-14 18:29"
             },
             {
               "open": true,
-              "start_timestamp": "2025-09-14 16:15",
+              "start_timestamp": "2025-09-14 18:30",
               "end_timestamp": "2025-09-14 23:59"
             }
           ],
           "rules": [
-            "Cycle Track Open Until 12:30 p.m.\t2025-09-14T05:00:00\t\tSeptember 14, 2025, 5:00 AM - 12:30 PM",
-            "Cycle Track Open After 4:15 p.m.\t2025-09-14T16:15:00\t\tSeptember 14, 2025, 4:15 PM"
+            "Cycle Track Open Until 10:00 a.m.\t2025-09-14T05:00:00\t\tSeptember 14, 2025, 5:00 AM - 10:00 AM",
+            "Cycle Track Open After 6:30 p.m.\t2025-09-14T18:30:00\t\tSeptember 14, 2025, 6:30 PM"
           ]
         }
       },
@@ -5220,17 +6309,17 @@
             {
               "open": false,
               "start_timestamp": "2025-09-20 07:30",
-              "end_timestamp": "2025-09-20 18:14"
+              "end_timestamp": "2025-09-20 17:59"
             },
             {
               "open": true,
-              "start_timestamp": "2025-09-20 18:15",
+              "start_timestamp": "2025-09-20 18:00",
               "end_timestamp": "2025-09-20 23:59"
             }
           ],
           "rules": [
             "Cycle Track Open Until 7:30 a.m.\t2025-09-20T00:00:00\t\tSeptember 20, 2025, All Day",
-            "Cycle Track Open After 6:15 p.m.\t2025-09-20T18:15:00\t\tSeptember 20, 2025, 6:15 PM"
+            "Cycle Track Open After 6:00 p.m.\t2025-09-20T18:00:00\t\tSeptember 20, 2025, 6:00 PM"
           ]
         }
       },
@@ -5245,22 +6334,22 @@
             {
               "open": true,
               "start_timestamp": "2025-09-21 00:00",
-              "end_timestamp": "2025-09-21 12:29"
+              "end_timestamp": "2025-09-21 09:59"
             },
             {
               "open": false,
-              "start_timestamp": "2025-09-21 12:30",
-              "end_timestamp": "2025-09-21 16:14"
+              "start_timestamp": "2025-09-21 10:00",
+              "end_timestamp": "2025-09-21 18:29"
             },
             {
               "open": true,
-              "start_timestamp": "2025-09-21 16:15",
+              "start_timestamp": "2025-09-21 18:30",
               "end_timestamp": "2025-09-21 23:59"
             }
           ],
           "rules": [
-            "Cycle Track Open Until 12:30 p.m.\t2025-09-21T05:00:00\t\tSeptember 21, 2025, 5:00 AM - 12:30 PM",
-            "Cycle Track Open After 4:15 p.m.\t2025-09-21T16:15:00\t\tSeptember 21, 2025, 4:15 PM"
+            "Cycle Track Open Until 10:00 a.m.\t2025-09-21T05:00:00\t\tSeptember 21, 2025, 5:00 AM - 10:00 AM",
+            "Cycle Track Open After 6:30 p.m.\t2025-09-21T18:30:00\t\tSeptember 21, 2025, 6:30 PM"
           ]
         }
       },
@@ -5419,17 +6508,17 @@
             {
               "open": false,
               "start_timestamp": "2025-09-27 07:30",
-              "end_timestamp": "2025-09-27 18:14"
+              "end_timestamp": "2025-09-27 17:59"
             },
             {
               "open": true,
-              "start_timestamp": "2025-09-27 18:15",
+              "start_timestamp": "2025-09-27 18:00",
               "end_timestamp": "2025-09-27 23:59"
             }
           ],
           "rules": [
             "Cycle Track Open Until 7:30 a.m.\t2025-09-27T00:00:00\t\tSeptember 27, 2025, All Day",
-            "Cycle Track Open After 6:15 p.m.\t2025-09-27T18:15:00\t\tSeptember 27, 2025, 6:15 PM"
+            "Cycle Track Open After 6:00 p.m.\t2025-09-27T18:00:00\t\tSeptember 27, 2025, 6:00 PM"
           ]
         }
       },
@@ -5444,22 +6533,22 @@
             {
               "open": true,
               "start_timestamp": "2025-09-28 00:00",
-              "end_timestamp": "2025-09-28 12:29"
+              "end_timestamp": "2025-09-28 09:59"
             },
             {
               "open": false,
-              "start_timestamp": "2025-09-28 12:30",
-              "end_timestamp": "2025-09-28 16:14"
+              "start_timestamp": "2025-09-28 10:00",
+              "end_timestamp": "2025-09-28 18:29"
             },
             {
               "open": true,
-              "start_timestamp": "2025-09-28 16:15",
+              "start_timestamp": "2025-09-28 18:30",
               "end_timestamp": "2025-09-28 23:59"
             }
           ],
           "rules": [
-            "Cycle Track Open Until 12:30 p.m.\t2025-09-28T05:00:00\t\tSeptember 28, 2025, 5:00 AM - 12:30 PM",
-            "Cycle Track Open After 4:15 p.m.\t2025-09-28T16:15:00\t\tSeptember 28, 2025, 4:15 PM"
+            "Cycle Track Open Until 10:00 a.m.\t2025-09-28T05:00:00\t\tSeptember 28, 2025, 5:00 AM - 10:00 AM",
+            "Cycle Track Open After 6:30 p.m.\t2025-09-28T18:30:00\t\tSeptember 28, 2025, 6:30 PM"
           ]
         }
       },
@@ -5581,24 +6670,13 @@
           "end_date": "2025-10-03",
           "intervals": [
             {
-              "open": true,
-              "start_timestamp": "2025-10-03 00:00",
-              "end_timestamp": "2025-10-03 13:59"
-            },
-            {
               "open": false,
-              "start_timestamp": "2025-10-03 14:00",
-              "end_timestamp": "2025-10-03 18:44"
-            },
-            {
-              "open": true,
-              "start_timestamp": "2025-10-03 18:45",
+              "start_timestamp": "2025-10-03 00:00",
               "end_timestamp": "2025-10-03 23:59"
             }
           ],
           "rules": [
-            "Cycle Track Open Until 2 p.m.\t2025-10-03T05:00:00\t\tOctober 3, 2025, 5:00 AM - 2:00 PM",
-            "Cycle Track Open After 6:45 p.m.\t2025-10-03T18:45:00\t\tOctober 3, 2025, 6:45 PM"
+            "Cycle Track Closed All Day\t2025-10-03T05:00:00\t\tOctober 3, 2025, 5:00 AM"
           ]
         }
       },
@@ -5611,24 +6689,13 @@
           "end_date": "2025-10-04",
           "intervals": [
             {
-              "open": true,
-              "start_timestamp": "2025-10-04 00:00",
-              "end_timestamp": "2025-10-04 07:29"
-            },
-            {
               "open": false,
-              "start_timestamp": "2025-10-04 07:30",
-              "end_timestamp": "2025-10-04 18:14"
-            },
-            {
-              "open": true,
-              "start_timestamp": "2025-10-04 18:15",
+              "start_timestamp": "2025-10-04 00:00",
               "end_timestamp": "2025-10-04 23:59"
             }
           ],
           "rules": [
-            "Cycle Track Open Until 7:30 a.m.\t2025-10-04T00:00:00\t\tOctober 4, 2025, All Day",
-            "Cycle Track Open After 6:15 p.m.\t2025-10-04T18:15:00\t\tOctober 4, 2025, 6:15 PM"
+            "Cycle Track Closed All Day\t2025-10-04T05:00:00\t\tOctober 4, 2025, 5:00 AM"
           ]
         }
       },
@@ -5641,24 +6708,13 @@
           "end_date": "2025-10-05",
           "intervals": [
             {
-              "open": true,
-              "start_timestamp": "2025-10-05 00:00",
-              "end_timestamp": "2025-10-05 12:29"
-            },
-            {
               "open": false,
-              "start_timestamp": "2025-10-05 12:30",
-              "end_timestamp": "2025-10-05 16:14"
-            },
-            {
-              "open": true,
-              "start_timestamp": "2025-10-05 16:15",
+              "start_timestamp": "2025-10-05 00:00",
               "end_timestamp": "2025-10-05 23:59"
             }
           ],
           "rules": [
-            "Cycle Track Open Until 12:30 p.m.\t2025-10-05T05:00:00\t\tOctober 5, 2025, 5:00 AM - 12:30 PM",
-            "Cycle Track Open After 4:15 p.m.\t2025-10-05T16:15:00\t\tOctober 5, 2025, 4:15 PM"
+            "Cycle Track Closed All Day\t2025-10-05T05:00:00\t\tOctober 5, 2025, 5:00 AM"
           ]
         }
       },
@@ -5817,17 +6873,17 @@
             {
               "open": false,
               "start_timestamp": "2025-10-11 07:30",
-              "end_timestamp": "2025-10-11 18:14"
+              "end_timestamp": "2025-10-11 17:59"
             },
             {
               "open": true,
-              "start_timestamp": "2025-10-11 18:15",
+              "start_timestamp": "2025-10-11 18:00",
               "end_timestamp": "2025-10-11 23:59"
             }
           ],
           "rules": [
             "Cycle Track Open Until 7:30 a.m.\t2025-10-11T00:00:00\t\tOctober 11, 2025, All Day",
-            "Cycle Track Open After 6:15 p.m.\t2025-10-11T18:15:00\t\tOctober 11, 2025, 6:15 PM"
+            "Cycle Track Open After 6:00 p.m.\t2025-10-11T18:00:00\t\tOctober 11, 2025, 6:00 PM"
           ]
         }
       },
@@ -5842,22 +6898,22 @@
             {
               "open": true,
               "start_timestamp": "2025-10-12 00:00",
-              "end_timestamp": "2025-10-12 12:29"
+              "end_timestamp": "2025-10-12 09:59"
             },
             {
               "open": false,
-              "start_timestamp": "2025-10-12 12:30",
-              "end_timestamp": "2025-10-12 16:14"
+              "start_timestamp": "2025-10-12 10:00",
+              "end_timestamp": "2025-10-12 18:29"
             },
             {
               "open": true,
-              "start_timestamp": "2025-10-12 16:15",
+              "start_timestamp": "2025-10-12 18:30",
               "end_timestamp": "2025-10-12 23:59"
             }
           ],
           "rules": [
-            "Cycle Track Open Until 12:30 p.m.\t2025-10-12T05:00:00\t\tOctober 12, 2025, 5:00 AM - 12:30 PM",
-            "Cycle Track Open After 4:15 p.m.\t2025-10-12T16:15:00\t\tOctober 12, 2025, 4:15 PM"
+            "Cycle Track Open Until 10:00 a.m.\t2025-10-12T05:00:00\t\tOctober 12, 2025, 5:00 AM - 10:00 AM",
+            "Cycle Track Open After 6:30 p.m.\t2025-10-12T18:30:00\t\tOctober 12, 2025, 6:30 PM"
           ]
         }
       },
@@ -6016,17 +7072,17 @@
             {
               "open": false,
               "start_timestamp": "2025-10-18 07:30",
-              "end_timestamp": "2025-10-18 18:14"
+              "end_timestamp": "2025-10-18 17:59"
             },
             {
               "open": true,
-              "start_timestamp": "2025-10-18 18:15",
+              "start_timestamp": "2025-10-18 18:00",
               "end_timestamp": "2025-10-18 23:59"
             }
           ],
           "rules": [
             "Cycle Track Open Until 7:30 a.m.\t2025-10-18T00:00:00\t\tOctober 18, 2025, All Day",
-            "Cycle Track Open After 6:15 p.m.\t2025-10-18T18:15:00\t\tOctober 18, 2025, 6:15 PM"
+            "Cycle Track Open After 6:00 p.m.\t2025-10-18T18:00:00\t\tOctober 18, 2025, 6:00 PM"
           ]
         }
       },
@@ -6041,22 +7097,22 @@
             {
               "open": true,
               "start_timestamp": "2025-10-19 00:00",
-              "end_timestamp": "2025-10-19 12:29"
+              "end_timestamp": "2025-10-19 09:59"
             },
             {
               "open": false,
-              "start_timestamp": "2025-10-19 12:30",
-              "end_timestamp": "2025-10-19 16:14"
+              "start_timestamp": "2025-10-19 10:00",
+              "end_timestamp": "2025-10-19 18:29"
             },
             {
               "open": true,
-              "start_timestamp": "2025-10-19 16:15",
+              "start_timestamp": "2025-10-19 18:30",
               "end_timestamp": "2025-10-19 23:59"
             }
           ],
           "rules": [
-            "Cycle Track Open Until 12:30 p.m.\t2025-10-19T05:00:00\t\tOctober 19, 2025, 5:00 AM - 12:30 PM",
-            "Cycle Track Open After 4:15 p.m.\t2025-10-19T16:15:00\t\tOctober 19, 2025, 4:15 PM"
+            "Cycle Track Open Until 10:00 a.m.\t2025-10-19T05:00:00\t\tOctober 19, 2025, 5:00 AM - 10:00 AM",
+            "Cycle Track Open After 6:30 p.m.\t2025-10-19T18:30:00\t\tOctober 19, 2025, 6:30 PM"
           ]
         }
       },
@@ -6215,17 +7271,17 @@
             {
               "open": false,
               "start_timestamp": "2025-10-25 07:30",
-              "end_timestamp": "2025-10-25 18:14"
+              "end_timestamp": "2025-10-25 17:59"
             },
             {
               "open": true,
-              "start_timestamp": "2025-10-25 18:15",
+              "start_timestamp": "2025-10-25 18:00",
               "end_timestamp": "2025-10-25 23:59"
             }
           ],
           "rules": [
             "Cycle Track Open Until 7:30 a.m.\t2025-10-25T00:00:00\t\tOctober 25, 2025, All Day",
-            "Cycle Track Open After 6:15 p.m.\t2025-10-25T18:15:00\t\tOctober 25, 2025, 6:15 PM"
+            "Cycle Track Open After 6:00 p.m.\t2025-10-25T18:00:00\t\tOctober 25, 2025, 6:00 PM"
           ]
         }
       },
@@ -6240,22 +7296,22 @@
             {
               "open": true,
               "start_timestamp": "2025-10-26 00:00",
-              "end_timestamp": "2025-10-26 12:29"
+              "end_timestamp": "2025-10-26 09:59"
             },
             {
               "open": false,
-              "start_timestamp": "2025-10-26 12:30",
-              "end_timestamp": "2025-10-26 16:14"
+              "start_timestamp": "2025-10-26 10:00",
+              "end_timestamp": "2025-10-26 18:29"
             },
             {
               "open": true,
-              "start_timestamp": "2025-10-26 16:15",
+              "start_timestamp": "2025-10-26 18:30",
               "end_timestamp": "2025-10-26 23:59"
             }
           ],
           "rules": [
-            "Cycle Track Open Until 12:30 p.m.\t2025-10-26T05:00:00\t\tOctober 26, 2025, 5:00 AM - 12:30 PM",
-            "Cycle Track Open After 4:15 p.m.\t2025-10-26T16:15:00\t\tOctober 26, 2025, 4:15 PM"
+            "Cycle Track Open Until 10:00 a.m.\t2025-10-26T05:00:00\t\tOctober 26, 2025, 5:00 AM - 10:00 AM",
+            "Cycle Track Open After 6:30 p.m.\t2025-10-26T18:30:00\t\tOctober 26, 2025, 6:30 PM"
           ]
         }
       },
@@ -6414,17 +7470,17 @@
             {
               "open": false,
               "start_timestamp": "2025-11-01 07:30",
-              "end_timestamp": "2025-11-01 18:14"
+              "end_timestamp": "2025-11-01 17:59"
             },
             {
               "open": true,
-              "start_timestamp": "2025-11-01 18:15",
+              "start_timestamp": "2025-11-01 18:00",
               "end_timestamp": "2025-11-01 23:59"
             }
           ],
           "rules": [
             "Cycle Track Open Until 7:30 a.m.\t2025-11-01T00:00:00\t\tNovember 1, 2025, All Day",
-            "Cycle Track Open After 6:15 p.m.\t2025-11-01T18:15:00\t\tNovember 1, 2025, 6:15 PM"
+            "Cycle Track Open After 6:00 p.m.\t2025-11-01T18:00:00\t\tNovember 1, 2025, 6:00 PM"
           ]
         }
       },
@@ -6439,22 +7495,22 @@
             {
               "open": true,
               "start_timestamp": "2025-11-02 00:00",
-              "end_timestamp": "2025-11-02 12:29"
+              "end_timestamp": "2025-11-02 09:59"
             },
             {
               "open": false,
-              "start_timestamp": "2025-11-02 12:30",
-              "end_timestamp": "2025-11-02 16:14"
+              "start_timestamp": "2025-11-02 10:00",
+              "end_timestamp": "2025-11-02 18:29"
             },
             {
               "open": true,
-              "start_timestamp": "2025-11-02 16:15",
+              "start_timestamp": "2025-11-02 18:30",
               "end_timestamp": "2025-11-02 23:59"
             }
           ],
           "rules": [
-            "Cycle Track Open Until 12:30 p.m.\t2025-11-02T05:00:00\t\tNovember 2, 2025, 5:00 AM - 12:30 PM",
-            "Cycle Track Open After 4:15 p.m.\t2025-11-02T16:15:00\t\tNovember 2, 2025, 4:15 PM"
+            "Cycle Track Open Until 10:00 a.m.\t2025-11-02T05:00:00\t\tNovember 2, 2025, 5:00 AM - 10:00 AM",
+            "Cycle Track Open After 6:30 p.m.\t2025-11-02T18:30:00\t\tNovember 2, 2025, 6:30 PM"
           ]
         }
       },
@@ -6613,17 +7669,17 @@
             {
               "open": false,
               "start_timestamp": "2025-11-08 07:30",
-              "end_timestamp": "2025-11-08 18:14"
+              "end_timestamp": "2025-11-08 17:59"
             },
             {
               "open": true,
-              "start_timestamp": "2025-11-08 18:15",
+              "start_timestamp": "2025-11-08 18:00",
               "end_timestamp": "2025-11-08 23:59"
             }
           ],
           "rules": [
             "Cycle Track Open Until 7:30 a.m.\t2025-11-08T00:00:00\t\tNovember 8, 2025, All Day",
-            "Cycle Track Open After 6:15 p.m.\t2025-11-08T18:15:00\t\tNovember 8, 2025, 6:15 PM"
+            "Cycle Track Open After 6:00 p.m.\t2025-11-08T18:00:00\t\tNovember 8, 2025, 6:00 PM"
           ]
         }
       },
@@ -6638,22 +7694,22 @@
             {
               "open": true,
               "start_timestamp": "2025-11-09 00:00",
-              "end_timestamp": "2025-11-09 12:29"
+              "end_timestamp": "2025-11-09 09:59"
             },
             {
               "open": false,
-              "start_timestamp": "2025-11-09 12:30",
-              "end_timestamp": "2025-11-09 16:14"
+              "start_timestamp": "2025-11-09 10:00",
+              "end_timestamp": "2025-11-09 18:29"
             },
             {
               "open": true,
-              "start_timestamp": "2025-11-09 16:15",
+              "start_timestamp": "2025-11-09 18:30",
               "end_timestamp": "2025-11-09 23:59"
             }
           ],
           "rules": [
-            "Cycle Track Open Until 12:30 p.m.\t2025-11-09T05:00:00\t\tNovember 9, 2025, 5:00 AM - 12:30 PM",
-            "Cycle Track Open After 4:15 p.m.\t2025-11-09T16:15:00\t\tNovember 9, 2025, 4:15 PM"
+            "Cycle Track Open Until 10:00 a.m.\t2025-11-09T05:00:00\t\tNovember 9, 2025, 5:00 AM - 10:00 AM",
+            "Cycle Track Open After 6:30 p.m.\t2025-11-09T18:30:00\t\tNovember 9, 2025, 6:30 PM"
           ]
         }
       },
@@ -6812,17 +7868,17 @@
             {
               "open": false,
               "start_timestamp": "2025-11-15 07:30",
-              "end_timestamp": "2025-11-15 18:14"
+              "end_timestamp": "2025-11-15 17:59"
             },
             {
               "open": true,
-              "start_timestamp": "2025-11-15 18:15",
+              "start_timestamp": "2025-11-15 18:00",
               "end_timestamp": "2025-11-15 23:59"
             }
           ],
           "rules": [
             "Cycle Track Open Until 7:30 a.m.\t2025-11-15T00:00:00\t\tNovember 15, 2025, All Day",
-            "Cycle Track Open After 6:15 p.m.\t2025-11-15T18:15:00\t\tNovember 15, 2025, 6:15 PM"
+            "Cycle Track Open After 6:00 p.m.\t2025-11-15T18:00:00\t\tNovember 15, 2025, 6:00 PM"
           ]
         }
       },
@@ -6837,22 +7893,22 @@
             {
               "open": true,
               "start_timestamp": "2025-11-16 00:00",
-              "end_timestamp": "2025-11-16 12:29"
+              "end_timestamp": "2025-11-16 09:59"
             },
             {
               "open": false,
-              "start_timestamp": "2025-11-16 12:30",
-              "end_timestamp": "2025-11-16 16:14"
+              "start_timestamp": "2025-11-16 10:00",
+              "end_timestamp": "2025-11-16 18:29"
             },
             {
               "open": true,
-              "start_timestamp": "2025-11-16 16:15",
+              "start_timestamp": "2025-11-16 18:30",
               "end_timestamp": "2025-11-16 23:59"
             }
           ],
           "rules": [
-            "Cycle Track Open Until 12:30 p.m.\t2025-11-16T05:00:00\t\tNovember 16, 2025, 5:00 AM - 12:30 PM",
-            "Cycle Track Open After 4:15 p.m.\t2025-11-16T16:15:00\t\tNovember 16, 2025, 4:15 PM"
+            "Cycle Track Open Until 10:00 a.m.\t2025-11-16T05:00:00\t\tNovember 16, 2025, 5:00 AM - 10:00 AM",
+            "Cycle Track Open After 6:30 p.m.\t2025-11-16T18:30:00\t\tNovember 16, 2025, 6:30 PM"
           ]
         }
       },
@@ -6916,11 +7972,11 @@
             {
               "open": true,
               "start_timestamp": "2025-11-19 00:00",
-              "end_timestamp": "2025-11-19 13:59"
+              "end_timestamp": "2025-11-19 11:59"
             },
             {
               "open": false,
-              "start_timestamp": "2025-11-19 14:00",
+              "start_timestamp": "2025-11-19 12:00",
               "end_timestamp": "2025-11-19 18:44"
             },
             {
@@ -6930,7 +7986,7 @@
             }
           ],
           "rules": [
-            "Cycle Track Open Until 2 p.m.\t2025-11-19T05:00:00\t\tNovember 19, 2025, 5:00 AM - 2:00 PM",
+            "Cycle Track Open Until 12 p.m.\t2025-11-19T05:00:00\t\tNovember 19, 2025, 5:00 AM - 12:00 PM",
             "Cycle Track Open After 6:45 p.m.\t2025-11-19T18:45:00\t\tNovember 19, 2025, 6:45 PM"
           ]
         }
@@ -7011,17 +8067,17 @@
             {
               "open": false,
               "start_timestamp": "2025-11-22 07:30",
-              "end_timestamp": "2025-11-22 18:14"
+              "end_timestamp": "2025-11-22 17:59"
             },
             {
               "open": true,
-              "start_timestamp": "2025-11-22 18:15",
+              "start_timestamp": "2025-11-22 18:00",
               "end_timestamp": "2025-11-22 23:59"
             }
           ],
           "rules": [
             "Cycle Track Open Until 7:30 a.m.\t2025-11-22T00:00:00\t\tNovember 22, 2025, All Day",
-            "Cycle Track Open After 6:15 p.m.\t2025-11-22T18:15:00\t\tNovember 22, 2025, 6:15 PM"
+            "Cycle Track Open After 6:00 p.m.\t2025-11-22T18:00:00\t\tNovember 22, 2025, 6:00 PM"
           ]
         }
       },
@@ -7036,22 +8092,22 @@
             {
               "open": true,
               "start_timestamp": "2025-11-23 00:00",
-              "end_timestamp": "2025-11-23 12:29"
+              "end_timestamp": "2025-11-23 09:59"
             },
             {
               "open": false,
-              "start_timestamp": "2025-11-23 12:30",
-              "end_timestamp": "2025-11-23 16:14"
+              "start_timestamp": "2025-11-23 10:00",
+              "end_timestamp": "2025-11-23 18:29"
             },
             {
               "open": true,
-              "start_timestamp": "2025-11-23 16:15",
+              "start_timestamp": "2025-11-23 18:30",
               "end_timestamp": "2025-11-23 23:59"
             }
           ],
           "rules": [
-            "Cycle Track Open Until 12:30 p.m.\t2025-11-23T05:00:00\t\tNovember 23, 2025, 5:00 AM - 12:30 PM",
-            "Cycle Track Open After 4:15 p.m.\t2025-11-23T16:15:00\t\tNovember 23, 2025, 4:15 PM"
+            "Cycle Track Open Until 10:00 a.m.\t2025-11-23T05:00:00\t\tNovember 23, 2025, 5:00 AM - 10:00 AM",
+            "Cycle Track Open After 6:30 p.m.\t2025-11-23T18:30:00\t\tNovember 23, 2025, 6:30 PM"
           ]
         }
       },
@@ -7085,22 +8141,11 @@
             {
               "open": true,
               "start_timestamp": "2025-11-25 00:00",
-              "end_timestamp": "2025-11-25 13:59"
-            },
-            {
-              "open": false,
-              "start_timestamp": "2025-11-25 14:00",
-              "end_timestamp": "2025-11-25 18:44"
-            },
-            {
-              "open": true,
-              "start_timestamp": "2025-11-25 18:45",
               "end_timestamp": "2025-11-25 23:59"
             }
           ],
           "rules": [
-            "Cycle Track Open Until 2 p.m.\t2025-11-25T05:00:00\t\tNovember 25, 2025, 5:00 AM - 2:00 PM",
-            "Cycle Track Open After 6:45 p.m.\t2025-11-25T18:45:00\t\tNovember 25, 2025, 6:45 PM"
+            "Cycle Track Open All Day\t2025-11-25T05:00:00\t\tNovember 25, 2025, 5:00 AM"
           ]
         }
       },
@@ -7115,22 +8160,47 @@
             {
               "open": true,
               "start_timestamp": "2025-11-26 00:00",
-              "end_timestamp": "2025-11-26 13:59"
-            },
-            {
-              "open": false,
-              "start_timestamp": "2025-11-26 14:00",
-              "end_timestamp": "2025-11-26 18:44"
-            },
-            {
-              "open": true,
-              "start_timestamp": "2025-11-26 18:45",
               "end_timestamp": "2025-11-26 23:59"
             }
           ],
           "rules": [
-            "Cycle Track Open Until 2 p.m.\t2025-11-26T05:00:00\t\tNovember 26, 2025, 5:00 AM - 2:00 PM",
-            "Cycle Track Open After 6:45 p.m.\t2025-11-26T18:45:00\t\tNovember 26, 2025, 6:45 PM"
+            "Cycle Track Open All Day\t2025-11-26T05:00:00\t\tNovember 26, 2025, 5:00 AM"
+          ]
+        }
+      },
+      {
+        "recognizer": "calendarRecognizer",
+        "rules": {
+          "type": "known_rules",
+          "text": "2025-11-27",
+          "start_date": "2025-11-27",
+          "end_date": "2025-11-27",
+          "intervals": [
+            {
+              "open": true,
+              "start_timestamp": "2025-11-27 00:00",
+              "end_timestamp": "2025-11-27 04:59"
+            },
+            {
+              "open": false,
+              "start_timestamp": "2025-11-27 05:00",
+              "end_timestamp": "2025-11-27 06:59",
+              "comment": "Turkey Trot event"
+            },
+            {
+              "open": false,
+              "start_timestamp": "2025-11-27 07:00",
+              "end_timestamp": "2025-11-27 10:59"
+            },
+            {
+              "open": true,
+              "start_timestamp": "2025-11-27 11:00",
+              "end_timestamp": "2025-11-27 23:59"
+            }
+          ],
+          "rules": [
+            "Cycle Track Closed Until 7:00 AM (Turkey Trot event)\t2025-11-27T05:00:00\t\tNovember 27, 2025, 5:00 AM - 7:00 AM",
+            "Cycle Track Open After 11:00 AM\t2025-11-27T11:00\t\tNovember 27, 2025, 11:00 AM"
           ]
         }
       },
@@ -7146,21 +8216,10 @@
               "open": true,
               "start_timestamp": "2025-11-28 00:00",
               "end_timestamp": "2025-11-28 23:59"
-            },
-            {
-              "open": false,
-              "start_timestamp": "2025-11-28 07:00",
-              "end_timestamp": "2025-11-28 10:59"
-            },
-            {
-              "open": true,
-              "start_timestamp": "2025-11-28 11:00",
-              "end_timestamp": "2025-11-28 23:59"
             }
           ],
           "rules": [
-            "Cycle Track Open All Day\t2025-11-28T05:00:00\t\tNovember 28, 2025, 5:00 AM",
-            "Cycle Track Closed (Turkey Trot event)\t2025-11-28T07:00:00\t\tNovember 28, 2025, 7:00 AM - 11:00 AM"
+            "Cycle Track Open All Day\t2025-11-28T05:00:00\t\tNovember 28, 2025, 5:00 AM"
           ]
         }
       },

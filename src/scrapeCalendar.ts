@@ -16,6 +16,7 @@ import {
   stream,
   reParser,
   optional,
+  apFirst,
 } from "./parsing";
 import { FieldRainoutInfo } from "./scrapeFieldRainoutInfo";
 
@@ -167,7 +168,9 @@ export const reasonParser = optional(
 );
 
 export const cycleTrackOpenParser = mapParser(
-  reParser(/(?:cycle|cycling) track (?:(open)|closed)\s*/gi),
+  reParser(
+    /(?:cycle|cycling) track (?:(open)|closed)(?: for public use)?\s*/gi,
+  ),
   (result) => !!result[1],
 );
 
@@ -253,25 +256,43 @@ function fixEvent({
 }
 
 const openWithReasonParser = ensureEndParsed(
-  parseAll(
-    cycleTrackOpenParser,
-    optional(reParser(/\s*\([^)]*event[^)]*\)/gi)),
+  parseFirst(
+    mapParser(
+      parseAll(
+        cycleTrackOpenParser,
+        optional(timeSpanReParser),
+        optional(
+          mapParser(reParser(/\s*\(([^)]*event[^)]*)\)/gi), (re) => ({
+            comment: re[1],
+          })),
+        ),
+      ),
+      ([open, timeSpan, reason]) => ({
+        open,
+        ...timeSpan,
+        ...reason,
+      }),
+    ),
+    mapParser(reParser(/cycle track in use for private event/gi), (r) => ({
+      open: false,
+      comment: r[0],
+    })),
   ),
 );
 
-function nameParser(entry: CalendarEntry) {
+export function nameParser(entry: CalendarEntry) {
   const s = stream(entry.name);
   const result = cycleTrackParser(s)?.result;
   if (!result) {
     const r2 = openWithReasonParser(s);
     const d2 = subheaderDateParser(stream(entry.subHeaderDate));
     if (r2 && d2) {
-      return { open: r2.result[0], ...d2.result };
-    } else if (r2 && r2.result[1]) {
-      return { open: r2.result[0], ...ALL_DAY };
+      return { ...r2.result, ...d2.result };
+    } else if (r2 && r2.result.comment) {
+      return { ...r2.result, ...ALL_DAY };
     }
     throw new Error(
-      `Invalid name: ${JSON.stringify(entry)} r2=${r2?.result} d2=${d2?.result}`,
+      `Invalid name: ${JSON.stringify(entry)} r2=${JSON.stringify(r2?.result)} d2=${JSON.stringify(d2?.result)}`,
     );
   }
   return result;
@@ -292,10 +313,13 @@ function fillEntry(
     startMinute:
       "startMinute" in cur ? cur.startMinute : prev ? prev.endMinute - 1 : 0,
     endMinute: "endMinute" in cur ? cur.endMinute - 1 : toMinute(23, 59),
+    ...("comment" in cur && typeof cur.comment === "string"
+      ? { comment: cur.comment }
+      : {}),
   };
 }
 
-function parseAndReorderEntries(
+export function parseAndReorderEntries(
   date: CalendarDate,
 ): ReturnType<typeof nameParser>[] {
   const names = date.entries.map(nameParser);
@@ -313,7 +337,7 @@ function parseAndReorderEntries(
   return names;
 }
 
-function getIntervals(date: CalendarDate, fieldRainedOut: boolean) {
+export function getIntervals(date: CalendarDate, fieldRainedOut: boolean) {
   const intervals: RuleInterval[] = [];
   if (fieldRainedOut) {
     intervals.push({
@@ -326,6 +350,8 @@ function getIntervals(date: CalendarDate, fieldRainedOut: boolean) {
     let lastEntry: ParsedName | null = null;
     for (const parsedEntry of parseAndReorderEntries(date)) {
       const p = fillEntry(parsedEntry, lastEntry);
+      const comment =
+        typeof p.comment === "string" ? { comment: p.comment } : {};
 
       if (!lastEntry) {
         if (p.startMinute > 0) {
@@ -335,7 +361,7 @@ function getIntervals(date: CalendarDate, fieldRainedOut: boolean) {
             end_timestamp: formatDateMinute(date.date, p.startMinute - 1),
           });
         }
-      } else if (p.open === lastEntry.open) {
+      } else if (p.startMinute - lastEntry.endMinute > 1) {
         intervals.push({
           open: !p.open,
           start_timestamp: formatDateMinute(date.date, lastEntry.endMinute + 1),
@@ -346,6 +372,7 @@ function getIntervals(date: CalendarDate, fieldRainedOut: boolean) {
         open: p.open,
         start_timestamp: formatDateMinute(date.date, p.startMinute),
         end_timestamp: formatDateMinute(date.date, p.endMinute),
+        ...comment,
       });
       lastEntry = p;
     }
