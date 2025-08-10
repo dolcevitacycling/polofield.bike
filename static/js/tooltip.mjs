@@ -49,10 +49,16 @@ function toggleTooltip(e) {
   );
   if (egg.reference === referenceEl) {
     if (++egg.count === 10) {
-      referenceEl.querySelector("span").innerHTML = `<img src="/img/hoyhoy_kom2.gif" alt="hoyhoy" width="64" />`;
+      referenceEl.querySelector("span").innerHTML =
+        `<img src="/img/hoyhoy_kom2.gif" alt="hoyhoy" width="64" />`;
     }
   } else {
-    egg = { reference: referenceEl, count: 1 };
+    egg = {
+      reference: referenceEl.closest("li")?.dataset.memorial
+        ? null
+        : referenceEl,
+      count: 1,
+    };
   }
   e.preventDefault();
   if (cleanup) {
