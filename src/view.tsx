@@ -208,9 +208,17 @@ function Layout(props: Props) {
           background: #fff;
           z-index: 1;
           cursor: pointer;
+          padding: 0;
+          border: 0;
+          overflow: hidden;
+        }
+        .memorial-dialog::backdrop {
+          background-image: linear-gradient(-45deg, #3A1C71 0%, #FDBB2D 100%);
+          opacity: 0.85;
         }
         .memorial-dialog img {
           max-height: 90vh;
+          max-width: 90vw;
         }
         .closed[data-memorial="true"] {
           --closed-color: white;
