@@ -41,22 +41,41 @@ function updatePosition(referenceEl, floatingEl, arrowEl) {
     });
   });
 }
+const memorial = document.createElement("dialog");
+let memorialMounted = false;
+function showMemorial() {
+  if (!memorialMounted) {
+    memorial.innerHTML = `
+<img src="/img/20250907-memorial-ride.png" />
+`;
+    memorial.classList.add('memorial-dialog');
+    document.body.appendChild(memorial);
+    memorial.onclick = (ev) => {
+      ev.preventDefault();
+      memorial.close();
+    };
+    memorialMounted = true;
+  }
+  memorial.showModal();
+}
+
 let egg = { reference: null };
 function toggleTooltip(e) {
   const referenceEl = e.currentTarget;
   const floatingEl = document.getElementById(
     referenceEl.getAttribute("aria-describedby"),
   );
-  if (egg.reference === referenceEl) {
+  if (referenceEl.closest("li")?.dataset.memorial) {
+    egg = { reference: null };
+    showMemorial();
+  } else if (egg.reference === referenceEl) {
     if (++egg.count === 10) {
       referenceEl.querySelector("span").innerHTML =
         `<img src="/img/hoyhoy_kom2.gif" alt="hoyhoy" width="64" />`;
     }
   } else {
     egg = {
-      reference: referenceEl.closest("li")?.dataset.memorial
-        ? null
-        : referenceEl,
+      reference: referenceEl,
       count: 1,
     };
   }

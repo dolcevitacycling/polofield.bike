@@ -201,7 +201,18 @@ function Layout(props: Props) {
             #ffffff 20px
           );
         }
-        .closed[data-memorial=true] {
+        .memorial-dialog[open] {
+          position: fixed;
+          inset: 0 0 0 0;
+          margin: auto;
+          background: #fff;
+          z-index: 1;
+          cursor: pointer;
+        }
+        .memorial-dialog img {
+          max-height: 90vh;
+        }
+        .closed[data-memorial="true"] {
           --closed-color: white;
           border: 1px solid black;
         }
