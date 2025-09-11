@@ -231,6 +231,68 @@ describe("getIntervals", () => {
       },
     ]);
   });
+  it("can parse an overlapping until/after date", () => {
+    const dateRules = {
+      date: "2025-09-12",
+      entries: [
+        {
+          name: "Cycle Track Open Until 7:30 a.m.",
+          startDate: "2025-09-12T05:00:00",
+          description: "",
+          subHeaderDate: "September 12, 2025, 5:00 AM - 7:30 AM",
+          headingName: "Cycle Track Open Until 7:30 a.m.",
+        },
+        {
+          name: "Cycle Track Open After 12:30 PM",
+          startDate: "2025-09-12T24:30",
+          description: "",
+          subHeaderDate: "September 12, 2025, 12:30 PM - 2:00 PM",
+          headingName: "Cycle Track Open After 12:30 PM",
+        },
+        {
+          name: "Cycle Track Open Until 2:00 PM",
+          startDate: "2025-09-12T24:30",
+          description: "",
+          subHeaderDate: "September 12, 2025, 12:30 PM - 2:00 PM",
+          headingName: "Cycle Track Open Until 2:00 PM",
+        },
+        {
+          name: "Cycle Track Open After 6:45 p.m.",
+          startDate: "2025-09-12T18:45:00",
+          description: "",
+          subHeaderDate: "September 12, 2025, 6:45 PM",
+          headingName: "Cycle Track Open After 6:45 p.m.",
+        },
+      ],
+    };
+    expect(getIntervals(dateRules, false)).toEqual([
+      {
+        open: true,
+        start_timestamp: "2025-09-12 00:00",
+        end_timestamp: "2025-09-12 07:29",
+      },
+      {
+        open: false,
+        start_timestamp: "2025-09-12 07:30",
+        end_timestamp: "2025-09-12 12:29",
+      },
+      {
+        open: true,
+        start_timestamp: "2025-09-12 12:30",
+        end_timestamp: "2025-09-12 13:59",
+      },
+      {
+        open: false,
+        start_timestamp: "2025-09-12 14:00",
+        end_timestamp: "2025-09-12 18:44",
+      },
+      {
+        open: true,
+        start_timestamp: "2025-09-12 18:45",
+        end_timestamp: "2025-09-12 23:59",
+      },
+    ]);
+  });
 });
 
 describe("timeSpanReParser", () => {

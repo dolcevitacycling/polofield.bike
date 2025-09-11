@@ -3832,6 +3832,20 @@
             "headingName": "Cycle Track Open Until 7:30 a.m."
           },
           {
+            "name": "Cycle Track Open After 12:30 PM",
+            "startDate": "2025-09-12T24:30",
+            "description": "",
+            "subHeaderDate": "September 12, 2025, 12:30 PM - 2:00 PM",
+            "headingName": "Cycle Track Open After 12:30 PM"
+          },
+          {
+            "name": "Cycle Track Open Until 2:00 PM",
+            "startDate": "2025-09-12T24:30",
+            "description": "",
+            "subHeaderDate": "September 12, 2025, 12:30 PM - 2:00 PM",
+            "headingName": "Cycle Track Open Until 2:00 PM"
+          },
+          {
             "name": "Cycle Track Open After 6:45 p.m.",
             "startDate": "2025-09-12T18:45:00",
             "description": "",

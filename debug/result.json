@@ -6080,6 +6080,21 @@
             {
               "open": false,
               "start_timestamp": "2025-09-12 07:30",
+              "end_timestamp": "2025-09-12 12:29"
+            },
+            {
+              "open": true,
+              "start_timestamp": "2025-09-12 12:30",
+              "end_timestamp": "2025-09-12 23:59"
+            },
+            {
+              "open": true,
+              "start_timestamp": "2025-09-12 23:58",
+              "end_timestamp": "2025-09-12 13:59"
+            },
+            {
+              "open": false,
+              "start_timestamp": "2025-09-12 14:00",
               "end_timestamp": "2025-09-12 18:44"
             },
             {
@@ -6090,6 +6105,8 @@
           ],
           "rules": [
             "Cycle Track Open Until 7:30 a.m.\t2025-09-12T05:00:00\t\tSeptember 12, 2025, 5:00 AM - 7:30 AM",
+            "Cycle Track Open After 12:30 PM\t2025-09-12T24:30\t\tSeptember 12, 2025, 12:30 PM - 2:00 PM",
+            "Cycle Track Open Until 2:00 PM\t2025-09-12T24:30\t\tSeptember 12, 2025, 12:30 PM - 2:00 PM",
             "Cycle Track Open After 6:45 p.m.\t2025-09-12T18:45:00\t\tSeptember 12, 2025, 6:45 PM"
           ]
         }
