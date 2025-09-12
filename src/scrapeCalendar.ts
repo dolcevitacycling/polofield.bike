@@ -359,16 +359,12 @@ export function parseAndReorderEntries(date: CalendarDate): NameParserResult[] {
 
 export function getIntervals(date: CalendarDate, fieldRainedOut: boolean) {
   const intervals: RuleInterval[] = [];
-  function parsedNameToInterval(
-    entry: ParsedName,
-    opt: Partial<RuleInterval> = {},
-  ): RuleInterval {
+  function parsedNameToInterval(entry: ParsedName): RuleInterval {
     return {
-      ...("comment" in entry ? { comment: entry.comment } : {}),
       open: entry.open,
       start_timestamp: formatDateMinute(date.date, entry.startMinute),
       end_timestamp: formatDateMinute(date.date, entry.endMinute),
-      ...opt,
+      ...("comment" in entry ? { comment: entry.comment } : {}),
     };
   }
   if (fieldRainedOut) {

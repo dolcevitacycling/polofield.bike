@@ -6085,11 +6085,6 @@
             {
               "open": true,
               "start_timestamp": "2025-09-12 12:30",
-              "end_timestamp": "2025-09-12 23:59"
-            },
-            {
-              "open": true,
-              "start_timestamp": "2025-09-12 23:58",
               "end_timestamp": "2025-09-12 13:59"
             },
             {
