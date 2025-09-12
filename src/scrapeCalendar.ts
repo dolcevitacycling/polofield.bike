@@ -82,8 +82,7 @@ function calendarRecognizer() {
   return undefined;
 }
 
-interface ParsedName {
-  open: boolean;
+interface ParsedName extends NameParserResultCommon {
   startMinute: number;
   endMinute: number;
 }
@@ -280,7 +279,17 @@ const openWithReasonParser = ensureEndParsed(
   ),
 );
 
-export function nameParser(entry: CalendarEntry) {
+interface NameParserResultCommon {
+  readonly comment?: string;
+  readonly open: boolean;
+}
+type NameParserInterval =
+  | { readonly startMinute: number; readonly endMinute: number }
+  | { readonly startMinute: number }
+  | { readonly endMinute: number };
+export type NameParserResult = NameParserResultCommon & NameParserInterval;
+
+export function nameParser(entry: CalendarEntry): NameParserResult {
   const s = stream(entry.name);
   const result = cycleTrackParser(s)?.result;
   if (!result) {
@@ -312,23 +321,27 @@ function formatDateMinute(date: string, minute: number) {
 }
 
 function fillEntry(
-  cur: ReturnType<typeof nameParser>,
+  cur: NameParserResult,
   prev: ParsedName | null,
+  next: NameParserResult | undefined,
 ) {
   return {
     open: cur.open,
     startMinute:
       "startMinute" in cur ? cur.startMinute : prev ? prev.endMinute - 1 : 0,
-    endMinute: "endMinute" in cur ? cur.endMinute - 1 : toMinute(23, 59),
+    endMinute:
+      "endMinute" in cur
+        ? cur.endMinute - 1
+        : next && "startMinute" in next
+          ? next.startMinute - 1
+          : toMinute(23, 59),
     ...("comment" in cur && typeof cur.comment === "string"
       ? { comment: cur.comment }
       : {}),
   };
 }
 
-export function parseAndReorderEntries(
-  date: CalendarDate,
-): ReturnType<typeof nameParser>[] {
+export function parseAndReorderEntries(date: CalendarDate): NameParserResult[] {
   const names = date.entries.map(nameParser);
   if (names.length === 2) {
     const [a, b] = names;
@@ -346,6 +359,18 @@ export function parseAndReorderEntries(
 
 export function getIntervals(date: CalendarDate, fieldRainedOut: boolean) {
   const intervals: RuleInterval[] = [];
+  function parsedNameToInterval(
+    entry: ParsedName,
+    opt: Partial<RuleInterval> = {},
+  ): RuleInterval {
+    return {
+      ...("comment" in entry ? { comment: entry.comment } : {}),
+      open: entry.open,
+      start_timestamp: formatDateMinute(date.date, entry.startMinute),
+      end_timestamp: formatDateMinute(date.date, entry.endMinute),
+      ...opt,
+    };
+  }
   if (fieldRainedOut) {
     intervals.push({
       open: true,
@@ -354,34 +379,39 @@ export function getIntervals(date: CalendarDate, fieldRainedOut: boolean) {
       end_timestamp: formatDateMinute(date.date, toMinute(23, 59)),
     });
   } else {
+    const entries = parseAndReorderEntries(date);
     let lastEntry: ParsedName | null = null;
-    for (const parsedEntry of parseAndReorderEntries(date)) {
-      const p = fillEntry(parsedEntry, lastEntry);
-      const comment =
-        typeof p.comment === "string" ? { comment: p.comment } : {};
-
-      if (!lastEntry) {
-        if (p.startMinute > 0) {
-          intervals.push({
-            open: !p.open,
-            start_timestamp: formatDateMinute(date.date, 0),
-            end_timestamp: formatDateMinute(date.date, p.startMinute - 1),
-          });
-        }
-      } else if (p.startMinute - lastEntry.endMinute > 1) {
-        intervals.push({
-          open: !p.open,
-          start_timestamp: formatDateMinute(date.date, lastEntry.endMinute + 1),
-          end_timestamp: formatDateMinute(date.date, p.startMinute - 1),
-        });
+    for (let i = 0; i < entries.length; i++) {
+      const parsedEntry = entries[i];
+      const nextParsedEntry = entries[i + 1];
+      const expectedStartMinute: number = lastEntry
+        ? lastEntry.endMinute + 1
+        : 0;
+      const startMinute =
+        "startMinute" in parsedEntry
+          ? parsedEntry.startMinute
+          : expectedStartMinute;
+      const endMinute =
+        ("endMinute" in parsedEntry
+          ? parsedEntry.endMinute
+          : nextParsedEntry && "startMinute" in nextParsedEntry
+            ? nextParsedEntry.startMinute
+            : nextParsedEntry && "endMinute" in nextParsedEntry
+              ? nextParsedEntry.endMinute
+              : toMinute(24, 0)) - 1;
+      if (endMinute < startMinute) {
+        continue;
       }
-      intervals.push({
-        open: p.open,
-        start_timestamp: formatDateMinute(date.date, p.startMinute),
-        end_timestamp: formatDateMinute(date.date, p.endMinute),
-        ...comment,
-      });
-      lastEntry = p;
+      if (expectedStartMinute < startMinute) {
+        lastEntry = {
+          open: !parsedEntry.open,
+          startMinute: expectedStartMinute,
+          endMinute: startMinute - 1,
+        };
+        intervals.push(parsedNameToInterval(lastEntry));
+      }
+      lastEntry = { ...parsedEntry, startMinute, endMinute };
+      intervals.push(parsedNameToInterval(lastEntry));
     }
     if (lastEntry && lastEntry.endMinute < toMinute(23, 59)) {
       intervals.push({
