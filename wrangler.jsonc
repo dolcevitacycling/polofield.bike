@@ -27,7 +27,7 @@
     "head_sampling_rate": 1,
   },
   "triggers": {
-    "crons": ["*/5 * * * *"],
+    "crons": ["*/15 * * * *"],
   },
   "vars": {
     // SLACK_APP_ID
