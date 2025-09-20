@@ -26,12 +26,13 @@ export class ScrapePoloWorkflow extends WorkflowEntrypoint<Env, Params> {
     const years = await step
       .do("CalendarScraper", async () => {
         const scraper = new CalendarScraper();
+        const fetchRes = await fetch(currentCalendarUrl());
         const res = new HTMLRewriter()
           .on("*", scraper)
-          .transform(await fetch(currentCalendarUrl()));
-        await res.text();
+          .transform(fetchRes);
+        const txt = await res.text();
         if (scraper.years.length === 0) {
-          throw new Error(`scraper.years.length === 0`);
+          throw new Error(`scraper.years.length === 0\n${fetchRes.status} ${fetchRes.statusText}\n\n${txt}`);
         }
         return scraper.years;
       })
