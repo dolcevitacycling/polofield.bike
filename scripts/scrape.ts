@@ -26,7 +26,12 @@ async function main() {
   );
   const url = currentCalendarUrl();
   console.log(url);
-  const fetchText = await (await fetch(url)).text();
+  const fetchText = await (
+    await fetch(url, {
+      cache: "no-store",
+      headers: { "user-agent": "polofield.bike" },
+    })
+  ).text();
   await fs.promises.writeFile("debug/scrape.html", fetchText);
   const res = new HTMLRewriter()
     .on("*", scraper)

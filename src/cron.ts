@@ -111,7 +111,12 @@ export async function scrapePoloURL(): Promise<ScrapeResult> {
   const scraper = new CalendarScraper();
   const res = new HTMLRewriter()
     .on("*", scraper)
-    .transform(await fetch(currentCalendarUrl()));
+    .transform(
+      await fetch(currentCalendarUrl(), {
+        cache: "no-store",
+        headers: { "user-agent": "polofield.bike" },
+      }),
+    );
   await res.text();
   const oldestYear =
     Math.min(...scraper.years.map((y) => y.year)) || new Date().getFullYear();
