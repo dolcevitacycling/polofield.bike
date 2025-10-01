@@ -41,13 +41,14 @@ export class ScrapePoloWorkflow extends WorkflowEntrypoint<Env, Params> {
         }
         return scraper.years;
       })
-      .catch(async () => {
-        await step.do("CalendarScraper:report", async () => {
-          const message = `Error detected when scraping, skipping ${new Date().toISOString()}`;
-          await discordReport(this.env, message);
-          throw new NonRetryableError(message);
-        });
-        throw new NonRetryableError("unreachable");
+      .catch(async (err) => {
+        if (err instanceof NonRetryableError) {
+          await step.do("CalendarScraper:report", async () => {
+            const message = `Error detected when scraping, skipping ${new Date().toISOString()}`;
+            await discordReport(this.env, message);
+          });
+        }
+        throw err;
       });
     const oldestYear =
       Math.min(...years.map((y) => y.year)) || new Date().getFullYear();
