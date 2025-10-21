@@ -181,13 +181,9 @@ export async function runSlackWebhook(
     channel: env.SLACK_CHANNEL_ID,
   });
   if (!res.ok) {
-    console.error(
-      "Failed to run webhook",
-      webhook_url,
-      res.status,
-      await res.text(),
-    );
-    throw new Error("Failed to run webhook");
+    const msg = `Failed to run webhook ${webhook_url} ${res.status} ${await res.text()}`;
+    console.error(msg);
+    throw new Error(msg);
   }
 }
 
