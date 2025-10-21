@@ -121,8 +121,18 @@ export class ScrapePoloWorkflow extends WorkflowEntrypoint<Env, Params> {
 
     await Promise.all(
       webhooks.map(async (row, i) =>
-        step.do(`runWebhookRow ${i}`, async () =>
-          runWebhookRow(this.env, today, result, row),
+        step.do(
+          `runWebhookRow ${i} ${row.webhook_url} ${row.last_update_utc} < ${today}`,
+          async () => {
+            const stillNeedsPost = await this.env.DB.prepare(
+              `SELECT 1 FROM daily_webhook_status WHERE webhook_url = ? AND last_update_utc < ?`,
+            )
+              .bind(row.webhook_url, today)
+              .first();
+            if (stillNeedsPost) {
+              await runWebhookRow(this.env, today, result, row);
+            }
+          },
         ),
       ),
     );
