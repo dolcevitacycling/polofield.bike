@@ -304,11 +304,11 @@ export function nameParser(entry: CalendarEntry): NameParserResult {
         r2.result.comment = "Colden Kimber Memorial Ride 💐";
       }
       return { ...r2.result, ...d2.result };
-    } else if (r2 && r2.result.comment) {
+    } else if (r2) {
       return { ...r2.result, ...ALL_DAY };
     }
     throw new Error(
-      `Invalid name: ${JSON.stringify(entry)} r2=${JSON.stringify(r2?.result)} d2=${JSON.stringify(d2?.result)}`,
+      `Invalid name: ${JSON.stringify(entry)} d2=${JSON.stringify(d2?.result)}`,
     );
   }
   return result;
