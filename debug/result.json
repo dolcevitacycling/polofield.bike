@@ -741,12 +741,14 @@
           "intervals": [
             {
               "open": true,
+              "comment": "Field Rained Out, Cycle Track Open All Day",
               "start_timestamp": "2026-02-10 00:00",
               "end_timestamp": "2026-02-10 23:59"
             }
           ],
           "rules": [
-            "Cycle Track Open\t2026-02-10T05:00:00\t\tFebruary 10, 2026, 5:00 AM"
+            "Cycle Track Open\t2026-02-10T05:00:00\t\tFebruary 10, 2026, 5:00 AM",
+            "Field Rained Out\t2026-02-10\t\t"
           ]
         }
       },
@@ -760,12 +762,14 @@
           "intervals": [
             {
               "open": true,
+              "comment": "Field Rained Out, Cycle Track Open All Day",
               "start_timestamp": "2026-02-11 00:00",
               "end_timestamp": "2026-02-11 23:59"
             }
           ],
           "rules": [
-            "Cycle Track Open\t2026-02-11T05:00:00\t\tFebruary 11, 2026, 5:00 AM"
+            "Cycle Track Open\t2026-02-11T05:00:00\t\tFebruary 11, 2026, 5:00 AM",
+            "Field Rained Out\t2026-02-11\t\t"
           ]
         }
       },
@@ -836,12 +840,14 @@
           "intervals": [
             {
               "open": true,
+              "comment": "Field Rained Out, Cycle Track Open All Day",
               "start_timestamp": "2026-02-15 00:00",
               "end_timestamp": "2026-02-15 23:59"
             }
           ],
           "rules": [
-            "Cycle Track Open\t2026-02-15T05:00:00\t\tFebruary 15, 2026, 5:00 AM"
+            "Cycle Track Open\t2026-02-15T05:00:00\t\tFebruary 15, 2026, 5:00 AM",
+            "Field Rained Out\t2026-02-15\t\t"
           ]
         }
       },
@@ -855,12 +861,14 @@
           "intervals": [
             {
               "open": true,
+              "comment": "Field Rained Out, Cycle Track Open All Day",
               "start_timestamp": "2026-02-16 00:00",
               "end_timestamp": "2026-02-16 23:59"
             }
           ],
           "rules": [
-            "Cycle Track Open\t2026-02-16T05:00:00\t\tFebruary 16, 2026, 5:00 AM"
+            "Cycle Track Open\t2026-02-16T05:00:00\t\tFebruary 16, 2026, 5:00 AM",
+            "Field Rained Out\t2026-02-16\t\t"
           ]
         }
       },
@@ -874,12 +882,14 @@
           "intervals": [
             {
               "open": true,
+              "comment": "Field Rained Out, Cycle Track Open All Day",
               "start_timestamp": "2026-02-17 00:00",
               "end_timestamp": "2026-02-17 23:59"
             }
           ],
           "rules": [
-            "Cycle Track Open\t2026-02-17T05:00:00\t\tFebruary 17, 2026, 5:00 AM"
+            "Cycle Track Open\t2026-02-17T05:00:00\t\tFebruary 17, 2026, 5:00 AM",
+            "Field Rained Out\t2026-02-17\t\t"
           ]
         }
       },
@@ -893,12 +903,14 @@
           "intervals": [
             {
               "open": true,
+              "comment": "Field Rained Out, Cycle Track Open All Day",
               "start_timestamp": "2026-02-18 00:00",
               "end_timestamp": "2026-02-18 23:59"
             }
           ],
           "rules": [
-            "Cycle Track Open\t2026-02-18T05:00:00\t\tFebruary 18, 2026, 5:00 AM"
+            "Cycle Track Open\t2026-02-18T05:00:00\t\tFebruary 18, 2026, 5:00 AM",
+            "Field Rained Out\t2026-02-18\t\t"
           ]
         }
       },
@@ -912,12 +924,14 @@
           "intervals": [
             {
               "open": true,
+              "comment": "Field Rained Out, Cycle Track Open All Day",
               "start_timestamp": "2026-02-19 00:00",
               "end_timestamp": "2026-02-19 23:59"
             }
           ],
           "rules": [
-            "Cycle Track Open\t2026-02-19T05:00:00\t\tFebruary 19, 2026, 5:00 AM"
+            "Cycle Track Open\t2026-02-19T05:00:00\t\tFebruary 19, 2026, 5:00 AM",
+            "Field Rained Out\t2026-02-19\t\t"
           ]
         }
       },
@@ -1026,12 +1040,14 @@
           "intervals": [
             {
               "open": true,
+              "comment": "Field Rained Out, Cycle Track Open All Day",
               "start_timestamp": "2026-02-25 00:00",
               "end_timestamp": "2026-02-25 23:59"
             }
           ],
           "rules": [
-            "Cycle Track Open\t2026-02-25T05:00:00\t\tFebruary 25, 2026, 5:00 AM"
+            "Cycle Track Open\t2026-02-25T05:00:00\t\tFebruary 25, 2026, 5:00 AM",
+            "Field Rained Out\t2026-02-25\t\t"
           ]
         }
       },
@@ -1103,11 +1119,2757 @@
             {
               "open": true,
               "start_timestamp": "2026-03-01 00:00",
+              "end_timestamp": "2026-03-01 12:29"
+            },
+            {
+              "open": false,
+              "start_timestamp": "2026-03-01 12:30",
+              "end_timestamp": "2026-03-01 17:29"
+            },
+            {
+              "open": true,
+              "start_timestamp": "2026-03-01 17:30",
               "end_timestamp": "2026-03-01 23:59"
             }
           ],
           "rules": [
-            "Cycle Track Open\t2026-03-01T05:00:00\t\tMarch 1, 2026, 5:00 AM"
+            "Cycle Track Open Until 12:30 PM\t2026-03-01T05:00:00\t\tMarch 1, 2026, 5:00 AM - 12:30 PM",
+            "Cycle Track Open After 5:30 PM\t2026-03-01T17:30\t\tMarch 1, 2026, 5:30 PM"
+          ]
+        }
+      },
+      {
+        "recognizer": "calendarRecognizer",
+        "rules": {
+          "type": "known_rules",
+          "text": "2026-03-02",
+          "start_date": "2026-03-02",
+          "end_date": "2026-03-02",
+          "intervals": [
+            {
+              "open": true,
+              "start_timestamp": "2026-03-02 00:00",
+              "end_timestamp": "2026-03-02 23:59"
+            }
+          ],
+          "rules": [
+            "Cycle Track Open All Day\t2026-03-02T05:00\t\tMarch 2, 2026, 5:00 AM"
+          ]
+        }
+      },
+      {
+        "recognizer": "calendarRecognizer",
+        "rules": {
+          "type": "known_rules",
+          "text": "2026-03-03",
+          "start_date": "2026-03-03",
+          "end_date": "2026-03-03",
+          "intervals": [
+            {
+              "open": true,
+              "start_timestamp": "2026-03-03 00:00",
+              "end_timestamp": "2026-03-03 13:59"
+            },
+            {
+              "open": false,
+              "start_timestamp": "2026-03-03 14:00",
+              "end_timestamp": "2026-03-03 18:44"
+            },
+            {
+              "open": true,
+              "start_timestamp": "2026-03-03 18:45",
+              "end_timestamp": "2026-03-03 23:59"
+            }
+          ],
+          "rules": [
+            "Cycle Track Open Until 2:00 PM\t2026-03-03T07:00\t\tMarch 3, 2026, 7:00 AM - 2:00 PM",
+            "Cycle Track Open After 6:45 PM\t2026-03-03T18:45\t\tMarch 3, 2026, 6:45 PM"
+          ]
+        }
+      },
+      {
+        "recognizer": "calendarRecognizer",
+        "rules": {
+          "type": "known_rules",
+          "text": "2026-03-04",
+          "start_date": "2026-03-04",
+          "end_date": "2026-03-04",
+          "intervals": [
+            {
+              "open": true,
+              "start_timestamp": "2026-03-04 00:00",
+              "end_timestamp": "2026-03-04 13:59"
+            },
+            {
+              "open": false,
+              "start_timestamp": "2026-03-04 14:00",
+              "end_timestamp": "2026-03-04 18:44"
+            },
+            {
+              "open": true,
+              "start_timestamp": "2026-03-04 18:45",
+              "end_timestamp": "2026-03-04 23:59"
+            }
+          ],
+          "rules": [
+            "Cycle Track Open Until 2:00 PM\t2026-03-04T07:00\t\tMarch 4, 2026, 7:00 AM - 2:00 PM",
+            "Cycle Track Open After 6:45 PM\t2026-03-04T18:45\t\tMarch 4, 2026, 6:45 PM"
+          ]
+        }
+      },
+      {
+        "recognizer": "calendarRecognizer",
+        "rules": {
+          "type": "known_rules",
+          "text": "2026-03-05",
+          "start_date": "2026-03-05",
+          "end_date": "2026-03-05",
+          "intervals": [
+            {
+              "open": true,
+              "start_timestamp": "2026-03-05 00:00",
+              "end_timestamp": "2026-03-05 13:59"
+            },
+            {
+              "open": false,
+              "start_timestamp": "2026-03-05 14:00",
+              "end_timestamp": "2026-03-05 18:44"
+            },
+            {
+              "open": true,
+              "start_timestamp": "2026-03-05 18:45",
+              "end_timestamp": "2026-03-05 23:59"
+            }
+          ],
+          "rules": [
+            "Cycle Track Open Until 2:00 PM\t2026-03-05T07:00\t\tMarch 5, 2026, 7:00 AM - 2:00 PM",
+            "Cycle Track Open After 6:45 PM\t2026-03-05T18:45\t\tMarch 5, 2026, 6:45 PM"
+          ]
+        }
+      },
+      {
+        "recognizer": "calendarRecognizer",
+        "rules": {
+          "type": "known_rules",
+          "text": "2026-03-06",
+          "start_date": "2026-03-06",
+          "end_date": "2026-03-06",
+          "intervals": [
+            {
+              "open": true,
+              "start_timestamp": "2026-03-06 00:00",
+              "end_timestamp": "2026-03-06 13:59"
+            },
+            {
+              "open": false,
+              "start_timestamp": "2026-03-06 14:00",
+              "end_timestamp": "2026-03-06 18:44"
+            },
+            {
+              "open": true,
+              "start_timestamp": "2026-03-06 18:45",
+              "end_timestamp": "2026-03-06 23:59"
+            }
+          ],
+          "rules": [
+            "Cycle Track Open Until 2:00 PM\t2026-03-06T07:00\t\tMarch 6, 2026, 7:00 AM - 2:00 PM",
+            "Cycle Track Open After 6:45 PM\t2026-03-06T18:45\t\tMarch 6, 2026, 6:45 PM"
+          ]
+        }
+      },
+      {
+        "recognizer": "calendarRecognizer",
+        "rules": {
+          "type": "known_rules",
+          "text": "2026-03-07",
+          "start_date": "2026-03-07",
+          "end_date": "2026-03-07",
+          "intervals": [
+            {
+              "open": true,
+              "start_timestamp": "2026-03-07 00:00",
+              "end_timestamp": "2026-03-07 06:59"
+            },
+            {
+              "open": false,
+              "start_timestamp": "2026-03-07 07:00",
+              "end_timestamp": "2026-03-07 18:44"
+            },
+            {
+              "open": true,
+              "start_timestamp": "2026-03-07 18:45",
+              "end_timestamp": "2026-03-07 23:59"
+            }
+          ],
+          "rules": [
+            "Cycle Track Open Until 7:00 AM\t2026-03-07T05:00\t\tMarch 7, 2026, 5:00 AM - 7:00 AM",
+            "Cycle Track Open After 6:45 PM\t2026-03-07T18:45\t\tMarch 7, 2026, 6:45 PM"
+          ]
+        }
+      },
+      {
+        "recognizer": "calendarRecognizer",
+        "rules": {
+          "type": "known_rules",
+          "text": "2026-03-08",
+          "start_date": "2026-03-08",
+          "end_date": "2026-03-08",
+          "intervals": [
+            {
+              "open": true,
+              "start_timestamp": "2026-03-08 00:00",
+              "end_timestamp": "2026-03-08 09:59"
+            },
+            {
+              "open": false,
+              "start_timestamp": "2026-03-08 10:00",
+              "end_timestamp": "2026-03-08 18:29"
+            },
+            {
+              "open": true,
+              "start_timestamp": "2026-03-08 18:30",
+              "end_timestamp": "2026-03-08 23:59"
+            }
+          ],
+          "rules": [
+            "Cycle Track Open Until 10:00 AM\t2026-03-08T05:00\t\tMarch 8, 2026, 5:00 AM - 10:00 AM",
+            "Cycle Track Open After 6:30 PM\t2026-03-08T18:30\t\tMarch 8, 2026, 6:30 PM"
+          ]
+        }
+      },
+      {
+        "recognizer": "calendarRecognizer",
+        "rules": {
+          "type": "known_rules",
+          "text": "2026-03-09",
+          "start_date": "2026-03-09",
+          "end_date": "2026-03-09",
+          "intervals": [
+            {
+              "open": true,
+              "start_timestamp": "2026-03-09 00:00",
+              "end_timestamp": "2026-03-09 23:59"
+            }
+          ],
+          "rules": [
+            "Cycle Track Open All Day\t2026-03-09T05:00\t\tMarch 9, 2026, 5:00 AM"
+          ]
+        }
+      },
+      {
+        "recognizer": "calendarRecognizer",
+        "rules": {
+          "type": "known_rules",
+          "text": "2026-03-10",
+          "start_date": "2026-03-10",
+          "end_date": "2026-03-10",
+          "intervals": [
+            {
+              "open": true,
+              "start_timestamp": "2026-03-10 00:00",
+              "end_timestamp": "2026-03-10 13:59"
+            },
+            {
+              "open": false,
+              "start_timestamp": "2026-03-10 14:00",
+              "end_timestamp": "2026-03-10 18:44"
+            },
+            {
+              "open": true,
+              "start_timestamp": "2026-03-10 18:45",
+              "end_timestamp": "2026-03-10 23:59"
+            }
+          ],
+          "rules": [
+            "Cycle Track Open Until 2:00 PM\t2026-03-10T07:00\t\tMarch 10, 2026, 7:00 AM - 2:00 PM",
+            "Cycle Track Open After 6:45 PM\t2026-03-10T18:45\t\tMarch 10, 2026, 6:45 PM"
+          ]
+        }
+      },
+      {
+        "recognizer": "calendarRecognizer",
+        "rules": {
+          "type": "known_rules",
+          "text": "2026-03-11",
+          "start_date": "2026-03-11",
+          "end_date": "2026-03-11",
+          "intervals": [
+            {
+              "open": true,
+              "start_timestamp": "2026-03-11 00:00",
+              "end_timestamp": "2026-03-11 13:59"
+            },
+            {
+              "open": false,
+              "start_timestamp": "2026-03-11 14:00",
+              "end_timestamp": "2026-03-11 18:44"
+            },
+            {
+              "open": true,
+              "start_timestamp": "2026-03-11 18:45",
+              "end_timestamp": "2026-03-11 23:59"
+            }
+          ],
+          "rules": [
+            "Cycle Track Open Until 2:00 PM\t2026-03-11T07:00\t\tMarch 11, 2026, 7:00 AM - 2:00 PM",
+            "Cycle Track Open After 6:45 PM\t2026-03-11T18:45\t\tMarch 11, 2026, 6:45 PM"
+          ]
+        }
+      },
+      {
+        "recognizer": "calendarRecognizer",
+        "rules": {
+          "type": "known_rules",
+          "text": "2026-03-12",
+          "start_date": "2026-03-12",
+          "end_date": "2026-03-12",
+          "intervals": [
+            {
+              "open": true,
+              "start_timestamp": "2026-03-12 00:00",
+              "end_timestamp": "2026-03-12 13:59"
+            },
+            {
+              "open": false,
+              "start_timestamp": "2026-03-12 14:00",
+              "end_timestamp": "2026-03-12 18:44"
+            },
+            {
+              "open": true,
+              "start_timestamp": "2026-03-12 18:45",
+              "end_timestamp": "2026-03-12 23:59"
+            }
+          ],
+          "rules": [
+            "Cycle Track Open Until 2:00 PM\t2026-03-12T07:00\t\tMarch 12, 2026, 7:00 AM - 2:00 PM",
+            "Cycle Track Open After 6:45 PM\t2026-03-12T18:45\t\tMarch 12, 2026, 6:45 PM"
+          ]
+        }
+      },
+      {
+        "recognizer": "calendarRecognizer",
+        "rules": {
+          "type": "known_rules",
+          "text": "2026-03-13",
+          "start_date": "2026-03-13",
+          "end_date": "2026-03-13",
+          "intervals": [
+            {
+              "open": true,
+              "start_timestamp": "2026-03-13 00:00",
+              "end_timestamp": "2026-03-13 13:59"
+            },
+            {
+              "open": false,
+              "start_timestamp": "2026-03-13 14:00",
+              "end_timestamp": "2026-03-13 18:44"
+            },
+            {
+              "open": true,
+              "start_timestamp": "2026-03-13 18:45",
+              "end_timestamp": "2026-03-13 23:59"
+            }
+          ],
+          "rules": [
+            "Cycle Track Open Until 2:00 PM\t2026-03-13T07:00\t\tMarch 13, 2026, 7:00 AM - 2:00 PM",
+            "Cycle Track Open After 6:45 PM\t2026-03-13T18:45\t\tMarch 13, 2026, 6:45 PM"
+          ]
+        }
+      },
+      {
+        "recognizer": "calendarRecognizer",
+        "rules": {
+          "type": "known_rules",
+          "text": "2026-03-14",
+          "start_date": "2026-03-14",
+          "end_date": "2026-03-14",
+          "intervals": [
+            {
+              "open": true,
+              "start_timestamp": "2026-03-14 00:00",
+              "end_timestamp": "2026-03-14 06:59"
+            },
+            {
+              "open": false,
+              "start_timestamp": "2026-03-14 07:00",
+              "end_timestamp": "2026-03-14 18:44"
+            },
+            {
+              "open": true,
+              "start_timestamp": "2026-03-14 18:45",
+              "end_timestamp": "2026-03-14 23:59"
+            }
+          ],
+          "rules": [
+            "Cycle Track Open Until 7:00 AM\t2026-03-14T05:00\t\tMarch 14, 2026, 5:00 AM - 7:00 AM",
+            "Cycle Track Open After 6:45 PM\t2026-03-14T18:45\t\tMarch 14, 2026, 6:45 PM"
+          ]
+        }
+      },
+      {
+        "recognizer": "calendarRecognizer",
+        "rules": {
+          "type": "known_rules",
+          "text": "2026-03-15",
+          "start_date": "2026-03-15",
+          "end_date": "2026-03-15",
+          "intervals": [
+            {
+              "open": true,
+              "start_timestamp": "2026-03-15 00:00",
+              "end_timestamp": "2026-03-15 09:59"
+            },
+            {
+              "open": false,
+              "start_timestamp": "2026-03-15 10:00",
+              "end_timestamp": "2026-03-15 18:29"
+            },
+            {
+              "open": true,
+              "start_timestamp": "2026-03-15 18:30",
+              "end_timestamp": "2026-03-15 23:59"
+            }
+          ],
+          "rules": [
+            "Cycle Track Open Until 10:00 AM\t2026-03-15T05:00\t\tMarch 15, 2026, 5:00 AM - 10:00 AM",
+            "Cycle Track Open After 6:30 PM\t2026-03-15T18:30\t\tMarch 15, 2026, 6:30 PM"
+          ]
+        }
+      },
+      {
+        "recognizer": "calendarRecognizer",
+        "rules": {
+          "type": "known_rules",
+          "text": "2026-03-16",
+          "start_date": "2026-03-16",
+          "end_date": "2026-03-16",
+          "intervals": [
+            {
+              "open": true,
+              "start_timestamp": "2026-03-16 00:00",
+              "end_timestamp": "2026-03-16 23:59"
+            }
+          ],
+          "rules": [
+            "Cycle Track Open All Day\t2026-03-16T05:00\t\tMarch 16, 2026, 5:00 AM"
+          ]
+        }
+      },
+      {
+        "recognizer": "calendarRecognizer",
+        "rules": {
+          "type": "known_rules",
+          "text": "2026-03-17",
+          "start_date": "2026-03-17",
+          "end_date": "2026-03-17",
+          "intervals": [
+            {
+              "open": true,
+              "start_timestamp": "2026-03-17 00:00",
+              "end_timestamp": "2026-03-17 13:59"
+            },
+            {
+              "open": false,
+              "start_timestamp": "2026-03-17 14:00",
+              "end_timestamp": "2026-03-17 18:44"
+            },
+            {
+              "open": true,
+              "start_timestamp": "2026-03-17 18:45",
+              "end_timestamp": "2026-03-17 23:59"
+            }
+          ],
+          "rules": [
+            "Cycle Track Open Until 2:00 PM\t2026-03-17T07:00\t\tMarch 17, 2026, 7:00 AM - 2:00 PM",
+            "Cycle Track Open After 6:45 PM\t2026-03-17T18:45\t\tMarch 17, 2026, 6:45 PM"
+          ]
+        }
+      },
+      {
+        "recognizer": "calendarRecognizer",
+        "rules": {
+          "type": "known_rules",
+          "text": "2026-03-18",
+          "start_date": "2026-03-18",
+          "end_date": "2026-03-18",
+          "intervals": [
+            {
+              "open": true,
+              "start_timestamp": "2026-03-18 00:00",
+              "end_timestamp": "2026-03-18 13:59"
+            },
+            {
+              "open": false,
+              "start_timestamp": "2026-03-18 14:00",
+              "end_timestamp": "2026-03-18 18:44"
+            },
+            {
+              "open": true,
+              "start_timestamp": "2026-03-18 18:45",
+              "end_timestamp": "2026-03-18 23:59"
+            }
+          ],
+          "rules": [
+            "Cycle Track Open Until 2:00 PM\t2026-03-18T07:00\t\tMarch 18, 2026, 7:00 AM - 2:00 PM",
+            "Cycle Track Open After 6:45 PM\t2026-03-18T18:45\t\tMarch 18, 2026, 6:45 PM"
+          ]
+        }
+      },
+      {
+        "recognizer": "calendarRecognizer",
+        "rules": {
+          "type": "known_rules",
+          "text": "2026-03-19",
+          "start_date": "2026-03-19",
+          "end_date": "2026-03-19",
+          "intervals": [
+            {
+              "open": true,
+              "start_timestamp": "2026-03-19 00:00",
+              "end_timestamp": "2026-03-19 13:59"
+            },
+            {
+              "open": false,
+              "start_timestamp": "2026-03-19 14:00",
+              "end_timestamp": "2026-03-19 20:29"
+            },
+            {
+              "open": true,
+              "start_timestamp": "2026-03-19 20:30",
+              "end_timestamp": "2026-03-19 23:59"
+            }
+          ],
+          "rules": [
+            "Cycle Track Open Until 2:00 PM\t2026-03-19T07:00\t\tMarch 19, 2026, 7:00 AM - 2:00 PM",
+            "Cycle Track Open After 8:30 PM\t2026-03-19T20:30\t\tMarch 19, 2026, 8:30 PM"
+          ]
+        }
+      },
+      {
+        "recognizer": "calendarRecognizer",
+        "rules": {
+          "type": "known_rules",
+          "text": "2026-03-20",
+          "start_date": "2026-03-20",
+          "end_date": "2026-03-20",
+          "intervals": [
+            {
+              "open": true,
+              "start_timestamp": "2026-03-20 00:00",
+              "end_timestamp": "2026-03-20 13:59"
+            },
+            {
+              "open": false,
+              "start_timestamp": "2026-03-20 14:00",
+              "end_timestamp": "2026-03-20 18:44"
+            },
+            {
+              "open": true,
+              "start_timestamp": "2026-03-20 18:45",
+              "end_timestamp": "2026-03-20 23:59"
+            }
+          ],
+          "rules": [
+            "Cycle Track Open Until 2:00 PM\t2026-03-20T07:00\t\tMarch 20, 2026, 7:00 AM - 2:00 PM",
+            "Cycle Track Open After 6:45 PM\t2026-03-20T18:45\t\tMarch 20, 2026, 6:45 PM"
+          ]
+        }
+      },
+      {
+        "recognizer": "calendarRecognizer",
+        "rules": {
+          "type": "known_rules",
+          "text": "2026-03-21",
+          "start_date": "2026-03-21",
+          "end_date": "2026-03-21",
+          "intervals": [
+            {
+              "open": true,
+              "start_timestamp": "2026-03-21 00:00",
+              "end_timestamp": "2026-03-21 06:59"
+            },
+            {
+              "open": false,
+              "start_timestamp": "2026-03-21 07:00",
+              "end_timestamp": "2026-03-21 18:44"
+            },
+            {
+              "open": true,
+              "start_timestamp": "2026-03-21 18:45",
+              "end_timestamp": "2026-03-21 23:59"
+            }
+          ],
+          "rules": [
+            "Cycle Track Open Until 7:00 AM\t2026-03-21T05:00\t\tMarch 21, 2026, 5:00 AM - 7:00 AM",
+            "Cycle Track Open After 6:45 PM\t2026-03-21T18:45\t\tMarch 21, 2026, 6:45 PM"
+          ]
+        }
+      },
+      {
+        "recognizer": "calendarRecognizer",
+        "rules": {
+          "type": "known_rules",
+          "text": "2026-03-22",
+          "start_date": "2026-03-22",
+          "end_date": "2026-03-22",
+          "intervals": [
+            {
+              "open": true,
+              "start_timestamp": "2026-03-22 00:00",
+              "end_timestamp": "2026-03-22 09:59"
+            },
+            {
+              "open": false,
+              "start_timestamp": "2026-03-22 10:00",
+              "end_timestamp": "2026-03-22 18:29"
+            },
+            {
+              "open": true,
+              "start_timestamp": "2026-03-22 18:30",
+              "end_timestamp": "2026-03-22 23:59"
+            }
+          ],
+          "rules": [
+            "Cycle Track Open Until 10:00 AM\t2026-03-22T05:00\t\tMarch 22, 2026, 5:00 AM - 10:00 AM",
+            "Cycle Track Open After 6:30 PM\t2026-03-22T18:30\t\tMarch 22, 2026, 6:30 PM"
+          ]
+        }
+      },
+      {
+        "recognizer": "calendarRecognizer",
+        "rules": {
+          "type": "known_rules",
+          "text": "2026-03-23",
+          "start_date": "2026-03-23",
+          "end_date": "2026-03-23",
+          "intervals": [
+            {
+              "open": true,
+              "start_timestamp": "2026-03-23 00:00",
+              "end_timestamp": "2026-03-23 23:59"
+            }
+          ],
+          "rules": [
+            "Cycle Track Open All Day\t2026-03-23T05:00\t\tMarch 23, 2026, 5:00 AM"
+          ]
+        }
+      },
+      {
+        "recognizer": "calendarRecognizer",
+        "rules": {
+          "type": "known_rules",
+          "text": "2026-03-24",
+          "start_date": "2026-03-24",
+          "end_date": "2026-03-24",
+          "intervals": [
+            {
+              "open": true,
+              "start_timestamp": "2026-03-24 00:00",
+              "end_timestamp": "2026-03-24 13:59"
+            },
+            {
+              "open": false,
+              "start_timestamp": "2026-03-24 14:00",
+              "end_timestamp": "2026-03-24 18:44"
+            },
+            {
+              "open": true,
+              "start_timestamp": "2026-03-24 18:45",
+              "end_timestamp": "2026-03-24 23:59"
+            }
+          ],
+          "rules": [
+            "Cycle Track Open Until 2:00 PM\t2026-03-24T07:00\t\tMarch 24, 2026, 7:00 AM - 2:00 PM",
+            "Cycle Track Open After 6:45 PM\t2026-03-24T18:45\t\tMarch 24, 2026, 6:45 PM"
+          ]
+        }
+      },
+      {
+        "recognizer": "calendarRecognizer",
+        "rules": {
+          "type": "known_rules",
+          "text": "2026-03-25",
+          "start_date": "2026-03-25",
+          "end_date": "2026-03-25",
+          "intervals": [
+            {
+              "open": true,
+              "start_timestamp": "2026-03-25 00:00",
+              "end_timestamp": "2026-03-25 13:59"
+            },
+            {
+              "open": false,
+              "start_timestamp": "2026-03-25 14:00",
+              "end_timestamp": "2026-03-25 18:44"
+            },
+            {
+              "open": true,
+              "start_timestamp": "2026-03-25 18:45",
+              "end_timestamp": "2026-03-25 23:59"
+            }
+          ],
+          "rules": [
+            "Cycle Track Open Until 2:00 PM\t2026-03-25T07:00\t\tMarch 25, 2026, 7:00 AM - 2:00 PM",
+            "Cycle Track Open After 6:45 PM\t2026-03-25T18:45\t\tMarch 25, 2026, 6:45 PM"
+          ]
+        }
+      },
+      {
+        "recognizer": "calendarRecognizer",
+        "rules": {
+          "type": "known_rules",
+          "text": "2026-03-26",
+          "start_date": "2026-03-26",
+          "end_date": "2026-03-26",
+          "intervals": [
+            {
+              "open": true,
+              "start_timestamp": "2026-03-26 00:00",
+              "end_timestamp": "2026-03-26 13:59"
+            },
+            {
+              "open": false,
+              "start_timestamp": "2026-03-26 14:00",
+              "end_timestamp": "2026-03-26 20:29"
+            },
+            {
+              "open": true,
+              "start_timestamp": "2026-03-26 20:30",
+              "end_timestamp": "2026-03-26 23:59"
+            }
+          ],
+          "rules": [
+            "Cycle Track Open Until 2:00 PM\t2026-03-26T07:00\t\tMarch 26, 2026, 7:00 AM - 2:00 PM",
+            "Cycle Track Open After 8:30 PM\t2026-03-26T20:30\t\tMarch 26, 2026, 8:30 PM"
+          ]
+        }
+      },
+      {
+        "recognizer": "calendarRecognizer",
+        "rules": {
+          "type": "known_rules",
+          "text": "2026-03-27",
+          "start_date": "2026-03-27",
+          "end_date": "2026-03-27",
+          "intervals": [
+            {
+              "open": true,
+              "start_timestamp": "2026-03-27 00:00",
+              "end_timestamp": "2026-03-27 13:59"
+            },
+            {
+              "open": false,
+              "start_timestamp": "2026-03-27 14:00",
+              "end_timestamp": "2026-03-27 18:44"
+            },
+            {
+              "open": true,
+              "start_timestamp": "2026-03-27 18:45",
+              "end_timestamp": "2026-03-27 23:59"
+            }
+          ],
+          "rules": [
+            "Cycle Track Open Until 2:00 PM\t2026-03-27T07:00\t\tMarch 27, 2026, 7:00 AM - 2:00 PM",
+            "Cycle Track Open After 6:45 PM\t2026-03-27T18:45\t\tMarch 27, 2026, 6:45 PM"
+          ]
+        }
+      },
+      {
+        "recognizer": "calendarRecognizer",
+        "rules": {
+          "type": "known_rules",
+          "text": "2026-03-28",
+          "start_date": "2026-03-28",
+          "end_date": "2026-03-28",
+          "intervals": [
+            {
+              "open": true,
+              "start_timestamp": "2026-03-28 00:00",
+              "end_timestamp": "2026-03-28 06:59"
+            },
+            {
+              "open": false,
+              "start_timestamp": "2026-03-28 07:00",
+              "end_timestamp": "2026-03-28 18:44"
+            },
+            {
+              "open": true,
+              "start_timestamp": "2026-03-28 18:45",
+              "end_timestamp": "2026-03-28 23:59"
+            }
+          ],
+          "rules": [
+            "Cycle Track Open Until 7:00 AM\t2026-03-28T05:00\t\tMarch 28, 2026, 5:00 AM - 7:00 AM",
+            "Cycle Track Open After 6:45 PM\t2026-03-28T18:45\t\tMarch 28, 2026, 6:45 PM"
+          ]
+        }
+      },
+      {
+        "recognizer": "calendarRecognizer",
+        "rules": {
+          "type": "known_rules",
+          "text": "2026-03-29",
+          "start_date": "2026-03-29",
+          "end_date": "2026-03-29",
+          "intervals": [
+            {
+              "open": true,
+              "start_timestamp": "2026-03-29 00:00",
+              "end_timestamp": "2026-03-29 09:59"
+            },
+            {
+              "open": false,
+              "start_timestamp": "2026-03-29 10:00",
+              "end_timestamp": "2026-03-29 18:29"
+            },
+            {
+              "open": true,
+              "start_timestamp": "2026-03-29 18:30",
+              "end_timestamp": "2026-03-29 23:59"
+            }
+          ],
+          "rules": [
+            "Cycle Track Open Until 10:00 AM\t2026-03-29T05:00\t\tMarch 29, 2026, 5:00 AM - 10:00 AM",
+            "Cycle Track Open After 6:30 PM\t2026-03-29T18:30\t\tMarch 29, 2026, 6:30 PM"
+          ]
+        }
+      },
+      {
+        "recognizer": "calendarRecognizer",
+        "rules": {
+          "type": "known_rules",
+          "text": "2026-03-30",
+          "start_date": "2026-03-30",
+          "end_date": "2026-03-30",
+          "intervals": [
+            {
+              "open": true,
+              "start_timestamp": "2026-03-30 00:00",
+              "end_timestamp": "2026-03-30 23:59"
+            }
+          ],
+          "rules": [
+            "Cycle Track Open All Day\t2026-03-30T05:00\t\tMarch 30, 2026, 5:00 AM"
+          ]
+        }
+      },
+      {
+        "recognizer": "calendarRecognizer",
+        "rules": {
+          "type": "known_rules",
+          "text": "2026-03-31",
+          "start_date": "2026-03-31",
+          "end_date": "2026-03-31",
+          "intervals": [
+            {
+              "open": true,
+              "start_timestamp": "2026-03-31 00:00",
+              "end_timestamp": "2026-03-31 13:59"
+            },
+            {
+              "open": false,
+              "start_timestamp": "2026-03-31 14:00",
+              "end_timestamp": "2026-03-31 20:29"
+            },
+            {
+              "open": true,
+              "start_timestamp": "2026-03-31 20:30",
+              "end_timestamp": "2026-03-31 23:59"
+            }
+          ],
+          "rules": [
+            "Cycle Track Open Until 2:00 PM\t2026-03-31T07:00\t\tMarch 31, 2026, 7:00 AM - 2:00 PM",
+            "Cycle Track Open After 8:30 PM\t2026-03-31T20:30\t\tMarch 31, 2026, 8:30 PM"
+          ]
+        }
+      },
+      {
+        "recognizer": "calendarRecognizer",
+        "rules": {
+          "type": "known_rules",
+          "text": "2026-04-01",
+          "start_date": "2026-04-01",
+          "end_date": "2026-04-01",
+          "intervals": [
+            {
+              "open": true,
+              "start_timestamp": "2026-04-01 00:00",
+              "end_timestamp": "2026-04-01 13:59"
+            },
+            {
+              "open": false,
+              "start_timestamp": "2026-04-01 14:00",
+              "end_timestamp": "2026-04-01 18:44"
+            },
+            {
+              "open": true,
+              "start_timestamp": "2026-04-01 18:45",
+              "end_timestamp": "2026-04-01 23:59"
+            }
+          ],
+          "rules": [
+            "Cycle Track Open Until 2:00 PM\t2026-04-01T07:00\t\tApril 1, 2026, 7:00 AM - 2:00 PM",
+            "Cycle Track Open After 6:45 PM\t2026-04-01T18:45\t\tApril 1, 2026, 6:45 PM"
+          ]
+        }
+      },
+      {
+        "recognizer": "calendarRecognizer",
+        "rules": {
+          "type": "known_rules",
+          "text": "2026-04-02",
+          "start_date": "2026-04-02",
+          "end_date": "2026-04-02",
+          "intervals": [
+            {
+              "open": true,
+              "start_timestamp": "2026-04-02 00:00",
+              "end_timestamp": "2026-04-02 13:59"
+            },
+            {
+              "open": false,
+              "start_timestamp": "2026-04-02 14:00",
+              "end_timestamp": "2026-04-02 20:29"
+            },
+            {
+              "open": true,
+              "start_timestamp": "2026-04-02 20:30",
+              "end_timestamp": "2026-04-02 23:59"
+            }
+          ],
+          "rules": [
+            "Cycle Track Open Until 2:00 PM\t2026-04-02T07:00\t\tApril 2, 2026, 7:00 AM - 2:00 PM",
+            "Cycle Track Open After 8:30 PM\t2026-04-02T20:30\t\tApril 2, 2026, 8:30 PM"
+          ]
+        }
+      },
+      {
+        "recognizer": "calendarRecognizer",
+        "rules": {
+          "type": "known_rules",
+          "text": "2026-04-03",
+          "start_date": "2026-04-03",
+          "end_date": "2026-04-03",
+          "intervals": [
+            {
+              "open": true,
+              "start_timestamp": "2026-04-03 00:00",
+              "end_timestamp": "2026-04-03 13:59"
+            },
+            {
+              "open": false,
+              "start_timestamp": "2026-04-03 14:00",
+              "end_timestamp": "2026-04-03 18:44"
+            },
+            {
+              "open": true,
+              "start_timestamp": "2026-04-03 18:45",
+              "end_timestamp": "2026-04-03 23:59"
+            }
+          ],
+          "rules": [
+            "Cycle Track Open Until 2:00 PM\t2026-04-03T07:00\t\tApril 3, 2026, 7:00 AM - 2:00 PM",
+            "Cycle Track Open After 6:45 PM\t2026-04-03T18:45\t\tApril 3, 2026, 6:45 PM"
+          ]
+        }
+      },
+      {
+        "recognizer": "calendarRecognizer",
+        "rules": {
+          "type": "known_rules",
+          "text": "2026-04-04",
+          "start_date": "2026-04-04",
+          "end_date": "2026-04-04",
+          "intervals": [
+            {
+              "open": true,
+              "start_timestamp": "2026-04-04 00:00",
+              "end_timestamp": "2026-04-04 06:59"
+            },
+            {
+              "open": false,
+              "start_timestamp": "2026-04-04 07:00",
+              "end_timestamp": "2026-04-04 18:44"
+            },
+            {
+              "open": true,
+              "start_timestamp": "2026-04-04 18:45",
+              "end_timestamp": "2026-04-04 23:59"
+            }
+          ],
+          "rules": [
+            "Cycle Track Open Until 7:00 AM\t2026-04-04T05:00\t\tApril 4, 2026, 5:00 AM - 7:00 AM",
+            "Cycle Track Open After 6:45 PM\t2026-04-04T18:45\t\tApril 4, 2026, 6:45 PM"
+          ]
+        }
+      },
+      {
+        "recognizer": "calendarRecognizer",
+        "rules": {
+          "type": "known_rules",
+          "text": "2026-04-05",
+          "start_date": "2026-04-05",
+          "end_date": "2026-04-05",
+          "intervals": [
+            {
+              "open": true,
+              "start_timestamp": "2026-04-05 00:00",
+              "end_timestamp": "2026-04-05 09:59"
+            },
+            {
+              "open": false,
+              "start_timestamp": "2026-04-05 10:00",
+              "end_timestamp": "2026-04-05 18:29"
+            },
+            {
+              "open": true,
+              "start_timestamp": "2026-04-05 18:30",
+              "end_timestamp": "2026-04-05 23:59"
+            }
+          ],
+          "rules": [
+            "Cycle Track Open Until 10:00 AM\t2026-04-05T05:00\t\tApril 5, 2026, 5:00 AM - 10:00 AM",
+            "Cycle Track Open After 6:30 PM\t2026-04-05T18:30\t\tApril 5, 2026, 6:30 PM"
+          ]
+        }
+      },
+      {
+        "recognizer": "calendarRecognizer",
+        "rules": {
+          "type": "known_rules",
+          "text": "2026-04-06",
+          "start_date": "2026-04-06",
+          "end_date": "2026-04-06",
+          "intervals": [
+            {
+              "open": true,
+              "start_timestamp": "2026-04-06 00:00",
+              "end_timestamp": "2026-04-06 23:59"
+            }
+          ],
+          "rules": [
+            "Cycle Track Open All Day\t2026-04-06T05:00\t\tApril 6, 2026, 5:00 AM"
+          ]
+        }
+      },
+      {
+        "recognizer": "calendarRecognizer",
+        "rules": {
+          "type": "known_rules",
+          "text": "2026-04-07",
+          "start_date": "2026-04-07",
+          "end_date": "2026-04-07",
+          "intervals": [
+            {
+              "open": true,
+              "start_timestamp": "2026-04-07 00:00",
+              "end_timestamp": "2026-04-07 13:59"
+            },
+            {
+              "open": false,
+              "start_timestamp": "2026-04-07 14:00",
+              "end_timestamp": "2026-04-07 20:29"
+            },
+            {
+              "open": true,
+              "start_timestamp": "2026-04-07 20:30",
+              "end_timestamp": "2026-04-07 23:59"
+            }
+          ],
+          "rules": [
+            "Cycle Track Open Until 2:00 PM\t2026-04-07T07:00\t\tApril 7, 2026, 7:00 AM - 2:00 PM",
+            "Cycle Track Open After 8:30 PM\t2026-04-07T20:30\t\tApril 7, 2026, 8:30 PM"
+          ]
+        }
+      },
+      {
+        "recognizer": "calendarRecognizer",
+        "rules": {
+          "type": "known_rules",
+          "text": "2026-04-08",
+          "start_date": "2026-04-08",
+          "end_date": "2026-04-08",
+          "intervals": [
+            {
+              "open": true,
+              "start_timestamp": "2026-04-08 00:00",
+              "end_timestamp": "2026-04-08 13:59"
+            },
+            {
+              "open": false,
+              "start_timestamp": "2026-04-08 14:00",
+              "end_timestamp": "2026-04-08 18:44"
+            },
+            {
+              "open": true,
+              "start_timestamp": "2026-04-08 18:45",
+              "end_timestamp": "2026-04-08 23:59"
+            }
+          ],
+          "rules": [
+            "Cycle Track Open Until 2:00 PM\t2026-04-08T07:00\t\tApril 8, 2026, 7:00 AM - 2:00 PM",
+            "Cycle Track Open After 6:45 PM\t2026-04-08T18:45\t\tApril 8, 2026, 6:45 PM"
+          ]
+        }
+      },
+      {
+        "recognizer": "calendarRecognizer",
+        "rules": {
+          "type": "known_rules",
+          "text": "2026-04-09",
+          "start_date": "2026-04-09",
+          "end_date": "2026-04-09",
+          "intervals": [
+            {
+              "open": true,
+              "start_timestamp": "2026-04-09 00:00",
+              "end_timestamp": "2026-04-09 13:59"
+            },
+            {
+              "open": false,
+              "start_timestamp": "2026-04-09 14:00",
+              "end_timestamp": "2026-04-09 20:29"
+            },
+            {
+              "open": true,
+              "start_timestamp": "2026-04-09 20:30",
+              "end_timestamp": "2026-04-09 23:59"
+            }
+          ],
+          "rules": [
+            "Cycle Track Open Until 2:00 PM\t2026-04-09T07:00\t\tApril 9, 2026, 7:00 AM - 2:00 PM",
+            "Cycle Track Open After 8:30 PM\t2026-04-09T20:30\t\tApril 9, 2026, 8:30 PM"
+          ]
+        }
+      },
+      {
+        "recognizer": "calendarRecognizer",
+        "rules": {
+          "type": "known_rules",
+          "text": "2026-04-10",
+          "start_date": "2026-04-10",
+          "end_date": "2026-04-10",
+          "intervals": [
+            {
+              "open": true,
+              "start_timestamp": "2026-04-10 00:00",
+              "end_timestamp": "2026-04-10 13:59"
+            },
+            {
+              "open": false,
+              "start_timestamp": "2026-04-10 14:00",
+              "end_timestamp": "2026-04-10 18:44"
+            },
+            {
+              "open": true,
+              "start_timestamp": "2026-04-10 18:45",
+              "end_timestamp": "2026-04-10 23:59"
+            }
+          ],
+          "rules": [
+            "Cycle Track Open Until 2:00 PM\t2026-04-10T07:00\t\tApril 10, 2026, 7:00 AM - 2:00 PM",
+            "Cycle Track Open After 6:45 PM\t2026-04-10T18:45\t\tApril 10, 2026, 6:45 PM"
+          ]
+        }
+      },
+      {
+        "recognizer": "calendarRecognizer",
+        "rules": {
+          "type": "known_rules",
+          "text": "2026-04-11",
+          "start_date": "2026-04-11",
+          "end_date": "2026-04-11",
+          "intervals": [
+            {
+              "open": true,
+              "start_timestamp": "2026-04-11 00:00",
+              "end_timestamp": "2026-04-11 06:59"
+            },
+            {
+              "open": false,
+              "start_timestamp": "2026-04-11 07:00",
+              "end_timestamp": "2026-04-11 18:44"
+            },
+            {
+              "open": true,
+              "start_timestamp": "2026-04-11 18:45",
+              "end_timestamp": "2026-04-11 23:59"
+            }
+          ],
+          "rules": [
+            "Cycle Track Open Until 7:00 AM\t2026-04-11T05:00\t\tApril 11, 2026, 5:00 AM - 7:00 AM",
+            "Cycle Track Open After 6:45 PM\t2026-04-11T18:45\t\tApril 11, 2026, 6:45 PM"
+          ]
+        }
+      },
+      {
+        "recognizer": "calendarRecognizer",
+        "rules": {
+          "type": "known_rules",
+          "text": "2026-04-12",
+          "start_date": "2026-04-12",
+          "end_date": "2026-04-12",
+          "intervals": [
+            {
+              "open": true,
+              "start_timestamp": "2026-04-12 00:00",
+              "end_timestamp": "2026-04-12 09:59"
+            },
+            {
+              "open": false,
+              "start_timestamp": "2026-04-12 10:00",
+              "end_timestamp": "2026-04-12 18:29"
+            },
+            {
+              "open": true,
+              "start_timestamp": "2026-04-12 18:30",
+              "end_timestamp": "2026-04-12 23:59"
+            }
+          ],
+          "rules": [
+            "Cycle Track Open Until 10:00 AM\t2026-04-12T05:00\t\tApril 12, 2026, 5:00 AM - 10:00 AM",
+            "Cycle Track Open After 6:30 PM\t2026-04-12T18:30\t\tApril 12, 2026, 6:30 PM"
+          ]
+        }
+      },
+      {
+        "recognizer": "calendarRecognizer",
+        "rules": {
+          "type": "known_rules",
+          "text": "2026-04-13",
+          "start_date": "2026-04-13",
+          "end_date": "2026-04-13",
+          "intervals": [
+            {
+              "open": true,
+              "start_timestamp": "2026-04-13 00:00",
+              "end_timestamp": "2026-04-13 23:59"
+            }
+          ],
+          "rules": [
+            "Cycle Track Open All Day\t2026-04-13T05:00\t\tApril 13, 2026, 5:00 AM"
+          ]
+        }
+      },
+      {
+        "recognizer": "calendarRecognizer",
+        "rules": {
+          "type": "known_rules",
+          "text": "2026-04-14",
+          "start_date": "2026-04-14",
+          "end_date": "2026-04-14",
+          "intervals": [
+            {
+              "open": true,
+              "start_timestamp": "2026-04-14 00:00",
+              "end_timestamp": "2026-04-14 13:59"
+            },
+            {
+              "open": false,
+              "start_timestamp": "2026-04-14 14:00",
+              "end_timestamp": "2026-04-14 20:29"
+            },
+            {
+              "open": true,
+              "start_timestamp": "2026-04-14 20:30",
+              "end_timestamp": "2026-04-14 23:59"
+            }
+          ],
+          "rules": [
+            "Cycle Track Open Until 2:00 PM\t2026-04-14T07:00\t\tApril 14, 2026, 7:00 AM - 2:00 PM",
+            "Cycle Track Open After 8:30 PM\t2026-04-14T20:30\t\tApril 14, 2026, 8:30 PM"
+          ]
+        }
+      },
+      {
+        "recognizer": "calendarRecognizer",
+        "rules": {
+          "type": "known_rules",
+          "text": "2026-04-15",
+          "start_date": "2026-04-15",
+          "end_date": "2026-04-15",
+          "intervals": [
+            {
+              "open": true,
+              "start_timestamp": "2026-04-15 00:00",
+              "end_timestamp": "2026-04-15 13:59"
+            },
+            {
+              "open": false,
+              "start_timestamp": "2026-04-15 14:00",
+              "end_timestamp": "2026-04-15 18:44"
+            },
+            {
+              "open": true,
+              "start_timestamp": "2026-04-15 18:45",
+              "end_timestamp": "2026-04-15 23:59"
+            }
+          ],
+          "rules": [
+            "Cycle Track Open Until 2:00 PM\t2026-04-15T07:00\t\tApril 15, 2026, 7:00 AM - 2:00 PM",
+            "Cycle Track Open After 6:45 PM\t2026-04-15T18:45\t\tApril 15, 2026, 6:45 PM"
+          ]
+        }
+      },
+      {
+        "recognizer": "calendarRecognizer",
+        "rules": {
+          "type": "known_rules",
+          "text": "2026-04-16",
+          "start_date": "2026-04-16",
+          "end_date": "2026-04-16",
+          "intervals": [
+            {
+              "open": true,
+              "start_timestamp": "2026-04-16 00:00",
+              "end_timestamp": "2026-04-16 13:59"
+            },
+            {
+              "open": false,
+              "start_timestamp": "2026-04-16 14:00",
+              "end_timestamp": "2026-04-16 20:29"
+            },
+            {
+              "open": true,
+              "start_timestamp": "2026-04-16 20:30",
+              "end_timestamp": "2026-04-16 23:59"
+            }
+          ],
+          "rules": [
+            "Cycle Track Open Until 2:00 PM\t2026-04-16T07:00\t\tApril 16, 2026, 7:00 AM - 2:00 PM",
+            "Cycle Track Open After 8:30 PM\t2026-04-16T20:30\t\tApril 16, 2026, 8:30 PM"
+          ]
+        }
+      },
+      {
+        "recognizer": "calendarRecognizer",
+        "rules": {
+          "type": "known_rules",
+          "text": "2026-04-17",
+          "start_date": "2026-04-17",
+          "end_date": "2026-04-17",
+          "intervals": [
+            {
+              "open": true,
+              "start_timestamp": "2026-04-17 00:00",
+              "end_timestamp": "2026-04-17 13:59"
+            },
+            {
+              "open": false,
+              "start_timestamp": "2026-04-17 14:00",
+              "end_timestamp": "2026-04-17 18:44"
+            },
+            {
+              "open": true,
+              "start_timestamp": "2026-04-17 18:45",
+              "end_timestamp": "2026-04-17 23:59"
+            }
+          ],
+          "rules": [
+            "Cycle Track Open Until 2:00 PM\t2026-04-17T07:00\t\tApril 17, 2026, 7:00 AM - 2:00 PM",
+            "Cycle Track Open After 6:45 PM\t2026-04-17T18:45\t\tApril 17, 2026, 6:45 PM"
+          ]
+        }
+      },
+      {
+        "recognizer": "calendarRecognizer",
+        "rules": {
+          "type": "known_rules",
+          "text": "2026-04-18",
+          "start_date": "2026-04-18",
+          "end_date": "2026-04-18",
+          "intervals": [
+            {
+              "open": true,
+              "start_timestamp": "2026-04-18 00:00",
+              "end_timestamp": "2026-04-18 06:59"
+            },
+            {
+              "open": false,
+              "start_timestamp": "2026-04-18 07:00",
+              "end_timestamp": "2026-04-18 18:44"
+            },
+            {
+              "open": true,
+              "start_timestamp": "2026-04-18 18:45",
+              "end_timestamp": "2026-04-18 23:59"
+            }
+          ],
+          "rules": [
+            "Cycle Track Open Until 7:00 AM\t2026-04-18T05:00\t\tApril 18, 2026, 5:00 AM - 7:00 AM",
+            "Cycle Track Open After 6:45 PM\t2026-04-18T18:45\t\tApril 18, 2026, 6:45 PM"
+          ]
+        }
+      },
+      {
+        "recognizer": "calendarRecognizer",
+        "rules": {
+          "type": "known_rules",
+          "text": "2026-04-19",
+          "start_date": "2026-04-19",
+          "end_date": "2026-04-19",
+          "intervals": [
+            {
+              "open": true,
+              "start_timestamp": "2026-04-19 00:00",
+              "end_timestamp": "2026-04-19 09:59"
+            },
+            {
+              "open": false,
+              "start_timestamp": "2026-04-19 10:00",
+              "end_timestamp": "2026-04-19 18:29"
+            },
+            {
+              "open": true,
+              "start_timestamp": "2026-04-19 18:30",
+              "end_timestamp": "2026-04-19 23:59"
+            }
+          ],
+          "rules": [
+            "Cycle Track Open Until 10:00 AM\t2026-04-19T05:00\t\tApril 19, 2026, 5:00 AM - 10:00 AM",
+            "Cycle Track Open After 6:30 PM\t2026-04-19T18:30\t\tApril 19, 2026, 6:30 PM"
+          ]
+        }
+      },
+      {
+        "recognizer": "calendarRecognizer",
+        "rules": {
+          "type": "known_rules",
+          "text": "2026-04-20",
+          "start_date": "2026-04-20",
+          "end_date": "2026-04-20",
+          "intervals": [
+            {
+              "open": true,
+              "start_timestamp": "2026-04-20 00:00",
+              "end_timestamp": "2026-04-20 23:59"
+            }
+          ],
+          "rules": [
+            "Cycle Track Open All Day\t2026-04-20T05:00\t\tApril 20, 2026, 5:00 AM"
+          ]
+        }
+      },
+      {
+        "recognizer": "calendarRecognizer",
+        "rules": {
+          "type": "known_rules",
+          "text": "2026-04-21",
+          "start_date": "2026-04-21",
+          "end_date": "2026-04-21",
+          "intervals": [
+            {
+              "open": true,
+              "start_timestamp": "2026-04-21 00:00",
+              "end_timestamp": "2026-04-21 13:59"
+            },
+            {
+              "open": false,
+              "start_timestamp": "2026-04-21 14:00",
+              "end_timestamp": "2026-04-21 20:29"
+            },
+            {
+              "open": true,
+              "start_timestamp": "2026-04-21 20:30",
+              "end_timestamp": "2026-04-21 23:59"
+            }
+          ],
+          "rules": [
+            "Cycle Track Open Until 2:00 PM\t2026-04-21T07:00\t\tApril 21, 2026, 7:00 AM - 2:00 PM",
+            "Cycle Track Open After 8:30 PM\t2026-04-21T20:30\t\tApril 21, 2026, 8:30 PM"
+          ]
+        }
+      },
+      {
+        "recognizer": "calendarRecognizer",
+        "rules": {
+          "type": "known_rules",
+          "text": "2026-04-22",
+          "start_date": "2026-04-22",
+          "end_date": "2026-04-22",
+          "intervals": [
+            {
+              "open": true,
+              "start_timestamp": "2026-04-22 00:00",
+              "end_timestamp": "2026-04-22 13:59"
+            },
+            {
+              "open": false,
+              "start_timestamp": "2026-04-22 14:00",
+              "end_timestamp": "2026-04-22 18:44"
+            },
+            {
+              "open": true,
+              "start_timestamp": "2026-04-22 18:45",
+              "end_timestamp": "2026-04-22 23:59"
+            }
+          ],
+          "rules": [
+            "Cycle Track Open Until 2:00 PM\t2026-04-22T07:00\t\tApril 22, 2026, 7:00 AM - 2:00 PM",
+            "Cycle Track Open After 6:45 PM\t2026-04-22T18:45\t\tApril 22, 2026, 6:45 PM"
+          ]
+        }
+      },
+      {
+        "recognizer": "calendarRecognizer",
+        "rules": {
+          "type": "known_rules",
+          "text": "2026-04-23",
+          "start_date": "2026-04-23",
+          "end_date": "2026-04-23",
+          "intervals": [
+            {
+              "open": true,
+              "start_timestamp": "2026-04-23 00:00",
+              "end_timestamp": "2026-04-23 13:59"
+            },
+            {
+              "open": false,
+              "start_timestamp": "2026-04-23 14:00",
+              "end_timestamp": "2026-04-23 20:29"
+            },
+            {
+              "open": true,
+              "start_timestamp": "2026-04-23 20:30",
+              "end_timestamp": "2026-04-23 23:59"
+            }
+          ],
+          "rules": [
+            "Cycle Track Open Until 2:00 PM\t2026-04-23T07:00\t\tApril 23, 2026, 7:00 AM - 2:00 PM",
+            "Cycle Track Open After 8:30 PM\t2026-04-23T20:30\t\tApril 23, 2026, 8:30 PM"
+          ]
+        }
+      },
+      {
+        "recognizer": "calendarRecognizer",
+        "rules": {
+          "type": "known_rules",
+          "text": "2026-04-24",
+          "start_date": "2026-04-24",
+          "end_date": "2026-04-24",
+          "intervals": [
+            {
+              "open": true,
+              "start_timestamp": "2026-04-24 00:00",
+              "end_timestamp": "2026-04-24 13:59"
+            },
+            {
+              "open": false,
+              "start_timestamp": "2026-04-24 14:00",
+              "end_timestamp": "2026-04-24 18:44"
+            },
+            {
+              "open": true,
+              "start_timestamp": "2026-04-24 18:45",
+              "end_timestamp": "2026-04-24 23:59"
+            }
+          ],
+          "rules": [
+            "Cycle Track Open Until 2:00 PM\t2026-04-24T07:00\t\tApril 24, 2026, 7:00 AM - 2:00 PM",
+            "Cycle Track Open After 6:45 PM\t2026-04-24T18:45\t\tApril 24, 2026, 6:45 PM"
+          ]
+        }
+      },
+      {
+        "recognizer": "calendarRecognizer",
+        "rules": {
+          "type": "known_rules",
+          "text": "2026-04-25",
+          "start_date": "2026-04-25",
+          "end_date": "2026-04-25",
+          "intervals": [
+            {
+              "open": true,
+              "start_timestamp": "2026-04-25 00:00",
+              "end_timestamp": "2026-04-25 06:59"
+            },
+            {
+              "open": false,
+              "start_timestamp": "2026-04-25 07:00",
+              "end_timestamp": "2026-04-25 18:44"
+            },
+            {
+              "open": true,
+              "start_timestamp": "2026-04-25 18:45",
+              "end_timestamp": "2026-04-25 23:59"
+            }
+          ],
+          "rules": [
+            "Cycle Track Open Until 7:00 AM\t2026-04-25T05:00\t\tApril 25, 2026, 5:00 AM - 7:00 AM",
+            "Cycle Track Open After 6:45 PM\t2026-04-25T18:45\t\tApril 25, 2026, 6:45 PM"
+          ]
+        }
+      },
+      {
+        "recognizer": "calendarRecognizer",
+        "rules": {
+          "type": "known_rules",
+          "text": "2026-04-26",
+          "start_date": "2026-04-26",
+          "end_date": "2026-04-26",
+          "intervals": [
+            {
+              "open": true,
+              "start_timestamp": "2026-04-26 00:00",
+              "end_timestamp": "2026-04-26 09:59"
+            },
+            {
+              "open": false,
+              "start_timestamp": "2026-04-26 10:00",
+              "end_timestamp": "2026-04-26 18:29"
+            },
+            {
+              "open": true,
+              "start_timestamp": "2026-04-26 18:30",
+              "end_timestamp": "2026-04-26 23:59"
+            }
+          ],
+          "rules": [
+            "Cycle Track Open Until 10:00 AM\t2026-04-26T05:00\t\tApril 26, 2026, 5:00 AM - 10:00 AM",
+            "Cycle Track Open After 6:30 PM\t2026-04-26T18:30\t\tApril 26, 2026, 6:30 PM"
+          ]
+        }
+      },
+      {
+        "recognizer": "calendarRecognizer",
+        "rules": {
+          "type": "known_rules",
+          "text": "2026-04-27",
+          "start_date": "2026-04-27",
+          "end_date": "2026-04-27",
+          "intervals": [
+            {
+              "open": true,
+              "start_timestamp": "2026-04-27 00:00",
+              "end_timestamp": "2026-04-27 23:59"
+            }
+          ],
+          "rules": [
+            "Cycle Track Open All Day\t2026-04-27T05:00\t\tApril 27, 2026, 5:00 AM"
+          ]
+        }
+      },
+      {
+        "recognizer": "calendarRecognizer",
+        "rules": {
+          "type": "known_rules",
+          "text": "2026-04-28",
+          "start_date": "2026-04-28",
+          "end_date": "2026-04-28",
+          "intervals": [
+            {
+              "open": true,
+              "start_timestamp": "2026-04-28 00:00",
+              "end_timestamp": "2026-04-28 13:59"
+            },
+            {
+              "open": false,
+              "start_timestamp": "2026-04-28 14:00",
+              "end_timestamp": "2026-04-28 20:29"
+            },
+            {
+              "open": true,
+              "start_timestamp": "2026-04-28 20:30",
+              "end_timestamp": "2026-04-28 23:59"
+            }
+          ],
+          "rules": [
+            "Cycle Track Open Until 2:00 PM\t2026-04-28T07:00\t\tApril 28, 2026, 7:00 AM - 2:00 PM",
+            "Cycle Track Open After 8:30 PM\t2026-04-28T20:30\t\tApril 28, 2026, 8:30 PM"
+          ]
+        }
+      },
+      {
+        "recognizer": "calendarRecognizer",
+        "rules": {
+          "type": "known_rules",
+          "text": "2026-04-29",
+          "start_date": "2026-04-29",
+          "end_date": "2026-04-29",
+          "intervals": [
+            {
+              "open": true,
+              "start_timestamp": "2026-04-29 00:00",
+              "end_timestamp": "2026-04-29 13:59"
+            },
+            {
+              "open": false,
+              "start_timestamp": "2026-04-29 14:00",
+              "end_timestamp": "2026-04-29 18:44"
+            },
+            {
+              "open": true,
+              "start_timestamp": "2026-04-29 18:45",
+              "end_timestamp": "2026-04-29 23:59"
+            }
+          ],
+          "rules": [
+            "Cycle Track Open Until 2:00 PM\t2026-04-29T07:00\t\tApril 29, 2026, 7:00 AM - 2:00 PM",
+            "Cycle Track Open After 6:45 PM\t2026-04-29T18:45\t\tApril 29, 2026, 6:45 PM"
+          ]
+        }
+      },
+      {
+        "recognizer": "calendarRecognizer",
+        "rules": {
+          "type": "known_rules",
+          "text": "2026-04-30",
+          "start_date": "2026-04-30",
+          "end_date": "2026-04-30",
+          "intervals": [
+            {
+              "open": true,
+              "start_timestamp": "2026-04-30 00:00",
+              "end_timestamp": "2026-04-30 13:59"
+            },
+            {
+              "open": false,
+              "start_timestamp": "2026-04-30 14:00",
+              "end_timestamp": "2026-04-30 20:29"
+            },
+            {
+              "open": true,
+              "start_timestamp": "2026-04-30 20:30",
+              "end_timestamp": "2026-04-30 23:59"
+            }
+          ],
+          "rules": [
+            "Cycle Track Open Until 2:00 PM\t2026-04-30T07:00\t\tApril 30, 2026, 7:00 AM - 2:00 PM",
+            "Cycle Track Open After 8:30 PM\t2026-04-30T20:30\t\tApril 30, 2026, 8:30 PM"
+          ]
+        }
+      },
+      {
+        "recognizer": "calendarRecognizer",
+        "rules": {
+          "type": "known_rules",
+          "text": "2026-05-01",
+          "start_date": "2026-05-01",
+          "end_date": "2026-05-01",
+          "intervals": [
+            {
+              "open": true,
+              "start_timestamp": "2026-05-01 00:00",
+              "end_timestamp": "2026-05-01 13:59"
+            },
+            {
+              "open": false,
+              "start_timestamp": "2026-05-01 14:00",
+              "end_timestamp": "2026-05-01 18:44"
+            },
+            {
+              "open": true,
+              "start_timestamp": "2026-05-01 18:45",
+              "end_timestamp": "2026-05-01 23:59"
+            }
+          ],
+          "rules": [
+            "Cycle Track Open Until 2:00 PM\t2026-05-01T07:00\t\tMay 1, 2026, 7:00 AM - 2:00 PM",
+            "Cycle Track Open After 6:45 PM\t2026-05-01T18:45\t\tMay 1, 2026, 6:45 PM"
+          ]
+        }
+      },
+      {
+        "recognizer": "calendarRecognizer",
+        "rules": {
+          "type": "known_rules",
+          "text": "2026-05-02",
+          "start_date": "2026-05-02",
+          "end_date": "2026-05-02",
+          "intervals": [
+            {
+              "open": true,
+              "start_timestamp": "2026-05-02 00:00",
+              "end_timestamp": "2026-05-02 06:59"
+            },
+            {
+              "open": false,
+              "start_timestamp": "2026-05-02 07:00",
+              "end_timestamp": "2026-05-02 18:44"
+            },
+            {
+              "open": true,
+              "start_timestamp": "2026-05-02 18:45",
+              "end_timestamp": "2026-05-02 23:59"
+            }
+          ],
+          "rules": [
+            "Cycle Track Open Until 7:00 AM\t2026-05-02T05:00\t\tMay 2, 2026, 5:00 AM - 7:00 AM",
+            "Cycle Track Open After 6:45 PM\t2026-05-02T18:45\t\tMay 2, 2026, 6:45 PM"
+          ]
+        }
+      },
+      {
+        "recognizer": "calendarRecognizer",
+        "rules": {
+          "type": "known_rules",
+          "text": "2026-05-03",
+          "start_date": "2026-05-03",
+          "end_date": "2026-05-03",
+          "intervals": [
+            {
+              "open": true,
+              "start_timestamp": "2026-05-03 00:00",
+              "end_timestamp": "2026-05-03 09:59"
+            },
+            {
+              "open": false,
+              "start_timestamp": "2026-05-03 10:00",
+              "end_timestamp": "2026-05-03 18:29"
+            },
+            {
+              "open": true,
+              "start_timestamp": "2026-05-03 18:30",
+              "end_timestamp": "2026-05-03 23:59"
+            }
+          ],
+          "rules": [
+            "Cycle Track Open Until 10:00 AM\t2026-05-03T05:00\t\tMay 3, 2026, 5:00 AM - 10:00 AM",
+            "Cycle Track Open After 6:30 PM\t2026-05-03T18:30\t\tMay 3, 2026, 6:30 PM"
+          ]
+        }
+      },
+      {
+        "recognizer": "calendarRecognizer",
+        "rules": {
+          "type": "known_rules",
+          "text": "2026-05-04",
+          "start_date": "2026-05-04",
+          "end_date": "2026-05-04",
+          "intervals": [
+            {
+              "open": true,
+              "start_timestamp": "2026-05-04 00:00",
+              "end_timestamp": "2026-05-04 23:59"
+            }
+          ],
+          "rules": [
+            "Cycle Track Open All Day\t2026-05-04T05:00\t\tMay 4, 2026, 5:00 AM"
+          ]
+        }
+      },
+      {
+        "recognizer": "calendarRecognizer",
+        "rules": {
+          "type": "known_rules",
+          "text": "2026-05-05",
+          "start_date": "2026-05-05",
+          "end_date": "2026-05-05",
+          "intervals": [
+            {
+              "open": true,
+              "start_timestamp": "2026-05-05 00:00",
+              "end_timestamp": "2026-05-05 13:59"
+            },
+            {
+              "open": false,
+              "start_timestamp": "2026-05-05 14:00",
+              "end_timestamp": "2026-05-05 20:29"
+            },
+            {
+              "open": true,
+              "start_timestamp": "2026-05-05 20:30",
+              "end_timestamp": "2026-05-05 23:59"
+            }
+          ],
+          "rules": [
+            "Cycle Track Open Until 2:00 PM\t2026-05-05T07:00\t\tMay 5, 2026, 7:00 AM - 2:00 PM",
+            "Cycle Track Open After 8:30 PM\t2026-05-05T20:30\t\tMay 5, 2026, 8:30 PM"
+          ]
+        }
+      },
+      {
+        "recognizer": "calendarRecognizer",
+        "rules": {
+          "type": "known_rules",
+          "text": "2026-05-06",
+          "start_date": "2026-05-06",
+          "end_date": "2026-05-06",
+          "intervals": [
+            {
+              "open": true,
+              "start_timestamp": "2026-05-06 00:00",
+              "end_timestamp": "2026-05-06 13:59"
+            },
+            {
+              "open": false,
+              "start_timestamp": "2026-05-06 14:00",
+              "end_timestamp": "2026-05-06 18:44"
+            },
+            {
+              "open": true,
+              "start_timestamp": "2026-05-06 18:45",
+              "end_timestamp": "2026-05-06 23:59"
+            }
+          ],
+          "rules": [
+            "Cycle Track Open Until 2:00 PM\t2026-05-06T07:00\t\tMay 6, 2026, 7:00 AM - 2:00 PM",
+            "Cycle Track Open After 6:45 PM\t2026-05-06T18:45\t\tMay 6, 2026, 6:45 PM"
+          ]
+        }
+      },
+      {
+        "recognizer": "calendarRecognizer",
+        "rules": {
+          "type": "known_rules",
+          "text": "2026-05-07",
+          "start_date": "2026-05-07",
+          "end_date": "2026-05-07",
+          "intervals": [
+            {
+              "open": true,
+              "start_timestamp": "2026-05-07 00:00",
+              "end_timestamp": "2026-05-07 13:59"
+            },
+            {
+              "open": false,
+              "start_timestamp": "2026-05-07 14:00",
+              "end_timestamp": "2026-05-07 20:29"
+            },
+            {
+              "open": true,
+              "start_timestamp": "2026-05-07 20:30",
+              "end_timestamp": "2026-05-07 23:59"
+            }
+          ],
+          "rules": [
+            "Cycle Track Open Until 2:00 PM\t2026-05-07T07:00\t\tMay 7, 2026, 7:00 AM - 2:00 PM",
+            "Cycle Track Open After 8:30 PM\t2026-05-07T20:30\t\tMay 7, 2026, 8:30 PM"
+          ]
+        }
+      },
+      {
+        "recognizer": "calendarRecognizer",
+        "rules": {
+          "type": "known_rules",
+          "text": "2026-05-08",
+          "start_date": "2026-05-08",
+          "end_date": "2026-05-08",
+          "intervals": [
+            {
+              "open": true,
+              "start_timestamp": "2026-05-08 00:00",
+              "end_timestamp": "2026-05-08 13:59"
+            },
+            {
+              "open": false,
+              "start_timestamp": "2026-05-08 14:00",
+              "end_timestamp": "2026-05-08 18:44"
+            },
+            {
+              "open": true,
+              "start_timestamp": "2026-05-08 18:45",
+              "end_timestamp": "2026-05-08 23:59"
+            }
+          ],
+          "rules": [
+            "Cycle Track Open Until 2:00 PM\t2026-05-08T07:00\t\tMay 8, 2026, 7:00 AM - 2:00 PM",
+            "Cycle Track Open After 6:45 PM\t2026-05-08T18:45\t\tMay 8, 2026, 6:45 PM"
+          ]
+        }
+      },
+      {
+        "recognizer": "calendarRecognizer",
+        "rules": {
+          "type": "known_rules",
+          "text": "2026-05-09",
+          "start_date": "2026-05-09",
+          "end_date": "2026-05-09",
+          "intervals": [
+            {
+              "open": true,
+              "start_timestamp": "2026-05-09 00:00",
+              "end_timestamp": "2026-05-09 06:59"
+            },
+            {
+              "open": false,
+              "start_timestamp": "2026-05-09 07:00",
+              "end_timestamp": "2026-05-09 18:44"
+            },
+            {
+              "open": true,
+              "start_timestamp": "2026-05-09 18:45",
+              "end_timestamp": "2026-05-09 23:59"
+            }
+          ],
+          "rules": [
+            "Cycle Track Open Until 7:00 AM\t2026-05-09T05:00\t\tMay 9, 2026, 5:00 AM - 7:00 AM",
+            "Cycle Track Open After 6:45 PM\t2026-05-09T18:45\t\tMay 9, 2026, 6:45 PM"
+          ]
+        }
+      },
+      {
+        "recognizer": "calendarRecognizer",
+        "rules": {
+          "type": "known_rules",
+          "text": "2026-05-10",
+          "start_date": "2026-05-10",
+          "end_date": "2026-05-10",
+          "intervals": [
+            {
+              "open": true,
+              "start_timestamp": "2026-05-10 00:00",
+              "end_timestamp": "2026-05-10 09:59"
+            },
+            {
+              "open": false,
+              "start_timestamp": "2026-05-10 10:00",
+              "end_timestamp": "2026-05-10 18:29"
+            },
+            {
+              "open": true,
+              "start_timestamp": "2026-05-10 18:30",
+              "end_timestamp": "2026-05-10 23:59"
+            }
+          ],
+          "rules": [
+            "Cycle Track Open Until 10:00 AM\t2026-05-10T05:00\t\tMay 10, 2026, 5:00 AM - 10:00 AM",
+            "Cycle Track Open After 6:30 PM\t2026-05-10T18:30\t\tMay 10, 2026, 6:30 PM"
+          ]
+        }
+      },
+      {
+        "recognizer": "calendarRecognizer",
+        "rules": {
+          "type": "known_rules",
+          "text": "2026-05-11",
+          "start_date": "2026-05-11",
+          "end_date": "2026-05-11",
+          "intervals": [
+            {
+              "open": true,
+              "start_timestamp": "2026-05-11 00:00",
+              "end_timestamp": "2026-05-11 23:59"
+            }
+          ],
+          "rules": [
+            "Cycle Track Open All Day\t2026-05-11T05:00\t\tMay 11, 2026, 5:00 AM"
+          ]
+        }
+      },
+      {
+        "recognizer": "calendarRecognizer",
+        "rules": {
+          "type": "known_rules",
+          "text": "2026-05-12",
+          "start_date": "2026-05-12",
+          "end_date": "2026-05-12",
+          "intervals": [
+            {
+              "open": true,
+              "start_timestamp": "2026-05-12 00:00",
+              "end_timestamp": "2026-05-12 13:59"
+            },
+            {
+              "open": false,
+              "start_timestamp": "2026-05-12 14:00",
+              "end_timestamp": "2026-05-12 20:29"
+            },
+            {
+              "open": true,
+              "start_timestamp": "2026-05-12 20:30",
+              "end_timestamp": "2026-05-12 23:59"
+            }
+          ],
+          "rules": [
+            "Cycle Track Open Until 2:00 PM\t2026-05-12T07:00\t\tMay 12, 2026, 7:00 AM - 2:00 PM",
+            "Cycle Track Open After 8:30 PM\t2026-05-12T20:30\t\tMay 12, 2026, 8:30 PM"
+          ]
+        }
+      },
+      {
+        "recognizer": "calendarRecognizer",
+        "rules": {
+          "type": "known_rules",
+          "text": "2026-05-13",
+          "start_date": "2026-05-13",
+          "end_date": "2026-05-13",
+          "intervals": [
+            {
+              "open": true,
+              "start_timestamp": "2026-05-13 00:00",
+              "end_timestamp": "2026-05-13 13:59"
+            },
+            {
+              "open": false,
+              "start_timestamp": "2026-05-13 14:00",
+              "end_timestamp": "2026-05-13 18:44"
+            },
+            {
+              "open": true,
+              "start_timestamp": "2026-05-13 18:45",
+              "end_timestamp": "2026-05-13 23:59"
+            }
+          ],
+          "rules": [
+            "Cycle Track Open Until 2:00 PM\t2026-05-13T07:00\t\tMay 13, 2026, 7:00 AM - 2:00 PM",
+            "Cycle Track Open After 6:45 PM\t2026-05-13T18:45\t\tMay 13, 2026, 6:45 PM"
+          ]
+        }
+      },
+      {
+        "recognizer": "calendarRecognizer",
+        "rules": {
+          "type": "known_rules",
+          "text": "2026-05-14",
+          "start_date": "2026-05-14",
+          "end_date": "2026-05-14",
+          "intervals": [
+            {
+              "open": true,
+              "start_timestamp": "2026-05-14 00:00",
+              "end_timestamp": "2026-05-14 13:59"
+            },
+            {
+              "open": false,
+              "start_timestamp": "2026-05-14 14:00",
+              "end_timestamp": "2026-05-14 20:29"
+            },
+            {
+              "open": true,
+              "start_timestamp": "2026-05-14 20:30",
+              "end_timestamp": "2026-05-14 23:59"
+            }
+          ],
+          "rules": [
+            "Cycle Track Open Until 2:00 PM\t2026-05-14T07:00\t\tMay 14, 2026, 7:00 AM - 2:00 PM",
+            "Cycle Track Open After 8:30 PM\t2026-05-14T20:30\t\tMay 14, 2026, 8:30 PM"
+          ]
+        }
+      },
+      {
+        "recognizer": "calendarRecognizer",
+        "rules": {
+          "type": "known_rules",
+          "text": "2026-05-15",
+          "start_date": "2026-05-15",
+          "end_date": "2026-05-15",
+          "intervals": [
+            {
+              "open": true,
+              "start_timestamp": "2026-05-15 00:00",
+              "end_timestamp": "2026-05-15 13:59"
+            },
+            {
+              "open": false,
+              "start_timestamp": "2026-05-15 14:00",
+              "end_timestamp": "2026-05-15 18:44"
+            },
+            {
+              "open": true,
+              "start_timestamp": "2026-05-15 18:45",
+              "end_timestamp": "2026-05-15 23:59"
+            }
+          ],
+          "rules": [
+            "Cycle Track Open Until 2:00 PM\t2026-05-15T07:00\t\tMay 15, 2026, 7:00 AM - 2:00 PM",
+            "Cycle Track Open After 6:45 PM\t2026-05-15T18:45\t\tMay 15, 2026, 6:45 PM"
+          ]
+        }
+      },
+      {
+        "recognizer": "calendarRecognizer",
+        "rules": {
+          "type": "known_rules",
+          "text": "2026-05-16",
+          "start_date": "2026-05-16",
+          "end_date": "2026-05-16",
+          "intervals": [
+            {
+              "open": true,
+              "start_timestamp": "2026-05-16 00:00",
+              "end_timestamp": "2026-05-16 06:59"
+            },
+            {
+              "open": false,
+              "start_timestamp": "2026-05-16 07:00",
+              "end_timestamp": "2026-05-16 18:44"
+            },
+            {
+              "open": true,
+              "start_timestamp": "2026-05-16 18:45",
+              "end_timestamp": "2026-05-16 23:59"
+            }
+          ],
+          "rules": [
+            "Cycle Track Open Until 7:00 AM\t2026-05-16T05:00\t\tMay 16, 2026, 5:00 AM - 7:00 AM",
+            "Cycle Track Open After 6:45 PM\t2026-05-16T18:45\t\tMay 16, 2026, 6:45 PM"
+          ]
+        }
+      },
+      {
+        "recognizer": "calendarRecognizer",
+        "rules": {
+          "type": "known_rules",
+          "text": "2026-05-17",
+          "start_date": "2026-05-17",
+          "end_date": "2026-05-17",
+          "intervals": [
+            {
+              "open": true,
+              "start_timestamp": "2026-05-17 00:00",
+              "end_timestamp": "2026-05-17 23:59"
+            }
+          ],
+          "rules": [
+            "Cycle Track Open All Day\t2026-05-17T05:00\t\tMay 17, 2026, 5:00 AM"
+          ]
+        }
+      },
+      {
+        "recognizer": "calendarRecognizer",
+        "rules": {
+          "type": "known_rules",
+          "text": "2026-05-19",
+          "start_date": "2026-05-19",
+          "end_date": "2026-05-19",
+          "intervals": [
+            {
+              "open": true,
+              "start_timestamp": "2026-05-19 00:00",
+              "end_timestamp": "2026-05-19 17:59"
+            },
+            {
+              "open": false,
+              "start_timestamp": "2026-05-19 18:00",
+              "end_timestamp": "2026-05-19 20:29"
+            },
+            {
+              "open": true,
+              "start_timestamp": "2026-05-19 20:30",
+              "end_timestamp": "2026-05-19 23:59"
+            }
+          ],
+          "rules": [
+            "Cycle Track Open Until 6:00 PM\t2026-05-19T05:00\t\tMay 19, 2026, 5:00 AM - 6:00 PM",
+            "Cycle Track Open After 8:30 PM\t2026-05-19T20:30\t\tMay 19, 2026, 8:30 PM"
+          ]
+        }
+      },
+      {
+        "recognizer": "calendarRecognizer",
+        "rules": {
+          "type": "known_rules",
+          "text": "2026-05-20",
+          "start_date": "2026-05-20",
+          "end_date": "2026-05-20",
+          "intervals": [
+            {
+              "open": true,
+              "start_timestamp": "2026-05-20 00:00",
+              "end_timestamp": "2026-05-20 23:59"
+            }
+          ],
+          "rules": [
+            "Cycle Track Open All Day\t2026-05-20T05:00\t\tMay 20, 2026, 5:00 AM"
+          ]
+        }
+      },
+      {
+        "recognizer": "calendarRecognizer",
+        "rules": {
+          "type": "known_rules",
+          "text": "2026-05-21",
+          "start_date": "2026-05-21",
+          "end_date": "2026-05-21",
+          "intervals": [
+            {
+              "open": true,
+              "start_timestamp": "2026-05-21 00:00",
+              "end_timestamp": "2026-05-21 17:59"
+            },
+            {
+              "open": false,
+              "start_timestamp": "2026-05-21 18:00",
+              "end_timestamp": "2026-05-21 20:29"
+            },
+            {
+              "open": true,
+              "start_timestamp": "2026-05-21 20:30",
+              "end_timestamp": "2026-05-21 23:59"
+            }
+          ],
+          "rules": [
+            "Cycle Track Open Until 6:00 PM\t2026-05-21T05:00\t\tMay 21, 2026, 5:00 AM - 6:00 PM",
+            "Cycle Track Open After 8:30 PM\t2026-05-21T20:30\t\tMay 21, 2026, 8:30 PM"
+          ]
+        }
+      },
+      {
+        "recognizer": "calendarRecognizer",
+        "rules": {
+          "type": "known_rules",
+          "text": "2026-05-22",
+          "start_date": "2026-05-22",
+          "end_date": "2026-05-22",
+          "intervals": [
+            {
+              "open": true,
+              "start_timestamp": "2026-05-22 00:00",
+              "end_timestamp": "2026-05-22 23:59"
+            }
+          ],
+          "rules": [
+            "Cycle Track Open All Day\t2026-05-22T05:00\t\tMay 22, 2026, 5:00 AM"
+          ]
+        }
+      },
+      {
+        "recognizer": "calendarRecognizer",
+        "rules": {
+          "type": "known_rules",
+          "text": "2026-05-23",
+          "start_date": "2026-05-23",
+          "end_date": "2026-05-23",
+          "intervals": [
+            {
+              "open": true,
+              "start_timestamp": "2026-05-23 00:00",
+              "end_timestamp": "2026-05-23 23:59"
+            }
+          ],
+          "rules": [
+            "Cycle Track Open All Day\t2026-05-23T05:00\t\tMay 23, 2026, 5:00 AM"
+          ]
+        }
+      },
+      {
+        "recognizer": "calendarRecognizer",
+        "rules": {
+          "type": "known_rules",
+          "text": "2026-05-24",
+          "start_date": "2026-05-24",
+          "end_date": "2026-05-24",
+          "intervals": [
+            {
+              "open": true,
+              "start_timestamp": "2026-05-24 00:00",
+              "end_timestamp": "2026-05-24 23:59"
+            }
+          ],
+          "rules": [
+            "Cycle Track Open All Day\t2026-05-24T05:00\t\tMay 24, 2026, 5:00 AM"
+          ]
+        }
+      },
+      {
+        "recognizer": "calendarRecognizer",
+        "rules": {
+          "type": "known_rules",
+          "text": "2026-05-25",
+          "start_date": "2026-05-25",
+          "end_date": "2026-05-25",
+          "intervals": [
+            {
+              "open": true,
+              "start_timestamp": "2026-05-25 00:00",
+              "end_timestamp": "2026-05-25 23:59"
+            }
+          ],
+          "rules": [
+            "Cycle Track Open All Day\t2026-05-25T05:00\t\tMay 25, 2026, 5:00 AM"
+          ]
+        }
+      },
+      {
+        "recognizer": "calendarRecognizer",
+        "rules": {
+          "type": "known_rules",
+          "text": "2026-05-26",
+          "start_date": "2026-05-26",
+          "end_date": "2026-05-26",
+          "intervals": [
+            {
+              "open": true,
+              "start_timestamp": "2026-05-26 00:00",
+              "end_timestamp": "2026-05-26 23:59"
+            }
+          ],
+          "rules": [
+            "Cycle Track Open All Day\t2026-05-26T05:00\t\tMay 26, 2026, 5:00 AM"
+          ]
+        }
+      },
+      {
+        "recognizer": "calendarRecognizer",
+        "rules": {
+          "type": "known_rules",
+          "text": "2026-05-27",
+          "start_date": "2026-05-27",
+          "end_date": "2026-05-27",
+          "intervals": [
+            {
+              "open": true,
+              "start_timestamp": "2026-05-27 00:00",
+              "end_timestamp": "2026-05-27 23:59"
+            }
+          ],
+          "rules": [
+            "Cycle Track Open All Day\t2026-05-27T05:00\t\tMay 27, 2026, 5:00 AM"
+          ]
+        }
+      },
+      {
+        "recognizer": "calendarRecognizer",
+        "rules": {
+          "type": "known_rules",
+          "text": "2026-05-28",
+          "start_date": "2026-05-28",
+          "end_date": "2026-05-28",
+          "intervals": [
+            {
+              "open": true,
+              "start_timestamp": "2026-05-28 00:00",
+              "end_timestamp": "2026-05-28 23:59"
+            }
+          ],
+          "rules": [
+            "Cycle Track Open All Day\t2026-05-28T05:00\t\tMay 28, 2026, 5:00 AM"
+          ]
+        }
+      },
+      {
+        "recognizer": "calendarRecognizer",
+        "rules": {
+          "type": "known_rules",
+          "text": "2026-05-29",
+          "start_date": "2026-05-29",
+          "end_date": "2026-05-29",
+          "intervals": [
+            {
+              "open": true,
+              "start_timestamp": "2026-05-29 00:00",
+              "end_timestamp": "2026-05-29 23:59"
+            }
+          ],
+          "rules": [
+            "Cycle Track Open All Day\t2026-05-29T05:00\t\tMay 29, 2026, 5:00 AM"
+          ]
+        }
+      },
+      {
+        "recognizer": "calendarRecognizer",
+        "rules": {
+          "type": "known_rules",
+          "text": "2026-05-30",
+          "start_date": "2026-05-30",
+          "end_date": "2026-05-30",
+          "intervals": [
+            {
+              "open": true,
+              "start_timestamp": "2026-05-30 00:00",
+              "end_timestamp": "2026-05-30 23:59"
+            }
+          ],
+          "rules": [
+            "Cycle Track Open All Day\t2026-05-30T05:00\t\tMay 30, 2026, 5:00 AM"
+          ]
+        }
+      },
+      {
+        "recognizer": "calendarRecognizer",
+        "rules": {
+          "type": "known_rules",
+          "text": "2026-05-31",
+          "start_date": "2026-05-31",
+          "end_date": "2026-05-31",
+          "intervals": [
+            {
+              "open": true,
+              "start_timestamp": "2026-05-31 00:00",
+              "end_timestamp": "2026-05-31 23:59"
+            }
+          ],
+          "rules": [
+            "Cycle Track Open All Day\t2026-05-31T05:00\t\tMay 31, 2026, 5:00 AM"
+          ]
+        }
+      },
+      {
+        "recognizer": "calendarRecognizer",
+        "rules": {
+          "type": "known_rules",
+          "text": "2026-06-01",
+          "start_date": "2026-06-01",
+          "end_date": "2026-06-01",
+          "intervals": [
+            {
+              "open": true,
+              "start_timestamp": "2026-06-01 00:00",
+              "end_timestamp": "2026-06-01 23:59"
+            }
+          ],
+          "rules": [
+            "Cycle Track Open All Day\t2026-06-01T05:00\t\tJune 1, 2026, 5:00 AM"
+          ]
+        }
+      },
+      {
+        "recognizer": "calendarRecognizer",
+        "rules": {
+          "type": "known_rules",
+          "text": "2026-06-02",
+          "start_date": "2026-06-02",
+          "end_date": "2026-06-02",
+          "intervals": [
+            {
+              "open": true,
+              "start_timestamp": "2026-06-02 00:00",
+              "end_timestamp": "2026-06-02 23:59"
+            }
+          ],
+          "rules": [
+            "Cycle Track Open All Day\t2026-06-02T05:00\t\tJune 2, 2026, 5:00 AM"
+          ]
+        }
+      },
+      {
+        "recognizer": "calendarRecognizer",
+        "rules": {
+          "type": "known_rules",
+          "text": "2026-06-03",
+          "start_date": "2026-06-03",
+          "end_date": "2026-06-03",
+          "intervals": [
+            {
+              "open": true,
+              "start_timestamp": "2026-06-03 00:00",
+              "end_timestamp": "2026-06-03 23:59"
+            }
+          ],
+          "rules": [
+            "Cycle Track Open All Day\t2026-06-03T05:00\t\tJune 3, 2026, 5:00 AM"
+          ]
+        }
+      },
+      {
+        "recognizer": "calendarRecognizer",
+        "rules": {
+          "type": "known_rules",
+          "text": "2026-06-04",
+          "start_date": "2026-06-04",
+          "end_date": "2026-06-04",
+          "intervals": [
+            {
+              "open": true,
+              "start_timestamp": "2026-06-04 00:00",
+              "end_timestamp": "2026-06-04 23:59"
+            }
+          ],
+          "rules": [
+            "Cycle Track Open All Day\t2026-06-04T05:00\t\tJune 4, 2026, 5:00 AM"
+          ]
+        }
+      },
+      {
+        "recognizer": "calendarRecognizer",
+        "rules": {
+          "type": "known_rules",
+          "text": "2026-06-05",
+          "start_date": "2026-06-05",
+          "end_date": "2026-06-05",
+          "intervals": [
+            {
+              "open": true,
+              "start_timestamp": "2026-06-05 00:00",
+              "end_timestamp": "2026-06-05 23:59"
+            }
+          ],
+          "rules": [
+            "Cycle Track Open All Day\t2026-06-05T05:00\t\tJune 5, 2026, 5:00 AM"
+          ]
+        }
+      },
+      {
+        "recognizer": "calendarRecognizer",
+        "rules": {
+          "type": "known_rules",
+          "text": "2026-06-06",
+          "start_date": "2026-06-06",
+          "end_date": "2026-06-06",
+          "intervals": [
+            {
+              "open": true,
+              "start_timestamp": "2026-06-06 00:00",
+              "end_timestamp": "2026-06-06 06:59"
+            },
+            {
+              "open": false,
+              "start_timestamp": "2026-06-06 07:00",
+              "end_timestamp": "2026-06-06 16:29"
+            },
+            {
+              "open": true,
+              "start_timestamp": "2026-06-06 16:30",
+              "end_timestamp": "2026-06-06 23:59"
+            }
+          ],
+          "rules": [
+            "Cycle Track Open Until 7 AM\t2026-06-06T05:00\t\tJune 6, 2026, 5:00 AM - 7:00 AM",
+            "Cycle Track Open After 4:30 PM\t2026-06-06T16:30\t\tJune 6, 2026, 4:30 PM"
+          ]
+        }
+      },
+      {
+        "recognizer": "calendarRecognizer",
+        "rules": {
+          "type": "known_rules",
+          "text": "2026-06-07",
+          "start_date": "2026-06-07",
+          "end_date": "2026-06-07",
+          "intervals": [
+            {
+              "open": true,
+              "start_timestamp": "2026-06-07 00:00",
+              "end_timestamp": "2026-06-07 05:59"
+            },
+            {
+              "open": false,
+              "start_timestamp": "2026-06-07 06:00",
+              "end_timestamp": "2026-06-07 14:29"
+            },
+            {
+              "open": true,
+              "start_timestamp": "2026-06-07 14:30",
+              "end_timestamp": "2026-06-07 23:59"
+            }
+          ],
+          "rules": [
+            "Cycle Track Open Until 6:00 AM\t2026-06-07T05:00\t\tJune 7, 2026, 5:00 AM - 6:00 AM",
+            "Cycle Track Open After 2:30 PM\t2026-06-07T14:30\t\tJune 7, 2026, 2:30 PM"
+          ]
+        }
+      },
+      {
+        "recognizer": "calendarRecognizer",
+        "rules": {
+          "type": "known_rules",
+          "text": "2026-06-08",
+          "start_date": "2026-06-08",
+          "end_date": "2026-06-08",
+          "intervals": [
+            {
+              "open": true,
+              "start_timestamp": "2026-06-08 00:00",
+              "end_timestamp": "2026-06-08 23:59"
+            }
+          ],
+          "rules": [
+            "Cycle Track Open All Day\t2026-06-08T05:00\t\tJune 8, 2026, 5:00 AM"
+          ]
+        }
+      },
+      {
+        "recognizer": "calendarRecognizer",
+        "rules": {
+          "type": "known_rules",
+          "text": "2026-06-09",
+          "start_date": "2026-06-09",
+          "end_date": "2026-06-09",
+          "intervals": [
+            {
+              "open": true,
+              "start_timestamp": "2026-06-09 00:00",
+              "end_timestamp": "2026-06-09 23:59"
+            }
+          ],
+          "rules": [
+            "Cycle Track Open All Day\t2026-06-09T05:00\t\tJune 9, 2026, 5:00 AM"
+          ]
+        }
+      },
+      {
+        "recognizer": "calendarRecognizer",
+        "rules": {
+          "type": "known_rules",
+          "text": "2026-06-10",
+          "start_date": "2026-06-10",
+          "end_date": "2026-06-10",
+          "intervals": [
+            {
+              "open": true,
+              "start_timestamp": "2026-06-10 00:00",
+              "end_timestamp": "2026-06-10 23:59"
+            }
+          ],
+          "rules": [
+            "Cycle Track Open All Day\t2026-06-10T05:00\t\tJune 10, 2026, 5:00 AM"
+          ]
+        }
+      },
+      {
+        "recognizer": "calendarRecognizer",
+        "rules": {
+          "type": "known_rules",
+          "text": "2026-06-11",
+          "start_date": "2026-06-11",
+          "end_date": "2026-06-11",
+          "intervals": [
+            {
+              "open": true,
+              "start_timestamp": "2026-06-11 00:00",
+              "end_timestamp": "2026-06-11 23:59"
+            }
+          ],
+          "rules": [
+            "Cycle Track Open All Day\t2026-06-11T05:00\t\tJune 11, 2026, 5:00 AM"
+          ]
+        }
+      },
+      {
+        "recognizer": "calendarRecognizer",
+        "rules": {
+          "type": "known_rules",
+          "text": "2026-06-12",
+          "start_date": "2026-06-12",
+          "end_date": "2026-06-12",
+          "intervals": [
+            {
+              "open": true,
+              "start_timestamp": "2026-06-12 00:00",
+              "end_timestamp": "2026-06-12 23:59"
+            }
+          ],
+          "rules": [
+            "Cycle Track Open All Day\t2026-06-12T05:00\t\tJune 12, 2026, 5:00 AM"
+          ]
+        }
+      },
+      {
+        "recognizer": "calendarRecognizer",
+        "rules": {
+          "type": "known_rules",
+          "text": "2026-06-13",
+          "start_date": "2026-06-13",
+          "end_date": "2026-06-13",
+          "intervals": [
+            {
+              "open": true,
+              "start_timestamp": "2026-06-13 00:00",
+              "end_timestamp": "2026-06-13 23:59"
+            }
+          ],
+          "rules": [
+            "Cycle Track Open All Day\t2026-06-13T05:00\t\tJune 13, 2026, 5:00 AM"
+          ]
+        }
+      },
+      {
+        "recognizer": "calendarRecognizer",
+        "rules": {
+          "type": "known_rules",
+          "text": "2026-06-14",
+          "start_date": "2026-06-14",
+          "end_date": "2026-06-14",
+          "intervals": [
+            {
+              "open": true,
+              "start_timestamp": "2026-06-14 00:00",
+              "end_timestamp": "2026-06-14 23:59"
+            }
+          ],
+          "rules": [
+            "Cycle Track Open All Day\t2026-06-14T05:00\t\tJune 14, 2026, 5:00 AM"
           ]
         }
       }
