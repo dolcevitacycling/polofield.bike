@@ -1,9 +1,10 @@
-import { parseDate, addDays, getTodayPacific } from "./dates";
+import { parseDate, addDays, getTodayPacific, shortDateStyle } from "./dates";
 import { discordReport, runDiscordWebhook } from "./discord";
 import { CalendarScraper, currentCalendarUrl } from "./scrapeCalendar";
 import { runSlackWebhook } from "./slack";
 import { Bindings } from "./types";
 import { fetchFieldRainoutInfo } from "./scrapeFieldRainoutInfo";
+import { applyScrapePatches, loadScrapePatches } from "./patches";
 
 export const POLO_URL = "https://www.sfrecpark.org/526/Polo-Field-Usage";
 
@@ -152,11 +153,16 @@ export async function cachedScrapeResult(
   env: Bindings,
 ): Promise<CachedScrapeResult> {
   const results = await recentScrapedResults(env, 1);
-  if (results.length === 0) {
-    console.error(`Expected cached row in scraped_results`);
-    return await refreshScrapeResult(env);
-  }
-  return results[0];
+  const base =
+    results.length === 0
+      ? (console.error(`Expected cached row in scraped_results`),
+        await refreshScrapeResult(env))
+      : results[0];
+  const patches = await loadScrapePatches(env);
+  return {
+    created_at: base.created_at,
+    scrape_results: applyScrapePatches(base.scrape_results, patches),
+  };
 }
 
 export async function refreshScrapeResult(
@@ -230,7 +236,22 @@ export type DailyWebhookStatusRow = Record<
   string
 >;
 
-export async function runWebhookRow(
+// Atomic "claim": flips last_update_utc forward iff the row hasn't been claimed
+// today yet. Returns true if this caller acquired the right to post.
+export async function claimWebhookRow(
+  env: Bindings,
+  today: string,
+  webhook_url: string,
+): Promise<boolean> {
+  const res = await env.DB.prepare(
+    `UPDATE daily_webhook_status SET last_update_utc = ? WHERE webhook_url = ? AND last_update_utc < ?`,
+  )
+    .bind(today, webhook_url, today)
+    .run();
+  return res.meta.changes === 1;
+}
+
+export async function postWebhookRow(
   env: Bindings,
   today: string,
   scrape_results: ScrapeResult,
@@ -238,27 +259,37 @@ export async function runWebhookRow(
 ): Promise<void> {
   const tomorrow = addDays(parseDate(today), 1);
   const params = JSON.parse(row.params_json);
+  let payload: unknown;
+  let response: unknown;
   if (params.type === "discord") {
-    await runDiscordWebhook(env, {
+    ({ payload, response } = await runDiscordWebhook(env, {
       webhook_url: row.webhook_url,
       date: tomorrow,
       params: params,
       scrape_results,
-    });
+    }));
   } else if (params.type === "slack:chat.postMessage") {
-    await runSlackWebhook(env, {
+    ({ payload, response } = await runSlackWebhook(env, {
       webhook_url: row.webhook_url,
       date: tomorrow,
       params: params,
       scrape_results,
-    });
+    }));
   } else {
     throw new Error(`Unknown webhook type: ${params.type}`);
   }
   await env.DB.prepare(
-    `UPDATE daily_webhook_status SET last_update_utc = ? WHERE webhook_url = ?`,
+    `UPDATE daily_webhook_status
+       SET last_post_date = ?, last_post_at = ?, last_post_payload_json = ?, last_post_response_json = ?
+       WHERE webhook_url = ?`,
   )
-    .bind(today, row.webhook_url)
+    .bind(
+      shortDateStyle.format(tomorrow),
+      new Date().toISOString(),
+      JSON.stringify(payload),
+      JSON.stringify(response),
+      row.webhook_url,
+    )
     .run();
 }
 
@@ -276,9 +307,11 @@ export async function runWebhooks(
     .bind(today)
     .all<DailyWebhookStatusRow>();
   await Promise.allSettled(
-    rows.results.map(async (row) =>
-      runWebhookRow(env, today, scrape_results, row),
-    ),
+    rows.results.map(async (row) => {
+      if (await claimWebhookRow(env, today, row.webhook_url)) {
+        await postWebhookRow(env, today, scrape_results, row);
+      }
+    }),
   );
 }
 

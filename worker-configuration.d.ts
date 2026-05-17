@@ -18,6 +18,7 @@ declare namespace Cloudflare {
 		DISCORD_TOKEN: string;
 		DISCORD_WEBHOOK_URL: string;
 		DISCORD_DIAGNOSTICS_WEBHOOK_URL: string;
+		ADMIN_TOKEN: string;
 		DB: D1Database;
 		ASSETS: Fetcher;
 		SCRAPE_POLO_WORKFLOW: Workflow;

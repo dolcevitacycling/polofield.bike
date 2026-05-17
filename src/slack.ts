@@ -175,16 +175,35 @@ export interface RunSlackWebhookParams {
 export async function runSlackWebhook(
   env: Bindings,
   { webhook_url, date, params, scrape_results }: RunSlackWebhookParams,
-): Promise<void> {
-  const res = await slackApiPost({ env }, "chat.postMessage", {
+): Promise<{ payload: unknown; response: unknown }> {
+  const payload = {
     blocks: [sectionBlockForDay(scrape_results, date)],
     channel: env.SLACK_CHANNEL_ID,
-  });
+  };
+  const res = await slackApiPost({ env }, "chat.postMessage", payload);
+  const text = await res.text();
   if (!res.ok) {
-    const msg = `Failed to run webhook ${webhook_url} ${res.status} ${await res.text()}`;
+    const msg = `Failed to run webhook ${webhook_url} ${res.status} ${text}`;
     console.error(msg);
     throw new Error(msg);
   }
+  let response: unknown;
+  try {
+    response = JSON.parse(text);
+  } catch {
+    response = text;
+  }
+  // chat.postMessage returns 200 with `{ ok: false, error }` for logical errors
+  if (
+    response &&
+    typeof response === "object" &&
+    (response as { ok?: unknown }).ok === false
+  ) {
+    const msg = `Slack chat.postMessage failed: ${text}`;
+    console.error(msg);
+    throw new Error(msg);
+  }
+  return { payload, response };
 }
 
 export async function slackPolo(c: Context<{ Bindings: Bindings }>) {

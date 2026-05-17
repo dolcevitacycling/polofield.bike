@@ -1,5 +1,11 @@
 import { NonRetryableError } from "cloudflare:workflows";
-import { bootstrapWebhooks, runWebhookRow, ScrapeResultsRow } from "../cron";
+import {
+  bootstrapWebhooks,
+  claimWebhookRow,
+  postWebhookRow,
+  ScrapeResultsRow,
+} from "../cron";
+import { applyScrapePatches, loadScrapePatches } from "../patches";
 import { getTodayPacific } from "../dates";
 import { discordReport } from "../discord";
 import {
@@ -119,22 +125,23 @@ export class ScrapePoloWorkflow extends WorkflowEntrypoint<Env, Params> {
       return res.results;
     });
 
+    const patchedResult = await step.do("applyPatches", async () =>
+      applyScrapePatches(result, await loadScrapePatches(this.env)),
+    );
+
     await Promise.all(
-      webhooks.map(async (row, i) =>
-        step.do(
-          `runWebhookRow ${i} ${row.webhook_url} ${row.last_update_utc} < ${today}`,
-          async () => {
-            const stillNeedsPost = await this.env.DB.prepare(
-              `SELECT 1 FROM daily_webhook_status WHERE webhook_url = ? AND last_update_utc < ?`,
-            )
-              .bind(row.webhook_url, today)
-              .first();
-            if (stillNeedsPost) {
-              await runWebhookRow(this.env, today, result, row);
-            }
-          },
-        ),
-      ),
+      webhooks.map(async (row, i) => {
+        const claimed = await step.do(
+          `claimWebhookRow ${i} ${row.webhook_url} ${row.last_update_utc} < ${today}`,
+          async () => claimWebhookRow(this.env, today, row.webhook_url),
+        );
+        if (claimed) {
+          await step.do(
+            `postWebhookRow ${i} ${row.webhook_url} ${today}`,
+            async () => postWebhookRow(this.env, today, patchedResult, row),
+          );
+        }
+      }),
     );
 
     return logMessages.map((msg) => msg.message);
