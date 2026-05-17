@@ -316,10 +316,17 @@ export async function runWebhooks(
 }
 
 export async function cronBody(env: Bindings): Promise<CachedScrapeResult> {
-  const result = await refreshScrapeResult(env, { log: true });
+  const raw = await refreshScrapeResult(env, { log: true });
+  const patched: CachedScrapeResult = {
+    created_at: raw.created_at,
+    scrape_results: applyScrapePatches(
+      raw.scrape_results,
+      await loadScrapePatches(env),
+    ),
+  };
   await bootstrapWebhooks(env);
-  await runWebhooks(env, result);
-  return result;
+  await runWebhooks(env, patched);
+  return patched;
 }
 
 export async function handleCron(
