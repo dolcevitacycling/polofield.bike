@@ -1,5 +1,4 @@
-import xlsx from "node-xlsx";
-import fetchCookie from "fetch-cookie";
+import { parseXlsx, type Worksheet } from "./xlsx";
 
 const FIELD_RAINOUT_INFO_URL =
   "https://fs18.formsite.com/res/resultsReportTable?EParam=B6fiTn%2BRcO5gxPxCLTtif%2FTBZfQjAcbzwCi9jw02kUQSq0hsyAedVkhBtIa3wGQcGW07E1SN8yI%3D";
@@ -45,46 +44,40 @@ export function isTrackOpen(status: PoloFieldStatus) {
   return status.trackOpen;
 }
 
+function forwardCookies(setCookie: readonly string[]): string {
+  // We only need to echo whatever the first response set us; no jar needed.
+  return setCookie
+    .map((c) => {
+      const semi = c.indexOf(";");
+      return semi === -1 ? c : c.slice(0, semi);
+    })
+    .filter((c) => c.includes("="))
+    .join("; ");
+}
+
 export async function downloadFieldRainoutInfoXLSX(): Promise<ArrayBuffer> {
   /**
    * Fetch the field rainout info as an XLSX.
    *
-   * This request fails if we don't set cookies in the header, so we do a base request first,
-   * then sub the cookies from that response into the next request.
+   * This request fails if we don't set cookies in the header, so we do a base
+   * request first to pick up the session cookies, then forward them on the
+   * export request.
    */
-  const fetchWithCookies = fetchCookie(fetch);
-  // This has the side-effect of setting the cookie to authorize the export request
-  await fetchWithCookies(FIELD_RAINOUT_INFO_URL).then((res) => res.text());
-  const response = await fetchWithCookies(FIELD_RAINOUT_EXPORT_URL);
-  const blob = await response.blob();
-  return await blob.arrayBuffer();
+  const initial = await fetch(FIELD_RAINOUT_INFO_URL);
+  await initial.arrayBuffer(); // drain body so the connection is released
+  const setCookie = initial.headers.getSetCookie?.() ?? [];
+  const cookie = forwardCookies(setCookie);
+  const response = await fetch(FIELD_RAINOUT_EXPORT_URL, {
+    headers: cookie ? { cookie } : undefined,
+  });
+  return await response.arrayBuffer();
 }
 
-function withPatchedConsoleError<T>(fn: () => T): T {
-  const originalConsoleError = console.error;
-  try {
-    console.error = (...args: any[]) => {
-      if (
-        typeof args[0] === "string" &&
-        /^Bad (un)?compressed size/.test(args[0])
-      ) {
-        return;
-      }
-      originalConsoleError.apply(console, args);
-    };
-    return fn();
-  } finally {
-    console.error = originalConsoleError;
-  }
-}
-
-export const downloadFieldRainoutInfo = async (rawSheet?: ArrayBuffer) => {
-  /**
-   * Fetch the field rainout info as a parsed XLSX.
-   *
-   */
+export const downloadFieldRainoutInfo = async (
+  rawSheet?: ArrayBuffer,
+): Promise<Worksheet[]> => {
   const arrayBuffer = rawSheet ?? (await downloadFieldRainoutInfoXLSX());
-  return withPatchedConsoleError(() => xlsx.parse(arrayBuffer, { raw: false }));
+  return await parseXlsx(arrayBuffer);
 };
 
 export function parseFieldRainoutRowDate(row: string[]) {
@@ -200,7 +193,7 @@ export const parseFieldRainoutInfo = (
 
 export const fetchFieldRainoutInfo = async (
   oldestYear: number,
-  worksheets?: { name: string; data: any[][] }[],
+  worksheets?: Worksheet[],
 ): Promise<FieldRainoutInfo> => {
   worksheets ||= await downloadFieldRainoutInfo();
 
