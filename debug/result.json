@@ -2252,23 +2252,15 @@
           "intervals": [
             {
               "open": true,
+              "comment": "Field Rained Out, Cycle Track Open All Day",
               "start_timestamp": "2026-04-10 00:00",
-              "end_timestamp": "2026-04-10 13:59"
-            },
-            {
-              "open": false,
-              "start_timestamp": "2026-04-10 14:00",
-              "end_timestamp": "2026-04-10 18:44"
-            },
-            {
-              "open": true,
-              "start_timestamp": "2026-04-10 18:45",
               "end_timestamp": "2026-04-10 23:59"
             }
           ],
           "rules": [
             "Cycle Track Open Until 2:00 PM\t2026-04-10T07:00\t\tApril 10, 2026, 7:00 AM - 2:00 PM",
-            "Cycle Track Open After 6:45 PM\t2026-04-10T18:45\t\tApril 10, 2026, 6:45 PM"
+            "Cycle Track Open After 6:45 PM\t2026-04-10T18:45\t\tApril 10, 2026, 6:45 PM",
+            "Field Rained Out\t2026-04-10\t\t"
           ]
         }
       },
@@ -2312,23 +2304,15 @@
           "intervals": [
             {
               "open": true,
+              "comment": "Field Rained Out, Cycle Track Open All Day",
               "start_timestamp": "2026-04-12 00:00",
-              "end_timestamp": "2026-04-12 09:59"
-            },
-            {
-              "open": false,
-              "start_timestamp": "2026-04-12 10:00",
-              "end_timestamp": "2026-04-12 18:29"
-            },
-            {
-              "open": true,
-              "start_timestamp": "2026-04-12 18:30",
               "end_timestamp": "2026-04-12 23:59"
             }
           ],
           "rules": [
             "Cycle Track Open Until 10:00 AM\t2026-04-12T05:00\t\tApril 12, 2026, 5:00 AM - 10:00 AM",
-            "Cycle Track Open After 6:30 PM\t2026-04-12T18:30\t\tApril 12, 2026, 6:30 PM"
+            "Cycle Track Open After 6:30 PM\t2026-04-12T18:30\t\tApril 12, 2026, 6:30 PM",
+            "Field Rained Out\t2026-04-12\t\t"
           ]
         }
       },
