@@ -22,7 +22,7 @@
     "start": "wrangler dev",
     "deploy": "wrangler deploy",
     "wrangler": "wrangler",
-    "generate-types": "wrangler types",
+    "generate-types": "wrangler types --strict-vars=false",
     "test": "vitest --run",
     "test:network": "TEST_NETWORK=1 npm run test",
     "vitest": "vitest",
