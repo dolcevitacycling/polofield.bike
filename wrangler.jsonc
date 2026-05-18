@@ -29,15 +29,26 @@
   "triggers": {
     "crons": ["*/20 * * * *"],
   },
+  // Names of every secret/var the worker reads from `c.env`. Empty strings here
+  // are placeholders so `wrangler types` (CI included) can generate the right
+  // `Env` interface without a local `.dev.vars`. Real values are set via
+  // `wrangler secret put <NAME>`; secrets take precedence over vars at runtime.
   "vars": {
-    // SLACK_APP_ID
-    // SLACK_CLIENT_ID
-    // SLACK_CLIENT_SECRET
-    // SLACK_SIGNING_SECRET
-    // DISCORD_PUBLIC_KEY
-    // DISCORD_CLIENT_ID
-    // DISCORD_CLIENT_SECRET
-    // DISCORD_INVITE_URL
-    // DISCORD_PERMISSIONS_INTEGER
+    "SLACK_APP_ID": "",
+    "SLACK_CLIENT_ID": "",
+    "SLACK_CLIENT_SECRET": "",
+    "SLACK_SIGNING_SECRET": "",
+    "SLACK_BOT_TOKEN": "",
+    "SLACK_CHANNEL_ID": "",
+    "DISCORD_PUBLIC_KEY": "",
+    "DISCORD_CLIENT_ID": "",
+    "DISCORD_CLIENT_SECRET": "",
+    "DISCORD_INVITE_URL": "",
+    "DISCORD_PERMISSIONS_INTEGER": "",
+    "DISCORD_TEST_GUILD_ID": "",
+    "DISCORD_TOKEN": "",
+    "DISCORD_WEBHOOK_URL": "",
+    "DISCORD_DIAGNOSTICS_WEBHOOK_URL": "",
+    "ADMIN_TOKEN": "",
   },
 }
