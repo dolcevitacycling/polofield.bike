@@ -12,6 +12,14 @@ const xml = new XMLParser({
   parseAttributeValue: false,
   parseTagValue: false,
   trimValues: false,
+  // Decode numeric character references like `&#xd;` and `&#xa;` that appear
+  // in formsite-style XLSX exports. Raise the default 1000-expansion guard:
+  // the rainout sheet legitimately has tens of thousands of these.
+  htmlEntities: true,
+  processEntities: {
+    enabled: true,
+    maxTotalExpansions: 1_000_000,
+  },
   // Force these elements to always come back as arrays so callers don't have
   // to special-case the single-element shape that fast-xml-parser produces by
   // default.
@@ -195,8 +203,15 @@ function parseSheet(
           text = fmt ? formatExcelDate(parseFloat(raw), fmt) : raw;
         }
       }
-      line.push(text);
+      // Normalize line endings to LF — XLSX exports commonly carry CRLF via
+      // numeric character references (&#xd;&#xa;), but our consumers and
+      // existing test fixtures use plain LF.
+      line.push(text.replace(/\r\n?/g, "\n"));
     }
+    // Drop trailing empty cells so the row shape matches what node-xlsx /
+    // SheetJS produced (rows without an Additional Information column come
+    // back as 4-element arrays, not 5-element arrays with a trailing "").
+    while (line.length > 0 && line[line.length - 1] === "") line.pop();
     out.push(line);
   }
   return out;

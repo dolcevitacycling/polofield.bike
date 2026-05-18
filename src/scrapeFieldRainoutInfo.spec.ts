@@ -199,4 +199,21 @@ describe("fetchFieldRainoutInfo", () => {
     const parsed = await fetchFieldRainoutInfo(year, worksheets);
     expect(Object.keys(parsed).every((k) => k >= jan1)).toBe(true);
   });
+
+  it("decodes XML entities, normalizes line endings, and trims trailing empty cells", async () => {
+    const worksheets = await downloadFieldRainoutInfo(
+      fs.readFileSync("./debug/fieldRainoutInfo.xlsx").buffer as ArrayBuffer,
+    );
+    const rows = worksheets[0].data;
+    for (const row of rows) {
+      for (const cell of row) {
+        expect(cell).not.toMatch(/&#x[0-9a-f]+;/i);
+        expect(cell).not.toContain("\r");
+      }
+      // Rows with no Additional Information should be 4 cells, not 5-with-""
+      if (row.length > 0) {
+        expect(row[row.length - 1]).not.toBe("");
+      }
+    }
+  });
 });
