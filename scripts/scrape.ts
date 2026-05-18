@@ -1,6 +1,5 @@
 import fs from "fs";
-import { HTMLRewriter } from "@miniflare/html-rewriter";
-import { Response } from "@miniflare/core";
+import { HTMLRewriter } from "html-rewriter-wasm";
 import { CalendarScraper, currentCalendarUrl } from "../src/scrapeCalendar";
 import {
   downloadFieldRainoutInfo,
@@ -33,10 +32,14 @@ async function main() {
     })
   ).text();
   await fs.promises.writeFile("debug/scrape.html", fetchText);
-  const res = new HTMLRewriter()
-    .on("*", scraper)
-    .transform(new Response(fetchText));
-  await res.text();
+  const rewriter = new HTMLRewriter(() => {});
+  rewriter.on("*", scraper);
+  try {
+    await rewriter.write(new TextEncoder().encode(fetchText));
+    await rewriter.end();
+  } finally {
+    rewriter.free();
+  }
   const oldestYear = Math.min(...scraper.years.map((y) => y.year));
   scraper.fieldRainoutInfo = await fetchFieldRainoutInfo(
     oldestYear,
