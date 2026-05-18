@@ -100,27 +100,40 @@ export interface RunDiscordWebhookParams {
   params: { type: "discord" };
   scrape_results: ScrapeResult;
 }
+export interface WebhookPostResult {
+  readonly payload: unknown;
+  readonly response: unknown;
+}
+
 export async function runDiscordWebhook(
   env: Bindings,
   { webhook_url, date, params, scrape_results }: RunDiscordWebhookParams,
-) {
-  const res = await fetch(webhook_url, {
+): Promise<WebhookPostResult> {
+  const payload = {
+    content: poloLineForDay(scrape_results, date),
+    flags: MessageFlags.SuppressNotifications,
+  } satisfies RESTPostAPIWebhookWithTokenJSONBody;
+  // `?wait=true` makes Discord return the created message JSON (with `id`),
+  // which we need to edit the message later.
+  const url = new URL(webhook_url);
+  url.searchParams.set("wait", "true");
+  const res = await fetch(url.toString(), {
     method: "POST",
-    body: JSON.stringify({
-      content: poloLineForDay(scrape_results, date),
-      flags: MessageFlags.SuppressNotifications,
-    } satisfies RESTPostAPIWebhookWithTokenJSONBody),
+    body: JSON.stringify(payload),
     headers: { "Content-Type": "application/json" },
   });
+  const text = await res.text();
   if (!res.ok) {
-    console.error(
-      "Failed to run webhook",
-      webhook_url,
-      res.status,
-      await res.text(),
-    );
+    console.error("Failed to run webhook", webhook_url, res.status, text);
     throw new Error("Failed to run webhook");
   }
+  let response: unknown;
+  try {
+    response = JSON.parse(text);
+  } catch {
+    response = text;
+  }
+  return { payload, response };
 }
 
 export function poloLineForDay(result: ScrapeResult, parsedDate: Date): string {
