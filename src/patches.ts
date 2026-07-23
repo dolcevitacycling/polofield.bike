@@ -5,6 +5,7 @@ import type {
   Year,
 } from "./cron";
 import type { Bindings } from "./types";
+import { applyMemorialRides } from "./memorial";
 
 export interface ScrapePatchRow {
   readonly date: string;
@@ -71,6 +72,9 @@ export function findRuleForDate(
   return null;
 }
 
+// Applies DB-backed scrape patches, then hardcoded memorial ride
+// annotations. This is the single choke point every read path goes through
+// (cachedScrapeResult, cronBody, and the workflow's applyPatches step).
 export function applyScrapePatches(
   result: ScrapeResult,
   patches: readonly ScrapePatch[],
@@ -80,7 +84,7 @@ export function applyScrapePatches(
       canonicalJson(findRuleForDate(result, p.date)) ===
       canonicalJson(p.expected_rule),
   );
-  if (applicable.length === 0) return result;
+  if (applicable.length === 0) return applyMemorialRides(result);
 
   const byYear = new Map<number, KnownRules[]>();
   for (const p of applicable) {
@@ -102,5 +106,5 @@ export function applyScrapePatches(
       out.push({ type: "year", year, rules });
     }
   }
-  return out;
+  return applyMemorialRides(out);
 }

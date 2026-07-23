@@ -41,13 +41,17 @@ function updatePosition(referenceEl, floatingEl, arrowEl) {
     });
   });
 }
+// Flyer image for each memorial ride date (see src/memorial.ts and the
+// 2025-09-07 special case in src/scrapeCalendar.ts).
+const MEMORIAL_FLYERS = {
+  "2025-09-07": "/img/20250907-memorial-ride.png",
+  "2026-07-26": "/img/20260726-memorial-ride.png",
+};
 const memorial = document.createElement("dialog");
 let memorialMounted = false;
-function showMemorial() {
+let memorialSrc;
+function showMemorial(src) {
   if (!memorialMounted) {
-    memorial.innerHTML = `
-<img src="/img/20250907-memorial-ride.png" />
-`;
     memorial.classList.add('memorial-dialog');
     document.body.appendChild(memorial);
     memorial.onclick = (ev) => {
@@ -55,6 +59,12 @@ function showMemorial() {
       memorial.close();
     };
     memorialMounted = true;
+  }
+  if (memorialSrc !== src) {
+    memorial.innerHTML = `
+<img src="${src}" alt="Memorial ride flyer" />
+`;
+    memorialSrc = src;
   }
   memorial.showModal();
 }
@@ -65,9 +75,12 @@ function toggleTooltip(e) {
   const floatingEl = document.getElementById(
     referenceEl.getAttribute("aria-describedby"),
   );
-  if (referenceEl.closest("li")?.dataset.memorial) {
+  const memorialLi = referenceEl.closest("li");
+  if (memorialLi?.dataset.memorial) {
     egg = { reference: null };
-    showMemorial();
+    const date = memorialLi.closest("ul[data-date]")?.dataset.date;
+    const flyer = MEMORIAL_FLYERS[date];
+    if (flyer) showMemorial(flyer);
   } else if (egg.reference === referenceEl) {
     if (++egg.count === 10) {
       referenceEl.querySelector("span").innerHTML =
