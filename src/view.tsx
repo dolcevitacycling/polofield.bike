@@ -224,6 +224,9 @@ function Layout(props: Props) {
           --closed-color: white;
           border: 1px solid black;
         }
+        .open[data-memorial="true"] {
+          border: 1px solid black;
+        }
         .closed .copy {
           position: relative;
           z-index: 0;
@@ -723,7 +726,9 @@ function Interval(props: {
   const { open, comment } = interval;
   const memorial = comment === "Colden Kimber Memorial Ride 💐" || undefined;
   const title = open
-    ? `Open ${friendlyTimeSpan(hStart, hEnd)}\n${sunTimes({
+    ? `Open ${friendlyTimeSpan(hStart, hEnd)}${
+        memorial ? `\n${interval.comment}` : ""
+      }\n${sunTimes({
         hStart,
         hEnd,
         sunrise,
@@ -761,7 +766,7 @@ function Interval(props: {
       ></div>
       <button aria-label={title}>
         <span class="copy">
-          {open ? randomCyclist() : memorial ? BOUQUET : NO_BIKES}
+          {memorial ? BOUQUET : open ? randomCyclist() : NO_BIKES}
         </span>
       </button>
     </li>
