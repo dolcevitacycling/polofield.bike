@@ -1,0 +1,6 @@
+node_modules
+dist
+# Generated: wrangler types output and committed scrape artifacts.
+worker-configuration.d.ts
+debug/
+package-lock.json

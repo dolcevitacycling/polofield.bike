@@ -56,8 +56,9 @@ function Layout(props: Props) {
     <html>
       <head>
         <title>
-          ${props.title ??
-          `Polo Field Schedule for ${friendlyDate(props.date)}`}
+          ${
+            props.title ?? `Polo Field Schedule for ${friendlyDate(props.date)}`
+          }
         </title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         ${linkRelIcon(props.titlePrefix)}
@@ -213,7 +214,7 @@ function Layout(props: Props) {
           overflow: hidden;
         }
         .memorial-dialog::backdrop {
-          background-image: linear-gradient(-45deg, #3A1C71 0%, #FDBB2D 100%);
+          background-image: linear-gradient(-45deg, #3a1c71 0%, #fdbb2d 100%);
           opacity: 0.85;
         }
         .memorial-dialog img {

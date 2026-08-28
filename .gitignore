@@ -13,3 +13,4 @@ node_modules
 .dev.vars
 *.code-workspace
 ~$*.xlsx
+dist

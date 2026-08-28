@@ -27,7 +27,8 @@
     "vitest": "vitest",
     "check": "tsc --noEmit --skipLibCheck",
     "check-updates": "npx npm-check-updates",
-    "format": "prettier --write 'src/**/*.{js,ts,css,json,md}'",
+    "format": "prettier --write .",
+    "format:check": "prettier --check .",
     "scrape": "tsx scripts/scrape.ts",
     "tsc": "tsc"
   },

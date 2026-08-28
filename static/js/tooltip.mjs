@@ -52,7 +52,7 @@ let memorialMounted = false;
 let memorialSrc;
 function showMemorial(src) {
   if (!memorialMounted) {
-    memorial.classList.add('memorial-dialog');
+    memorial.classList.add("memorial-dialog");
     document.body.appendChild(memorial);
     memorial.onclick = (ev) => {
       ev.preventDefault();
