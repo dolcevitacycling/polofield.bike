@@ -397,6 +397,110 @@ describe("names without Open/Closed", () => {
   });
 });
 
+describe("names upstream invented later", () => {
+  // "Before" is a synonym for "Until" (first seen 2026-09-01, on 47 days).
+  it("parses 'Open Before 2:00 PM' the same as 'Open Until 2:00 PM'", () => {
+    const entries = (name: string) => [
+      {
+        name,
+        startDate: "2026-09-01T05:00",
+        description: "",
+        subHeaderDate: "September 1, 2026, 5:00 AM - 2:00 PM",
+        headingName: name,
+      },
+    ];
+    const before = getIntervals(
+      { date: "2026-09-01", entries: entries("Cycle Track Open Before 2:00 PM") },
+      false,
+    );
+    const until = getIntervals(
+      { date: "2026-09-01", entries: entries("Cycle Track Open Until 2:00 PM") },
+      false,
+    );
+    expect(before).toEqual(until);
+    expect(before).toEqual([
+      {
+        open: true,
+        start_timestamp: "2026-09-01 00:00",
+        end_timestamp: "2026-09-01 13:59",
+      },
+      {
+        open: false,
+        start_timestamp: "2026-09-01 14:00",
+        end_timestamp: "2026-09-01 23:59",
+      },
+    ]);
+  });
+
+  // A reason with no parentheses (first seen 2026-10-02). The subHeaderDate
+  // carries no time range either, so this only parses if the name alone is
+  // fully understood.
+  it("parses 'Closed All Day Due to Special Event'", () => {
+    expect(
+      getIntervals(
+        {
+          date: "2026-10-02",
+          entries: [
+            {
+              name: "Cycle Track Closed All Day Due to Special Event",
+              startDate: "2026-10-02T05:00",
+              description: "",
+              subHeaderDate: "October 2, 2026, 5:00 AM",
+              headingName: "Cycle Track Closed All Day Due to Special Event",
+            },
+          ],
+        },
+        false,
+      ),
+    ).toEqual([
+      {
+        open: false,
+        comment: "Special Event",
+        start_timestamp: "2026-10-02 00:00",
+        end_timestamp: "2026-10-02 23:59",
+      },
+    ]);
+  });
+
+  // Parenthesised reasons must keep working.
+  it("still parses a parenthesised reason", () => {
+    expect(
+      getIntervals(
+        {
+          date: "2026-05-16",
+          entries: [
+            {
+              name: "Cycle Track Closed (Event Preparation, Event & Load Out)",
+              startDate: "2026-05-16T05:00",
+              description: "",
+              subHeaderDate: "May 16, 2026, 5:00 AM - 8:00 PM",
+              headingName: "Cycle Track Closed (Event Preparation, Event & Load Out)",
+            },
+          ],
+        },
+        false,
+      ),
+    ).toEqual([
+      {
+        open: true,
+        start_timestamp: "2026-05-16 00:00",
+        end_timestamp: "2026-05-16 04:59",
+      },
+      {
+        open: false,
+        comment: "Event Preparation, Event & Load Out",
+        start_timestamp: "2026-05-16 05:00",
+        end_timestamp: "2026-05-16 19:59",
+      },
+      {
+        open: true,
+        start_timestamp: "2026-05-16 20:00",
+        end_timestamp: "2026-05-16 23:59",
+      },
+    ]);
+  });
+});
+
 describe("unparseable entries degrade to unknown_rules", () => {
   it("does not throw for a name no parser understands", () => {
     const result = getScrapeDebugResult({

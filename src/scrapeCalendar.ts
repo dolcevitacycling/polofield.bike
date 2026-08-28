@@ -17,6 +17,7 @@ import {
   reParser,
   optional,
   apFirst,
+  type Parser,
 } from "./parsing";
 import { FieldRainoutInfo } from "./scrapeFieldRainoutInfo";
 
@@ -158,9 +159,9 @@ const ALL_DAY = {
 export const timeSpanReParser = parseFirst(
   // "all day"
   mapParser(reParser(/\s*all day\s*/gi), () => ALL_DAY),
-  // "until 2 p.m."
+  // "until 2 p.m.", "before 2 p.m." (the latter first seen 2026-09-01)
   mapParser(
-    apSecond(reParser(/\s*until\s+/gi), timeToMinuteParser),
+    apSecond(reParser(/\s*(?:until|before)\s+/gi), timeToMinuteParser),
     (endMinute) => ({ endMinute }) as const,
   ),
   // "after 10 a.m."
@@ -279,17 +280,28 @@ function fixEvent({
   };
 }
 
+// Why the track is open or closed, when the name says so. Annotated so both
+// branches collapse to one shape: without it the alternatives widen into a
+// union and `comment` stops being visible on the parsed result.
+const eventReasonParser: Parser<{ readonly comment: string }> = parseFirst(
+  // Parenthesised and mentioning an event: "(Turkey Trot event)"
+  mapParser(reParser(/\s*\(([^)]*event[^)]*)\)/gi), (re) => ({
+    comment: re[1],
+  })),
+  // Trailing prose with no parentheses: "Closed All Day Due to Special
+  // Event" (first seen 2026-10-02).
+  mapParser(reParser(/\s*due to\s+(.+?)\s*$/gi), (re) => ({
+    comment: re[1],
+  })),
+);
+
 const openWithReasonParser = ensureEndParsed(
   parseFirst(
     mapParser(
       parseAll(
         cycleTrackOpenParser,
         optional(timeSpanReParser),
-        optional(
-          mapParser(reParser(/\s*\(([^)]*event[^)]*)\)/gi), (re) => ({
-            comment: re[1],
-          })),
-        ),
+        optional(eventReasonParser),
       ),
       ([open, timeSpan, reason]) => ({
         open,
