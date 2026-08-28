@@ -1,10 +1,11 @@
+import * as Sentry from "@sentry/cloudflare";
 import {
   cachedScrapeResult,
   cronBody,
   handleCron,
   recentScrapedResults,
 } from "./cron";
-import { Bindings, PoloFieldMessage } from "./types";
+import { Bindings } from "./types";
 import { Hono } from "hono";
 import view, { etiquette, viewHex, viewWeek } from "./view";
 import icalFeed, { calendarView } from "./icalFeed";
@@ -12,8 +13,27 @@ import { getTodayPacific, parseDate, shortDateStyle } from "./dates";
 import { slackActionEndpoint, slackPolo } from "./slack";
 import { discordInteractions, discordRegisterCommands } from "./discord";
 import { deletePatch, listPatches, upsertPatch } from "./adminPatches";
+import { ScrapePoloWorkflow as ScrapePoloWorkflowBase } from "./workflows/ScrapePoloWorkflow";
 
-export { ScrapePoloWorkflow } from "./workflows/ScrapePoloWorkflow";
+const sentryOptions = (_env: Bindings): Sentry.CloudflareOptions => ({
+  dsn: "https://708e0b09b399cbf9bbe0ebaa2822ff94@o4509873739399168.ingest.us.sentry.io/4511989601992704",
+  // Set tracesSampleRate to 1.0 to capture 100% of spans for tracing.
+  // Learn more at
+  // https://docs.sentry.io/platforms/javascript/configuration/options/#traces-sample-rate
+  tracesSampleRate: 1.0,
+
+  dataCollection: {
+    // To disable sending user data and HTTP bodies, uncomment the lines below. For more info visit:
+    // https://docs.sentry.io/platforms/javascript/guides/cloudflare/configuration/options/#dataCollection
+    // userInfo: false,
+    // httpBodies: [],
+  },
+});
+
+export const ScrapePoloWorkflow = Sentry.instrumentWorkflowWithSentry(
+  sentryOptions,
+  ScrapePoloWorkflowBase,
+);
 
 // API
 // Add weather? https://developer.apple.com/weatherkit/get-started/
@@ -109,7 +129,9 @@ app.get("/admin/patches", listPatches);
 app.post("/admin/patches", upsertPatch);
 app.delete("/admin/patches/:date{[0-9]{4}-[0-9]{2}-[0-9]{2}}", deletePatch);
 
-const mod: ExportedHandler<Bindings, PoloFieldMessage> = {
+// Note: no message type parameter — Sentry.withSentry accepts
+// ExportedHandler<Env>; the queue handler below is currently unused anyway.
+const mod: ExportedHandler<Bindings> = {
   async queue(batch, env) {
     // if (batch.queue === "slack-files") {
     //   await processSlackFilesBatch(batch, env);
@@ -123,4 +145,4 @@ const mod: ExportedHandler<Bindings, PoloFieldMessage> = {
   },
 };
 
-export default mod;
+export default Sentry.withSentry(sentryOptions, mod);

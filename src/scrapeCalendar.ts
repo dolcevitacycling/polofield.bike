@@ -17,6 +17,7 @@ import {
   reParser,
   optional,
   apFirst,
+  type Parser,
 } from "./parsing";
 import { FieldRainoutInfo } from "./scrapeFieldRainoutInfo";
 
@@ -122,10 +123,20 @@ function applyTime(
   );
 }
 
+// Any dash that might show up in scraped copy: \p{Pd} covers the Unicode
+// dash punctuation (hyphen-minus, non-breaking hyphen, figure/en/em dash,
+// horizontal bar, fullwidth hyphen), and U+2212 MINUS SIGN is added because
+// it is Sm, not Pd. Written as escapes so the source stays pure ASCII —
+// look-alike dashes are impossible to review by eye and easy to mangle in
+// transit. (This previously read (to|-|-), a duplicated ASCII hyphen where
+// the second alternative was presumably meant to be an en dash, so en-dash
+// ranges threw "Invalid name" and killed the whole scrape.)
+const DASH = String.raw`[\p{Pd}\u2212]`;
+
 export const ctxMinuteRangeParser = mapParser(
   parseAll(
     ctxTimeToMinuteParser,
-    reParser(/\s*(to|-|-)\s*/gi),
+    reParser(new RegExp(String.raw`\s*(to|${DASH})\s*`, "giu")),
     ctxTimeToMinuteParser,
   ),
   ([ctx_start_minute, _delim, ctx_end_minute]) =>
@@ -148,9 +159,9 @@ const ALL_DAY = {
 export const timeSpanReParser = parseFirst(
   // "all day"
   mapParser(reParser(/\s*all day\s*/gi), () => ALL_DAY),
-  // "until 2 p.m."
+  // "until 2 p.m.", "before 2 p.m." (the latter first seen 2026-09-01)
   mapParser(
-    apSecond(reParser(/\s*until\s+/gi), timeToMinuteParser),
+    apSecond(reParser(/\s*(?:until|before)\s+/gi), timeToMinuteParser),
     (endMinute) => ({ endMinute }) as const,
   ),
   // "after 10 a.m."
@@ -174,13 +185,28 @@ export const cycleTrackOpenParser = mapParser(
 );
 
 export const cycleTrackParser = ensureEndParsed(
-  mapParser(
-    parseAll(cycleTrackOpenParser, timeSpanReParser),
-    ([open, range]) =>
-      ({
-        open,
-        ...range,
-      }) as const,
+  parseFirst(
+    mapParser(
+      parseAll(cycleTrackOpenParser, timeSpanReParser),
+      ([open, range]) =>
+        ({
+          open,
+          ...range,
+        }) as const,
+    ),
+    // Upstream sometimes omits Open/Closed, e.g. "Cycle Track Until 11:00 AM"
+    // (first seen 2026-08-19); a bare time span implies open. This must stay a
+    // separate alternative: making Open/Closed optional in
+    // cycleTrackOpenParser itself would let it half-match private-event names
+    // before their dedicated parser gets a chance.
+    mapParser(
+      parseAll(reParser(/(?:cycle|cycling) track\s*/gi), timeSpanReParser),
+      ([, range]) =>
+        ({
+          open: true,
+          ...range,
+        }) as const,
+    ),
   ),
 );
 
@@ -254,17 +280,28 @@ function fixEvent({
   };
 }
 
+// Why the track is open or closed, when the name says so. Annotated so both
+// branches collapse to one shape: without it the alternatives widen into a
+// union and `comment` stops being visible on the parsed result.
+const eventReasonParser: Parser<{ readonly comment: string }> = parseFirst(
+  // Parenthesised and mentioning an event: "(Turkey Trot event)"
+  mapParser(reParser(/\s*\(([^)]*event[^)]*)\)/gi), (re) => ({
+    comment: re[1],
+  })),
+  // Trailing prose with no parentheses: "Closed All Day Due to Special
+  // Event" (first seen 2026-10-02).
+  mapParser(reParser(/\s*due to\s+(.+?)\s*$/gi), (re) => ({
+    comment: re[1],
+  })),
+);
+
 const openWithReasonParser = ensureEndParsed(
   parseFirst(
     mapParser(
       parseAll(
         cycleTrackOpenParser,
         optional(timeSpanReParser),
-        optional(
-          mapParser(reParser(/\s*\(([^)]*event[^)]*)\)/gi), (re) => ({
-            comment: re[1],
-          })),
-        ),
+        optional(eventReasonParser),
       ),
       ([open, timeSpan, reason]) => ({
         open,
@@ -430,30 +467,68 @@ function formatRules(date: CalendarDate, fieldRainedOut: boolean) {
   return rules;
 }
 
+/**
+ * Called when a day's entries cannot be parsed and the day is degraded to
+ * unknown_rules. Passed in rather than reporting from here so this module
+ * stays usable from scripts/scrape.ts and the tests without pulling in the
+ * Cloudflare Sentry SDK; the workflow supplies the reporting implementation.
+ */
+export type UnrecognizedDateHandler = (info: {
+  readonly date: string;
+  readonly error: unknown;
+  readonly entries: readonly CalendarEntry[];
+}) => void;
+
 function recognizeCalendarDate(
   calendarDate: CalendarDate,
   fieldRainoutInfo: FieldRainoutInfo,
+  onUnrecognized?: UnrecognizedDateHandler,
 ): RecognizerRules {
   const { date } = calendarDate;
   const fieldRainedOut = fieldRainoutInfo[date]?.trackOpen ?? false;
-  const rules: KnownRules = {
-    type: "known_rules",
-    text: date,
-    start_date: date,
-    end_date: date,
-    intervals: getIntervals(calendarDate, fieldRainedOut),
-    rules: formatRules(calendarDate, fieldRainedOut),
-  };
-  return { recognizer: calendarRecognizer, rules };
+  try {
+    const rules: KnownRules = {
+      type: "known_rules",
+      text: date,
+      start_date: date,
+      end_date: date,
+      intervals: getIntervals(calendarDate, fieldRainedOut),
+      rules: formatRules(calendarDate, fieldRainedOut),
+    };
+    return { recognizer: calendarRecognizer, rules };
+  } catch (err) {
+    // An unparseable entry on one day must not kill the whole scrape (which
+    // would silently freeze the site and bots on the last good result).
+    // Degrade the day to unknown_rules so it surfaces as "I don't understand
+    // these rules yet" and flips has_unknown_rules in /status.json.
+    //
+    // Hand the error to the caller so it can still be reported: degrading
+    // quietly would drop the only signal that the parser needs updating.
+    console.error(`Failed to parse ${date}: ${err}`);
+    onUnrecognized?.({ date, error: err, entries: calendarDate.entries });
+    return {
+      recognizer: null,
+      rules: {
+        type: "unknown_rules",
+        text: date,
+        start_date: date,
+        end_date: date,
+        rules: formatRules(calendarDate, fieldRainedOut),
+      },
+    };
+  }
 }
 
 export function getScrapeDebugResult(
   data: Pick<CalendarScraper, "years" | "fieldRainoutInfo">,
+  onUnrecognized?: UnrecognizedDateHandler,
 ): ScrapeDebugResult {
   const { years, fieldRainoutInfo } = data;
   return years.map((y) => ({
     ...y,
-    rules: y.rules.map((r) => recognizeCalendarDate(r, fieldRainoutInfo)),
+    rules: y.rules.map((r) =>
+      recognizeCalendarDate(r, fieldRainoutInfo, onUnrecognized),
+    ),
   }));
 }
 

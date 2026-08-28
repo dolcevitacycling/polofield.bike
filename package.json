@@ -32,5 +32,8 @@
     "scrape": "tsx scripts/scrape.ts",
     "tsc": "tsc"
   },
-  "prettier": {}
+  "prettier": {},
+  "dependencies": {
+    "@sentry/cloudflare": "^10.72.0"
+  }
 }

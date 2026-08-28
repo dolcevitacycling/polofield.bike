@@ -5,18 +5,29 @@ import {
   ctxMinuteRangeParser,
   ctxTimeToMinuteParser,
   getIntervals,
+  getScrapeDebugResult,
   parseAndReorderEntries,
   timeSpanReParser,
 } from "./scrapeCalendar";
 
 describe("ctxMinuteRangeParser", () => {
+  const range = { startMinute: toMinute(14, 0), endMinute: toMinute(20, 45) };
   [
-    {
-      input: "2:00 PM - 8:45 PM",
-      result: { startMinute: toMinute(14, 0), endMinute: toMinute(20, 45) },
-    },
+    // Real scraped copy uses thin spaces (&thinsp;) around the dash. Escapes,
+    // not literals: invisible and look-alike characters cannot be reviewed by
+    // eye and are easily mangled in transit.
+    { input: "2:00 PM\u2009-\u20098:45 PM", result: range },
+    { input: "2:00 PM to 8:45 PM", result: range },
+    // Every dash variant that might show up upstream. An en dash used to
+    // throw "Invalid name" and abort the entire scrape.
+    { input: "2:00 PM - 8:45 PM", result: range },
+    { input: "2:00 PM \u2013 8:45 PM", result: range }, // en dash
+    { input: "2:00 PM \u2014 8:45 PM", result: range }, // em dash
+    { input: "2:00 PM \u2212 8:45 PM", result: range }, // minus sign
+    { input: "2:00 PM \u2010 8:45 PM", result: range }, // hyphen
+    { input: "2:00 PM\u2009\u2013\u20098:45 PM", result: range },
   ].forEach(({ input, result }) => {
-    it(`should parse ${input}`, () => {
+    it(`should parse ${JSON.stringify(input)}`, () => {
       const r = ctxMinuteRangeParser(stream(input));
       expect(r?.result).toEqual(result);
       if (r) {
@@ -345,5 +356,223 @@ describe("timeSpanReParser", () => {
         expect(streamAtEnd(r.s)).toBe(true);
       }
     });
+  });
+});
+
+describe("names without Open/Closed", () => {
+  // First seen 2026-08-19: SF Rec & Park posted "Cycle Track Until 11:00 AM"
+  // (no "Open"); a bare time span implies open.
+  const entry = {
+    name: "Cycle Track Until 11:00 AM",
+    startDate: "2026-08-19T05:00",
+    description: "",
+    subHeaderDate: "August 19, 2026, 5:00 AM - 11:00 AM",
+    headingName: "Cycle Track Until 11:00 AM",
+  };
+  it("parses 'Cycle Track Until 11:00 AM' as open", () => {
+    expect(
+      parseAndReorderEntries({ date: "2026-08-19", entries: [entry] }),
+    ).toEqual([
+      {
+        open: true,
+        endMinute: toMinute(11, 0),
+      },
+    ]);
+  });
+  it("produces intervals for the whole day", () => {
+    expect(
+      getIntervals({ date: "2026-08-19", entries: [entry] }, false),
+    ).toEqual([
+      {
+        open: true,
+        start_timestamp: "2026-08-19 00:00",
+        end_timestamp: "2026-08-19 10:59",
+      },
+      {
+        open: false,
+        start_timestamp: "2026-08-19 11:00",
+        end_timestamp: "2026-08-19 23:59",
+      },
+    ]);
+  });
+});
+
+describe("names upstream invented later", () => {
+  // "Before" is a synonym for "Until" (first seen 2026-09-01, on 47 days).
+  it("parses 'Open Before 2:00 PM' the same as 'Open Until 2:00 PM'", () => {
+    const entries = (name: string) => [
+      {
+        name,
+        startDate: "2026-09-01T05:00",
+        description: "",
+        subHeaderDate: "September 1, 2026, 5:00 AM - 2:00 PM",
+        headingName: name,
+      },
+    ];
+    const before = getIntervals(
+      { date: "2026-09-01", entries: entries("Cycle Track Open Before 2:00 PM") },
+      false,
+    );
+    const until = getIntervals(
+      { date: "2026-09-01", entries: entries("Cycle Track Open Until 2:00 PM") },
+      false,
+    );
+    expect(before).toEqual(until);
+    expect(before).toEqual([
+      {
+        open: true,
+        start_timestamp: "2026-09-01 00:00",
+        end_timestamp: "2026-09-01 13:59",
+      },
+      {
+        open: false,
+        start_timestamp: "2026-09-01 14:00",
+        end_timestamp: "2026-09-01 23:59",
+      },
+    ]);
+  });
+
+  // A reason with no parentheses (first seen 2026-10-02). The subHeaderDate
+  // carries no time range either, so this only parses if the name alone is
+  // fully understood.
+  it("parses 'Closed All Day Due to Special Event'", () => {
+    expect(
+      getIntervals(
+        {
+          date: "2026-10-02",
+          entries: [
+            {
+              name: "Cycle Track Closed All Day Due to Special Event",
+              startDate: "2026-10-02T05:00",
+              description: "",
+              subHeaderDate: "October 2, 2026, 5:00 AM",
+              headingName: "Cycle Track Closed All Day Due to Special Event",
+            },
+          ],
+        },
+        false,
+      ),
+    ).toEqual([
+      {
+        open: false,
+        comment: "Special Event",
+        start_timestamp: "2026-10-02 00:00",
+        end_timestamp: "2026-10-02 23:59",
+      },
+    ]);
+  });
+
+  // Parenthesised reasons must keep working.
+  it("still parses a parenthesised reason", () => {
+    expect(
+      getIntervals(
+        {
+          date: "2026-05-16",
+          entries: [
+            {
+              name: "Cycle Track Closed (Event Preparation, Event & Load Out)",
+              startDate: "2026-05-16T05:00",
+              description: "",
+              subHeaderDate: "May 16, 2026, 5:00 AM - 8:00 PM",
+              headingName: "Cycle Track Closed (Event Preparation, Event & Load Out)",
+            },
+          ],
+        },
+        false,
+      ),
+    ).toEqual([
+      {
+        open: true,
+        start_timestamp: "2026-05-16 00:00",
+        end_timestamp: "2026-05-16 04:59",
+      },
+      {
+        open: false,
+        comment: "Event Preparation, Event & Load Out",
+        start_timestamp: "2026-05-16 05:00",
+        end_timestamp: "2026-05-16 19:59",
+      },
+      {
+        open: true,
+        start_timestamp: "2026-05-16 20:00",
+        end_timestamp: "2026-05-16 23:59",
+      },
+    ]);
+  });
+});
+
+describe("unparseable entries degrade to unknown_rules", () => {
+  it("does not throw for a name no parser understands", () => {
+    const result = getScrapeDebugResult({
+      years: [
+        {
+          type: "year",
+          year: 2026,
+          rules: [
+            {
+              date: "2026-08-20",
+              entries: [
+                {
+                  name: "Velodrome Vibes Only",
+                  startDate: "2026-08-20T05:00",
+                  description: "",
+                  subHeaderDate: "August 20, 2026, 5:00 AM",
+                  headingName: "Velodrome Vibes Only",
+                },
+              ],
+            },
+          ],
+        },
+      ],
+      fieldRainoutInfo: {},
+    });
+    expect(result[0].rules[0].recognizer).toBe(null);
+    expect(result[0].rules[0].rules).toMatchObject({
+      type: "unknown_rules",
+      start_date: "2026-08-20",
+      end_date: "2026-08-20",
+    });
+  });
+
+  it("hands the failure to onUnrecognized so it can be reported", () => {
+    const seen: { date: string; message: string; names: string[] }[] = [];
+    getScrapeDebugResult(
+      {
+        years: [
+          {
+            type: "year",
+            year: 2026,
+            rules: [
+              {
+                date: "2026-08-20",
+                entries: [
+                  {
+                    name: "Velodrome Vibes Only",
+                    startDate: "2026-08-20T05:00",
+                    description: "",
+                    subHeaderDate: "August 20, 2026, 5:00 AM",
+                    headingName: "Velodrome Vibes Only",
+                  },
+                ],
+              },
+            ],
+          },
+        ],
+        fieldRainoutInfo: {},
+      },
+      ({ date, error, entries }) => {
+        seen.push({
+          date,
+          message: error instanceof Error ? error.message : String(error),
+          names: entries.map((e) => e.name),
+        });
+      },
+    );
+    expect(seen).toHaveLength(1);
+    expect(seen[0].date).toBe("2026-08-20");
+    expect(seen[0].names).toEqual(["Velodrome Vibes Only"]);
+    // The message carries the offending entry, which is what makes the
+    // Sentry issue actionable.
+    expect(seen[0].message).toContain("Velodrome Vibes Only");
   });
 });
