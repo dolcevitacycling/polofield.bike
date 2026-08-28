@@ -1,9 +1,4 @@
-import type {
-  KnownRules,
-  ScrapeResult,
-  UnknownRules,
-  Year,
-} from "./cron";
+import type { KnownRules, ScrapeResult, UnknownRules, Year } from "./cron";
 import type { Bindings } from "./types";
 import { applyMemorialRides } from "./memorial";
 

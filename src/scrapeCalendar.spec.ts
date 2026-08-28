@@ -410,11 +410,17 @@ describe("names upstream invented later", () => {
       },
     ];
     const before = getIntervals(
-      { date: "2026-09-01", entries: entries("Cycle Track Open Before 2:00 PM") },
+      {
+        date: "2026-09-01",
+        entries: entries("Cycle Track Open Before 2:00 PM"),
+      },
       false,
     );
     const until = getIntervals(
-      { date: "2026-09-01", entries: entries("Cycle Track Open Until 2:00 PM") },
+      {
+        date: "2026-09-01",
+        entries: entries("Cycle Track Open Until 2:00 PM"),
+      },
       false,
     );
     expect(before).toEqual(until);
@@ -474,7 +480,8 @@ describe("names upstream invented later", () => {
               startDate: "2026-05-16T05:00",
               description: "",
               subHeaderDate: "May 16, 2026, 5:00 AM - 8:00 PM",
-              headingName: "Cycle Track Closed (Event Preparation, Event & Load Out)",
+              headingName:
+                "Cycle Track Closed (Event Preparation, Event & Load Out)",
             },
           ],
         },

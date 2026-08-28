@@ -110,8 +110,8 @@ describe("applyMemorialRides", () => {
       [],
     );
     const rule = result[0].rules[0] as KnownRules;
-    expect(
-      rule.intervals.some((iv) => iv.comment === MEMORIAL_COMMENT),
-    ).toBe(true);
+    expect(rule.intervals.some((iv) => iv.comment === MEMORIAL_COMMENT)).toBe(
+      true,
+    );
   });
 });
