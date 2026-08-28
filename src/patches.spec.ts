@@ -112,7 +112,12 @@ describe("applyScrapePatches", () => {
       patch({
         date: "2026-05-17",
         expected_rule: expected,
-        patch_rule: { ...override, start_date: "2026-05-17", end_date: "2026-05-17", text: "2026-05-17" },
+        patch_rule: {
+          ...override,
+          start_date: "2026-05-17",
+          end_date: "2026-05-17",
+          text: "2026-05-17",
+        },
       }),
     ]);
     const got = findRuleForDate(result, "2026-05-17");
@@ -121,9 +126,7 @@ describe("applyScrapePatches", () => {
 
   it("creates a year container if the patch year is not in the result", () => {
     const result = applyScrapePatches([], [patch()]);
-    expect(result).toEqual([
-      { type: "year", year: 2026, rules: [may18Patch] },
-    ]);
+    expect(result).toEqual([{ type: "year", year: 2026, rules: [may18Patch] }]);
   });
 
   it("returns the original result if no patches apply", () => {

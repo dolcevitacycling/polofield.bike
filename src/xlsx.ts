@@ -133,9 +133,7 @@ async function readSharedStrings(zip: JSZip): Promise<string[]> {
   return asArray(sst?.si as unknown).map(siText);
 }
 
-async function readDateStyleFormats(
-  zip: JSZip,
-): Promise<Map<number, string>> {
+async function readDateStyleFormats(zip: JSZip): Promise<Map<number, string>> {
   const out = new Map<number, string>();
   const f = zip.file("xl/styles.xml");
   if (!f) return out;
@@ -145,7 +143,10 @@ async function readDateStyleFormats(
   for (const nf of asArray(asObj(styleSheet?.numFmts)?.numFmt as unknown)) {
     const o = asObj(nf);
     if (!o) continue;
-    customFmts.set(parseInt(String(o["@numFmtId"]), 10), String(o["@formatCode"]));
+    customFmts.set(
+      parseInt(String(o["@numFmtId"]), 10),
+      String(o["@formatCode"]),
+    );
   }
   const xfs = asArray(asObj(styleSheet?.cellXfs)?.xf as unknown);
   xfs.forEach((xf, i) => {
@@ -199,7 +200,8 @@ function parseSheet(
           const styleAttr = c["@s"];
           const styleIdx =
             typeof styleAttr === "string" ? parseInt(styleAttr, 10) : undefined;
-          const fmt = styleIdx !== undefined ? dateFormats.get(styleIdx) : undefined;
+          const fmt =
+            styleIdx !== undefined ? dateFormats.get(styleIdx) : undefined;
           text = fmt ? formatExcelDate(parseFloat(raw), fmt) : raw;
         }
       }

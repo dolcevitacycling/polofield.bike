@@ -41,7 +41,9 @@ describe("live scrape corpus", () => {
       }
     }
     // Deduplicate: one bad format shows up on dozens of days.
-    expect([...new Set(failures.map((f) => f.split(": ").slice(1).join(": ")))]).toEqual([]);
+    expect([
+      ...new Set(failures.map((f) => f.split(": ").slice(1).join(": "))),
+    ]).toEqual([]);
     // Guard against the corpus silently emptying out.
     expect(names.size).toBeGreaterThan(10);
   });

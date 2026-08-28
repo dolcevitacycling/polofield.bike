@@ -6,7 +6,11 @@ import {
   loadScrapePatches,
   type ExistingRule,
 } from "./patches";
-import { cachedScrapeResult, recentScrapedResults, type KnownRules } from "./cron";
+import {
+  cachedScrapeResult,
+  recentScrapedResults,
+  type KnownRules,
+} from "./cron";
 
 function isAuthorized(c: Context<{ Bindings: Bindings }>): boolean {
   const expected = c.env.ADMIN_TOKEN;

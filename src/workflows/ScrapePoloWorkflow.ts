@@ -173,10 +173,11 @@ export class ScrapePoloWorkflow extends WorkflowEntrypoint<Env, Params> {
         if (unknownDates.length > 0) {
           messages.push({
             quiet: false,
-            message: `Scrape has unknown rules for: ${unknownDates.join(", ")}`.slice(
-              0,
-              1800,
-            ),
+            message:
+              `Scrape has unknown rules for: ${unknownDates.join(", ")}`.slice(
+                0,
+                1800,
+              ),
           });
         }
         return messages;
