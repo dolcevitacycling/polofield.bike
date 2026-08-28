@@ -122,10 +122,20 @@ function applyTime(
   );
 }
 
+// Any dash that might show up in scraped copy: \p{Pd} covers the Unicode
+// dash punctuation (hyphen-minus, non-breaking hyphen, figure/en/em dash,
+// horizontal bar, fullwidth hyphen), and U+2212 MINUS SIGN is added because
+// it is Sm, not Pd. Written as escapes so the source stays pure ASCII —
+// look-alike dashes are impossible to review by eye and easy to mangle in
+// transit. (This previously read (to|-|-), a duplicated ASCII hyphen where
+// the second alternative was presumably meant to be an en dash, so en-dash
+// ranges threw "Invalid name" and killed the whole scrape.)
+const DASH = String.raw`[\p{Pd}\u2212]`;
+
 export const ctxMinuteRangeParser = mapParser(
   parseAll(
     ctxTimeToMinuteParser,
-    reParser(/\s*(to|-|-)\s*/gi),
+    reParser(new RegExp(String.raw`\s*(to|${DASH})\s*`, "giu")),
     ctxTimeToMinuteParser,
   ),
   ([ctx_start_minute, _delim, ctx_end_minute]) =>

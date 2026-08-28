@@ -11,13 +11,23 @@ import {
 } from "./scrapeCalendar";
 
 describe("ctxMinuteRangeParser", () => {
+  const range = { startMinute: toMinute(14, 0), endMinute: toMinute(20, 45) };
   [
-    {
-      input: "2:00 PM - 8:45 PM",
-      result: { startMinute: toMinute(14, 0), endMinute: toMinute(20, 45) },
-    },
+    // Real scraped copy uses thin spaces (&thinsp;) around the dash. Escapes,
+    // not literals: invisible and look-alike characters cannot be reviewed by
+    // eye and are easily mangled in transit.
+    { input: "2:00 PM\u2009-\u20098:45 PM", result: range },
+    { input: "2:00 PM to 8:45 PM", result: range },
+    // Every dash variant that might show up upstream. An en dash used to
+    // throw "Invalid name" and abort the entire scrape.
+    { input: "2:00 PM - 8:45 PM", result: range },
+    { input: "2:00 PM \u2013 8:45 PM", result: range }, // en dash
+    { input: "2:00 PM \u2014 8:45 PM", result: range }, // em dash
+    { input: "2:00 PM \u2212 8:45 PM", result: range }, // minus sign
+    { input: "2:00 PM \u2010 8:45 PM", result: range }, // hyphen
+    { input: "2:00 PM\u2009\u2013\u20098:45 PM", result: range },
   ].forEach(({ input, result }) => {
-    it(`should parse ${input}`, () => {
+    it(`should parse ${JSON.stringify(input)}`, () => {
       const r = ctxMinuteRangeParser(stream(input));
       expect(r?.result).toEqual(result);
       if (r) {
