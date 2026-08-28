@@ -174,13 +174,28 @@ export const cycleTrackOpenParser = mapParser(
 );
 
 export const cycleTrackParser = ensureEndParsed(
-  mapParser(
-    parseAll(cycleTrackOpenParser, timeSpanReParser),
-    ([open, range]) =>
-      ({
-        open,
-        ...range,
-      }) as const,
+  parseFirst(
+    mapParser(
+      parseAll(cycleTrackOpenParser, timeSpanReParser),
+      ([open, range]) =>
+        ({
+          open,
+          ...range,
+        }) as const,
+    ),
+    // Upstream sometimes omits Open/Closed, e.g. "Cycle Track Until 11:00 AM"
+    // (first seen 2026-08-19); a bare time span implies open. This must stay a
+    // separate alternative: making Open/Closed optional in
+    // cycleTrackOpenParser itself would let it half-match private-event names
+    // before their dedicated parser gets a chance.
+    mapParser(
+      parseAll(reParser(/(?:cycle|cycling) track\s*/gi), timeSpanReParser),
+      ([, range]) =>
+        ({
+          open: true,
+          ...range,
+        }) as const,
+    ),
   ),
 );
 
@@ -436,15 +451,33 @@ function recognizeCalendarDate(
 ): RecognizerRules {
   const { date } = calendarDate;
   const fieldRainedOut = fieldRainoutInfo[date]?.trackOpen ?? false;
-  const rules: KnownRules = {
-    type: "known_rules",
-    text: date,
-    start_date: date,
-    end_date: date,
-    intervals: getIntervals(calendarDate, fieldRainedOut),
-    rules: formatRules(calendarDate, fieldRainedOut),
-  };
-  return { recognizer: calendarRecognizer, rules };
+  try {
+    const rules: KnownRules = {
+      type: "known_rules",
+      text: date,
+      start_date: date,
+      end_date: date,
+      intervals: getIntervals(calendarDate, fieldRainedOut),
+      rules: formatRules(calendarDate, fieldRainedOut),
+    };
+    return { recognizer: calendarRecognizer, rules };
+  } catch (err) {
+    // An unparseable entry on one day must not kill the whole scrape (which
+    // would silently freeze the site and bots on the last good result).
+    // Degrade the day to unknown_rules so it surfaces as "I don't understand
+    // these rules yet" and flips has_unknown_rules in /status.json.
+    console.error(`Failed to parse ${date}: ${err}`);
+    return {
+      recognizer: null,
+      rules: {
+        type: "unknown_rules",
+        text: date,
+        start_date: date,
+        end_date: date,
+        rules: formatRules(calendarDate, fieldRainedOut),
+      },
+    };
+  }
 }
 
 export function getScrapeDebugResult(

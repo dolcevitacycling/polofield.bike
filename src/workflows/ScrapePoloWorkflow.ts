@@ -1,4 +1,3 @@
-import { NonRetryableError } from "cloudflare:workflows";
 import {
   bootstrapWebhooks,
   claimWebhookRow,
@@ -23,39 +22,48 @@ type Params = Record<never, never>;
 
 export class ScrapePoloWorkflow extends WorkflowEntrypoint<Env, Params> {
   async run(event: WorkflowEvent<Params>, step: WorkflowStep) {
+    try {
+      return await this.runInner(event, step);
+    } catch (err) {
+      // Without this, a failed instance is only visible in the Cloudflare
+      // dashboard — the 2026-08-19 "Cycle Track Until 11:00 AM" parse error
+      // went unnoticed for exactly that reason.
+      await step.do("report-failure", async () => {
+        const detail =
+          err instanceof Error ? (err.stack ?? err.message) : String(err);
+        await discordReport(
+          this.env,
+          `ScrapePoloWorkflow failed: ${detail}`.slice(0, 1800),
+        );
+      });
+      throw err;
+    }
+  }
+
+  async runInner(event: WorkflowEvent<Params>, step: WorkflowStep) {
     const today = await step.do("today", async () => {
       // Shift to reporting the next day at 4pm instead of midnight
       const now = new Date();
       now.setHours(now.getHours() - 16);
       return getTodayPacific(now);
     });
-    const years = await step
-      .do("CalendarScraper", async () => {
-        const scraper = new CalendarScraper();
-        const fetchRes = await fetch(currentCalendarUrl(), {
-          headers: {
-            "user-agent": "polofield.bike",
-          },
-          cache: "no-store",
-        });
-        const res = new HTMLRewriter().on("*", scraper).transform(fetchRes);
-        const txt = await res.text();
-        if (scraper.years.length === 0) {
-          throw new Error(
-            `scraper.years.length === 0\n${fetchRes.url}\n${fetchRes.status} ${fetchRes.statusText}\n\n${txt}`,
-          );
-        }
-        return scraper.years;
-      })
-      .catch(async (err) => {
-        if (err instanceof NonRetryableError) {
-          await step.do("CalendarScraper:report", async () => {
-            const message = `Error detected when scraping, skipping ${new Date().toISOString()}`;
-            await discordReport(this.env, message);
-          });
-        }
-        throw err;
+    const years = await step.do("CalendarScraper", async () => {
+      const scraper = new CalendarScraper();
+      const fetchRes = await fetch(currentCalendarUrl(), {
+        headers: {
+          "user-agent": "polofield.bike",
+        },
+        cache: "no-store",
       });
+      const res = new HTMLRewriter().on("*", scraper).transform(fetchRes);
+      const txt = await res.text();
+      if (scraper.years.length === 0) {
+        throw new Error(
+          `scraper.years.length === 0\n${fetchRes.url}\n${fetchRes.status} ${fetchRes.statusText}\n\n${txt}`,
+        );
+      }
+      return scraper.years;
+    });
     const oldestYear =
       Math.min(...years.map((y) => y.year)) || new Date().getFullYear();
     const fieldRainoutInfo = await step.do(
@@ -94,12 +102,30 @@ export class ScrapePoloWorkflow extends WorkflowEntrypoint<Env, Params> {
         )
           .bind(created_at, scrape_results_json)
           .run();
-        return [
+        const messages = [
           {
             quiet: false,
-            message: `Error detected when scraping, skipping ${created_at}`,
+            message: `Inserted new scrape result at ${created_at}`,
           },
         ];
+        // Days that failed to parse are degraded to unknown_rules by
+        // recognizeCalendarDate; make sure that's noticed, since the bots
+        // will say "I don't understand these rules yet" for them.
+        const unknownDates = result.flatMap((y) =>
+          y.rules
+            .filter((r) => r.type === "unknown_rules")
+            .map((r) => `${r.start_date}..${r.end_date}`),
+        );
+        if (unknownDates.length > 0) {
+          messages.push({
+            quiet: false,
+            message: `Scrape has unknown rules for: ${unknownDates.join(", ")}`.slice(
+              0,
+              1800,
+            ),
+          });
+        }
+        return messages;
       }
     });
 

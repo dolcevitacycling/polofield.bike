@@ -5,6 +5,7 @@ import {
   ctxMinuteRangeParser,
   ctxTimeToMinuteParser,
   getIntervals,
+  getScrapeDebugResult,
   parseAndReorderEntries,
   timeSpanReParser,
 } from "./scrapeCalendar";
@@ -344,6 +345,78 @@ describe("timeSpanReParser", () => {
       if (r) {
         expect(streamAtEnd(r.s)).toBe(true);
       }
+    });
+  });
+});
+
+describe("names without Open/Closed", () => {
+  // First seen 2026-08-19: SF Rec & Park posted "Cycle Track Until 11:00 AM"
+  // (no "Open"); a bare time span implies open.
+  const entry = {
+    name: "Cycle Track Until 11:00 AM",
+    startDate: "2026-08-19T05:00",
+    description: "",
+    subHeaderDate: "August 19, 2026, 5:00 AM - 11:00 AM",
+    headingName: "Cycle Track Until 11:00 AM",
+  };
+  it("parses 'Cycle Track Until 11:00 AM' as open", () => {
+    expect(
+      parseAndReorderEntries({ date: "2026-08-19", entries: [entry] }),
+    ).toEqual([
+      {
+        open: true,
+        endMinute: toMinute(11, 0),
+      },
+    ]);
+  });
+  it("produces intervals for the whole day", () => {
+    expect(
+      getIntervals({ date: "2026-08-19", entries: [entry] }, false),
+    ).toEqual([
+      {
+        open: true,
+        start_timestamp: "2026-08-19 00:00",
+        end_timestamp: "2026-08-19 10:59",
+      },
+      {
+        open: false,
+        start_timestamp: "2026-08-19 11:00",
+        end_timestamp: "2026-08-19 23:59",
+      },
+    ]);
+  });
+});
+
+describe("unparseable entries degrade to unknown_rules", () => {
+  it("does not throw for a name no parser understands", () => {
+    const result = getScrapeDebugResult({
+      years: [
+        {
+          type: "year",
+          year: 2026,
+          rules: [
+            {
+              date: "2026-08-20",
+              entries: [
+                {
+                  name: "Velodrome Vibes Only",
+                  startDate: "2026-08-20T05:00",
+                  description: "",
+                  subHeaderDate: "August 20, 2026, 5:00 AM",
+                  headingName: "Velodrome Vibes Only",
+                },
+              ],
+            },
+          ],
+        },
+      ],
+      fieldRainoutInfo: {},
+    });
+    expect(result[0].rules[0].recognizer).toBe(null);
+    expect(result[0].rules[0].rules).toMatchObject({
+      type: "unknown_rules",
+      start_date: "2026-08-20",
+      end_date: "2026-08-20",
     });
   });
 });
