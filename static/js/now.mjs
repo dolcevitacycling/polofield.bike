@@ -57,7 +57,10 @@ function step() {
         const logo = document.querySelector("header .logo .status");
         if (logo) {
           for (const cls of ["open", "closed"]) {
-            logo.classList.toggle(`${cls}-now`, section.classList.contains(cls));
+            logo.classList.toggle(
+              `${cls}-now`,
+              section.classList.contains(cls),
+            );
           }
         }
       }
