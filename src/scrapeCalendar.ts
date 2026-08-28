@@ -455,9 +455,22 @@ function formatRules(date: CalendarDate, fieldRainedOut: boolean) {
   return rules;
 }
 
+/**
+ * Called when a day's entries cannot be parsed and the day is degraded to
+ * unknown_rules. Passed in rather than reporting from here so this module
+ * stays usable from scripts/scrape.ts and the tests without pulling in the
+ * Cloudflare Sentry SDK; the workflow supplies the reporting implementation.
+ */
+export type UnrecognizedDateHandler = (info: {
+  readonly date: string;
+  readonly error: unknown;
+  readonly entries: readonly CalendarEntry[];
+}) => void;
+
 function recognizeCalendarDate(
   calendarDate: CalendarDate,
   fieldRainoutInfo: FieldRainoutInfo,
+  onUnrecognized?: UnrecognizedDateHandler,
 ): RecognizerRules {
   const { date } = calendarDate;
   const fieldRainedOut = fieldRainoutInfo[date]?.trackOpen ?? false;
@@ -476,7 +489,11 @@ function recognizeCalendarDate(
     // would silently freeze the site and bots on the last good result).
     // Degrade the day to unknown_rules so it surfaces as "I don't understand
     // these rules yet" and flips has_unknown_rules in /status.json.
+    //
+    // Hand the error to the caller so it can still be reported: degrading
+    // quietly would drop the only signal that the parser needs updating.
     console.error(`Failed to parse ${date}: ${err}`);
+    onUnrecognized?.({ date, error: err, entries: calendarDate.entries });
     return {
       recognizer: null,
       rules: {
@@ -492,11 +509,14 @@ function recognizeCalendarDate(
 
 export function getScrapeDebugResult(
   data: Pick<CalendarScraper, "years" | "fieldRainoutInfo">,
+  onUnrecognized?: UnrecognizedDateHandler,
 ): ScrapeDebugResult {
   const { years, fieldRainoutInfo } = data;
   return years.map((y) => ({
     ...y,
-    rules: y.rules.map((r) => recognizeCalendarDate(r, fieldRainoutInfo)),
+    rules: y.rules.map((r) =>
+      recognizeCalendarDate(r, fieldRainoutInfo, onUnrecognized),
+    ),
   }));
 }
 

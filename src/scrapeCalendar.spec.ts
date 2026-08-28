@@ -429,4 +429,46 @@ describe("unparseable entries degrade to unknown_rules", () => {
       end_date: "2026-08-20",
     });
   });
+
+  it("hands the failure to onUnrecognized so it can be reported", () => {
+    const seen: { date: string; message: string; names: string[] }[] = [];
+    getScrapeDebugResult(
+      {
+        years: [
+          {
+            type: "year",
+            year: 2026,
+            rules: [
+              {
+                date: "2026-08-20",
+                entries: [
+                  {
+                    name: "Velodrome Vibes Only",
+                    startDate: "2026-08-20T05:00",
+                    description: "",
+                    subHeaderDate: "August 20, 2026, 5:00 AM",
+                    headingName: "Velodrome Vibes Only",
+                  },
+                ],
+              },
+            ],
+          },
+        ],
+        fieldRainoutInfo: {},
+      },
+      ({ date, error, entries }) => {
+        seen.push({
+          date,
+          message: error instanceof Error ? error.message : String(error),
+          names: entries.map((e) => e.name),
+        });
+      },
+    );
+    expect(seen).toHaveLength(1);
+    expect(seen[0].date).toBe("2026-08-20");
+    expect(seen[0].names).toEqual(["Velodrome Vibes Only"]);
+    // The message carries the offending entry, which is what makes the
+    // Sentry issue actionable.
+    expect(seen[0].message).toContain("Velodrome Vibes Only");
+  });
 });
