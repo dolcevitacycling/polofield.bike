@@ -2,110 +2,107 @@ import { describe, it, expect } from "vitest";
 import {
   decideOnFailure,
   decideOnSuccess,
-  FAILURES_BEFORE_ALERT,
+  describeHealth,
   INITIAL_HEALTH,
   REALERT_AFTER_MS,
+  STALE_AFTER_MS,
   type ScrapeHealth,
 } from "./health";
 
 const CRON_INTERVAL_MS = 20 * 60 * 1000;
+const HOUR_MS = 60 * 60 * 1000;
 const START = Date.parse("2026-08-30T07:00:00.000Z");
 const at = (tick: number) =>
   new Date(START + tick * CRON_INTERVAL_MS).toISOString();
+const ticksFor = (ms: number) => Math.ceil(ms / CRON_INTERVAL_MS);
 
-/** Replays consecutive failed runs at the real cron cadence. */
-function failFor(runs: number, from: ScrapeHealth = INITIAL_HEALTH) {
-  let health = from;
+/** Replays an outage at the real cron cadence, starting from a healthy scrape. */
+function outageOf(hours: number) {
+  let health: ScrapeHealth = { ...INITIAL_HEALTH, last_success_at: at(0) };
   const alerts: number[] = [];
-  for (let tick = 0; tick < runs; tick++) {
+  const runs = ticksFor(hours * HOUR_MS);
+  for (let tick = 1; tick <= runs; tick++) {
     const decision = decideOnFailure(health, at(tick));
     if (decision.alert) alerts.push(tick);
     health = decision.next;
   }
-  return { health, alerts };
+  return { health, alerts, runs };
 }
 
 describe("decideOnFailure", () => {
-  it("stays silent for a single glitch", () => {
-    const { alerts } = failFor(1);
-    expect(alerts).toEqual([]);
+  it("says nothing for the 40 minute glitches sfrecpark serves routinely", () => {
+    // The outage behind POLOFIELD-2: three consecutive failed runs.
+    expect(outageOf(1).alerts).toEqual([]);
   });
 
-  it("stays silent right up to the threshold", () => {
-    const { alerts } = failFor(FAILURES_BEFORE_ALERT - 1);
-    expect(alerts).toEqual([]);
+  it("stays silent right up to the staleness threshold", () => {
+    const justUnder = STALE_AFTER_MS / HOUR_MS - CRON_INTERVAL_MS / HOUR_MS;
+    expect(outageOf(justUnder).alerts).toEqual([]);
   });
 
-  it("alerts once the outage is sustained", () => {
-    const { alerts } = failFor(FAILURES_BEFORE_ALERT);
-    expect(alerts).toEqual([FAILURES_BEFORE_ALERT - 1]);
+  it("alerts once the data is genuinely stale", () => {
+    const { alerts } = outageOf(STALE_AFTER_MS / HOUR_MS);
+    expect(alerts).toHaveLength(1);
   });
 
-  it("does not repeat every run while the outage continues", () => {
-    // A full day of failures at 20 minute intervals.
-    const { alerts } = failFor(72);
-    // First alert at the threshold, then only on the slow re-alert cadence.
-    expect(alerts[0]).toBe(FAILURES_BEFORE_ALERT - 1);
-    const perDay = Math.floor((72 * CRON_INTERVAL_MS) / REALERT_AFTER_MS);
-    expect(alerts.length).toBeLessThanOrEqual(perDay + 1);
-    expect(alerts.length).toBeGreaterThan(1);
+  it("measures staleness from the last success, not the run count", () => {
+    // A single failure long after the last success is stale immediately,
+    // however few runs have failed — which is what matters when runs are
+    // skipped rather than failing.
+    const stale = decideOnFailure(
+      { ...INITIAL_HEALTH, last_success_at: at(0) },
+      new Date(START + STALE_AFTER_MS).toISOString(),
+    );
+    expect(stale.failures).toBe(1);
+    expect(stale.alert).toBe(true);
+  });
+
+  it("keeps an all day outage to a couple of alerts", () => {
+    const { alerts } = outageOf(24);
+    expect(alerts.length).toBeLessThanOrEqual(
+      Math.ceil((24 * HOUR_MS) / REALERT_AFTER_MS),
+    );
+    expect(alerts.length).toBeGreaterThanOrEqual(1);
   });
 
   it("keeps the start of the outage for the down since report", () => {
-    const { health } = failFor(5);
-    expect(health.first_failure_at).toBe(at(0));
-    expect(health.consecutive_failures).toBe(5);
+    const { health, runs } = outageOf(2);
+    expect(health.first_failure_at).toBe(at(1));
+    expect(health.consecutive_failures).toBe(runs);
   });
 
-  it("re-alerts only after the quiet period", () => {
-    const alerted = failFor(FAILURES_BEFORE_ALERT).health;
-    const justUnder = decideOnFailure(
-      alerted,
-      new Date(
-        Date.parse(alerted.last_alert_at!) + REALERT_AFTER_MS - 1,
-      ).toISOString(),
-    );
-    expect(justUnder.alert).toBe(false);
-    const justOver = decideOnFailure(
-      alerted,
-      new Date(
-        Date.parse(alerted.last_alert_at!) + REALERT_AFTER_MS,
-      ).toISOString(),
-    );
-    expect(justOver.alert).toBe(true);
+  it("does not alert immediately on a fresh database that has never succeeded", () => {
+    const first = decideOnFailure(INITIAL_HEALTH, at(0));
+    expect(first.alert).toBe(false);
+    expect(first.staleMs).toBe(0);
   });
 });
 
 describe("decideOnSuccess", () => {
   it("says nothing when recovering from a glitch nobody was told about", () => {
-    const { health } = failFor(FAILURES_BEFORE_ALERT - 1);
-    expect(decideOnSuccess(health, at(9)).recovered).toBe(false);
+    const { health } = outageOf(1);
+    expect(decideOnSuccess(health, at(99)).recovered).toBe(false);
   });
 
   it("announces recovery from an outage that was alerted", () => {
-    const { health } = failFor(FAILURES_BEFORE_ALERT);
-    const decision = decideOnSuccess(health, at(9));
-    expect(decision.recovered).toBe(true);
-    expect(decision.failures).toBe(FAILURES_BEFORE_ALERT);
-    expect(decision.downSince).toBe(at(0));
+    const { health } = outageOf(STALE_AFTER_MS / HOUR_MS);
+    expect(decideOnSuccess(health, at(99)).recovered).toBe(true);
   });
 
   it("resets the counters so the next glitch starts clean", () => {
-    const { health } = failFor(10);
-    expect(decideOnSuccess(health, at(11)).next).toEqual({
-      last_success_at: at(11),
+    const { health } = outageOf(8);
+    expect(decideOnSuccess(health, at(99)).next).toEqual({
+      last_success_at: at(99),
       consecutive_failures: 0,
       first_failure_at: null,
       last_alert_at: null,
     });
   });
 
-  it("stays quiet through a flapping origin that never fails twice running", () => {
-    // Fail, recover, fail, recover... which is what a glitchy origin looks
-    // like. Nothing should ever be reported.
-    let health = INITIAL_HEALTH;
+  it("stays quiet through a flapping origin that never fails for long", () => {
+    let health: ScrapeHealth = { ...INITIAL_HEALTH, last_success_at: at(0) };
     const reported: string[] = [];
-    for (let tick = 0; tick < 100; tick++) {
+    for (let tick = 1; tick < 200; tick++) {
       if (tick % 2 === 0) {
         const decision = decideOnFailure(health, at(tick));
         if (decision.alert) reported.push(`alert@${tick}`);
@@ -117,5 +114,41 @@ describe("decideOnSuccess", () => {
       }
     }
     expect(reported).toEqual([]);
+  });
+});
+
+describe("describeHealth", () => {
+  it("reports healthy while the scrape is keeping up", () => {
+    expect(
+      describeHealth(
+        { ...INITIAL_HEALTH, last_success_at: at(0) },
+        new Date(START + CRON_INTERVAL_MS).toISOString(),
+      ),
+    ).toEqual({
+      healthy: true,
+      stale_seconds: CRON_INTERVAL_MS / 1000,
+      last_success_at: at(0),
+      consecutive_failures: 0,
+      failing_since: null,
+    });
+  });
+
+  it("reports unhealthy once the data is stale, so /health can 503", () => {
+    const summary = describeHealth(
+      { ...INITIAL_HEALTH, last_success_at: at(0) },
+      new Date(START + STALE_AFTER_MS).toISOString(),
+    );
+    expect(summary.healthy).toBe(false);
+    expect(summary.stale_seconds).toBe(STALE_AFTER_MS / 1000);
+  });
+
+  it("goes unhealthy when the cron stops running, with no failures recorded", () => {
+    // Nothing runs, so consecutive_failures stays 0 and no alert can ever
+    // fire; only something reading this at request time notices.
+    const summary = describeHealth(
+      { ...INITIAL_HEALTH, last_success_at: at(0) },
+      new Date(START + 3 * STALE_AFTER_MS).toISOString(),
+    );
+    expect(summary).toMatchObject({ healthy: false, consecutive_failures: 0 });
   });
 });

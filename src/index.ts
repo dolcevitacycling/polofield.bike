@@ -13,6 +13,7 @@ import { getTodayPacific, parseDate, shortDateStyle } from "./dates";
 import { slackActionEndpoint, slackPolo } from "./slack";
 import { discordInteractions, discordRegisterCommands } from "./discord";
 import { deletePatch, listPatches, upsertPatch } from "./adminPatches";
+import { describeHealth, readScrapeHealth } from "./health";
 import { ScrapePoloWorkflow as ScrapePoloWorkflowBase } from "./workflows/ScrapePoloWorkflow";
 
 const sentryOptions = (_env: Bindings): Sentry.CloudflareOptions => ({
@@ -80,12 +81,28 @@ app.get("/calendar/open.ics", icalFeed({ open: true }));
 app.get("/calendar/all", calendarView({}));
 app.get("/calendar/all.ics", icalFeed({}));
 app.get("/today", async (c) => viewWeek(c, getTodayPacific()));
+// Is the scrape working right now? `cache_age_seconds` cannot answer that:
+// scrape_results only gets a row when the schedule *changes*, so a healthy
+// scrape that sees no changes for a week reports a week-old age. This reads
+// scrape_health, which records every successful run, and returns 503 when the
+// data has gone stale so an uptime monitor can watch it — including the case
+// the failure counter can never catch, where the cron stops running at all.
+app.get("/health", async (c) => {
+  const health = describeHealth(
+    await readScrapeHealth(c.env),
+    new Date().toISOString(),
+  );
+  return c.json(health, health.healthy ? 200 : 503);
+});
 app.get("/status.json", async (c) => {
   const cache = await cachedScrapeResult(c.env);
   const now = new Date();
   const status = {
     now: now.toISOString(),
+    scrape: describeHealth(await readScrapeHealth(c.env), now.toISOString()),
     created_at: cache.created_at,
+    // Time since the schedule last *changed*, not since the last successful
+    // scrape — see `scrape` above for whether the sync is currently working.
     cache_age_seconds: Math.round(
       (now.getTime() - new Date(cache.created_at).getTime()) / 1000,
     ),
