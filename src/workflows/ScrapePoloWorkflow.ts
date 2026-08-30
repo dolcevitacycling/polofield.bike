@@ -15,6 +15,7 @@ import {
   stripDebugResult,
 } from "../scrapeCalendar";
 import { fetchFieldRainoutInfo } from "../scrapeFieldRainoutInfo";
+import { recordScrapeFailure, recordScrapeSuccess } from "../health";
 import type { WorkflowEvent, WorkflowStep } from "cloudflare:workers";
 import { WorkflowEntrypoint } from "cloudflare:workers";
 
@@ -32,13 +33,58 @@ export class ScrapePoloWorkflow extends WorkflowEntrypoint<Env, Params> {
       await step.do("report-failure", async () => {
         const detail =
           err instanceof Error ? (err.stack ?? err.message) : String(err);
-        await discordReport(
-          this.env,
-          `ScrapePoloWorkflow failed: ${detail}`.slice(0, 1800),
-        );
+        // Sentry already has this: step.do captures throws automatically. The
+        // counter only gates the human channel, so an error that persists
+        // does not post to #diagnostics every 20 minutes.
+        let alert = true;
+        let failures = 0;
+        try {
+          const outcome = await recordScrapeFailure(this.env);
+          alert = outcome.alert;
+          failures = outcome.failures;
+        } catch (healthErr) {
+          // If D1 is unavailable too we cannot throttle; err on the side of
+          // saying something rather than swallowing the original failure.
+          console.error(`Could not record scrape failure: ${healthErr}`);
+        }
+        if (alert) {
+          await discordReport(
+            this.env,
+            `ScrapePoloWorkflow failed${
+              failures > 1 ? ` (${failures} consecutive runs)` : ""
+            }: ${detail}`.slice(0, 1800),
+          );
+        }
       });
       throw err;
     }
+  }
+
+  /**
+   * The origin is unreachable or served something unusable. Count it, and only
+   * involve Sentry and #diagnostics once it has been failing long enough to be
+   * an outage rather than a glitch. Ends the run: the next tick tries again in
+   * 20 minutes, and the site keeps serving the last good scrape meanwhile.
+   */
+  async reportUpstreamFailure(step: WorkflowStep, detail: string) {
+    const outcome = await step.do("recordUpstreamFailure", async () =>
+      recordScrapeFailure(this.env),
+    );
+    const summary = `Upstream unavailable, ${outcome.failures} consecutive run(s) since ${outcome.downSince}`;
+    console.log(`${summary}: ${detail}`);
+    if (outcome.alert) {
+      await step.do("reportUpstreamFailure", async () => {
+        Sentry.captureException(new Error(`${summary}: ${detail}`), {
+          tags: { scrape_failure: "upstream" },
+          extra: {
+            consecutiveFailures: outcome.failures,
+            downSince: outcome.downSince,
+          },
+        });
+        await discordReport(this.env, `${summary}:\n${detail}`.slice(0, 1800));
+      });
+    }
+    return [summary];
   }
 
   async runInner(event: WorkflowEvent<Params>, step: WorkflowStep) {
@@ -48,7 +94,12 @@ export class ScrapePoloWorkflow extends WorkflowEntrypoint<Env, Params> {
       now.setHours(now.getHours() - 16);
       return getTodayPacific(now);
     });
-    const years = await step.do("CalendarScraper", async () => {
+    // Upstream failures are returned rather than thrown. Throwing inside
+    // step.do is captured by Sentry automatically, and sfrecpark.org serves
+    // 522s often enough that alerting on a single failed run is noise — it is
+    // usually fine again by the next tick 20 minutes later. Returning a value
+    // leaves the decision to the failure counter in reportUpstreamFailure.
+    const scrape = await step.do("CalendarScraper", async () => {
       const scraper = new CalendarScraper();
       const fetchRes = await fetch(currentCalendarUrl(), {
         headers: {
@@ -59,18 +110,60 @@ export class ScrapePoloWorkflow extends WorkflowEntrypoint<Env, Params> {
       const res = new HTMLRewriter().on("*", scraper).transform(fetchRes);
       const txt = await res.text();
       if (scraper.years.length === 0) {
-        throw new Error(
-          `scraper.years.length === 0\n${fetchRes.url}\n${fetchRes.status} ${fetchRes.statusText}\n\n${txt}`,
-        );
+        return {
+          ok: false as const,
+          detail:
+            `scraper.years.length === 0\n${fetchRes.url}\n${fetchRes.status} ${fetchRes.statusText}\n\n${txt}`.slice(
+              0,
+              1000,
+            ),
+        };
       }
-      return scraper.years;
+      return { ok: true as const, years: scraper.years };
     });
+    if (!scrape.ok) {
+      return await this.reportUpstreamFailure(step, scrape.detail);
+    }
+    const years = scrape.years;
     const oldestYear =
       Math.min(...years.map((y) => y.year)) || new Date().getFullYear();
-    const fieldRainoutInfo = await step.do(
+    // Same treatment for the rainout spreadsheet: it is a second flaky origin,
+    // and continuing without it would overwrite good data with a schedule that
+    // wrongly shows rained-out days as closed.
+    const rainout = await step.do(
       `fetchFieldRainoutInfo(${oldestYear})`,
-      async () => fetchFieldRainoutInfo(oldestYear),
+      async () => {
+        try {
+          return {
+            ok: true as const,
+            info: await fetchFieldRainoutInfo(oldestYear),
+          };
+        } catch (err) {
+          return {
+            ok: false as const,
+            detail: `fetchFieldRainoutInfo(${oldestYear}): ${
+              err instanceof Error ? err.message : String(err)
+            }`.slice(0, 1000),
+          };
+        }
+      },
     );
+    if (!rainout.ok) {
+      return await this.reportUpstreamFailure(step, rainout.detail);
+    }
+    const fieldRainoutInfo = rainout.info;
+    // Getting this far means the scrape works, whatever happens downstream.
+    const recovery = await step.do("recordSuccess", async () =>
+      recordScrapeSuccess(this.env),
+    );
+    if (recovery.recovered) {
+      await step.do("reportRecovery", async () =>
+        discordReport(
+          this.env,
+          `Scraping recovered after ${recovery.failures} consecutive failures (down since ${recovery.downSince})`,
+        ),
+      );
+    }
     // Days that fail to parse are degraded to unknown_rules rather than
     // aborting the scrape, so the failures have to be carried out of the step
     // deliberately: step results are memoized, and a plain side effect here
