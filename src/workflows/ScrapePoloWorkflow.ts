@@ -70,17 +70,30 @@ export class ScrapePoloWorkflow extends WorkflowEntrypoint<Env, Params> {
     const outcome = await step.do("recordUpstreamFailure", async () =>
       recordScrapeFailure(this.env),
     );
-    const summary = `Upstream unavailable, ${outcome.failures} consecutive run(s) since ${outcome.downSince}`;
+    const hours = (outcome.staleMs / (60 * 60 * 1000)).toFixed(1);
+    const summary = `Upstream unavailable, ${outcome.failures} consecutive run(s) since ${outcome.downSince} (${hours}h stale)`;
     console.log(`${summary}: ${detail}`);
     if (outcome.alert) {
       await step.do("reportUpstreamFailure", async () => {
-        Sentry.captureException(new Error(`${summary}: ${detail}`), {
-          tags: { scrape_failure: "upstream" },
-          extra: {
-            consecutiveFailures: outcome.failures,
-            downSince: outcome.downSince,
+        // The message is deliberately constant and the fingerprint explicit:
+        // an ongoing outage has to land in one Sentry issue whose event count
+        // and last-seen tell the story. Putting the run count or the outage
+        // start in the message gives every alert a different fingerprint, so
+        // each one opened a new issue (POLOFIELD-1, -2, ...) instead.
+        Sentry.captureException(
+          new Error("Polo Field calendar scrape failing"),
+          {
+            fingerprint: ["scrape-upstream-unavailable"],
+            tags: { scrape_failure: "upstream" },
+            extra: {
+              summary,
+              detail,
+              consecutiveFailures: outcome.failures,
+              downSince: outcome.downSince,
+              staleHours: hours,
+            },
           },
-        });
+        );
         await discordReport(this.env, `${summary}:\n${detail}`.slice(0, 1800));
       });
     }
@@ -193,11 +206,20 @@ export class ScrapePoloWorkflow extends WorkflowEntrypoint<Env, Params> {
     if (failures.length > 0) {
       await step.do("captureUnrecognized", async () => {
         for (const failure of failures) {
+          // Group by the shape of the name rather than the message: the error
+          // text embeds the entry, so "Open Before 2:00 PM" and "Open Before
+          // 7:30 AM" on 47 different days would otherwise be 47 issues. With
+          // times and dates blanked they collapse into one issue per format,
+          // which is one per fix.
+          const shape = failure.names
+            .map((name) => name.replace(/\d+/g, "N"))
+            .join(" | ");
           Sentry.captureException(
-            new Error(`Unparseable calendar entry: ${failure.error}`),
+            new Error(`Unparseable calendar entry: ${shape}`),
             {
+              fingerprint: ["unparseable-calendar-entry", shape],
               tags: { scrape_date: failure.date },
-              extra: { names: failure.names },
+              extra: { names: failure.names, error: failure.error },
             },
           );
         }

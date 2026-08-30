@@ -3,21 +3,22 @@ import type { Bindings } from "./types";
 /**
  * Scrape health, so upstream glitches can be told apart from real outages.
  *
- * sfrecpark.org returns 522s and other transient errors often enough that
- * alerting on the first failed run is noise: by the next cron tick it is
- * usually fine again. Parse failures are the opposite — they are deterministic
- * and need a code change — so those still report immediately (see
- * recognizeCalendarDate and the workflow's captureUnrecognized step).
+ * sfrecpark.org serves 522s often, and for stretches of half an hour or more,
+ * so counting failed runs is the wrong measure — it alerts on outages that fix
+ * themselves. What actually matters is whether the data has gone stale: the
+ * site serves the last good scrape, the schedule rarely changes within a day,
+ * and the bots post once a day. So alert on how long it has been since a
+ * successful scrape, and stay quiet while the gap is one the site rides out.
  *
- * The decision logic is kept pure and the persistence thin, so the thresholds
- * are testable without a database.
+ * Parse failures are the opposite — deterministic, and needing a code change —
+ * so those still report immediately (see the workflow's captureUnrecognized).
  */
 
-/** The cron runs every 20 minutes, so this is roughly an hour of failure. */
-export const FAILURES_BEFORE_ALERT = 3;
+/** How stale the scrape has to get before it is worth telling a human. */
+export const STALE_AFTER_MS = 6 * 60 * 60 * 1000;
 
 /** How long to stay quiet before repeating an alert for an ongoing outage. */
-export const REALERT_AFTER_MS = 6 * 60 * 60 * 1000;
+export const REALERT_AFTER_MS = 12 * 60 * 60 * 1000;
 
 export interface ScrapeHealth {
   readonly last_success_at: string | null;
@@ -33,11 +34,46 @@ export const INITIAL_HEALTH: ScrapeHealth = {
   last_alert_at: null,
 };
 
+/**
+ * How long the scrape has been failing: since the last success, or since the
+ * first failure if it has never succeeded (a fresh database should not look
+ * infinitely stale).
+ */
+export function staleForMs(health: ScrapeHealth, nowISO: string): number {
+  const since = health.last_success_at ?? health.first_failure_at;
+  return since === null
+    ? 0
+    : Math.max(0, Date.parse(nowISO) - Date.parse(since));
+}
+
+export interface HealthSummary {
+  readonly healthy: boolean;
+  readonly stale_seconds: number;
+  readonly last_success_at: string | null;
+  readonly consecutive_failures: number;
+  readonly failing_since: string | null;
+}
+
+/** The shape served by /health and /status.json. */
+export function describeHealth(
+  health: ScrapeHealth,
+  nowISO: string,
+): HealthSummary {
+  const stale = staleForMs(health, nowISO);
+  return {
+    healthy: stale < STALE_AFTER_MS,
+    stale_seconds: Math.round(stale / 1000),
+    last_success_at: health.last_success_at,
+    consecutive_failures: health.consecutive_failures,
+    failing_since:
+      health.consecutive_failures > 0 ? health.first_failure_at : null,
+  };
+}
+
 export interface FailureDecision {
-  /** Consecutive failed runs including this one. */
   readonly failures: number;
-  /** When the current run of failures started. */
   readonly downSince: string;
+  readonly staleMs: number;
   /** Whether this failure is worth telling a human about. */
   readonly alert: boolean;
   readonly next: ScrapeHealth;
@@ -49,15 +85,20 @@ export function decideOnFailure(
 ): FailureDecision {
   const failures = health.consecutive_failures + 1;
   const downSince = health.first_failure_at ?? nowISO;
+  const staleMs = staleForMs(
+    { ...health, first_failure_at: downSince },
+    nowISO,
+  );
   const lastAlert = health.last_alert_at
     ? Date.parse(health.last_alert_at)
     : null;
   const alert =
-    failures >= FAILURES_BEFORE_ALERT &&
+    staleMs >= STALE_AFTER_MS &&
     (lastAlert === null || Date.parse(nowISO) - lastAlert >= REALERT_AFTER_MS);
   return {
     failures,
     downSince,
+    staleMs,
     alert,
     next: {
       last_success_at: health.last_success_at,
