@@ -136,11 +136,13 @@ export interface SuccessDecision {
   readonly failures: number;
   readonly downSince: string | null;
   /**
-   * The winning request shape changed since the last success. Reported once,
-   * on the change: a run of successes on the same fallback is the steady
-   * state, not news, and the current shape is always readable from /health.
+   * The shape that worked last time. Which *named* shape wins on a given run
+   * is close to random — the origin drops attempts, so it is whichever one
+   * happened to get through — and reporting every change of name produced a
+   * #diagnostics message every 20 minutes saying nothing. Callers compare
+   * against this to report the thing that is stable and does matter: whether
+   * we are on the primary shape or on a fallback at all.
    */
-  readonly strategyChanged: boolean;
   readonly previousStrategy: string | null;
   readonly next: ScrapeHealth;
 }
@@ -154,8 +156,6 @@ export function decideOnSuccess(
     recovered: health.last_alert_at !== null,
     failures: health.consecutive_failures,
     downSince: health.first_failure_at,
-    strategyChanged:
-      fetch !== undefined && fetch.strategy !== health.last_strategy,
     previousStrategy: health.last_strategy,
     next: {
       last_success_at: nowISO,
