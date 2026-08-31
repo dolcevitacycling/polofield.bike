@@ -25,6 +25,10 @@ export interface ScrapeHealth {
   readonly consecutive_failures: number;
   readonly first_failure_at: string | null;
   readonly last_alert_at: string | null;
+  /** Which request shape last worked — see CALENDAR_FETCH_STRATEGIES. */
+  readonly last_strategy: string | null;
+  /** Every attempt of the last successful run, as JSON. */
+  readonly last_attempts_json: string | null;
 }
 
 export const INITIAL_HEALTH: ScrapeHealth = {
@@ -32,6 +36,8 @@ export const INITIAL_HEALTH: ScrapeHealth = {
   consecutive_failures: 0,
   first_failure_at: null,
   last_alert_at: null,
+  last_strategy: null,
+  last_attempts_json: null,
 };
 
 /**
@@ -52,6 +58,12 @@ export interface HealthSummary {
   readonly last_success_at: string | null;
   readonly consecutive_failures: number;
   readonly failing_since: string | null;
+  /**
+   * The request shape behind the last success. Anything other than "current"
+   * means the plain fetch is being refused and we are only working because of
+   * a fallback — a degradation worth seeing before it becomes an outage.
+   */
+  readonly last_strategy: string | null;
 }
 
 /** The shape served by /health and /status.json. */
@@ -67,6 +79,7 @@ export function describeHealth(
     consecutive_failures: health.consecutive_failures,
     failing_since:
       health.consecutive_failures > 0 ? health.first_failure_at : null,
+    last_strategy: health.last_strategy,
   };
 }
 
@@ -101,7 +114,7 @@ export function decideOnFailure(
     staleMs,
     alert,
     next: {
-      last_success_at: health.last_success_at,
+      ...health,
       consecutive_failures: failures,
       first_failure_at: downSince,
       // Only move the clock when we actually alert, so the re-alert interval
@@ -111,34 +124,58 @@ export function decideOnFailure(
   };
 }
 
+/** What the fetch had to do to succeed, for the record kept on success. */
+export interface FetchProvenance {
+  readonly strategy: string;
+  readonly attempts: unknown;
+}
+
 export interface SuccessDecision {
   /** True only for outages we alerted about, so a blip stays silent. */
   readonly recovered: boolean;
   readonly failures: number;
   readonly downSince: string | null;
+  /**
+   * The winning request shape changed since the last success. Reported once,
+   * on the change: a run of successes on the same fallback is the steady
+   * state, not news, and the current shape is always readable from /health.
+   */
+  readonly strategyChanged: boolean;
+  readonly previousStrategy: string | null;
   readonly next: ScrapeHealth;
 }
 
 export function decideOnSuccess(
   health: ScrapeHealth,
   nowISO: string,
+  fetch?: FetchProvenance,
 ): SuccessDecision {
   return {
     recovered: health.last_alert_at !== null,
     failures: health.consecutive_failures,
     downSince: health.first_failure_at,
+    strategyChanged:
+      fetch !== undefined && fetch.strategy !== health.last_strategy,
+    previousStrategy: health.last_strategy,
     next: {
       last_success_at: nowISO,
       consecutive_failures: 0,
       first_failure_at: null,
       last_alert_at: null,
+      // A success with no provenance (a caller that does not track it) leaves
+      // the previous record alone rather than erasing it.
+      last_strategy: fetch?.strategy ?? health.last_strategy,
+      last_attempts_json:
+        fetch === undefined
+          ? health.last_attempts_json
+          : JSON.stringify(fetch.attempts),
     },
   };
 }
 
 export async function readScrapeHealth(env: Bindings): Promise<ScrapeHealth> {
   const row = await env.DB.prepare(
-    `SELECT last_success_at, consecutive_failures, first_failure_at, last_alert_at FROM scrape_health WHERE id = 1`,
+    `SELECT last_success_at, consecutive_failures, first_failure_at, last_alert_at, last_strategy, last_attempts_json FROM scrape_health WHERE id = 1`,
   ).first<ScrapeHealth>();
   return row ?? INITIAL_HEALTH;
 }
@@ -148,19 +185,23 @@ async function writeScrapeHealth(
   health: ScrapeHealth,
 ): Promise<void> {
   await env.DB.prepare(
-    `INSERT INTO scrape_health (id, last_success_at, consecutive_failures, first_failure_at, last_alert_at)
-       VALUES (1, ?, ?, ?, ?)
+    `INSERT INTO scrape_health (id, last_success_at, consecutive_failures, first_failure_at, last_alert_at, last_strategy, last_attempts_json)
+       VALUES (1, ?, ?, ?, ?, ?, ?)
        ON CONFLICT(id) DO UPDATE SET
          last_success_at = excluded.last_success_at,
          consecutive_failures = excluded.consecutive_failures,
          first_failure_at = excluded.first_failure_at,
-         last_alert_at = excluded.last_alert_at`,
+         last_alert_at = excluded.last_alert_at,
+         last_strategy = excluded.last_strategy,
+         last_attempts_json = excluded.last_attempts_json`,
   )
     .bind(
       health.last_success_at,
       health.consecutive_failures,
       health.first_failure_at,
       health.last_alert_at,
+      health.last_strategy,
+      health.last_attempts_json,
     )
     .run();
 }
@@ -176,9 +217,12 @@ export async function recordScrapeFailure(
 
 export async function recordScrapeSuccess(
   env: Bindings,
-  nowISO: string = new Date().toISOString(),
+  {
+    nowISO = new Date().toISOString(),
+    fetch,
+  }: { nowISO?: string; fetch?: FetchProvenance } = {},
 ): Promise<SuccessDecision> {
-  const decision = decideOnSuccess(await readScrapeHealth(env), nowISO);
+  const decision = decideOnSuccess(await readScrapeHealth(env), nowISO, fetch);
   await writeScrapeHealth(env, decision.next);
   return decision;
 }

@@ -132,7 +132,16 @@ export class ScrapePoloWorkflow extends WorkflowEntrypoint<Env, Params> {
           } failed attempt(s):\n${describeAttempts(fetched.attempts)}`,
         );
       }
-      return { ok: true as const, years: fetched.years };
+      // The attempts travel out of the step so they can be written to
+      // scrape_health: a console.log lives in one workflow instance, which is
+      // exactly why we could not tell whether the fallback ended the
+      // 2026-08-30 outage or the origin recovered on its own.
+      return {
+        ok: true as const,
+        years: fetched.years,
+        strategy: fetched.strategy,
+        attempts: fetched.attempts,
+      };
     });
     if (!scrape.ok) {
       return await this.reportUpstreamFailure(step, scrape.detail);
@@ -167,13 +176,30 @@ export class ScrapePoloWorkflow extends WorkflowEntrypoint<Env, Params> {
     const fieldRainoutInfo = rainout.info;
     // Getting this far means the scrape works, whatever happens downstream.
     const recovery = await step.do("recordSuccess", async () =>
-      recordScrapeSuccess(this.env),
+      recordScrapeSuccess(this.env, {
+        fetch: { strategy: scrape.strategy, attempts: scrape.attempts },
+      }),
     );
     if (recovery.recovered) {
       await step.do("reportRecovery", async () =>
         discordReport(
           this.env,
-          `Scraping recovered after ${recovery.failures} consecutive failures (down since ${recovery.downSince})`,
+          `Scraping recovered after ${recovery.failures} consecutive failures (down since ${recovery.downSince}), fetched via "${scrape.strategy}"`,
+        ),
+      );
+    }
+    // Say so when the working request shape changes — including back to
+    // "current". Working only because of a fallback is a degradation, and
+    // without this it is invisible until it stops working too.
+    if (recovery.strategyChanged) {
+      await step.do("reportStrategyChange", async () =>
+        discordReport(
+          this.env,
+          `Calendar fetch now succeeding via "${scrape.strategy}" (was ${
+            recovery.previousStrategy === null
+              ? "unrecorded"
+              : `"${recovery.previousStrategy}"`
+          }):\n${describeAttempts(scrape.attempts)}`.slice(0, 1800),
         ),
       );
     }
