@@ -1,6 +1,7 @@
 import { parseDate, addDays, getTodayPacific, shortDateStyle } from "./dates";
 import { discordReport, runDiscordWebhook } from "./discord";
-import { CalendarScraper, currentCalendarUrl } from "./scrapeCalendar";
+import { CalendarScraper } from "./scrapeCalendar";
+import { describeAttempts, fetchCalendarWithFallback } from "./fetchCalendar";
 import { runSlackWebhook } from "./slack";
 import { Bindings } from "./types";
 import { fetchFieldRainoutInfo } from "./scrapeFieldRainoutInfo";
@@ -109,14 +110,19 @@ export function intervalsForDate(
 }
 
 export async function scrapePoloURL(): Promise<ScrapeResult> {
+  const fetched = await fetchCalendarWithFallback();
+  if (!fetched.ok) {
+    // Empty is the existing "upstream gave us nothing" signal:
+    // refreshScrapeResult keeps the last good scrape rather than overwriting
+    // it. The attempts are logged because they are the only record of what
+    // the origin actually said.
+    console.log(
+      `Calendar fetch failed:\n${describeAttempts(fetched.attempts)}`,
+    );
+    return [];
+  }
   const scraper = new CalendarScraper();
-  const res = new HTMLRewriter().on("*", scraper).transform(
-    await fetch(currentCalendarUrl(), {
-      cache: "no-store",
-      headers: { "user-agent": "polofield.bike" },
-    }),
-  );
-  await res.text();
+  scraper.years = fetched.years;
   const oldestYear =
     Math.min(...scraper.years.map((y) => y.year)) || new Date().getFullYear();
   scraper.fieldRainoutInfo = await fetchFieldRainoutInfo(oldestYear);

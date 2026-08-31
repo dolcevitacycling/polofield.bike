@@ -9,11 +9,11 @@ import { applyScrapePatches, loadScrapePatches } from "../patches";
 import { getTodayPacific } from "../dates";
 import { discordReport } from "../discord";
 import {
-  CalendarScraper,
   currentCalendarUrl,
   getScrapeDebugResult,
   stripDebugResult,
 } from "../scrapeCalendar";
+import { describeAttempts, fetchCalendarWithFallback } from "../fetchCalendar";
 import { fetchFieldRainoutInfo } from "../scrapeFieldRainoutInfo";
 import { recordScrapeFailure, recordScrapeSuccess } from "../health";
 import type { WorkflowEvent, WorkflowStep } from "cloudflare:workers";
@@ -113,26 +113,26 @@ export class ScrapePoloWorkflow extends WorkflowEntrypoint<Env, Params> {
     // usually fine again by the next tick 20 minutes later. Returning a value
     // leaves the decision to the failure counter in reportUpstreamFailure.
     const scrape = await step.do("CalendarScraper", async () => {
-      const scraper = new CalendarScraper();
-      const fetchRes = await fetch(currentCalendarUrl(), {
-        headers: {
-          "user-agent": "polofield.bike",
-        },
-        cache: "no-store",
-      });
-      const res = new HTMLRewriter().on("*", scraper).transform(fetchRes);
-      const txt = await res.text();
-      if (scraper.years.length === 0) {
+      const url = currentCalendarUrl();
+      const fetched = await fetchCalendarWithFallback(url);
+      if (!fetched.ok) {
         return {
           ok: false as const,
-          detail:
-            `scraper.years.length === 0\n${fetchRes.url}\n${fetchRes.status} ${fetchRes.statusText}\n\n${txt}`.slice(
-              0,
-              1000,
-            ),
+          detail: `No usable response from ${url}\n${describeAttempts(
+            fetched.attempts,
+          )}`.slice(0, 1200),
         };
       }
-      return { ok: true as const, years: scraper.years };
+      if (fetched.attempts.length > 1) {
+        // Which shapes the origin refused, and from which colo, is the only
+        // handle on the intermittent 522s — worth a log line even on success.
+        console.log(
+          `Calendar fetch succeeded via "${fetched.strategy}" after ${
+            fetched.attempts.length - 1
+          } failed attempt(s):\n${describeAttempts(fetched.attempts)}`,
+        );
+      }
+      return { ok: true as const, years: fetched.years };
     });
     if (!scrape.ok) {
       return await this.reportUpstreamFailure(step, scrape.detail);
