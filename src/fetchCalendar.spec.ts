@@ -5,6 +5,8 @@ import {
   CALENDAR_FETCH_STRATEGIES,
   describeAttempts,
   fetchCalendarWithFallback,
+  orderStrategies,
+  PRIMARY_STRATEGY,
 } from "./fetchCalendar";
 
 const URL = "https://www.sfrecpark.org/calendar.aspx";
@@ -36,7 +38,7 @@ function scrapeResponse(res: Response) {
   return res.text().then((text) => ({ years: res.ok ? YEARS : [], text }));
 }
 
-function fetcher(responses: (() => Response)[]) {
+function fetcher(responses: ((init?: RequestInit) => Response)[]) {
   const seen: string[] = [];
   const fetchImpl = (async (
     _url: string | URL | Request,
@@ -45,10 +47,26 @@ function fetcher(responses: (() => Response)[]) {
     seen.push(new Headers(init?.headers).get("user-agent") ?? "(none)");
     const next = responses.shift();
     if (!next) throw new Error("unexpected extra fetch");
-    return next();
+    return next(init);
   }) as unknown as typeof fetch;
   return { fetchImpl, seen };
 }
+
+describe("orderStrategies", () => {
+  it("moves the preferred shape to the front without dropping any", () => {
+    const names = orderStrategies("browser-ua-cached").map((s) => s.name);
+    expect(names[0]).toBe("browser-ua-cached");
+    expect([...names].sort()).toEqual(
+      CALENDAR_FETCH_STRATEGIES.map((s) => s.name).sort(),
+    );
+  });
+
+  it("keeps the declared order when there is nothing to prefer", () => {
+    for (const preferred of [null, undefined, "gone-from-the-list"]) {
+      expect(orderStrategies(preferred)).toEqual(CALENDAR_FETCH_STRATEGIES);
+    }
+  });
+});
 
 describe("fetchCalendarWithFallback", () => {
   it("uses the honest user-agent and stops there when it works", async () => {
@@ -109,6 +127,51 @@ describe("fetchCalendarWithFallback", () => {
     });
     expect(result.ok && result.strategy).toBe("browser-ua");
     expect(result.attempts[0]).toMatchObject({ status: 200, years: 0 });
+  });
+
+  it("leads with the shape that worked last time", async () => {
+    // Two runs in production spent 19.5s each reaching a 522 on "current"
+    // before a later attempt returned the same 76444 bytes in about a second.
+    // Paying that timeout again every run is the thing to avoid.
+    const { fetchImpl, seen } = fetcher([ok]);
+    const result = await fetchCalendarWithFallback(URL, {
+      preferStrategy: "browser-ua-cached",
+      fetchImpl,
+      scrapeResponse,
+    });
+    expect(result.ok && result.strategy).toBe("browser-ua-cached");
+    expect(seen).toHaveLength(1);
+    expect(seen[0]).toContain("Mozilla/5.0");
+  });
+
+  it("still falls through the rest when the preferred shape fails", async () => {
+    const { fetchImpl } = fetcher([gatewayTimeout, ok]);
+    const result = await fetchCalendarWithFallback(URL, {
+      preferStrategy: "browser-ua-cached",
+      fetchImpl,
+      scrapeResponse,
+    });
+    expect(result.attempts.map((a) => a.strategy)).toEqual([
+      "browser-ua-cached",
+      PRIMARY_STRATEGY,
+    ]);
+  });
+
+  it("gives up on an attempt rather than waiting out the origin's timeout", async () => {
+    const { fetchImpl } = fetcher([
+      (init?: RequestInit) => {
+        expect(init?.signal).toBeInstanceOf(AbortSignal);
+        throw new Error("The operation was aborted due to timeout");
+      },
+      ok,
+    ]);
+    const result = await fetchCalendarWithFallback(URL, {
+      timeoutMs: 50,
+      fetchImpl,
+      scrapeResponse,
+    });
+    expect(result.ok).toBe(true);
+    expect(result.attempts[0].error).toContain("aborted");
   });
 
   it("reports every attempt when they all fail", async () => {

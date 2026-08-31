@@ -13,10 +13,18 @@ import {
   getScrapeDebugResult,
   stripDebugResult,
 } from "../scrapeCalendar";
-import { describeAttempts, fetchCalendarWithFallback } from "../fetchCalendar";
+import {
+  describeAttempts,
+  fetchCalendarWithFallback,
+  PRIMARY_STRATEGY,
+} from "../fetchCalendar";
 import { describeScrapeDiff, diffScrapeResults } from "../scrapeDiff";
 import { fetchFieldRainoutInfo } from "../scrapeFieldRainoutInfo";
-import { recordScrapeFailure, recordScrapeSuccess } from "../health";
+import {
+  readScrapeHealth,
+  recordScrapeFailure,
+  recordScrapeSuccess,
+} from "../health";
 import type { WorkflowEvent, WorkflowStep } from "cloudflare:workers";
 import { WorkflowEntrypoint } from "cloudflare:workers";
 
@@ -113,9 +121,17 @@ export class ScrapePoloWorkflow extends WorkflowEntrypoint<Env, Params> {
     // 522s often enough that alerting on a single failed run is noise — it is
     // usually fine again by the next tick 20 minutes later. Returning a value
     // leaves the decision to the failure counter in reportUpstreamFailure.
+    // Lead with whatever worked last time. The origin drops attempts rather
+    // than refusing a particular request shape, so the previous winner is the
+    // best guess available, and it saves paying the 10s timeout on shapes that
+    // are currently being dropped.
+    const preferStrategy = await step.do("preferredStrategy", async () => {
+      const health = await readScrapeHealth(this.env);
+      return health.last_strategy;
+    });
     const scrape = await step.do("CalendarScraper", async () => {
       const url = currentCalendarUrl();
-      const fetched = await fetchCalendarWithFallback(url);
+      const fetched = await fetchCalendarWithFallback(url, { preferStrategy });
       if (!fetched.ok) {
         return {
           ok: false as const,
@@ -189,18 +205,26 @@ export class ScrapePoloWorkflow extends WorkflowEntrypoint<Env, Params> {
         ),
       );
     }
-    // Say so when the working request shape changes — including back to
-    // "current". Working only because of a fallback is a degradation, and
-    // without this it is invisible until it stops working too.
-    if (recovery.strategyChanged) {
+    // Report crossing between "the plain request works" and "we are only up
+    // because of a fallback" — not every change of which named fallback won.
+    // Reporting the name flapped between browser-ua and browser-ua-cached
+    // every 20 minutes, which is noise: those two are equally fine, and which
+    // one gets through is down to the origin dropping attempts. Losing the
+    // plain request entirely is the part worth hearing, and /health always has
+    // the exact shape.
+    const wasDegraded =
+      recovery.previousStrategy !== null &&
+      recovery.previousStrategy !== PRIMARY_STRATEGY;
+    const isDegraded = scrape.strategy !== PRIMARY_STRATEGY;
+    if (isDegraded !== wasDegraded) {
       await step.do("reportStrategyChange", async () =>
         discordReport(
           this.env,
-          `Calendar fetch now succeeding via "${scrape.strategy}" (was ${
-            recovery.previousStrategy === null
-              ? "unrecorded"
-              : `"${recovery.previousStrategy}"`
-          }):\n${describeAttempts(scrape.attempts)}`.slice(0, 1800),
+          isDegraded
+            ? `Calendar fetch is falling back to "${scrape.strategy}" — the plain request is not getting through:\n${describeAttempts(
+                scrape.attempts,
+              )}`.slice(0, 1800)
+            : `Calendar fetch is back to the plain "${PRIMARY_STRATEGY}" request`,
         ),
       );
     }

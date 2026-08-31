@@ -57,6 +57,38 @@ export const CALENDAR_FETCH_STRATEGIES: readonly CalendarFetchStrategy[] = [
   { name: "defaults", init: {} },
 ];
 
+/** The shape we would use if the origin were behaving; anything else is a fallback. */
+export const PRIMARY_STRATEGY = CALENDAR_FETCH_STRATEGIES[0].name;
+
+/**
+ * Give up on an attempt after this long.
+ *
+ * The origin is bimodal: a good response is back in about a second (1022ms for
+ * 76444 bytes), and a bad one spends 19.5s before Cloudflare gives up with a
+ * 522. Waiting out that full timeout on each of three attempts is 40s of dead
+ * time per run for no information — the answer is already known by 10s.
+ */
+export const ATTEMPT_TIMEOUT_MS = 10_000;
+
+/**
+ * Try `preferred` first, then everything else in the declared order.
+ *
+ * The winning shape is worth remembering because retrying is what actually
+ * gets us a response: the same query came back in 1022ms on the third attempt
+ * of a run whose first two spent 19.5s each reaching a 522. Leading with the
+ * shape that worked last time turns the common case back into one fast
+ * request, instead of paying the timeout twice before getting there.
+ */
+export function orderStrategies(
+  preferred: string | null | undefined,
+  strategies: readonly CalendarFetchStrategy[] = CALENDAR_FETCH_STRATEGIES,
+): readonly CalendarFetchStrategy[] {
+  const first = strategies.find((s) => s.name === preferred);
+  return first === undefined
+    ? strategies
+    : [first, ...strategies.filter((s) => s !== first)];
+}
+
 export interface CalendarFetchAttempt {
   readonly strategy: string;
   readonly ms: number;
@@ -81,6 +113,9 @@ export type CalendarFetchResult =
 
 export interface CalendarFetchDeps {
   readonly strategies?: readonly CalendarFetchStrategy[];
+  /** Name of the shape that worked last time; tried first. */
+  readonly preferStrategy?: string | null;
+  readonly timeoutMs?: number;
   readonly fetchImpl?: typeof fetch;
   /** Runs the response through the scraper. Injectable so tests can skip HTMLRewriter. */
   readonly scrapeResponse?: (
@@ -123,11 +158,18 @@ export async function fetchCalendarWithFallback(
 ): Promise<CalendarFetchResult> {
   const fetchImpl = deps.fetchImpl ?? ((...args) => fetch(...args));
   const scrapeResponse = deps.scrapeResponse ?? scrapeResponseWithRewriter;
+  const timeoutMs = deps.timeoutMs ?? ATTEMPT_TIMEOUT_MS;
   const attempts: CalendarFetchAttempt[] = [];
-  for (const strategy of deps.strategies ?? CALENDAR_FETCH_STRATEGIES) {
+  for (const strategy of orderStrategies(
+    deps.preferStrategy,
+    deps.strategies ?? CALENDAR_FETCH_STRATEGIES,
+  )) {
     const started = Date.now();
     try {
-      const res = await fetchImpl(url, strategy.init);
+      const res = await fetchImpl(url, {
+        ...strategy.init,
+        signal: AbortSignal.timeout(timeoutMs),
+      });
       const { years, text } = await scrapeResponse(res);
       const good = res.ok && years.length > 0;
       attempts.push({

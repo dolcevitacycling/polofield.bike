@@ -101,35 +101,35 @@ describe("decideOnSuccess", () => {
     });
   });
 
-  it("records which request shape worked, and reports only the change", () => {
+  it("records which request shape worked, and what it took to get it", () => {
     // The question we could not answer about the 2026-08-30 recovery: was it
-    // the fallback or the origin? One report on the switch, then silence
-    // while it stays there — /health carries the current answer.
+    // the fallback or the origin? /health carries the answer now.
     const attempts = [{ strategy: "current", status: 522 }];
-    let health: ScrapeHealth = { ...INITIAL_HEALTH, last_success_at: at(0) };
-    const fellBack = decideOnSuccess(health, at(1), {
+    const fellBack = decideOnSuccess(INITIAL_HEALTH, at(1), {
       strategy: "browser-ua",
       attempts,
     });
-    expect(fellBack.strategyChanged).toBe(true);
     expect(fellBack.previousStrategy).toBe(null);
     expect(fellBack.next.last_strategy).toBe("browser-ua");
     expect(JSON.parse(fellBack.next.last_attempts_json!)).toEqual(attempts);
 
-    health = fellBack.next;
-    const stillFallenBack = decideOnSuccess(health, at(2), {
-      strategy: "browser-ua",
-      attempts,
-    });
-    expect(stillFallenBack.strategyChanged).toBe(false);
-
-    // Coming back to the plain request is a change worth hearing about too.
-    const backToNormal = decideOnSuccess(stillFallenBack.next, at(3), {
-      strategy: "current",
+    // The previous shape is reported so a caller can decide whether the
+    // change is worth saying out loud.
+    const next = decideOnSuccess(fellBack.next, at(2), {
+      strategy: "browser-ua-cached",
       attempts: [],
     });
-    expect(backToNormal.strategyChanged).toBe(true);
-    expect(backToNormal.previousStrategy).toBe("browser-ua");
+    expect(next.previousStrategy).toBe("browser-ua");
+  });
+
+  it("leaves the recorded shape alone for a caller that does not track it", () => {
+    const recorded = decideOnSuccess(INITIAL_HEALTH, at(0), {
+      strategy: "browser-ua",
+      attempts: [],
+    });
+    expect(decideOnSuccess(recorded.next, at(1)).next.last_strategy).toBe(
+      "browser-ua",
+    );
   });
 
   it("keeps the recorded shape through an outage, so the change is real", () => {
