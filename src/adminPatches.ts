@@ -12,7 +12,7 @@ import {
   type KnownRules,
 } from "./cron";
 
-function isAuthorized(c: Context<{ Bindings: Bindings }>): boolean {
+export function isAuthorized(c: Context<{ Bindings: Bindings }>): boolean {
   const expected = c.env.ADMIN_TOKEN;
   if (!expected) return false;
   const header = c.req.header("authorization") ?? "";

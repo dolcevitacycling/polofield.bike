@@ -14,6 +14,7 @@ import { slackActionEndpoint, slackPolo } from "./slack";
 import { discordInteractions, discordRegisterCommands } from "./discord";
 import { deletePatch, listPatches, upsertPatch } from "./adminPatches";
 import { describeHealth, readScrapeHealth } from "./health";
+import { probeUpstream } from "./probeUpstream";
 import { ScrapePoloWorkflow as ScrapePoloWorkflowBase } from "./workflows/ScrapePoloWorkflow";
 
 const sentryOptions = (_env: Bindings): Sentry.CloudflareOptions => ({
@@ -142,6 +143,7 @@ app.post("/slack/action-endpoint", slackActionEndpoint);
 app.post("/discord/interactions", discordInteractions);
 app.post("/discord/register-commands", discordRegisterCommands);
 
+app.get("/admin/probe-upstream", probeUpstream);
 app.get("/admin/patches", listPatches);
 app.post("/admin/patches", upsertPatch);
 app.delete("/admin/patches/:date{[0-9]{4}-[0-9]{2}-[0-9]{2}}", deletePatch);
