@@ -14,6 +14,7 @@ import {
   stripDebugResult,
 } from "../scrapeCalendar";
 import { describeAttempts, fetchCalendarWithFallback } from "../fetchCalendar";
+import { describeScrapeDiff, diffScrapeResults } from "../scrapeDiff";
 import { fetchFieldRainoutInfo } from "../scrapeFieldRainoutInfo";
 import { recordScrapeFailure, recordScrapeSuccess } from "../health";
 import type { WorkflowEvent, WorkflowStep } from "cloudflare:workers";
@@ -283,7 +284,19 @@ export class ScrapePoloWorkflow extends WorkflowEntrypoint<Env, Params> {
         const messages = [
           {
             quiet: false,
-            message: `Inserted new scrape result at ${created_at}`,
+            message:
+              prev.results.length === 0
+                ? `Inserted first scrape result at ${created_at}`
+                : // What changed, not just that something did. The bare
+                  // timestamp made a closure appearing next Saturday and a
+                  // backfill of last March look identical.
+                  `Inserted new scrape result at ${created_at}\n${describeScrapeDiff(
+                    diffScrapeResults(
+                      JSON.parse(prev.results[0].scrape_results_json),
+                      result,
+                    ),
+                    today,
+                  )}`.slice(0, 1800),
           },
         ];
         // Days that failed to parse are degraded to unknown_rules by
