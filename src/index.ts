@@ -98,9 +98,16 @@ app.get("/health", async (c) => {
 app.get("/status.json", async (c) => {
   const cache = await cachedScrapeResult(c.env);
   const now = new Date();
+  const health = await readScrapeHealth(c.env);
   const status = {
     now: now.toISOString(),
-    scrape: describeHealth(await readScrapeHealth(c.env), now.toISOString()),
+    scrape: describeHealth(health, now.toISOString()),
+    // Every request shape the last successful run tried, failures included,
+    // with the cf-ray whose suffix names the colo. This is how to tell a
+    // fallback carrying us from a genuinely healthy origin.
+    scrape_attempts: health.last_attempts_json
+      ? JSON.parse(health.last_attempts_json)
+      : null,
     created_at: cache.created_at,
     // Time since the schedule last *changed*, not since the last successful
     // scrape — see `scrape` above for whether the sync is currently working.

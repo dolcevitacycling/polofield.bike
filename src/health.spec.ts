@@ -96,7 +96,51 @@ describe("decideOnSuccess", () => {
       consecutive_failures: 0,
       first_failure_at: null,
       last_alert_at: null,
+      last_strategy: null,
+      last_attempts_json: null,
     });
+  });
+
+  it("records which request shape worked, and reports only the change", () => {
+    // The question we could not answer about the 2026-08-30 recovery: was it
+    // the fallback or the origin? One report on the switch, then silence
+    // while it stays there — /health carries the current answer.
+    const attempts = [{ strategy: "current", status: 522 }];
+    let health: ScrapeHealth = { ...INITIAL_HEALTH, last_success_at: at(0) };
+    const fellBack = decideOnSuccess(health, at(1), {
+      strategy: "browser-ua",
+      attempts,
+    });
+    expect(fellBack.strategyChanged).toBe(true);
+    expect(fellBack.previousStrategy).toBe(null);
+    expect(fellBack.next.last_strategy).toBe("browser-ua");
+    expect(JSON.parse(fellBack.next.last_attempts_json!)).toEqual(attempts);
+
+    health = fellBack.next;
+    const stillFallenBack = decideOnSuccess(health, at(2), {
+      strategy: "browser-ua",
+      attempts,
+    });
+    expect(stillFallenBack.strategyChanged).toBe(false);
+
+    // Coming back to the plain request is a change worth hearing about too.
+    const backToNormal = decideOnSuccess(stillFallenBack.next, at(3), {
+      strategy: "current",
+      attempts: [],
+    });
+    expect(backToNormal.strategyChanged).toBe(true);
+    expect(backToNormal.previousStrategy).toBe("browser-ua");
+  });
+
+  it("keeps the recorded shape through an outage, so the change is real", () => {
+    // decideOnFailure must not clear it: otherwise every recovery looks like
+    // a strategy change and the report means nothing.
+    const succeeded = decideOnSuccess(INITIAL_HEALTH, at(0), {
+      strategy: "browser-ua",
+      attempts: [],
+    });
+    const failed = decideOnFailure(succeeded.next, at(1));
+    expect(failed.next.last_strategy).toBe("browser-ua");
   });
 
   it("stays quiet through a flapping origin that never fails for long", () => {
@@ -130,6 +174,7 @@ describe("describeHealth", () => {
       last_success_at: at(0),
       consecutive_failures: 0,
       failing_since: null,
+      last_strategy: null,
     });
   });
 
